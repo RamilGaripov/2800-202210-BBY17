@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1> Home Page </h1>
+    
+    <!-- Need to use this to make the form functional with JS:  -->
+    <!-- <form action="/auth/register" method="POST"> -->
+    
+    <form>  <!-- use this for now: -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="ENTER YOUR EMAIL">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="ENTER YOUR PASSWORD">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+
+
+    <ul>
+        <li> <a href="/"> Home </a></li>
+        <li> <a href="html/register.html"> Register </a></li>
+    </ul>
+
+
+    <script src="js/client.js"></script>
+</body>
+
+</html>
