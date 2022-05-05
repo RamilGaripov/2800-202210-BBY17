@@ -1,8 +1,10 @@
 const express = require("express");
-const session = require("express-session"); //why?
+const session = require("express-session"); 
 const { append } = require("express/lib/response");
 const app = express();
 const fs = require("fs");
+const { JSDOM } = require("jsdom");
+//mysql2 is ALSO REQUIRED. 
 
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
@@ -20,6 +22,7 @@ app.use(session(
 
 //This function feeds the index.html on first load. 
 app.get("/", function(req, res) {
+  //if the user is logged in, it'll redirect them to their profile
     if(req.session.loggedIn) {
         res.redirect("/profile");
     } else {
@@ -29,6 +32,117 @@ app.get("/", function(req, res) {
         res.send(doc);
     }
 });
+
+app.get("/profile", function(req, res) {
+  if (req.session.loggedIn) {
+    let profile = fs.readFileSync("./app/html/profile.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    let admin_profile = fs.readFileSync("./app/html/admin.html", "utf8");
+    let admin_profileDOM = new JSDOM(admin_profile);
+
+    console.log("Redirecting to the profile page of " + req.session.first_name, req.session.last_name);
+    profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Profile";
+    profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
+
+    res.send(profileDOM.serialize());
+  }
+});
+
+app.get("/admin", function(req, res) {
+  if (req.session.loggedIn) {
+    let admin_profile = fs.readFileSync("./app/html/admin.html", "utf8");
+    let profileDOM = new JSDOM(admin_profile);
+
+    console.log("Redirecting to the admin profile page of " + req.session.first_name, req.session.last_name);
+    profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
+    profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
+
+    res.send(profileDOM.serialize());
+  }
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.post("/login", function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+  const email = req.body.email;
+  const password = req.body.password;
+  console.log("What we received from the client:", email, password);
+
+  authenticate(email, password, function(userRecord) {
+    if (!userRecord) {
+      res.send({status: "fail", msg: "Wrong password or user does not exist."});
+    } else {
+      req.session.loggedIn = true;
+      req.session.email = userRecord.email;
+      req.session.first_name = userRecord.first_name;
+      req.session.last_name = userRecord.last_name;
+      req.session.password = userRecord.password;
+      req.session.admin = userRecord.is_admin;
+      if (req.session.admin) {
+        console.log("This user is an admin.");
+        res.send({ status: "success", msg: "Logged in.", privileges: true});
+      } else {
+        console.log("This is a regular user.");
+        res.send({ status: "success", msg: "Logged in.", privileges: false});
+      }
+      
+    }
+  });
+});
+
+app.get("/logout", function(req,res){
+  console.log("Logging the user out.");
+  if (req.session) {
+      req.session.destroy(function(error) {
+          if (error) {
+              res.status(400).send("Unable to log out")
+          } else {
+              // session deleted, redirect to home
+              res.redirect("/");
+          }
+      });
+  }
+});
+
+//checks if the user is found in the database or not
+function authenticate(email, pwd, callback) {
+
+  const mysql = require("mysql2");
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "serenity"
+  });
+  connection.connect();
+  connection.query(
+    //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
+    //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
+    "SELECT * FROM accounts WHERE email = ? AND password = ?", [email, pwd],
+    function(error, results) {
+        console.log("Results from DB", results, "Number of records returned: ", results.length);
+
+        if (error) {
+            // in production, you'd really want to send an email to admin but for now, just console
+            console.log(error);
+        }
+        if(results.length > 0) {
+            // email and password found
+            console.log("User is found!");
+            return callback(results[0]);
+        } else {
+            // user not found
+            console.log("User not found");
+            return callback(null);
+        }
+
+    }
+  );
+
+}
 
 //initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
 async function init() {
@@ -45,7 +159,7 @@ async function init() {
     use Serenity;
     CREATE TABLE IF NOT EXISTS accounts (
     id INT Primary Key AUTO_INCREMENT,
-    email VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL, 
     password VARCHAR(30) NOT NULL,
@@ -75,7 +189,7 @@ async function init() {
       ],
       ["joshuachenyyc@gmail.com", "Joshua", "Chen", "123456", is_admin, 20030101],
       ["rkong360@hotmail.com", "Randall", "Kong", "123456", is_admin, 20030423],
-      ["gonnacry@bully.com", "Tobey", "Maguire", "123456", !is_admin, 19750627],
+      ["test@test.ca", "Tobey", "Maguire", "123456", !is_admin, 19750627],
       [
         "callmeauntmay@bully.com",
         "May",
@@ -88,118 +202,8 @@ async function init() {
     await connection.query(userRecords, [recordUserValues]);
   }
 
-//   connection.connect();
-//   connection.query(createDBAndTables, function (error, results, fields) {
-//     if (error) {
-//       console.log(error);
-//     }
-//     console.log(results);
-//   });
-
-//   connection.end();
-
-
   console.log("Listening on port " + port + "!");
 }
-// app.get("/get-customers", function (req, res) {
-//   let connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "test",
-//   });
-//   connection.connect();
-//   connection.query("SELECT * FROM customer", function (error, results, fields) {
-//     if (error) {
-//       console.log(error);
-//     }
-//     console.log("Rows returned are: ", results);
-//     res.send({ status: "success", rows: results });
-//   });
-//   connection.end();
-// });
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
-// Notice that this is a 'POST'
-// app.post("/add-customer", function (req, res) {
-//   res.setHeader("Content-Type", "application/json");
-
-//   console.log("Name", req.body.name);
-//   console.log("Email", req.body.email);
-
-//   let connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "test",
-//   });
-//   connection.connect();
-//   // TO PREVENT SQL INJECTION, DO THIS:
-//   // (FROM https://www.npmjs.com/package/mysql#escaping-query-values)
-//   connection.query(
-//     "INSERT INTO customer (name, email) values (?, ?)",
-//     [req.body.name, req.body.email],
-//     function (error, results, fields) {
-//       if (error) {
-//         console.log(error);
-//       }
-//       //console.log('Rows returned are: ', results);
-//       res.send({ status: "success", msg: "Record added." });
-//     }
-//   );
-//   connection.end();
-// });
-
-// POST: we are changing stuff on the server!!!
-// app.post("/delete-all-customers", function (req, res) {
-//   res.setHeader("Content-Type", "application/json");
-
-//   let connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "test",
-//   });
-//   connection.connect();
-//   // NOT WISE TO DO, BUT JUST SHOWING YOU CAN
-//   connection.query("DELETE FROM customer", function (error, results, fields) {
-//     if (error) {
-//       console.log(error);
-//     }
-//     //console.log('Rows returned are: ', results);
-//     res.send({ status: "success", msg: "Recorded all deleted." });
-//   });
-//   connection.end();
-// });
-
-// ANOTHER POST: we are changing stuff on the server!!!
-// app.post("/update-customer", function (req, res) {
-//   res.setHeader("Content-Type", "application/json");
-
-//   let connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "test",
-//   });
-//   connection.connect();
-//   console.log("update values", req.body.email, req.body.id);
-//   connection.query(
-//     "UPDATE customer SET email = ? WHERE ID = ?",
-//     [req.body.email, req.body.id],
-//     function (error, results, fields) {
-//       if (error) {
-//         console.log(error);
-//       }
-//       //console.log('Rows returned are: ', results);
-//       res.send({ status: "success", msg: "Recorded updated." });
-//     }
-//   );
-//   connection.end();
-// });
 
 // Sets the port and runs the server. Calls init().
 let port = 8000;

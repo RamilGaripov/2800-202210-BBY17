@@ -3,22 +3,58 @@
 ready(function () {
   console.log("Client script loaded.");
 
-  // POST TO THE SERVER
+  // POST TO THE SERVER. Send the information entered in the form and submit it. 
   document.querySelector("#submit").addEventListener("click", function (e) {
-    alert("SUBMITTING");
-    e.preventDefault();
+    e.preventDefault(); //prevents standard behavior of the button. 
     let email = document.getElementById("email");
     let password = document.getElementById("password");
     let queryString = "email=" + email.value + "&password=" + password.value;
-    console.log("data that we will send", email.value, password.value);
+    console.log("data being sent to the server", email.value, password.value);
+    
+    //Checking if function is async or not
+    // if (ajaxPOST.constructor.name === 'AsyncFunction') {
+    //   // 👇️ this runs
+    //   console.log('✅ function is async');
+    // } else {
+    //   console.log('⛔️ function is NOT async');
+    // }
+
+    function ajaxPOST(url, callback, data) {
+      
+      //prepares the proper format for the data to send to the server
+      let params = typeof data == 'string' ? data : Object.keys(data).map(
+              function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
+          ).join('&');
+      console.log("params in ajaxPOST", params);
+
+      //retrieves data from the server
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+          if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+              //console.log('responseText:' + xhr.responseText);
+              callback(this.responseText);
+
+          } else {
+              console.log(this.status);
+          }
+      }
+      xhr.open("POST", url);
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send(params);
+  }
+
 
     ajaxPOST("/login", function (data) {
-        //   console.log("You are trying to log in. This function is called in client.js!");
         if (data) {
           let dataParsed = JSON.parse(data);
+          console.log("Data about the user:");
           console.log(dataParsed);
+          let privileges = dataParsed.privileges;
           if (dataParsed.status == "fail") {
-            document.getElementById("errorMsg").innerHTML = dataParsed.msg;
+            document.getElementById("errorMsg").textContent = dataParsed.msg;
+          } else if (privileges) {
+            window.location.replace("/admin");
           } else {
             window.location.replace("/profile");
           }
@@ -28,6 +64,7 @@ ready(function () {
       queryString
     );
   });
+
 });
 
 function ready(callback) {

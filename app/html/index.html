@@ -18,15 +18,15 @@
     <form>  <!-- use this for now: -->
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="ENTER YOUR EMAIL">
+            <input type="text" class="form-control" id="email" placeholder="ENTER YOUR EMAIL">
         </div>
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="ENTER YOUR PASSWORD">
+            <input type="password" class="form-control" id="password" placeholder="ENTER YOUR PASSWORD">
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" id="submit">Sign In</button>
     </form>
 
 
@@ -34,6 +34,8 @@
         <li> <a href="/"> Home </a></li>
         <li> <a href="html/register.html"> Register </a></li>
     </ul>
+    <p id="serverResponse">&nbsp;</p>
+    <p id="errorMsg">&nbsp;</p>
 
 
     <script src="js/client.js"></script>
