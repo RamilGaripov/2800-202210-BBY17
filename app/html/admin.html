@@ -4,13 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="admin.css">
     <title>Admin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+    </style>
 </head>
 <body>
-    <p>Welcome to your administrator profile, <span id="username">.</span></p>
-    <form action="/logout"> 
-        <button type="submit" id="logout">Logout</button>
-    </form>
+    <div class="container">
+        <!-- nav for all pages -->
+        <nav>
+            <img src="../public/images/logo.png" alt="logo" width="150" height="150" id="logo">
+            <ul class="navbarul">
+                <!-- change all paths to /img -->
+                <li class="option"><a href="#profile"><img src="../images/profile_icon.png" alt="profile" height="60">Profile</a>
+                </li>
+                <li class="option"><a href="#friends"><img src="../images/friends_icon.png" alt="friends">Friends</a>
+                </li>
+                <li class="option"><a href="#rewards"><img src="../images/rewards_icon.png" alt="rewards">Rewards</a>
+                </li>
+                <li class="option"><a href="#mindgames"><img src="../images/mind_games_icon.png" alt="mind games">Mind
+                        Games</a></li>
+                <li class="option"><a href="#exercise"><img src="../images/exercise_icon.png" alt="exercise" height="60">
+                        Exercise</a></li>
+                <li class="option"><a href="#meditation"><img src="../images/meditate_icon.png" alt="meditation"
+                            width="60" height="50">Meditation</a></li>
+            </ul>
+        </nav>
+        <div class="subcontainer">
+            <main>
+                <p>Welcome to your administrator profile</p>
+                <p id="username">.</p>
+                <img src="../public/images/profilepic.png" alt="waman" class="profilepic">
+                <form action="/logout" class="form-group">
+                    <button type="submit" id="logout">Logout</button>
+                </form>
+            </main>
+        </div>
+    </div>
 </body>
 </html>
