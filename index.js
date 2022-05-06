@@ -64,12 +64,12 @@ app.get("/admin", function(req, res) {
       host: "localhost",
       user: "root",
       password: "",
-      database: "serenity"
+      database: "COMP2800"
     });
     connection.connect();
 
     const admin = false;
-    const num_admins = connection.query("SELECT * FROM accounts WHERE is_admin=?", admin, function(error, results, fields) {
+    const num_admins = connection.query("SELECT * FROM BBY_17_accounts WHERE is_admin=?", admin, function(error, results, fields) {
       if (error) {
         // in production, you'd really want to send an email to admin but for now, just console
         console.log(error);
@@ -145,13 +145,13 @@ function authenticate(email, pwd, callback) {
     host: "localhost",
     user: "root",
     password: "",
-    database: "serenity"
+    database: "COMP2800"
   });
   connection.connect();
   connection.query(
     //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
     //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
-    "SELECT * FROM accounts WHERE email = ? AND password = ?", [email, pwd],
+    "SELECT * FROM BBY_17_accounts WHERE email = ? AND password = ?", [email, pwd],
     function(error, results) {
         console.log("Results from DB", results, "Number of records returned: ", results.length);
 
@@ -185,9 +185,9 @@ async function init() {
     multipleStatements: true,
   });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS Serenity;
-    use Serenity;
-    CREATE TABLE IF NOT EXISTS accounts (
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
+    use COMP2800;
+    CREATE TABLE IF NOT EXISTS BBY_17_accounts (
     id INT Primary Key AUTO_INCREMENT,
     email VARCHAR(50) UNIQUE NOT NULL,
     first_name VARCHAR(30) NOT NULL,
@@ -200,13 +200,13 @@ async function init() {
 
   // await allows for us to wait for this line to execute ... synchronously
   // also ... destructuring. There's that term again!
-  const [rows, fields] = await connection.query("SELECT * FROM accounts");
+  const [rows, fields] = await connection.query("SELECT * FROM BBY_17_accounts");
   // no records? Let's add a couple - for testing purposes
   if (rows.length == 0) {
       let is_admin = true;
     // no records, so let's add a couple
     let userRecords =
-      "INSERT INTO accounts (email, first_name, last_name, password, is_admin, dob) VALUES ?";
+      "INSERT INTO BBY_17_accounts (email, first_name, last_name, password, is_admin, dob) VALUES ?";
     let recordUserValues = [
       ["rgaripov@my.bcit.ca", "Ramil", "Garipov", "123456", is_admin, 19930401],
       [
