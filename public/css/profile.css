@@ -108,7 +108,7 @@ p {
         min-width:350px;
     }
     .container {
-        background-image: url(img/Mobile.png);
+        background-image: url(/img/Mobile.png);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
