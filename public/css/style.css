@@ -79,10 +79,11 @@ form {
     flex-direction: column;
 }
 
-.form-group {
-    display: inline-block;
-    text-align: center;
-    margin: 2px;
+form>h2 {
+    font-size: 2em;
+    color: #4874B5;
+    font-family: 'Montserrat', sans-serif;
+    margin:0;
 }
 
 .form-group>label {
@@ -90,6 +91,7 @@ form {
 }
 .form-group>input{
     border-radius: 8px;
+    transform: scale(1.3);
 }
 
 #submit {
@@ -122,8 +124,20 @@ form {
     color:white;
 }
 
+#errorMsg {
+    margin:0;
+    color:red;
+    font-family: 'Montserrat', sans-serif;
+    font-size:1.3em;
+    transition: ease-in 0.3s;
+    border-radius: 10px;
+    padding:4px;
+}
 
 @media screen and (max-width:499px) {
+    body{
+        min-width:350px;
+    }
     .container {
         background-image: url(img/Mobile.png);
         background-position: center;

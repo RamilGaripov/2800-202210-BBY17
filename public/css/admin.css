@@ -15,9 +15,11 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
+
 .container {
     height: 100%;
 }
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -73,12 +75,14 @@ nav {
     font-size: 1em;
     color: #4874B5;
     font-family: 'Montserrat', sans-serif;
-    margin:0;
+    margin: 0;
 }
+
 p {
-    margin:10px 0 0;
+    margin: 10px 0 0;
 
 }
+
 #logout {
     border-radius: 20px;
     padding: 8px 40px;
@@ -100,17 +104,19 @@ p {
 
 .profilepic {
     width: 30%;
-    margin:20px;
+    margin: 20px;
 }
 
-@media screen and (min-width:350px) and (max-width:499px) {
+@media screen and (max-width:499px) {
+    body {
+        min-width: 350px;
+    }
+
     .container {
         background-image: url(/img/Mobile.png);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-      
- 
     }
 
     nav {
@@ -123,7 +129,7 @@ p {
     #logo {
         order: 2;
         transform: scale(1.5);
-        margin:5px;
+        margin: 5px;
     }
 
     .navbarul>.option:nth-child(n+4) {
@@ -151,28 +157,30 @@ p {
     .navbarul>.option:nth-child(n+4) {
         display: none;
     }
-    main{
+
+    main {
         margin-top: 20px;
     }
 }
 
-@media screen  and (min-width:500px) and (max-width:3400px) {
-    body{
-        min-width:350px;
+@media screen and (min-width:500px) and (max-width:3400px) {
+    body {
+        min-width: 350px;
     }
+
     .container {
         background-image: url(/img/backgroundLong.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        width:100%
+        width: 100%
     }
 
     .subcontainer {
         display: flex;
         align-items: center;
         flex-direction: column;
-        
+
     }
 
     main {
@@ -190,11 +198,12 @@ p {
         text-align: center;
         margin: 2px;
     }
-    
+
     .form-group>label {
         font-weight: bolder;
     }
-    .form-group>input{
+
+    .form-group>input {
         border-radius: 8px;
     }
 
