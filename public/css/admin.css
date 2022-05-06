@@ -103,7 +103,7 @@ p {
     margin:20px;
 }
 
-@media screen and (max-width:499px) {
+@media screen and (min-width:350px) and (max-width:499px) {
     .container {
         background-image: url(/img/Mobile.png);
         background-position: center;
@@ -156,7 +156,10 @@ p {
     }
 }
 
-@media screen and (min-width:550px) and (max-width:3400px) {
+@media screen  and (min-width:500px) and (max-width:3400px) {
+    body{
+        min-width:350px;
+    }
     .container {
         background-image: url(/img/backgroundLong.jpg);
         background-position: center;
