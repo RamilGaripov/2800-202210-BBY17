@@ -8,6 +8,7 @@ const { JSDOM } = require("jsdom");
 
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
+app.use("/img",express.static("./public/img"))
 app.use("/html", express.static("./app/html"));
 
 //Still don't understand entirely what session is and why we need it, but I guess it's fine for now...
@@ -57,6 +58,35 @@ app.get("/admin", function(req, res) {
     console.log("Redirecting to the admin profile page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
+
+    const mysql = require("mysql2");
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "serenity"
+    });
+    connection.connect();
+
+    const admin = false;
+    const num_admins = connection.query("SELECT * FROM accounts WHERE is_admin=?", admin, function(error, results, fields) {
+      if (error) {
+        // in production, you'd really want to send an email to admin but for now, just console
+        console.log(error);
+    }
+    if(results.length > 0) {
+        console.log(results.length, "user(s) found.");
+        for (let i = 0; i < results.length; i++)
+          console.log(results[i].first_name, results[i].last_name, results[i].email);
+        return results;
+    } else {
+        console.log("users not found");
+        // return callback(null);
+    }
+    });
+
+    console.log("We ran this query: ", num_admins.sql, "and calculated the number of returned users");
+    
 
     res.send(profileDOM.serialize());
   }
