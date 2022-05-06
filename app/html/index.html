@@ -2,42 +2,65 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- dont forget the fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+    </style>
 </head>
 
 <body>
-    <h1> Home Page </h1>
-    
-    <!-- Need to use this to make the form functional with JS:  -->
-    <!-- <form action="/auth/register" method="POST"> -->
-    
-    <form>  <!-- use this for now: -->
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="ENTER YOUR EMAIL">
-        </div>
+    <div class="container">
 
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="ENTER YOUR PASSWORD">
-        </div>
+        <!-- nav for all pages -->
+        <nav>
+            <img src="/img/logo.png" alt="logo" width="150" height="150" id="logo">
+            <ul class="navbarul">
+                <!-- change all paths to /img -->
+                <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile" height="60">Profile</a>
+                </li>
+                <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
+                </li>
+                <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
+                </li>
+                <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
+                        Games</a></li>
+                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" height="60">
+                        Exercise</a></li>
+                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation"
+                            width="60" height="50">Meditation</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <!-- Need to use this to make the form functional with JS:  -->
+            <!-- <form action="/auth/register" method="POST"> -->
 
-        <button type="submit" id="submit">Sign In</button>
-    </form>
+            <form>
+                <!-- use this for now: -->
+                <h2>SIGN IN</h2>
+                <div class="form-group">
+                    <label for="email">EMAIL</label><br>
+                    <input type="text" class="form-control" id="email" placeholder="your@email.com">
+                </div>
 
-
-    <ul>
-        <li> <a href="/"> Home </a></li>
-        <li> <a href="html/register.html"> Register </a></li>
-    </ul>
-    <p id="serverResponse">&nbsp;</p>
-    <p id="errorMsg">&nbsp;</p>
-
-
+                <div class="form-group">
+                    <label for="password">PASSWORD</label><br>
+                    <input type="password" class="form-control" id="password" placeholder="********">
+                </div><br>
+                <button type="submit" id="submit">SUBMIT</button>
+                <br>
+                <p >No account? <a href="html/register.html" class="noText">SIGN UP</a></p>
+            </form>
+            <p id="serverResponse">&nbsp;</p>
+            <p id="errorMsg">&nbsp;</p>
+        </main>
+        
+    </div>
     <script src="js/client.js"></script>
 </body>
 
