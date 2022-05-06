@@ -113,7 +113,7 @@ form {
 
 
 
-@media screen and (min-width:300px)and (max-width:499px) {
+@media screen and (max-width:499px) {
     body{
         min-width:350px;
     }

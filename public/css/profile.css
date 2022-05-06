@@ -104,6 +104,9 @@ p {
 }
 
 @media screen and (max-width:499px) {
+    body{
+        min-width:350px;
+    }
     .container {
         background-image: url(img/Mobile.png);
         background-position: center;

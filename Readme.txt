@@ -10,5 +10,5 @@ Admin page - ability to see all users: 0%.
 Page Design:
 index.html - 100%.
 profile.html - 100%.
-register.html - 0%.
-admin.html - 90%.
+register.html - 100%
+admin.html - 100%.
