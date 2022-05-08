@@ -23,39 +23,50 @@ app.use(session(
 
 //This function feeds the index.html on first load. 
 app.get("/", function(req, res) {
-  //if the user is logged in, it'll redirect them to their profile
+  //if the user is logged in, it'll redirect them to their profile page
     if(req.session.loggedIn) {
+      if(req.session.admin)
+        res.redirect("/admin");
+      else 
         res.redirect("/profile");
     } else {
         let doc = fs.readFileSync("./app/html/index.html", "utf8");
         res.set("Server", "RabbitServer"); //Random server name I came up with. When hosting a website on an actual server, you'd put their name here.
         res.set("Powered-By", "0.1xHorsePower"); //Same as line above.
         res.send(doc);
+        
     }
 });
 
 app.get("/profile", function(req, res) {
   if (req.session.loggedIn) {
+    if (req.session.admin) 
+      console.log("GO BACK TO THE ADMIN PAGE");
+      // res.redirect("/");
     let profile = fs.readFileSync("./app/html/profile.html", "utf8");
     let profileDOM = new JSDOM(profile);
-
-    let admin_profile = fs.readFileSync("./app/html/admin.html", "utf8");
-    let admin_profileDOM = new JSDOM(admin_profile);
 
     console.log("Redirecting to the profile page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
     res.send(profileDOM.serialize());
+    
+  } else {
+    res.redirect("/");
   }
 });
 
 app.get("/admin", function(req, res) {
   if (req.session.loggedIn) {
+    if (!req.session.admin) {
+      console.log("YOURE NOT AN ADMIN!");
+      // res.redirect("/profile");
+    }
     let admin_profile = fs.readFileSync("./app/html/admin.html", "utf8");
     let profileDOM = new JSDOM(admin_profile);
 
-    console.log("Redirecting to the admin profile page of " + req.session.first_name, req.session.last_name);
+    console.log("Redirecting to the admin dashboard page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
@@ -71,11 +82,10 @@ app.get("/admin", function(req, res) {
     const admin = false;
     const num_admins = connection.query("SELECT * FROM BBY_17_accounts WHERE is_admin=?", admin, function(error, results, fields) {
       if (error) {
-        // in production, you'd really want to send an email to admin but for now, just console
         console.log(error);
     }
     if(results.length > 0) {
-        console.log(results.length, "user(s) found.");
+        console.log("Administrator can see", results.length, "registered user(s):");
         for (let i = 0; i < results.length; i++)
           console.log(results[i].first_name, results[i].last_name, results[i].email);
         return results;
@@ -85,10 +95,13 @@ app.get("/admin", function(req, res) {
     }
     });
 
-    console.log("We ran this query: ", num_admins.sql, "and calculated the number of returned users");
-    
+    // console.log("We ran this query: ", num_admins.sql, "and calculated the number of returned users");
 
     res.send(profileDOM.serialize());
+    
+    // connection.end();
+  } else {
+    res.redirect("/");
   }
 });
 
@@ -153,7 +166,7 @@ function authenticate(email, pwd, callback) {
     //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
     "SELECT * FROM BBY_17_accounts WHERE email = ? AND password = ?", [email, pwd],
     function(error, results) {
-        console.log("Results from DB", results, "Number of records returned: ", results.length);
+        // console.log("Results from DB", results, "Number of records returned: ", results.length);
 
         if (error) {
             // in production, you'd really want to send an email to admin but for now, just console
@@ -161,11 +174,11 @@ function authenticate(email, pwd, callback) {
         }
         if(results.length > 0) {
             // email and password found
-            console.log("User is found!");
+            // console.log("User is found!");
             return callback(results[0]);
         } else {
             // user not found
-            console.log("User not found");
+            // console.log("User not found");
             return callback(null);
         }
 
@@ -198,13 +211,10 @@ async function init() {
 
   await connection.query(createDBAndTables);
 
-  // await allows for us to wait for this line to execute ... synchronously
-  // also ... destructuring. There's that term again!
   const [rows, fields] = await connection.query("SELECT * FROM BBY_17_accounts");
-  // no records? Let's add a couple - for testing purposes
+  // adds records if there are currently none
   if (rows.length == 0) {
       let is_admin = true;
-    // no records, so let's add a couple
     let userRecords =
       "INSERT INTO BBY_17_accounts (email, first_name, last_name, password, is_admin, dob) VALUES ?";
     let recordUserValues = [
