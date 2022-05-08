@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session"); 
+const res = require("express/lib/response");
 const { append } = require("express/lib/response");
 const app = express();
 const fs = require("fs");
@@ -10,6 +11,8 @@ app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
 app.use("/img",express.static("./public/img"))
 app.use("/html", express.static("./app/html"));
+
+
 
 //Still don't understand entirely what session is and why we need it, but I guess it's fine for now...
 app.use(session(
@@ -122,6 +125,75 @@ app.post("/login", function(req, res) {
     }
   });
 });
+
+// register
+//http://localhost/phpmyadmin/
+app.post('/register', async (req, res) => {
+
+
+  const mysql = require("mysql2");
+  const jwt = require('jsonwebtoken');
+  const bcrypt = require('bcryptjs');
+
+
+
+
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "serenity"
+  });
+  connection.connect();
+  
+  console.log(req.body);
+
+ const name = req.body.name;
+ const  email = req.body.email;
+ const password = req.password;
+ const passwordConfirm = req.passwordConfirm;
+
+  
+
+  connection.query('SELECT email FROM accounts WHERE email = ?', [email], async (error, results) =>  {
+      if(error) {
+          console.log(error);
+      }
+
+      // if users that come up is greater than 1 that means email is already being used
+      if (results.length > 0) {
+          return res.render('register', {
+              messsage: 'That email is already in use!'
+          } )
+      } else if(password !== passwordConfirm) {
+          return res.render('register', {
+              messsage: 'Passwords do not match!'
+          });
+      }
+
+      //let hashedPassword = await bcrypt.hash(password, 8);
+      //console.log(hashedPassword);
+
+      const isAdmin = 0;
+
+      var sql = "INSERT INTO `accounts` (`email`, `first_name`, `password`, `is_admin`) VALUES ('"+email+"', '"+ name+"', '"+ password+"', '"+ isAdmin+"')";
+   
+     connection.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+    });
+  });
+
+
+  });
+
+
+
+
+
+
+
+
 
 app.get("/logout", function(req,res){
   console.log("Logging the user out.");
@@ -238,3 +310,7 @@ async function init() {
 // Sets the port and runs the server. Calls init().
 let port = 8000;
 app.listen(port, init);
+
+
+
+
