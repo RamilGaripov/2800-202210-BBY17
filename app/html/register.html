@@ -6,66 +6,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/register.css">
-    <title>Document</title>
+    <title>New Account </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+    </style>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
     <div class="container">
-    <nav>
-        <img src="/img/logo.png" alt="logo" width="150" height="150" id="logo">
-        <ul class="navbarul">
-            <!-- change all paths to /img -->
-            <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile">Profile</a>
-            </li>
-            <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
-            </li>
-            <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
-            </li>
-            <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
-                    Games</a></li>
-            <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise">
-                    Exercise</a></li>
-            <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png"
-                        alt="meditation">Meditation</a></li>
-        </ul>
-    </nav>
-<main>
-    <form action="/auth/register" method="POST">
-        <h1> Register </h1>
+        <nav>
+            <img src="/img/logo.png" alt="logo" width="150" height="150" id="logo">
+            <ul class="navbarul">
+                <!-- change all paths to /img -->
+                <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile">Profile</a>
+                </li>
+                <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
+                </li>
+                <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
+                </li>
+                <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
+                        Games</a></li>
+                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise">
+                        Exercise</a></li>
+                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png"
+                            alt="meditation">Meditation</a></li>
+            </ul>
+        </nav>
+        <main>
+            <form action="/auth/register" method="POST">
+                <h1> Register </h1>
 
-        <div class="form-group">
-            <label for="name">Name</label><br>
-            <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
-        </div>
-
-
-
-        <div class="form-group">
-            <label for="email">Email</label><br>
-            <input type="text" class="form-control" id="email" name="email" placeholder="your@email.com">
-        </div>
+                <div class="form-group">
+                    <label for="name">Name</label><br>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
+                </div>
 
 
-        <div class="form-group">
-            <label for="password">Password</label><br>
-            <input type="password" class="form-control" id="password" name="password" placeholder="*********">
-        </div>
 
-        <div class="form-group">
-            <label for="passwordConfirm">Confirm Password</label><br>
-            <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
-        </div>
-        <br>
-        <button type="submit" class="btn btn-primary register">SUBMIT</button>
-    </form>
-</main>
+                <div class="form-group">
+                    <label for="email">Email</label><br>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="your@email.com">
+                </div>
 
-    <!-- {{#if message}}
+
+                <div class="form-group">
+                    <label for="password">Password</label><br>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="*********">
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordConfirm">Confirm Password</label><br>
+                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary register">SUBMIT</button>
+            </form>
+        </main>
+
+        <!-- {{#if message}}
     <h4 class="alert alert-danger mt-4">{{message}}</h4>
 
     {{/if}} -->
 
-</div>
+    </div>
 </body>
 
 </html>
