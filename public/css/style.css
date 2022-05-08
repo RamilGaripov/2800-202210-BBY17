@@ -70,6 +70,8 @@ form>h2 {
     font-size: 2em;
     color: #4874B5;
     font-family: 'Montserrat', sans-serif;
+    padding:0;
+    margin:10px 0 0 0;
 }
 /* Form card stuff*/
 form {
@@ -79,15 +81,16 @@ form {
     flex-direction: column;
 }
 
-form>h2 {
-    font-size: 2em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
-    margin:0;
+.form-group {
+    display: inline-block;
+    text-align: center;
+    margin: 2px;
+    
 }
 
 .form-group>label {
     font-weight: bolder;
+    padding:3px 0;
 }
 .form-group>input{
     border-radius: 8px;
@@ -132,6 +135,8 @@ form>h2 {
     transition: ease-in 0.3s;
     border-radius: 10px;
     padding:4px;
+    padding:0;
+    margin:10px 0 0 0;
 }
 
 @media screen and (max-width:499px) {
