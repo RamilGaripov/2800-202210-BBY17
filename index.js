@@ -39,9 +39,11 @@ app.get("/", function(req, res) {
 
 app.get("/profile", function(req, res) {
   if (req.session.loggedIn) {
-    if (req.session.admin) 
-      console.log("GO BACK TO THE ADMIN PAGE");
-      // res.redirect("/");
+    if (req.session.admin) {
+      console.log("This user is an administrator. Redirecting them back to their admin dashboard.");
+      res.redirect("/dashboard");
+      return;
+    }
     let profile = fs.readFileSync("./app/html/profile.html", "utf8");
     let profileDOM = new JSDOM(profile);
 
@@ -59,8 +61,9 @@ app.get("/profile", function(req, res) {
 app.get("/dashboard", function(req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
-      console.log("YOURE NOT AN ADMIN!");
-      // res.redirect("/profile");
+      console.log("This user is not an admin. Redirecting them back to their profile page.");
+      res.redirect("/profile");
+      return;
     }
     let admin_profile = fs.readFileSync("./app/html/admin.html", "utf8");
     let profileDOM = new JSDOM(admin_profile);
@@ -69,37 +72,8 @@ app.get("/dashboard", function(req, res) {
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
-    
-    // const connection = mysql.createConnection({
-    //   host: "localhost",
-    //   user: "root",
-    //   password: "",
-    //   database: "COMP2800"
-    // });
-    // connection.connect();
-
-    // const admin = false;
-    // const num_admins = connection.query("SELECT * FROM BBY_17_accounts", function(error, results, fields) {
-    //   if (error) {
-    //     console.log(error);
-    // }
-    // if(results.length > 0) {
-    //     console.log("Administrator can see", results.length, "registered user(s):");
-    //     for (let i = 0; i < results.length; i++)
-    //       console.log(results[i].first_name, results[i].last_name, results[i].email, results[i].password, results[i].is_admin);
-          
-    //     return results;
-    // } else {
-    //     console.log("users not found");
-    //     // return callback(null);
-    // }
-    // });
-
-    // console.log("We ran this query: ", num_admins.sql, "and calculated the number of returned users");
-
     res.send(profileDOM.serialize());
     
-    // connection.end();
   } else {
     res.redirect("/");
   }
@@ -121,7 +95,7 @@ app.get('/get-accounts', function (req, res) {
       if (error) {
           console.log(error);
       }
-      console.log('Accounts found are: ', results);
+      // console.log('Accounts found are: ', results);
       res.send({ status: "success", rows: results });
 
   });
