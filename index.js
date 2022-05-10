@@ -5,6 +5,7 @@ const { append } = require("express/lib/response");
 const app = express();
 const fs = require("fs");
 const { JSDOM } = require("jsdom");
+const Pool = require("mysql/lib/Pool");
 //mysql2 is ALSO REQUIRED. 
 
 app.use("/css", express.static("./public/css"));
@@ -36,6 +37,10 @@ app.get("/", function(req, res) {
         res.send(doc);
     }
 });
+
+
+
+
 
 app.get("/profile", function(req, res) {
   if (req.session.loggedIn) {
@@ -126,17 +131,16 @@ app.post("/login", function(req, res) {
   });
 });
 
-// register
-//http://localhost/phpmyadmin/
+
+
+//  register
+//  http://localhost/phpmyadmin/
 app.post('/register', async (req, res) => {
 
 
   const mysql = require("mysql2");
   const jwt = require('jsonwebtoken');
   const bcrypt = require('bcryptjs');
-
-
-
 
   const connection = mysql.createConnection({
     host: "localhost",
@@ -149,7 +153,7 @@ app.post('/register', async (req, res) => {
   console.log(req.body);
 
  const name = req.body.name;
- const  email = req.body.email;
+ const email = req.body.email;
  const password = req.password;
  const passwordConfirm = req.passwordConfirm;
 
@@ -245,6 +249,7 @@ function authenticate(email, pwd, callback) {
   );
 
 }
+
 
 //initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
 async function init() {
