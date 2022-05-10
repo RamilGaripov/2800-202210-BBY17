@@ -135,9 +135,9 @@ app.post("/login", function(req, res) {
 
 //  register
 //  http://localhost/phpmyadmin/
-app.post('/register', async (req, res) => {
+app.post('/create-account', async (req, res) => {
 
-
+  console.log("HI FROM SERVER CREATE ACCOUNT");
   const mysql = require("mysql2");
   const jwt = require('jsonwebtoken');
   const bcrypt = require('bcryptjs');
@@ -152,10 +152,11 @@ app.post('/register', async (req, res) => {
   
   console.log(req.body);
 
- const name = req.body.name;
- const email = req.body.email;
- const password = req.password;
- const passwordConfirm = req.passwordConfirm;
+  const first_name = req.body.firstName;
+  const last_name = req.body.lastName;
+  const email = req.body.email;
+  const password = req.body.password;
+  const dob = req.body.dob;
 
   
 
@@ -166,36 +167,30 @@ app.post('/register', async (req, res) => {
 
       // if users that come up is greater than 1 that means email is already being used
       if (results.length > 0) {
-          return res.render('register', {
+          return res.render('create-account', {
               messsage: 'That email is already in use!'
           } )
-      } else if(password !== passwordConfirm) {
-          return res.render('register', {
-              messsage: 'Passwords do not match!'
-          });
-      }
+        } 
 
       //let hashedPassword = await bcrypt.hash(password, 8);
       //console.log(hashedPassword);
 
       const isAdmin = 0;
-
-      var sql = "INSERT INTO `accounts` (`email`, `first_name`, `password`, `is_admin`) VALUES ('"+email+"', '"+ name+"', '"+ password+"', '"+ isAdmin+"')";
+      const dobPlaceholder = 20000101;
+      // var sql = "INSERT INTO `accounts` (`email`, `first_name`, 'last_name`, `password`, `is_admin`, `dob`) VALUES ('"+email+"', '"+ first_name+"', '"+ last_name+"', '"+ password+"', '"+ isAdmin+"', '"+ dob+"')";
+      var sql = "INSERT INTO `accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('"+email+"', '"+ first_name+"', '"+ last_name+"', '"+ password+"', '"+ isAdmin+"', '"+ dobPlaceholder+"')"
    
      connection.query(sql, function (err, result) {
-      if (err) throw err;
+      if (err) {
+        console.log(err);
+        // throw err;
+      }
       console.log("1 record inserted");
     });
   });
 
 
-  });
-
-
-
-
-
-
+});
 
 
 
@@ -221,7 +216,7 @@ function authenticate(email, pwd, callback) {
     host: "localhost",
     user: "root",
     password: "",
-    database: "serenity"
+    database: "COMP2800"
   });
   connection.connect();
   connection.query(

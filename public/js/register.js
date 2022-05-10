@@ -20,6 +20,9 @@ ready(function () {
       return;
     }
 
+    password.value = "POOP";
+    console.log(password.value);
+
    
     let queryString = "email=" + email.value 
                       + "&firstName=" + firstName.value
@@ -62,7 +65,7 @@ ready(function () {
   }
 
 
-    ajaxPOST("/register", function (data) {
+    ajaxPOST("/create-account", function (data) {
         if (data) {
           let dataParsed = JSON.parse(data);
           console.log("Data about the user:");
