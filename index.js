@@ -102,6 +102,20 @@ app.get('/get-accounts', function (req, res) {
   connection.end();
 });
 
+app.post("/update-account", function (req, res) {
+  console.log("Trying to update the db record");
+  console.log(req.body);
+  // const mysql = require("mysql2");
+  // const connection = mysql.createConnection({
+  //   host: 'localhost',
+  //   user: 'root',
+  //   password: '',
+  //   database: 'COMP2800'
+  // });
+  // connection.connect();
+  // connection.query("UPDATE BBY_17_accounts SET email=? ")
+});
+
 app.get("/register", function(req, res) {
     let profile = fs.readFileSync("./app/html/register.html", "utf8");
     let profileDOM = new JSDOM(profile);

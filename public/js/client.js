@@ -1,7 +1,7 @@
 //THIS FUNCTION CURRENTLY GIVES ERRORS:
 
 ready(function () {
-  // console.log("Client script loaded.");
+  console.log("Client script loaded.");
 
   // POST TO THE SERVER. Send the information entered in the form and submit it. 
   document.querySelector("#submit").addEventListener("click", function (e) {
