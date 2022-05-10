@@ -121,7 +121,7 @@ app.get('/get-accounts', function (req, res) {
       if (error) {
           console.log(error);
       }
-      console.log('Rows returned are: ', results);
+      console.log('Accounts found are: ', results);
       res.send({ status: "success", rows: results });
 
   });
