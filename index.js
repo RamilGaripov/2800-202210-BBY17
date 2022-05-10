@@ -11,7 +11,6 @@ app.use("/js", express.static("./public/js"));
 app.use("/img",express.static("./public/img"))
 app.use("/html", express.static("./app/html"));
 
-//Still don't understand entirely what session is and why we need it, but I guess it's fine for now...
 app.use(session(
     {
         secret: "I can Put HERE Whatever I Want. Security Reasons.", //basically a random string of characters. You can input smth yourself, or generate an actual random string. Protects vs hackers trying to get into your session.
@@ -57,7 +56,7 @@ app.get("/profile", function(req, res) {
   }
 });
 
-app.get("/admin", function(req, res) {
+app.get("/dashboard", function(req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
       console.log("YOURE NOT AN ADMIN!");
@@ -70,30 +69,31 @@ app.get("/admin", function(req, res) {
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
-    const mysql = require("mysql2");
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800"
-    });
-    connection.connect();
+    
+    // const connection = mysql.createConnection({
+    //   host: "localhost",
+    //   user: "root",
+    //   password: "",
+    //   database: "COMP2800"
+    // });
+    // connection.connect();
 
-    const admin = false;
-    const num_admins = connection.query("SELECT * FROM BBY_17_accounts WHERE is_admin=?", admin, function(error, results, fields) {
-      if (error) {
-        console.log(error);
-    }
-    if(results.length > 0) {
-        console.log("Administrator can see", results.length, "registered user(s):");
-        for (let i = 0; i < results.length; i++)
-          console.log(results[i].first_name, results[i].last_name, results[i].email);
-        return results;
-    } else {
-        console.log("users not found");
-        // return callback(null);
-    }
-    });
+    // const admin = false;
+    // const num_admins = connection.query("SELECT * FROM BBY_17_accounts", function(error, results, fields) {
+    //   if (error) {
+    //     console.log(error);
+    // }
+    // if(results.length > 0) {
+    //     console.log("Administrator can see", results.length, "registered user(s):");
+    //     for (let i = 0; i < results.length; i++)
+    //       console.log(results[i].first_name, results[i].last_name, results[i].email, results[i].password, results[i].is_admin);
+          
+    //     return results;
+    // } else {
+    //     console.log("users not found");
+    //     // return callback(null);
+    // }
+    // });
 
     // console.log("We ran this query: ", num_admins.sql, "and calculated the number of returned users");
 
@@ -107,6 +107,33 @@ app.get("/admin", function(req, res) {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/get-accounts', function (req, res) {
+  const mysql = require("mysql2");
+  let connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'COMP2800'
+  });
+  connection.connect();
+  connection.query("SELECT * FROM BBY_17_accounts", function(error, results, fields) {
+      if (error) {
+          console.log(error);
+      }
+      console.log('Rows returned are: ', results);
+      res.send({ status: "success", rows: results });
+
+  });
+  connection.end();
+});
+
+app.get("/register", function(req, res) {
+    let profile = fs.readFileSync("./app/html/register.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    console.log("HI, we're in the register now!");
+});
 
 app.post("/login", function(req, res) {
   res.setHeader("Content-Type", "application/json");
@@ -169,16 +196,15 @@ function authenticate(email, pwd, callback) {
         // console.log("Results from DB", results, "Number of records returned: ", results.length);
 
         if (error) {
-            // in production, you'd really want to send an email to admin but for now, just console
             console.log(error);
         }
         if(results.length > 0) {
             // email and password found
-            // console.log("User is found!");
+            console.log("User is found!");
             return callback(results[0]);
         } else {
             // user not found
-            // console.log("User not found");
+            console.log("User not found");
             return callback(null);
         }
 

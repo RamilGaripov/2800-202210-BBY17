@@ -54,7 +54,7 @@ ready(function () {
           if (dataParsed.status == "fail") {
             document.getElementById("errorMsg").textContent = dataParsed.msg;
           } else if (privileges) {
-            window.location.replace("/admin");
+            window.location.replace("/dashboard");
           } else {
             window.location.replace("/profile");
           }
