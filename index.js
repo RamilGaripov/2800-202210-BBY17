@@ -25,7 +25,7 @@ app.get("/", function(req, res) {
   //if the user is logged in, it'll redirect them to their profile page
     if(req.session.loggedIn) {
       if(req.session.admin)
-        res.redirect("/admin");
+        res.redirect("/dashboard");
       else 
         res.redirect("/profile");
     } else {
@@ -146,7 +146,9 @@ app.post("/login", function(req, res) {
         console.log("This is a regular user.");
         res.send({ status: "success", msg: "Logged in.", privileges: false});
       }
-      
+      req.session.save(function (err) {
+//poop
+      });
     }
   });
 });
@@ -197,7 +199,9 @@ function authenticate(email, pwd, callback) {
         }
 
     }
+
   );
+  connection.end();
 
 }
 
