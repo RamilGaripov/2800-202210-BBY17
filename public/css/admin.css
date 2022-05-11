@@ -124,6 +124,9 @@ p {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+      
+
     }
 
     #logo {
@@ -161,6 +164,7 @@ p {
     main {
         margin-top: 20px;
     }
+
 }
 
 @media screen and (min-width:500px) and (max-width:3400px) {
