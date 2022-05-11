@@ -1,19 +1,15 @@
 const express = require("express");
 const session = require("express-session"); 
-const res = require("express/lib/response");
-const { append, redirect } = require("express/lib/response");
+const { append } = require("express/lib/response");
 const app = express();
 const fs = require("fs");
 const { JSDOM } = require("jsdom");
-const Pool = require("mysql/lib/Pool");
 //mysql2 is ALSO REQUIRED. 
 
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
 app.use("/img",express.static("./public/img"))
 app.use("/html", express.static("./app/html"));
-
-
 
 //Still don't understand entirely what session is and why we need it, but I guess it's fine for now...
 app.use(session(
@@ -37,10 +33,6 @@ app.get("/", function(req, res) {
         res.send(doc);
     }
 });
-
-
-
-
 
 app.get("/profile", function(req, res) {
   if (req.session.loggedIn) {
@@ -72,12 +64,12 @@ app.get("/admin", function(req, res) {
       host: "localhost",
       user: "root",
       password: "",
-      database: "serenity"
+      database: "COMP2800"
     });
     connection.connect();
 
     const admin = false;
-    const num_admins = connection.query("SELECT * FROM accounts WHERE is_admin=?", admin, function(error, results, fields) {
+    const num_admins = connection.query("SELECT * FROM BBY_17_accounts WHERE is_admin=?", admin, function(error, results, fields) {
       if (error) {
         // in production, you'd really want to send an email to admin but for now, just console
         console.log(error);
@@ -131,6 +123,120 @@ app.post("/login", function(req, res) {
   });
 });
 
+app.get("/logout", function(req,res){
+  console.log("Logging the user out.");
+  if (req.session) {
+      req.session.destroy(function(error) {
+          if (error) {
+              res.status(400).send("Unable to log out")
+          } else {
+              // session deleted, redirect to home
+              res.redirect("/");
+          }
+      });
+  }
+});
+
+
+
+
+//checks if the user is found in the database or not
+function authenticate(email, pwd, callback) {
+
+  const mysql = require("mysql2");
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800"
+  });
+  connection.connect();
+  connection.query(
+    //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
+    //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
+    "SELECT * FROM BBY_17_accounts WHERE email = ? AND password = ?", [email, pwd],
+    function(error, results) {
+        console.log("Results from DB", results, "Number of records returned: ", results.length);
+
+        if (error) {
+            // in production, you'd really want to send an email to admin but for now, just console
+            console.log(error);
+        }
+        if(results.length > 0) {
+            // email and password found
+            console.log("User is found!");
+            return callback(results[0]);
+        } else {
+            // user not found
+            console.log("User not found");
+            return callback(null);
+        }
+
+    }
+  );
+
+}
+
+//initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
+async function init() {
+  const mysql = require("mysql2/promise");
+  // Let's build the DB if it doesn't exist
+  const connection = await mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    multipleStatements: true,
+  });
+
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
+    use COMP2800;
+    CREATE TABLE IF NOT EXISTS BBY_17_accounts (
+    id INT Primary Key AUTO_INCREMENT,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL, 
+    password VARCHAR(30) NOT NULL,
+    is_admin BOOL NULL, 
+    dob DATE NOT NULL);`;
+
+  await connection.query(createDBAndTables);
+
+  // await allows for us to wait for this line to execute ... synchronously
+  // also ... destructuring. There's that term again!
+  const [rows, fields] = await connection.query("SELECT * FROM BBY_17_accounts");
+  // no records? Let's add a couple - for testing purposes
+  if (rows.length == 0) {
+      let is_admin = true;
+    // no records, so let's add a couple
+    let userRecords =
+      "INSERT INTO BBY_17_accounts (email, first_name, last_name, password, is_admin, dob) VALUES ?";
+    let recordUserValues = [
+      ["rgaripov@my.bcit.ca", "Ramil", "Garipov", "123456", is_admin, 19930401],
+      [
+        "royxavier@yahoo.com",
+        "Roy Xavier",
+        "Pimentel",
+        "123456",
+        is_admin,
+        19880330,
+      ],
+      ["joshuachenyyc@gmail.com", "Joshua", "Chen", "123456", is_admin, 20030101],
+      ["rkong360@hotmail.com", "Randall", "Kong", "123456", is_admin, 20030423],
+      ["test@test.ca", "Tobey", "Maguire", "123456", !is_admin, 19750627],
+      [
+        "callmeauntmay@bully.com",
+        "May",
+        "Parker-Jameson",
+        "123456",
+        !is_admin,
+        19641204,
+      ],
+    ];
+    await connection.query(userRecords, [recordUserValues]);
+  }
+
+  console.log("Listening on port " + port + "!");
+}
 
 
 //  register
@@ -198,123 +304,13 @@ res.redirect("/");
 
 
 
-app.get("/logout", function(req,res){
-  console.log("Logging the user out.");
-  if (req.session) {
-      req.session.destroy(function(error) {
-          if (error) {
-              res.status(400).send("Unable to log out")
-          } else {
-              // session deleted, redirect to home
-              res.redirect("/");
-          }
-      });
-  }
-});
-
-//checks if the user is found in the database or not
-function authenticate(email, pwd, callback) {
-
-  const mysql = require("mysql2");
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800"
-  });
-  connection.connect();
-  connection.query(
-    //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
-    //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
-    "SELECT * FROM accounts WHERE email = ? AND password = ?", [email, pwd],
-    function(error, results) {
-        console.log("Results from DB", results, "Number of records returned: ", results.length);
-
-        if (error) {
-            // in production, you'd really want to send an email to admin but for now, just console
-            console.log(error);
-        }
-        if(results.length > 0) {
-            // email and password found
-            console.log("User is found!");
-            return callback(results[0]);
-        } else {
-            // user not found
-            console.log("User not found");
-            return callback(null);
-        }
-
-    }
-  );
-
-}
 
 
-//initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
-async function init() {
-  const mysql = require("mysql2/promise");
-  // Let's build the DB if it doesn't exist
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    multipleStatements: true,
-  });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS Serenity;
-    use Serenity;
-    CREATE TABLE IF NOT EXISTS accounts (
-    id INT Primary Key AUTO_INCREMENT,
-    email VARCHAR(50) UNIQUE NOT NULL,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL, 
-    password VARCHAR(30) NOT NULL,
-    is_admin BOOL NULL, 
-    dob DATE NOT NULL);`;
 
-  await connection.query(createDBAndTables);
 
-  // await allows for us to wait for this line to execute ... synchronously
-  // also ... destructuring. There's that term again!
-  const [rows, fields] = await connection.query("SELECT * FROM accounts");
-  // no records? Let's add a couple - for testing purposes
-  if (rows.length == 0) {
-      let is_admin = true;
-    // no records, so let's add a couple
-    let userRecords =
-      "INSERT INTO accounts (email, first_name, last_name, password, is_admin, dob) VALUES ?";
-    let recordUserValues = [
-      ["rgaripov@my.bcit.ca", "Ramil", "Garipov", "123456", is_admin, 19930401],
-      [
-        "royxavier@yahoo.com",
-        "Roy Xavier",
-        "Pimentel",
-        "123456",
-        is_admin,
-        19880330,
-      ],
-      ["joshuachenyyc@gmail.com", "Joshua", "Chen", "123456", is_admin, 20030101],
-      ["rkong360@hotmail.com", "Randall", "Kong", "123456", is_admin, 20030423],
-      ["test@test.ca", "Tobey", "Maguire", "123456", !is_admin, 19750627],
-      [
-        "callmeauntmay@bully.com",
-        "May",
-        "Parker-Jameson",
-        "123456",
-        !is_admin,
-        19641204,
-      ],
-    ];
-    await connection.query(userRecords, [recordUserValues]);
-  }
 
-  console.log("Listening on port " + port + "!");
-}
 
 // Sets the port and runs the server. Calls init().
 let port = 8000;
 app.listen(port, init);
-
-
-
-
