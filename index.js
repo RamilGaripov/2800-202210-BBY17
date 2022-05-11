@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session"); 
 const res = require("express/lib/response");
-const { append } = require("express/lib/response");
+const { append, redirect } = require("express/lib/response");
 const app = express();
 const fs = require("fs");
 const { JSDOM } = require("jsdom");
@@ -156,7 +156,7 @@ app.post('/create-account', async (req, res) => {
   const last_name = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
-  const dob = req.body.dob;
+  const birthday = req.body.birthday;
 
   
 
@@ -178,7 +178,7 @@ app.post('/create-account', async (req, res) => {
       const isAdmin = 0;
       const dobPlaceholder = 20000101;
       // var sql = "INSERT INTO `accounts` (`email`, `first_name`, 'last_name`, `password`, `is_admin`, `dob`) VALUES ('"+email+"', '"+ first_name+"', '"+ last_name+"', '"+ password+"', '"+ isAdmin+"', '"+ dob+"')";
-      var sql = "INSERT INTO `accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('"+email+"', '"+ first_name+"', '"+ last_name+"', '"+ password+"', '"+ isAdmin+"', '"+ dobPlaceholder+"')"
+      var sql = "INSERT INTO `accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('"+email+"', '"+ first_name+"', '"+ last_name+"', '"+ password+"', '"+ isAdmin+"', '"+ birthday+"')"
    
      connection.query(sql, function (err, result) {
       if (err) {
@@ -186,9 +186,13 @@ app.post('/create-account', async (req, res) => {
         // throw err;
       }
       console.log("1 record inserted");
+
     });
+
+
   });
 
+res.redirect("/");
 
 });
 

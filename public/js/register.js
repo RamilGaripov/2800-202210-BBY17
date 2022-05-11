@@ -10,6 +10,7 @@ ready(function () {
     let firstName = document.getElementById("firstName");
     let lastName = document.getElementById("lastName");
     let email = document.getElementById("email");
+    let birthday = document.getElementById("birthday");
     let password = document.getElementById("password");
     let passwordConfirm = document.getElementById("passwordConfirm");
 
@@ -20,16 +21,15 @@ ready(function () {
       return;
     }
 
-    password.value = "POOP";
-    console.log(password.value);
 
    
     let queryString = "email=" + email.value 
                       + "&firstName=" + firstName.value
                       + "&lastName=" +  lastName.value
+                      + "&birthday=" +  birthday.value
                       + "&password=" + password.value
                       + "&passwordConfirm=" + password.value;
-    console.log("data being sent to the server", email.value, firstName.value, lastName.value, password.Value);
+    console.log("data being sent to the server", email.value, firstName.value, lastName.value, password.value, birthday.value);
     
     //Checking if function is async or not
     // if (ajaxPOST.constructor.name === 'AsyncFunction') {
@@ -80,6 +80,9 @@ ready(function () {
       },
       queryString
     );
+
+
+
   });
 
 });

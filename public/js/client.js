@@ -75,4 +75,7 @@ function ready(callback) {
         document.addEventListener("DOMContentLoaded", callback);
         console.log("Listener was invoked");
     }
+
+
+    
 }
