@@ -20,9 +20,7 @@ body {
     height: 100%;   
 }
 
-.title {
-    display: none;
-}
+
 
 /* Nav Stuff default */
 nav {
@@ -30,7 +28,8 @@ nav {
     justify-content: space-between;
 }
 
-nav>h1 {
+.title {
+    display: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 2em;
     font-weight: bold;
@@ -135,8 +134,9 @@ form>h2 {
 
 /* No account text and link */
 .noText {
-    color: #4874B5;
-    padding: 5px
+    color:#ffa62b;
+    padding: 5px;
+    font-weight: bolder;
 }
 
 .noText:hover {
@@ -151,7 +151,8 @@ form>h2 {
     margin: 0;
     color: red;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.3em;
+    font-size: 1em;
+    text-align: center;
     transition: ease-in 0.3s;
     border-radius: 10px;
     padding: 4px;
@@ -256,6 +257,4 @@ form>h2 {
         color: #ffff;   
         display:block;
     }
-
-
 }

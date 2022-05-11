@@ -20,6 +20,18 @@ body {
     height: 100%;
 }
 
+.title {
+    display: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    padding-right: 20px;
+}
+
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -83,6 +95,7 @@ p {
 
 }
 
+
 #logout {
     border-radius: 20px;
     padding: 8px 40px;
@@ -112,8 +125,21 @@ p {
         min-width: 350px;
     }
 
+    #logo {
+        position:absolute;
+        bottom:0;
+        right: 0;
+        background-image: url(/img/logo.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 50px;
+        height: 50px;
+        padding:5px;
+    }
+
     .container {
-        background-image: url(/img/Mobile.png);
+        background-image: url(/img/mobile_bg.png);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -124,11 +150,9 @@ p {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-      
+        background-color: #ffa62b;
 
     }
-
     #logo {
         order: 2;
         transform: scale(1.5);
@@ -149,22 +173,20 @@ p {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 400px;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 70.18%);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
+        width: 100%;
     }
 }
 
-@media screen and (min-width:551px) and (max-width:850px) {
+@media screen and (min-width:0px) and (max-width:793px) {
+    nav>h1.title {
+        display: none;
+    } 
+}
+
+@media screen and (max-width:1172px) {
     .navbarul>.option:nth-child(n+4) {
         display: none;
     }
-
-    main {
-        margin-top: 20px;
-    }
-
 }
 
 @media screen and (min-width:500px) and (max-width:3400px) {
@@ -177,9 +199,23 @@ p {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        width: 100%
+        width: 100%;
+    }
+ 
+    #logo {
+        background-image: url(/img/logo.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 150px;
+        height: 150px;
     }
 
+    .title {
+        color: #ffff;   
+        display:block;
+    }
+  
     .subcontainer {
         display: flex;
         align-items: center;
