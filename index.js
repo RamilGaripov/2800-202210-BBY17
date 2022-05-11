@@ -167,6 +167,19 @@ app.get("/logout", function(req,res){
   }
 });
 
+app.get("/edit-user", function(req, res) {
+  console.log("Redirecting the admin to the page where they can edit a user's info.");
+  let edit_user_profile = fs.readFileSync("./app/html/edit-user.html", "utf8");
+  let edit_user_profileDOM = new JSDOM(edit_user_profile);
+
+  //PROBABLY NEEDS TO BE POST TO SEND THE ID OF THE PERSON WE ARE EDITING!
+  // console.log(req.body);
+  // profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
+  // profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
+
+  res.send(edit_user_profileDOM.serialize());
+});
+
 //checks if the user is found in the database or not
 function authenticate(email, pwd, callback) {
 
