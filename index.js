@@ -70,10 +70,10 @@ app.get("/admin", function(req, res) {
 
     const mysql = require("mysql2");
     const connection = mysql.createConnection({
-      host: 'us-cdbr-east-05.cleardb.net',
-    user: 'b3665b320bf140',
-    password: '19db28a6',
-    database: 'heroku_d649b9c590d3f9c',
+    host: 'us-cdbr-east-05.cleardb.net',
+    user: 'bf55663efb1072',
+    password: '0655dadf',
+    database: 'heroku_a4d6380661adf84',
     });
     connection.connect();
 
@@ -155,9 +155,9 @@ function authenticate(email, pwd, callback) {
   const mysql = require("mysql2");
   const connection = mysql.createConnection({
     host: 'us-cdbr-east-05.cleardb.net',
-    user: 'b3665b320bf140',
-    password: '19db28a6',
-    database: 'heroku_d649b9c590d3f9c',
+    user: 'bf55663efb1072',
+    password: '0655dadf',
+    database: 'heroku_a4d6380661adf84',
   });
   connection.connect();
   connection.query(
@@ -192,9 +192,9 @@ async function init() {
   // Let's build the DB if it doesn't exist
   const connection = await mysql.createConnection({
     host: 'us-cdbr-east-05.cleardb.net',
-    user: 'b3665b320bf140',
-    password: '19db28a6',
-    database: 'heroku_d649b9c590d3f9c',
+    user: 'bf55663efb1072',
+    password: '0655dadf',
+    database: 'heroku_a4d6380661adf84',
     multipleStatements: true,
   });
 
@@ -260,9 +260,9 @@ app.post('/create-account', async (req, res) => {
 
   const connection = mysql.createConnection({
     host: 'us-cdbr-east-05.cleardb.net',
-    user: 'b3665b320bf140',
-    password: '19db28a6',
-    database: 'heroku_d649b9c590d3f9c',
+    user: 'bf55663efb1072',
+    password: '0655dadf',
+    database: 'heroku_a4d6380661adf84',
   });
   connection.connect();
   
