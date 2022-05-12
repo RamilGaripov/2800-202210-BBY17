@@ -70,10 +70,10 @@ app.get("/admin", function(req, res) {
 
     const mysql = require("mysql2");
     const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800"
+      host: 'us-cdbr-east-05.cleardb.net',
+    user: 'b3665b320bf140',
+    password: '19db28a6',
+    database: 'heroku_d649b9c590d3f9c',
     });
     connection.connect();
 
@@ -154,10 +154,10 @@ function authenticate(email, pwd, callback) {
 
   const mysql = require("mysql2");
   const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800"
+    host: 'us-cdbr-east-05.cleardb.net',
+    user: 'b3665b320bf140',
+    password: '19db28a6',
+    database: 'heroku_d649b9c590d3f9c',
   });
   connection.connect();
   connection.query(
@@ -191,9 +191,10 @@ async function init() {
   const mysql = require("mysql2/promise");
   // Let's build the DB if it doesn't exist
   const connection = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
+    host: 'us-cdbr-east-05.cleardb.net',
+    user: 'b3665b320bf140',
+    password: '19db28a6',
+    database: 'heroku_d649b9c590d3f9c',
     multipleStatements: true,
   });
 
@@ -258,10 +259,10 @@ app.post('/create-account', async (req, res) => {
   const bcrypt = require('bcryptjs');
 
   const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "serenity"
+    host: 'us-cdbr-east-05.cleardb.net',
+    user: 'b3665b320bf140',
+    password: '19db28a6',
+    database: 'heroku_d649b9c590d3f9c',
   });
   connection.connect();
   
@@ -323,3 +324,20 @@ res.redirect("/");
 // Sets the port and runs the server. Calls init().
 let port = 8000;
 app.listen(port, init);
+
+
+
+let http = require('http');
+let url = require('url');
+
+http.createServer((req, res) => {
+  let q = url.parse(req.url, true);
+  console.log(q.query);
+
+  res.writeHead(200, {
+    "Content-Type": "text/html",
+    "Access-Control-Alloy-Origin": "*"
+  });
+
+  res.end(`Hello ${q.query['name1']}`);
+}).listen(process.env.PORT || 3000);
