@@ -22,12 +22,12 @@ app.use(session(
 
 //This function feeds the index.html on first load. 
 app.get("/", function(req, res) {
-  //if the user is logged in, it'll redirect them to their profile page
+  //if the user is logged in, it'll redirect them to their main page
     if(req.session.loggedIn) {
       if(req.session.admin)
         res.redirect("/admin");
       else 
-        res.redirect("/profile");
+        res.redirect("/main");
     } else {
         let doc = fs.readFileSync("./app/html/index.html", "utf8");
         res.set("Server", "RabbitServer"); //Random server name I came up with. When hosting a website on an actual server, you'd put their name here.
@@ -37,15 +37,15 @@ app.get("/", function(req, res) {
     }
 });
 
-app.get("/profile", function(req, res) {
+app.get("/main", function(req, res) {
   if (req.session.loggedIn) {
     if (req.session.admin) 
       console.log("GO BACK TO THE ADMIN PAGE");
       // res.redirect("/");
-    let profile = fs.readFileSync("./app/html/profile.html", "utf8");
+    let profile = fs.readFileSync("./app/html/main.html", "utf8");
     let profileDOM = new JSDOM(profile);
 
-    console.log("Redirecting to the profile page of " + req.session.first_name, req.session.last_name);
+    console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
@@ -60,7 +60,7 @@ app.get("/dashboard", function(req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
       console.log("YOURE NOT AN ADMIN!");
-      // res.redirect("/profile");
+      // res.redirect("/main");
     }
     let admin_profile = fs.readFileSync("./app/html/admin.html", "utf8");
     let profileDOM = new JSDOM(admin_profile);
