@@ -21,6 +21,7 @@ async function loginUser(data) {
     // if fail -> error else redirect to correct pages;
     if (parsedJSON.status == "fail") {
       console.log("U CANT");
+      document.getElementById("errorMsg").textContent = parsedJSON.msg;
     } else {
       if (parsedJSON.privileges) {
         window.location.replace("/dashboard");
