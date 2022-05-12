@@ -181,7 +181,7 @@ section {
         z-index: 1;
     }
 
-    .physical {
+    .carousel_border {
         display: flex;
         flex-direction: column;
         min-height: 150px;
@@ -311,7 +311,7 @@ section {
         backdrop-filter: blur(4px);
         border-radius: 20px;
     }
-
+    /* fieldset to hold choices */
     .carousel_border {
         justify-content: space-between;
     }
