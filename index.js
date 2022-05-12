@@ -48,9 +48,7 @@ app.get("/main", function(req, res) {
     console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
-
     res.send(profileDOM.serialize());
-    
   } else {
     res.redirect("/");
   }
@@ -69,7 +67,6 @@ app.get("/dashboard", function(req, res) {
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
-    
     // const connection = mysql.createConnection({
     //   host: "localhost",
     //   user: "root",

@@ -10,33 +10,6 @@ html {
 
 body {
     height: 100vh;
-    padding: 0;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    min-width:350px;        
-}
-
-.container {
-    height: 100%;
-}
-
- /* Nav Stuff default */
-nav {
-    display: flex;
-    justify-content: space-between;
-}
-html {
-    box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-}
-
-body {
-    height: 100vh;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -47,24 +20,34 @@ body {
     height: 100%;
 }
 
+/* This is Large Titles has a delay appearance */
 .title {
     display: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
+    font-size: 1.7em;
     font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1;
+    line-height: 0;
     text-align: center;
     padding-right: 20px;
 }
 
+/* This is a Subheader Font */
+.subtitle {
+    font-size: 1em;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
 
+/* Univeral Nav that is flexible to screen sizes */
 nav {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+    align-items: center;
 }
 
+/* Clickable Icons in nav */
 .navbarul {
     list-style-type: none;
     margin: 0;
@@ -105,15 +88,52 @@ nav {
 }
 
 #username {
-    font-size: 1em;
+    font-size: 1.2em;
     color: #4874B5;
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
+    margin: 10px 0px;
 }
 
-p {
-    margin: 10px 0 0;
+/* body to hold carousels for the flexible card */
+section {
+    width: 90%;
+    height: 100%;
+}
 
+
+.carousel_border {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-color: #16697a;
+    border-radius: 12px;
+    min-width: 100px;
+    margin: 8px 0;
+}
+
+.carousel_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.5em;
+    letter-spacing: 3px;
+    background-image: url(/img/walking.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    border-radius: 14px;
+    margin: 8px;
+    opacity: 0.6;
+}
+
+.carousel_item:hover {
+    color: wheat;
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: 0.4s;
+    opacity: 1;
 }
 
 
@@ -129,7 +149,7 @@ p {
 #logout:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
-    transition: ease-in 0.03s;
+    transition: ease-in 0.3s;
 }
 
 #logout:active {
@@ -144,10 +164,11 @@ p {
 @media screen and (max-width:499px) {
     body {
         min-width: 350px;
+        height: 100%;
     }
 
     #logo {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         right: 0;
         background-image: url(/img/logo.png);
@@ -157,12 +178,19 @@ p {
         width: 50px;
         height: 50px;
         padding: 5px;
+        z-index: 1;
+    }
+
+    .physical {
+        display: flex;
+        flex-direction: column;
+        min-height: 150px;
     }
 
     .container {
-        background-image: url(/img/mobile_admin_bg.png);
+        background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         background-size: cover;
     }
 
@@ -171,7 +199,9 @@ p {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #16697a;
+        background-image: linear-gradient(#16697a, #5b96a1);
+        border-bottom: 2px solid black;
+
     }
 
     #logo {
@@ -188,6 +218,7 @@ p {
         display: flex;
         align-items: center;
         flex-direction: column;
+        height: 100%;
     }
 
     main {
@@ -198,13 +229,17 @@ p {
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
+
     }
 }
 
 @media screen and (min-width:0px) and (max-width:793px) {
+    /* using speceficity to nullify overide in the code below this */
     nav>h1.title {
         display: none;
     }
+
+
 }
 
 @media screen and (max-width:1172px) {
@@ -219,7 +254,7 @@ p {
     }
 
     .container {
-        background-image: url(/img/admin_bg.jpg);
+        background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -227,7 +262,8 @@ p {
     }
 
     nav {
-        background-color: #16697A;
+        background-image: linear-gradient(#16697a, #5b96a1);
+        border-bottom: 2px solid black;
     }
 
     #logo {
@@ -241,7 +277,23 @@ p {
 
     .title {
         color: #ffff;
-        display: block;
+        display: inline-flex;
+        align-self: center;
+        text-align: center;
+        opacity: 0;
+        animation: 2s fadeIn;
+        animation-fill-mode: forwards;
+        transition: opacity 1.5s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 
     .subcontainer {
@@ -254,10 +306,20 @@ p {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 80%;
+        width: 97%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
+    }
+
+    .carousel_border {
+        justify-content: space-between;
+    }
+
+    .carousel_item {
+        min-height: 150px;
+        min-width: 150px;
+        flex: 1;
     }
 
     .form-group {
@@ -273,193 +335,5 @@ p {
     .form-group>input {
         border-radius: 8px;
     }
-
-}
-.navbarul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    padding: 10px;
-}
-
-.option {
-    float: right;
-    display: flex;
-    flex-direction: column;
-}
-
-.option a {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-    align-items: center;
-}
-
-.option>a>img {
-    width: 50px;
-    height: 40px;
-}
-
-.option:active{
-    filter: invert(100%) sepia(16%) saturate(7463%) hue-rotate(222deg) brightness(119%) contrast(115%);    
-}
-
-.option:hover {
-    transform: scale(1.09);
-    transition: ease-in 0.09s;
-}
-
-form>h2 {
-    font-size: 2em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
-}
-/* Form card stuff*/
-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-form>h2 {
-    font-size: 2em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
-    margin:0;
-}
-
-.form-group {
-    display: inline-block;
-    text-align: center;
-    margin: 2px;
-}
-
-.form-group>label {
-    font-weight: bolder;
-    padding:2px 6px;
-}
-
-.form-group>input{
-    border-radius: 8px;
-    transform: scale(1.3);
-    padding:4px 6px;
-    margin-top: 5px;
-}
-
-#submit {
-    border-radius: 20px;
-    padding: 8px 40px;
-    background-color: #ffa62b;
-    color: #ffff;
-    border: none;
-}
-
-#submit:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.03s;
-}
-
-#submit:active {
-    background-color: #8b622a;
-}
-
-.noText {
-    color: #4874B5;
-    padding:5px
-}
-.noText:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    background-color: #4772e8;
-    transition: ease-in 0.3s;
-    border-radius: 10px;
-    color:white;
-}
-
-#errorMsg {
-    margin:0;
-    color:red;
-    font-family: 'Montserrat', sans-serif;
-    font-size:1.3em;
-    transition: ease-in 0.3s;
-    border-radius: 10px;
-    padding:4px;
-}
-
-@media screen and (min-width:0px) and (max-width:499px) {
-    body{
-        min-width:350px;
-    }
-    .container {
-        background-image: url(/img/Mobile.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        min-width:350px;
-    }
-
-    nav {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #8b622a;
-    }
-    #logo{
-        order:2;
-        transform: scale(1.5);
-    }
-
-    .navbarul>.option:nth-child(n+4){
-        display:none;
-    }
-
-    .form-group>input{
-        border-radius: 45px;
-        opacity:1;
-    }
-}
-
-@media screen and (min-width:500px) and (max-width:864px) {
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
-    }
-    main{
-        
-        margin-top: 20px;
-    }
-
-}
-
-@media screen and (min-width:500px) and (max-width:3400px) {
-    .container {
-        background-image: url(/img/backgroundLong.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    main {
-        display: flex;
-        justify-items: center;
-        align-items: center;
-        flex-direction: column;
-        padding-top: 30px;
-    }
-
-    form {
-        padding: 30px;
-        width: 400px;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 70.18%);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
-    }
-    
 
 }

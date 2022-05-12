@@ -15,13 +15,16 @@
 
 <body>
     <div class="container">
-        <!-- nav for all pages -->
+        <!-- 1st Parent -->
+
         <nav>
+            <!-- nav for all pages  this is auto-sizing-->
             <div id="logo"></div>
             <h1 class="title">Welcome</h1>
             <ul class="navbarul">
                 <!-- change all paths to /img -->
-                <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile" height="60">Profile</a>
+                <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile"
+                            height="60">Profile</a>
                 </li>
                 <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
                 </li>
@@ -29,17 +32,41 @@
                 </li>
                 <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
                         Games</a></li>
-                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="20"height="65">
+                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="20"
+                            height="65">
                         Exercise</a></li>
-                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation"
-                            width="60" height="50">Meditation</a></li>
+                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="60"
+                            height="50">Meditation</a></li>
             </ul>
         </nav>
+
+        <!-- 2nd Parent -->
         <div class="subcontainer">
+
+            <!-- Flexible card - Put all your code in here -->
             <main>
-                <p>Welcome to your profile</p>
+
+                <!-- Place user info here -->
+                <p>Greeting Text</p>
                 <p id="username">.</p>
                 <img src="/img/profilepic.png" alt="waman" class="profilepic">
+
+                <!-- section acts like the body of the content-->
+                <section>
+
+                    <!-- A carousel to display content V1 -->
+                    <!-- flexible bg-picture and middle text on hover -->
+                    <template>
+                        <fieldset class="carousel_border">
+                            <legend class="subtitle">Title of section</legend>
+                            <div class="carousel_item">inside_text</div>
+                            <div class="carousel_item">inside_text</div>
+                            <div class="carousel_item">inside_text</div>
+                            <div class="carousel_item">inside_text</div>
+                        </fieldset>
+                    </template>
+
+                </section>
                 <form action="/logout" class="form-group">
                     <button type="submit" id="logout">Logout</button>
                 </form>
