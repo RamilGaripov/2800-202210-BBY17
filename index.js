@@ -198,8 +198,8 @@ async function init() {
     multipleStatements: true,
   });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
-    use COMP2800;
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_a4d6380661adf84;
+    use heroku_a4d6380661adf84;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
     id INT Primary Key AUTO_INCREMENT,
     email VARCHAR(50) UNIQUE NOT NULL,
