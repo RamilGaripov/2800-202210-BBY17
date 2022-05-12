@@ -34,6 +34,15 @@ app.get("/", function(req, res) {
     }
 });
 
+app.get("/mindgames", function(req, res){
+  res.redirect("/mindgames");
+})
+
+
+app.get("/wordle", function(req, res){
+  res.redirect("/wordle");
+})
+
 app.get("/profile", function(req, res) {
   if (req.session.loggedIn) {
     let profile = fs.readFileSync("./app/html/profile.html", "utf8");
