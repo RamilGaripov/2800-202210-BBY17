@@ -37,10 +37,14 @@ body {
     font-weight: bold;
     margin:1px;
 }
-
+p {
+ margin:0;
+ padding:4px 0;
+ font-size: 0.9em;
+}
 .subtitle {
     font-size: 1em;
-    color: black;
+    color:#489FB5;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
 }
@@ -255,7 +259,6 @@ section {
         align-items: center;
         background-image: linear-gradient(#16697a, #5b96a1);
         border-bottom: 2px solid black;
-
     }
 
     #logo {
@@ -351,6 +354,7 @@ section {
     }
 
     .subcontainer {
+        background-image: url(/img/main_bg.jpg);
         display: flex;
         align-items: center;
         flex-direction: column;
