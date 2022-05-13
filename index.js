@@ -70,10 +70,10 @@ app.get("/admin", function(req, res) {
 
     const mysql = require("mysql2");
     const connection = mysql.createConnection({
-    host: 'us-cdbr-east-05.cleardb.net',
-    user: 'bf55663efb1072',
-    password: '0655dadf',
-    database: 'heroku_a4d6380661adf84',
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800"
     });
     connection.connect();
 
@@ -154,10 +154,10 @@ function authenticate(email, pwd, callback) {
 
   const mysql = require("mysql2");
   const connection = mysql.createConnection({
-    host: 'us-cdbr-east-05.cleardb.net',
-    user: 'bf55663efb1072',
-    password: '0655dadf',
-    database: 'heroku_a4d6380661adf84',
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800"
   });
   connection.connect();
   connection.query(
@@ -191,10 +191,10 @@ async function init() {
   const mysql = require("mysql2/promise");
   // Let's build the DB if it doesn't exist
   const connection = await mysql.createConnection({
-    host: 'us-cdbr-east-05.cleardb.net',
-    user: 'bf55663efb1072',
-    password: '0655dadf',
-    database: 'heroku_a4d6380661adf84',
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800",
     multipleStatements: true,
   });
 
@@ -259,10 +259,10 @@ app.post('/create-account', async (req, res) => {
   const bcrypt = require('bcryptjs');
 
   const connection = mysql.createConnection({
-    host: 'us-cdbr-east-05.cleardb.net',
-    user: 'bf55663efb1072',
-    password: '0655dadf',
-    database: 'heroku_a4d6380661adf84',
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800"
   });
   connection.connect();
   
