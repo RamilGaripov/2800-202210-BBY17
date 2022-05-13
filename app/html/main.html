@@ -16,7 +16,8 @@
 <body>
     <div class="container top">
         <!-- nav for all pages -->
-        <nav >
+
+        <nav>
             <a id="logo" href="#top"></a>
             <h1 class="title">Welcome back</h1>
             <ul class="navbarul">
@@ -28,76 +29,63 @@
                 </li>
                 <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
                 </li>
-                <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
+
+                <li class="option"><a href="/html/mindgames.html"><img src="/img/mind_games_icon.png"
+                            alt="mind games">Mind
                         Games</a></li>
-                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" height="65">
+                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="45"
+                            height="60">
                         Exercise</a></li>
-                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="60"
+                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="50"
                             height="50">Meditation</a></li>
             </ul>
         </nav>
         <div class="subcontainer">
             <main>
-                <p id="username">.</p>
-                <img src="/img/profilepic.png" alt="waman" class="profilepic">
+                <section class="profile_card">
+                    <img src="/img/profilepic.png" alt="waman" class="profilepic">
+                    <div>
+                        <p id="username">.</p>
+                        <div><b>First Name:</b> Replace this text</div>
+                        <div><b>Last Name:</b> Replace this text</div>
+                        <div><b>Email:</b> Replace this text</div>
+                        <div><b>Description:</b> Replace this text</div>
+                    </div>
+                </section>
+
+                <section>
+
+                    <fieldset class="physical">
+                        <legend class="subtitle">Games</legend>
+                        <div class="exer_card">
+                            <div class="exercise">Wordle</div>
+                            <h2 class="subtitle">Name</h2>
+                            <p><b>Description:</b> Replace this text</p>
+                        </div>
+                        <div class="exer_card">
+                            <div class="exercise">Wordle</div>
+                            <h2 class="subtitle">Name</h2>
+                            <p><b>Description:</b> Replace this text</p>
+                        </div>
+                        <div class="exer_card">
+                            <div class="exercise">Wordle</div>
+                            <h2 class="subtitle">Name</h2>
+                            <p><b>Description:</b> Replace this text</p>
+                        </div>
+                        <div class="exer_card">
+                            <div class="exercise">Wordle</div>
+                            <h2 class="subtitle">Name</h2>
+                            <p><b>Description:</b> Replace this text</p>
+                        </div>
+                    </fieldset>
+
+               
+
+                </section>
                 <form action="/logout" class="form-group">
                     <button type="submit" id="logout">Logout</button>
                 </form>
-                <!-- <h1>What Would You like for the day?</h1> -->
-                <section>
-                    <fieldset class="physical">
-                        <legend class="subtitle">Exercises</legend>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise walk" href="/html/walk.html"><p class="imgname">Walk</p></a>
-                            <h2 class="subtitle">Name</h2>
-                            <p><b>Description:</b> Replace with text</p>
-                        </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise hike" href="./hike.html">Hike<a>
-                            <h2 class="subtitle">Name</h2>
-                            <p><b>Description:</b> Replace with text</p>
-                        </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise yoga" href="./yoga.html">Yoga</a>
-                            <h2 class="subtitle">Name</h2>
-                            <p><b>Description:</b> Replace with text</p>
-                        </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise meditation" href="./mediation.html">Meditation</a>
-                            <h2 class="subtitle">Name</h2>
-                            <p><b>Description:</b> Replace with text</p>
-                        </div>
-                    </fieldset>
-                    <fieldset class="physical">
-                        <legend class="subtitle">Brain Games</legend>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise wordle" href="./wordle.html">Wordle</a>
-                            <h2 class="subtitle">Name</h2>
-                            <p><b>Description:</b> Replace with text</p>
-                        </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise suduko" href="./suduko.html">Suduko</a>
-                            <h2 class="subtitle">Name</h2>
-                            <p><b>Description:</b> Replace with text</p>
-                        </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise match" href="/html/match.html">Match</a>
-                            <h2 class="subtitle">Name</h2>
-                            <p><b>Description:</b> Replace with text</p>
-                        </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise puzzle" href="./puzzle.html">Puzzle</a>
-                            <h2 class="subtitle">Name</h2>
-                            <p><b>Description:</b> Replace with text</p>
-                        </div>
-                    </fieldset>
-                </section>
-                <!-- <form action="/logout" class="form-group">
-                    <button type="submit" id="logout">Logout</button>
-                    <button type="submit" id="logout">Hi</button>
-                </form> -->
-                <br>
-                <!-- <button type="submit" id="exercisesub">Submit</button> -->
+>>>>>>> dev_week3
             </main>
         </div>
     </div>

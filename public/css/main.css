@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    /* height: 100vh; */
+    height: 100vh;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -30,10 +30,21 @@ body {
     padding-right: 20px;
 }
 
-
+#username {
+    color: #489FB5;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7em;
+    font-weight: bold;
+    margin:1px;
+}
+p {
+ margin:0;
+ padding:4px 0;
+ font-size: 0.9em;
+}
 .subtitle {
     font-size: 1em;
-    color: black;
+    color:#489FB5;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
 }
@@ -71,7 +82,6 @@ nav {
 }
 
 .option>a>img {
-    width: 50px;
     height: 40px;
 }
 
@@ -84,12 +94,14 @@ nav {
     transition: ease-in 0.09s;
 }
 
+
 #username {
     font-size: 1.2em;
     color: #4874B5;
     font-family: 'Montserrat', sans-serif;
     margin: 10px 0px;
 }
+
 
 section {
     width: 90%;
@@ -106,7 +118,8 @@ section {
     margin: 8px 0;
 }
 
-.exer_card{
+
+.exer_card {
     flex: 1;
     background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
     margin: 4px;
@@ -114,8 +127,8 @@ section {
     padding: 5px;
 }
 
-.exer_card>.subtitle{
-    padding: 4px;
+.exer_card>.subtitle {
+    padding: 4px
 }
 
 .exercise {
@@ -125,11 +138,12 @@ section {
     font-weight: bolder;
     font-size: 1.5em;
     letter-spacing: 3px;
-    /* background-image: url(/img/walking.png); */
+    background-image: url(/img/walking.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
+
     /* width: 1.2fr; */
     border-radius: 20px;
     height: 200px;
@@ -175,6 +189,8 @@ section {
 
 
 
+=======
+
 .exercise:hover {
     color: wheat;
     box-shadow: 1px 1px 1px 2px gray;
@@ -217,6 +233,7 @@ section {
     background-color: #8b622a;
 }
 
+
 /* #exercisesub {
     border-radius: 10px;
     padding: 8px 40px;
@@ -242,6 +259,60 @@ section {
 .profilepic {
     width: 100px;
     margin: 20px;
+
+.profile_card {
+    display: flex;
+    padding-top:10px;
+}
+
+.profile_card>div>div {
+    margin:2px;
+    font-size: 0.8em;
+}
+
+.profilepic {
+    width: 100px;
+    height: 100px;  
+    margin:10px;    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    width: 100%;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+
 }
 
 @media screen and (max-width:499px) {
@@ -284,7 +355,6 @@ section {
         align-items: center;
         background-image: linear-gradient(#16697a, #5b96a1);
         border-bottom: 2px solid black;
-
     }
 
     #logo {
@@ -338,9 +408,11 @@ section {
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;  
+
         background-size: cover;
         width: 100%;
+        background-repeat: repeat-y;
+        height: auto;
     }
 
     nav {
@@ -379,9 +451,11 @@ section {
     }
 
     .subcontainer {
+        background-image: url(/img/main_bg.jpg);
         display: flex;
         align-items: center;
         flex-direction: column;
+        padding-bottom: 20px;
     }
 
     main {
@@ -393,6 +467,8 @@ section {
         backdrop-filter: blur(4px);
         border-radius: 20px;
     }
+
+
 
     .physical {
         justify-content: space-between;
