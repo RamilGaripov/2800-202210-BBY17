@@ -14,15 +14,9 @@ ready(function () {
     let password = document.getElementById("password");
     let passwordConfirm = document.getElementById("passwordConfirm");
 
-
-    
-
     if (password.value != passwordConfirm.value) {
       return;
     }
-
-
-   
     let queryString = "email=" + email.value 
                       + "&firstName=" + firstName.value
                       + "&lastName=" +  lastName.value
@@ -64,7 +58,6 @@ ready(function () {
       xhr.send(params);
   }
 
-
     ajaxPOST("/create-account", function (data) {
         if (data) {
           let dataParsed = JSON.parse(data);
@@ -80,11 +73,7 @@ ready(function () {
       },
       queryString
     );
-
-
-
   });
-
 });
 
 function ready(callback) {
