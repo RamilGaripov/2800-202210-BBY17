@@ -26,7 +26,7 @@ async function loginUser(data) {
       if (parsedJSON.privileges) {
         window.location.replace("/dashboard");
       } else {
-        window.location.replace("/profile");
+        window.location.replace("/main");
       }
     }
 

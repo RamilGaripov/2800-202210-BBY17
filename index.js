@@ -112,8 +112,8 @@ app.get('/get-accounts', function (req, res) {
 app.get("/edit", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
-      console.log("This user is not an administrator. Redirecting them back to their profile.");
-      res.redirect("/profile");
+      console.log("This user is not an administrator. Redirecting them back to their main.");
+      res.redirect("/main");
       return;
     }
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
