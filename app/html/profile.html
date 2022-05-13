@@ -21,53 +21,66 @@
             <h1 class="title">Welcome</h1>
             <ul class="navbarul">
                 <!-- change all paths to /img -->
-                <li class="option"><a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile" height="60">Profile</a>
+                <li class="option"><a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile"
+                            height="60">Profile</a>
                 </li>
                 <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
                 </li>
                 <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
                 </li>
-                <li class="option"><a href="/html/mindgames.html"><img src="/img/mind_games_icon.png" alt="mind games">Mind
+                <li class="option"><a href="/html/mindgames.html"><img src="/img/mind_games_icon.png"
+                            alt="mind games">Mind
                         Games</a></li>
-                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="20"height="65">
+                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="20"
+                            height="65">
                         Exercise</a></li>
-                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation"
-                            width="60" height="50">Meditation</a></li>
+                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="60"
+                            height="50">Meditation</a></li>
             </ul>
         </nav>
         <div class="subcontainer">
             <main>
                 <p>Welcome to your profile</p>
-                <p id="username">.</p>
-                <img src="/img/profilepic.png" alt="waman" class="profilepic">
+                <section class="profile_card">
+                    <img src="/img/profilepic.png" alt="waman" class="profilepic">
+                    <div>
+                        <p id="username">.</p>
+                        <div><b>First Name:</b> Replace this text</div>
+                        <div><b>Last Name:</b> Replace this text</div>
+                        <div><b>Email:</b> Replace this text</div>
+                        <div><b>Description:</b> Replace this text</div>
+                    </div>
+                </section>
+
                 <form action="/logout" class="form-group">
                     <div class="form-group">
                         <label for="name">Name</label><br>
                         <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
                     </div>
-    
-    
-    
+
                     <div class="form-group">
                         <label for="email">Email</label><br>
                         <input type="text" class="form-control" id="email" name="email" placeholder="your@email.com">
                     </div>
-    
-    
+
                     <div class="form-group">
                         <label for="password">Password</label><br>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="*********">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="*********">
                     </div>
-    
+
                     <div class="form-group">
                         <label for="passwordConfirm">Confirm Password</label><br>
                         <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary register">SUBMIT</button>
+                    <div>
+                        <button type="submit" class="btn btn-primary register">SUBMIT</button>
+                        <button type="submit" class="btn btn-primary register">SUBMIT</button>
+                    </div>
                 </form>
-                    <button type="submit" id="logout">Logout</button>
-                    
+                <a href="/html/main.html" id="exit">Home</button>
+
                 </form>
             </main>
         </div>

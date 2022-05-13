@@ -36,6 +36,8 @@ nav {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+    align-items: center;
+    background-image: linear-gradient(#16697a, #5b96a1);
 }
 
 .navbarul {
@@ -64,7 +66,6 @@ nav {
 }
 
 .option>a>img {
-    width: 50px;
     height: 40px;
 }
 
@@ -90,7 +91,7 @@ p {
 }
 
 
-#logout {
+#exit {
     border-radius: 20px;
     padding: 8px 40px;
     background-color: #ffa62b;
@@ -99,19 +100,38 @@ p {
     margin-bottom: 10px;
 }
 
-#logout:hover {
+#exit:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: ease-in 0.03s;
 }
 
-#logout:active {
+#exit:active {
     background-color: #8b622a;
 }
 
 .profilepic {
     width: 100px;
     margin: 20px;
+}
+.profile_card {
+    display: flex;
+    padding-top:10px;
+}
+
+.profile_card>div>div {
+    margin:2px;
+    font-size: 0.8em;
+}
+
+.profilepic {
+    width: 100px;
+    height: 100px;  
+    margin:10px;   
+}
+
+.form-group {
+
 }
 
 @media screen and (max-width:499px) {
@@ -133,7 +153,7 @@ p {
     }
 
     .container {
-        background-image: url(/img/mobile_admin_bg.png);
+        background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -144,8 +164,9 @@ p {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #16697a;
+        border-bottom: 2px solid black;
     }
+
 
     #logo {
         order: 2;
@@ -153,6 +174,8 @@ p {
         margin: 5px;
     }
 
+
+    
     .navbarul>.option:nth-child(n+4) {
         display: none;
     }
@@ -161,12 +184,13 @@ p {
         display: flex;
         align-items: center;
         flex-direction: column;
+        height: 100%;
     }
+
 
     main {
         display: flex;
         align-items: center;
-        flex-direction: column;
         width: 90%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
@@ -192,9 +216,9 @@ p {
     }
 
     .container {
-        background-image: url(/img/admin_bg.jpg);
+        background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         background-size: cover;
         width: 100%;
     }
@@ -221,13 +245,14 @@ p {
         display: flex;
         align-items: center;
         flex-direction: column;
+        padding-bottom: 20px;
     }
 
     main {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 80%;
+        flex:1;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
