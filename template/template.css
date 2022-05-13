@@ -74,7 +74,6 @@ nav {
 }
 
 .option>a>img {
-    width: 50px;
     height: 40px;
 }
 
@@ -111,6 +110,14 @@ section {
     margin: 8px 0;
 }
 
+.option_card {
+    flex: 1;
+    background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
+    margin: 4px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
 .carousel_item {
     display: flex;
     justify-content: center;
@@ -123,9 +130,8 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
-    border-radius: 14px;
-    margin: 8px;
-    opacity: 0.6;
+    width: 100%;
+    border-radius: 20px;
 }
 
 .carousel_item:hover {
@@ -133,7 +139,8 @@ section {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: 0.4s;
-    opacity: 1;
+    font-size: 2em;
+    font-weight: bolder;
 }
 
 
@@ -156,9 +163,20 @@ section {
     background-color: #8b622a;
 }
 
+.profile_card {
+    display: flex;
+    padding-top:10px;
+}
+
+.profile_card>div>div {
+    margin:2px;
+    font-size: 0.8em;
+}
+
 .profilepic {
     width: 100px;
-    margin: 20px;
+    height: 100px;  
+    margin:10px;    
 }
 
 @media screen and (max-width:499px) {
@@ -192,6 +210,7 @@ section {
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
+        height: auto;
     }
 
     nav {

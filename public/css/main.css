@@ -30,6 +30,13 @@ body {
     padding-right: 20px;
 }
 
+#username {
+    color: #489FB5;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7em;
+    font-weight: bold;
+    margin:1px;
+}
 
 .subtitle {
     font-size: 1em;
@@ -71,7 +78,6 @@ nav {
 }
 
 .option>a>img {
-    width: 50px;
     height: 40px;
 }
 
@@ -82,13 +88,6 @@ nav {
 .option:hover {
     transform: scale(1.09);
     transition: ease-in 0.09s;
-}
-
-#username {
-    font-size: 1.2em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
-    margin: 10px 0px;
 }
 
 section {
@@ -106,6 +105,18 @@ section {
     margin: 8px 0;
 }
 
+.exer_card {
+    flex: 1;
+    background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
+    margin: 4px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.exer_card>.subtitle {
+    padding: 4px
+}
+
 .exercise {
     display: flex;
     justify-content: center;
@@ -118,9 +129,8 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
-    border-radius: 14px;
-    margin: 8px;
-    opacity: 0.6;
+    width: 100%;
+    border-radius: 20px;
 }
 
 .exercise:hover {
@@ -128,11 +138,9 @@ section {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: 0.4s;
-    opacity: 1;
     font-size: 2em;
     font-weight: bolder;
 }
-
 
 #logout {
     border-radius: 20px;
@@ -153,9 +161,20 @@ section {
     background-color: #8b622a;
 }
 
+.profile_card {
+    display: flex;
+    padding-top:10px;
+}
+
+.profile_card>div>div {
+    margin:2px;
+    font-size: 0.8em;
+}
+
 .profilepic {
     width: 100px;
-    margin: 20px;
+    height: 100px;  
+    margin:10px;    
 }
 
 .styled-table {
@@ -176,6 +195,7 @@ section {
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
+    width: 100%;
 }
 
 .styled-table tbody tr {
@@ -289,9 +309,10 @@ section {
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
+        background-repeat: repeat-y;
+        height: auto;
     }
 
     nav {
@@ -333,6 +354,7 @@ section {
         display: flex;
         align-items: center;
         flex-direction: column;
+        padding-bottom: 20px;
     }
 
     main {
@@ -344,6 +366,7 @@ section {
         backdrop-filter: blur(4px);
         border-radius: 20px;
     }
+
 
     .physical {
         justify-content: space-between;
