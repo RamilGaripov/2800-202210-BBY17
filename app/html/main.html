@@ -40,18 +40,32 @@
             <main>
                 <p id="username">.</p>
                 <img src="/img/profilepic.png" alt="waman" class="profilepic">
-                <section>
-                    <fieldset class="physical">
-                        <legend class="subtitle">Exercises</legend>
-                        <div class="exercise" >WALK</div>
-                        <div class="exercise" >WALK</div>
-                        <div class="exercise" >WALK</div>
-                        <div class="exercise" >WALK</div>
-                    </fieldset>
-                </section>
                 <form action="/logout" class="form-group">
                     <button type="submit" id="logout">Logout</button>
                 </form>
+                <!-- <h1>What Would You like for the day?</h1> -->
+                <section>
+                    <fieldset class="physical">
+                        <legend class="subtitle">Exercises</legend>
+                        <a class="exerciselink exercise walk" href="./walk.html">Walk</a>
+                        <a class="exerciselink" href="./hike.html"><div class="exercise" id="hike">Hike</div><a>
+                        <a class="exerciselink" href="./yoga.html"><div class="exercise" id="yoga">Yoga</div></a>
+                        <a class="exerciselink" href="./mediation.html"><div class="exercise" id="meditation">Meditation</div></a>
+                    </fieldset>
+                    <fieldset class="physical">
+                        <legend class="subtitle">Brain Games</legend>
+                        <div class="exercise" id="wordle">Wordle</div>
+                        <div class="exercise" id="suduko">Suduko</div>
+                        <div class="exercise" id="match">Match</div>
+                        <div class="exercise" id="puzzle">Puzzle</div>
+                    </fieldset>
+                </section>
+                <!-- <form action="/logout" class="form-group">
+                    <button type="submit" id="logout">Logout</button>
+                    <button type="submit" id="logout">Hi</button>
+                </form> -->
+                <br>
+                <!-- <button type="submit" id="exercisesub">Submit</button> -->
             </main>
         </div>
     </div>

@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     padding: 0;
     margin: 0;
@@ -113,15 +113,52 @@ section {
     font-weight: bolder;
     font-size: 1.5em;
     letter-spacing: 3px;
-    background-image: url(/img/walking.png);
+    /* background-image: url(/img/walking.png); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
+    /* width: 1.2fr; */
     border-radius: 14px;
+    width: 300px;
     margin: 8px;
-    opacity: 0.6;
+    /* opacity: 0.6; */
 }
+
+#wordle {
+    background-image: url(/img/wordle.png);
+}
+
+#suduko {
+    background-image: url(/img/suduko.png);
+}
+
+#match {
+    background-image: url(/img/animalmatch.jpg);
+}
+
+#puzzle {
+    background-image: url(/img/puzzle.png);
+}
+
+
+.walk {
+    background-image: url(/img/walk.jpg);
+}
+
+#hike {
+    background-image: url(/img/hikee.jpg);
+}
+
+#yoga {
+    background-image: url(/img/yoga.jpg);
+}
+
+#meditation {
+    background-image: url(/img/meditation.jpg);
+}
+
+
 
 .exercise:hover {
     color: wheat;
@@ -129,6 +166,7 @@ section {
     transform: scale(1.04);
     transition: 0.4s;
     opacity: 1;
+    cursor: pointer;
 }
 
 
@@ -150,6 +188,28 @@ section {
 #logout:active {
     background-color: #8b622a;
 }
+
+/* #exercisesub {
+    border-radius: 10px;
+    padding: 8px 40px;
+    background-color: #BEE5B0;
+    color: black;
+    border: 2px solid black;
+    margin-bottom: 10px;
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
+}
+
+#exercisesub:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.3s;
+}
+
+#exercisesub:active {
+    background-color: #BEE5B0;
+} */
 
 .profilepic {
     width: 100px;
@@ -250,7 +310,7 @@ section {
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat;  
         background-size: cover;
         width: 100%;
     }
