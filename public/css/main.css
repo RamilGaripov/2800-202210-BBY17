@@ -244,6 +244,22 @@ section {
     margin: 20px;
 }
 
+.profile_card {
+    display: flex;
+    padding: 10px;
+}
+
+.profile_card>div>div {
+    margin: 2px;
+    font-size: 0.9em;
+}
+
+.profilepic {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
 @media screen and (max-width:499px) {
     body {
         min-width: 350px;
