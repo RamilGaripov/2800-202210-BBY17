@@ -112,9 +112,13 @@ app.get('/get-accounts', function (req, res) {
 app.get("/edit", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
-      console.log("This user is not an administrator. Redirecting them back to their main.");
+
+      // to bring user to edit page as a non-admin
+      console.log("This user is not an administrator. going to edit page but removing admin checkbox.");
       res.redirect("/main");
       return;
+
+
     }
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
     let edit_profileDOM = new JSDOM(edit_profile);

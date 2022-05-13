@@ -18,7 +18,6 @@
         <!-- nav for all pages -->
         <nav>
             <div id="logo"></div>
-            <h1 class="title">Welcome</h1>
             <ul class="navbarul">
                 <li class="option"><a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile"
                             height="60">Profile</a>
@@ -52,37 +51,49 @@
                 </section>
 
                 <form action="/edit" class="form-group">
-                    <div class="form-group">
-                        <label for="name">Name</label><br>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label><br>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="your@email.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label><br>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="*********">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="passwordConfirm">Confirm Password</label><br>
-                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
-                    </div>
-                    <br>
-                    <div class="editMy">
-                        <button type="submit" class="btn btn-primary register">SUBMIT</button>
-                        <button type="submit" class="btn btn-primary register">SUBMIT</button>
-                    </div>
+                    <button type='submit' class='edit_user'>Edit</button>
+                    <a href="/html/main" class="back">BACK</a> 
                 </form>
-                <a href="/html/main.html" id="exit">Home</a>
+
+                <form action="/edit" class="form-group">
+                    <form action="/auth/register" method="POST" class="main">
+                        <h1 class="title"> Edit&nbsp;<span id="username"></span>'s Profile</h1>
+
+                        <div class="form-group">
+                            <label for="firstname">First Name</label><br>
+                            <input type="text" class="form-control" id="firstname" name="firstname">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label><br>
+                            <input type="text" class="form-control" id="lastname" name="lastname">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label><br>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label><br>
+                            <input type="text" class="form-control" id="password" name="password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label><br>
+                            <input type="date" class="form-control" id="dob" name="dob">
+
+                        </div>
+                        <br>
+                        <button type="submit" id="submit">SAVE</button>
+                        <button type="submit" id="go_back">BACK</button>
+                        <p id="serverMsg"></p>
+                    </form>
 
             </main>
         </div>
     </div>
+    <script src="/js/profile.js"></script>
 </body>
 
 </html>

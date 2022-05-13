@@ -99,11 +99,10 @@ p {
 
 }
 
-
-#exit {
+.edit_user {
     border-radius: 20px;
-    padding: 8px 40px;
-    background-color: #ffa62b;
+    padding: 4px 13px;
+    background-color:#ffa62b;
     color: #ffff;
     text-decoration: none;
     border: none;
@@ -111,13 +110,78 @@ p {
     margin-bottom: 10px;
 }
 
-#exit:hover {
+.edit_user:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: ease-in 0.03s;
 }
 
-#exit:active {
+.edit_user:active {
+    background-color: #8b622a;
+}
+
+a.back {
+    border-radius: 20px;
+    padding: 4px 13px;
+    background-color:gray;
+    color: #ffff;
+    text-decoration: none;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+a.back:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.03s;
+}
+
+a.back:active {
+    background-color: darkgray;
+}
+
+#submit {
+    border-radius: 20px;
+    padding: 4px 13px;
+    background-color:#ffa62b;
+    color: #ffff;
+    text-decoration: none;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#submit:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.03s;
+}
+
+#submit:active {
+    background-color: #8b622a;
+}
+
+
+
+#go_back {
+    border-radius: 20px;
+    padding: 4px 13px;
+    background-color: gray;
+    color: #ffff;
+    text-decoration: none;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#go_back:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.03s;
+}
+
+#go_back:active {
     background-color: #8b622a;
 }
 
@@ -142,9 +206,9 @@ p {
     margin: 10px;
 }
 
-.form-group {
-    display: none;
-}
+/* .form-group {
+display:none;
+} */
 
 .editMy {
     display: block;
