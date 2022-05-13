@@ -9,10 +9,7 @@ html {
 }
 
 .game {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
 }
 
 .controls {
@@ -334,10 +331,6 @@ p {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 90%;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
     }
 }
 
@@ -395,9 +388,6 @@ p {
         align-items: center;
         flex-direction: column;
         width: 80%;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
     }
 
     .form-group {
