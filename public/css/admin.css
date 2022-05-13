@@ -98,10 +98,12 @@ p {
     margin: 10px 0 0;
 
 }
+#add_user {
+    text-decoration: none;
+}
 
+#logout, #add_user {
 
-
-#logout {
     border-radius: 20px;
     padding: 8px 40px;
     background-color: #ffa62b;
@@ -110,13 +112,13 @@ p {
     margin-bottom: 10px;
 }
 
-#logout:hover {
+#logout:hover, #add_user:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: ease-in 0.2s;
 }
 
-#logout:active {
+#logout:active, #add_user:active {
     background-color: #8b622a;
 }
 
