@@ -100,16 +100,23 @@ p {
 }
 #add_user {
     text-decoration: none;
+    font-size:1em;
+    background-color: #ffa62b;
+    padding:4px 10px;
+}
+
+#logout {
+    background-color: gray;
+    padding:4px 10px;
 }
 
 #logout, #add_user {
 
     border-radius: 20px;
-    padding: 8px 40px;
-    background-color: #ffa62b;
+  
     color: #ffff;
     border: none;
-    margin-bottom: 10px;
+    margin:5px 2px;
 }
 
 #logout:hover, #add_user:hover {
@@ -117,6 +124,9 @@ p {
     transform: scale(1.04);
     transition: ease-in 0.2s;
 }
+
+
+
 
 #logout:active, #add_user:active {
     background-color: #8b622a;
