@@ -24,43 +24,65 @@ app.use(session({
 }));
 
 //This function feeds the index.html on first load. 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   //if the user is logged in, it'll redirect them to their main page
-    if(req.session.loggedIn) {
-      if(req.session.admin)
-        res.redirect("/admin");
-      else 
-        res.redirect("/main");
-    } else {
-        let doc = fs.readFileSync("./app/html/index.html", "utf8");
-        res.set("Server", "RabbitServer"); //Random server name I came up with. When hosting a website on an actual server, you'd put their name here.
-        res.set("Powered-By", "0.1xHorsePower"); //Same as line above.
-        res.send(doc);
-        
-    }
+  if (req.session.loggedIn) {
+    if (req.session.admin)
+      res.redirect("/dashboard");
+    else
+      res.redirect("/main");
+  } else {
+    let doc = fs.readFileSync("./app/html/index.html", "utf8");
+    res.set("Server", "RabbitServer"); //Random server name I came up with. When hosting a website on an actual server, you'd put their name here.
+    res.set("Powered-By", "0.1xHorsePower"); //Same as line above.
+    res.send(doc);
+
+  }
 });
 
-app.get("/main", function(req, res) {
+app.get("/main", function (req, res) {
   if (req.session.loggedIn) {
-    if (req.session.admin) 
-      console.log("GO BACK TO THE ADMIN PAGE");
-      // res.redirect("/");
+    if (req.session.admin) {
+      console.log("Redirecting the admin back to the admin page.");
+      res.redirect("/dashboard");
+      return;
+    }
     let profile = fs.readFileSync("./app/html/main.html", "utf8");
     let profileDOM = new JSDOM(profile);
 
     console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Profile";
-    profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
+    profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name + " " + req.session.last_name;
+    profileDOM.window.document.getElementById("email").innerHTML = req.session.email;
+    // profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
+
     res.send(profileDOM.serialize());
   } else {
     res.redirect("/");
   }
 });
 
+app.get("/profile", function (req, res) {
+  
+    let profile = fs.readFileSync("./app/html/profile.html", "utf8");
+    let profileDOM = new JSDOM(profile);
+
+    console.log("Redirecting to the profile editing page of " + req.session.first_name, req.session.last_name);
+
+    profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
+    profileDOM.window.document.getElementById("greeting").textContent = req.session.first_name 
+    profileDOM.window.document.getElementById("firstname").setAttribute("value", req.session.first_name);
+    profileDOM.window.document.getElementById("lastname").setAttribute("value", req.session.last_name);
+    profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
+    profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
+    profileDOM.window.document.getElementById("dob").setAttribute("value", req.session.dob);
+    res.send(profileDOM.serialize());
+  
+});
+
 app.get("/dashboard", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
-
       console.log("This user is not an admin. Redirecting them back to their main page.");
       res.redirect("/main");
       return;
@@ -198,8 +220,16 @@ app.post("/update-user", function (req, res) {
   connection.connect();
 
   const user = req.body;
+  if (req.session.id_to_edit) {
+    user.id_edit = req.session.id_to_edit;
+    console.log("session id to edit: ", user.id_edit);
+  } else {
+    console.log(req.session.user_id);
+    user.id_edit = req.session.user_id;
+    console.log("session id:", user.id_edit);
+  }
 
-  connection.query("UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, password=?, dob=? WHERE id=?", [user.first_name, user.last_name, user.email, user.admin, user.password, user.dob, req.session.id_to_edit], function (error, results) {
+  connection.query("UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, password=?, dob=? WHERE id=?", [user.first_name, user.last_name, user.email, user.admin, user.password, user.dob, user.id_edit], function (error, results) {
 
     if (error) {
       console.log(error);
@@ -257,7 +287,7 @@ app.post("/delete-user", function (req, res) {
 //  register
 //  http://localhost/phpmyadmin/
 app.post('/create-account', function (req, res) {
-  
+
   const mysql = require("mysql2");
   // const jwt = require('jsonwebtoken');
   // const bcrypt = require('bcryptjs');
@@ -303,21 +333,27 @@ app.post('/create-account', function (req, res) {
         // throw err;
       } else {
         console.log("1 record inserted");
-        if(req.session.admin) {
+        if (req.session.admin) {
           console.log("An existing admin is going to add a new user!");
-          res.send({status: "success", privileges : req.session.admin});
+          res.send({
+            status: "success",
+            privileges: req.session.admin
+          });
           return;
         } else {
           console.log("A new user has been added.");
-          res.send({status: "success", privileges : false});
+          res.send({
+            status: "success",
+            privileges: false
+          });
         }
       }
-     
+
     });
-    
+
   });
   // connection.end();
-  
+
   // res.redirect("/");
 
 });
@@ -338,11 +374,14 @@ app.post("/login", function (req, res) {
       });
     } else {
       req.session.loggedIn = true;
+      req.session.user_id = userRecord.id;
       req.session.email = userRecord.email;
       req.session.first_name = userRecord.first_name;
       req.session.last_name = userRecord.last_name;
       req.session.password = userRecord.password;
       req.session.admin = userRecord.is_admin;
+      req.session.dob = userRecord.dob;
+      
       if (req.session.admin) {
         console.log("This user is an admin.");
         res.send({
@@ -379,9 +418,6 @@ app.get("/logout", function (req, res) {
     });
   }
 });
-
-
-
 
 //checks if the user is found in the database or not
 function authenticate(email, pwd, callback) {

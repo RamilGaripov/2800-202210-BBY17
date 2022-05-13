@@ -6,7 +6,6 @@ document.querySelector("#submit").addEventListener("click", function(e) {
         first_name : document.getElementById("firstname").value,
         last_name : document.getElementById("lastname").value,
         email : document.getElementById("email").value,
-        admin : document.getElementById("admin").checked,
         password : document.getElementById("password").value,
         dob : document.getElementById("dob").value
     });
@@ -36,7 +35,7 @@ async function editUser(data) {
         console.log(err);
     }
 }
-document.
+
 document.querySelector("#go_back").addEventListener("click", function(e) {
     e.preventDefault();    
     window.location.replace("/main");
