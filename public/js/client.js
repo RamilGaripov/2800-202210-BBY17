@@ -20,7 +20,7 @@ async function loginUser(data) {
     let parsedJSON = await responseObject.json();
     // if fail -> error else redirect to correct pages;
     if (parsedJSON.status == "fail") {
-      console.log("U CANT");
+      console.log("Couldn't log you in.");
       document.getElementById("errorMsg").textContent = parsedJSON.msg;
     } else {
       if (parsedJSON.privileges) {
