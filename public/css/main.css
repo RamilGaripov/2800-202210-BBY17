@@ -23,19 +23,33 @@ body {
 .title {
     display: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
+    font-size: 1.7em;
     font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1;
+    line-height: 0;
     text-align: center;
     padding-right: 20px;
 }
 
+#username {
+    color: #489FB5;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7em;
+    font-weight: bold;
+    margin:1px;
+}
+
+.subtitle {
+    font-size: 1em;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
 
 nav {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+    align-items: center;
 }
 
 .navbarul {
@@ -64,7 +78,6 @@ nav {
 }
 
 .option>a>img {
-    width: 50px;
     height: 40px;
 }
 
@@ -77,18 +90,57 @@ nav {
     transition: ease-in 0.09s;
 }
 
-#username {
-    font-size: 1em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
+section {
+    width: 90%;
+    height: 100%;
 }
 
-p {
-    margin: 10px 0 0;
-
+.physical {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-color: #16697a;
+    border-radius: 12px;
+    min-width: 100px;
+    margin: 8px 0;
 }
 
+.exer_card {
+    flex: 1;
+    background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
+    margin: 4px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.exer_card>.subtitle {
+    padding: 4px
+}
+
+.exercise {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.5em;
+    letter-spacing: 3px;
+    background-image: url(/img/walking.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.exercise:hover {
+    color: wheat;
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: 0.4s;
+    font-size: 2em;
+    font-weight: bolder;
+}
 
 #logout {
     border-radius: 20px;
@@ -102,25 +154,75 @@ p {
 #logout:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
-    transition: ease-in 0.03s;
+    transition: ease-in 0.3s;
 }
 
 #logout:active {
     background-color: #8b622a;
 }
 
+.profile_card {
+    display: flex;
+    padding-top:10px;
+}
+
+.profile_card>div>div {
+    margin:2px;
+    font-size: 0.8em;
+}
+
 .profilepic {
     width: 100px;
-    margin: 20px;
+    height: 100px;  
+    margin:10px;    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    width: 100%;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
 }
 
 @media screen and (max-width:499px) {
     body {
         min-width: 350px;
+        height: 100%;
     }
 
     #logo {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         right: 0;
         background-image: url(/img/logo.png);
@@ -130,12 +232,19 @@ p {
         width: 50px;
         height: 50px;
         padding: 5px;
+        z-index: 1;
+    }
+
+    .physical {
+        display: flex;
+        flex-direction: column;
+        min-height: 150px;
     }
 
     .container {
-        background-image: url(/img/mobile_admin_bg.png);
+        background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         background-size: cover;
     }
 
@@ -144,7 +253,9 @@ p {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #16697a;
+        background-image: linear-gradient(#16697a, #5b96a1);
+        border-bottom: 2px solid black;
+
     }
 
     #logo {
@@ -161,6 +272,7 @@ p {
         display: flex;
         align-items: center;
         flex-direction: column;
+        height: 100%;
     }
 
     main {
@@ -171,6 +283,7 @@ p {
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
+
     }
 }
 
@@ -178,6 +291,8 @@ p {
     nav>h1.title {
         display: none;
     }
+
+
 }
 
 @media screen and (max-width:1172px) {
@@ -192,15 +307,17 @@ p {
     }
 
     .container {
-        background-image: url(/img/admin_bg.jpg);
+        background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
+        background-repeat: repeat-y;
+        height: auto;
     }
 
     nav {
-        background-color: #16697A;
+        background-image: linear-gradient(#16697a, #5b96a1);
+        border-bottom: 2px solid black;
     }
 
     #logo {
@@ -214,24 +331,51 @@ p {
 
     .title {
         color: #ffff;
-        display: block;
+        display: inline-flex;
+        align-self: center;
+        text-align: center;
+        opacity: 0;
+        animation: 2s fadeIn;
+        animation-fill-mode: forwards;
+        transition: opacity 1.5s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 
     .subcontainer {
         display: flex;
         align-items: center;
         flex-direction: column;
+        padding-bottom: 20px;
     }
 
     main {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 80%;
+        width: 97%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
-
         backdrop-filter: blur(4px);
         border-radius: 20px;
+    }
+
+
+    .physical {
+        justify-content: space-between;
+    }
+
+    .exercise {
+        min-height: 150px;
+        min-width: 150px;
+        flex: 1;
     }
 
     .form-group {

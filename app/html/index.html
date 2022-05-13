@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Welcome Page</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
     <!-- dont forget the fonts -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
@@ -16,24 +16,10 @@
 <body>
     <div class="container">
 
-        <!-- nav for all pages -->
+        <!-- nav for all pages --> 
         <nav>
-            <img src="/img/logo.png" alt="logo" width="150" height="150" id="logo">
-            <ul class="navbarul">
-                <!-- change all paths to /img -->
-                <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile" height="60">Profile</a>
-                </li>
-                <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
-                </li>
-                <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
-                </li>
-                <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
-                        Games</a></li>
-                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" height="60">
-                        Exercise</a></li>
-                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation"
-                            width="60" height="50">Meditation</a></li>
-            </ul>
+            <div id="logo"></div>
+            <h1 class="title">#Welcome</h1>
         </nav>
         
         <main>
@@ -55,14 +41,14 @@
                 </div><br>
                 <button type="submit" id="submit">SUBMIT</button>
                 <br>
-                <p >No account? <a href="html/register.html" class="noText">SIGN UP</a></p>
+                <p >No account? <a href="/html/register.html" class="noText">SIGN UP</a></p>
             </form>
             <p id="serverResponse">&nbsp;</p>
             
         </main>
         
     </div>
-    <script src="js/client.js"></script>
+    <script src="/js/client.js"></script>
 </body>
 
 </html>
