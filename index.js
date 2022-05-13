@@ -116,7 +116,6 @@ app.get('/get-accounts', function (req, res) {
   connection.end();
 });
 
-
 //Pre-populates the forms on the edit page. 
 app.get("/edit", function (req, res) {
   if (req.session.loggedIn) {
@@ -262,12 +261,11 @@ app.post("/delete-user", function (req, res) {
 
 //  register
 //  http://localhost/phpmyadmin/
-app.post('/create-account', async (req, res) => {
-
-  console.log("HI FROM SERVER CREATE ACCOUNT");
+app.post('/create-account', function (req, res) {
+  
   const mysql = require("mysql2");
-  const jwt = require('jsonwebtoken');
-  const bcrypt = require('bcryptjs');
+  // const jwt = require('jsonwebtoken');
+  // const bcrypt = require('bcryptjs');
 
   const connection = mysql.createConnection({
     host: "localhost",
@@ -279,11 +277,11 @@ app.post('/create-account', async (req, res) => {
 
   console.log(req.body);
 
-  const first_name = req.body.firstName;
-  const last_name = req.body.lastName;
+  const fname = req.body.firstName;
+  const lname = req.body.lastName;
   const email = req.body.email;
-  const password = req.body.password;
-  const birthday = req.body.birthday;
+  const pwd = req.body.password;
+  const dob = req.body.birthday;
 
   connection.query('SELECT email FROM BBY_17_accounts WHERE email = ?', [email], async (error, results) => {
     if (error) {
@@ -293,7 +291,7 @@ app.post('/create-account', async (req, res) => {
     // if users that come up is greater than 1 that means email is already being used
     if (results.length > 0) {
       return res.render('create-account', {
-        messsage: 'That email is already in use!'
+        msg: 'That email is already in use!'
       })
     }
 
@@ -302,22 +300,30 @@ app.post('/create-account', async (req, res) => {
 
     const isAdmin = 0;
 
-    var sql = "INSERT INTO `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('" + email + "', '" + first_name + "', '" + last_name + "', '" + password + "', '" + isAdmin + "', '" + birthday + "')"
+    var sql = "INSERT INTO `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('" + email + "', '" + fname + "', '" + lname + "', '" + pwd + "', '" + isAdmin + "', '" + dob + "')"
 
     connection.query(sql, function (err, result) {
       if (err) {
         console.log(err);
         // throw err;
+      } else {
+        console.log("1 record inserted");
+        if(req.session.admin) {
+          console.log("An existing admin is going to add a new user!");
+          res.send({status: "success", privileges : req.session.admin});
+          return;
+        } else {
+          console.log("A new user has been added.");
+          res.send({status: "success", privileges : false});
+        }
       }
-      console.log("1 record inserted");
-
+     
     });
-
-
+    
   });
-  connection.end();
-
-  res.redirect("/");
+  // connection.end();
+  
+  // res.redirect("/");
 
 });
 
