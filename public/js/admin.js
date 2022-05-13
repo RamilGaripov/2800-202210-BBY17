@@ -27,7 +27,7 @@ async function getAccounts() {
                 str += ("<tr><td class='id'>" + row.id +
                     "</td><td class='first_name'>" + row.first_name +
                     "</td><td class='last_name'>" + row.last_name +
-                    "</td><td class='email'>" + row.email +
+                    "</td><td class='email'>" + row.email + "</br>" +
                     "</td><td class='edit'>" + "<button type='submit' class='edit_user'>Edit</button>" +
                     "</td><td class='delete'>" + "<button type='submit' class='delete_user'>Delete</button>" +
                     "</td></tr>");

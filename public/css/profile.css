@@ -146,6 +146,10 @@ p {
     display: none;
 }
 
+.editMy {
+    display: block;
+}
+
 @media screen and (max-width:499px) {
     body {
         min-width: 350px;
