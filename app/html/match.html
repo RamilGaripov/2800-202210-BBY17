@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/admin.css">
-    <title>Administration</title>
+    <link rel="stylesheet" href="/css/match.css" type="text/css">
+    <script src="/js/match.js" defer></script>
+    <title>Animal Match</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
@@ -18,43 +19,48 @@
         <!-- nav for all pages -->
         <nav>
             <div id="logo"></div>
-            <h1 class="title">Administration</h1>
+            <h1 class="title">Welcome</h1>
             <ul class="navbarul">
                 <!-- change all paths to /img -->
-
-                <li class="option"><a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile"
-                            height="60">Profile</a>
+                <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile" height="60">Profile</a>
                 </li>
                 <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
                 </li>
                 <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
                 </li>
-                <li class="option"><a href="/html/mindgames.html"><img src="/img/mind_games_icon.png"
-                            alt="mind games">Mind
+                <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
                         Games</a></li>
-
-                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="45"
-                            height="65">
+                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="20"height="65">
                         Exercise</a></li>
-                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="50"
-                            height="50">Meditation</a></li>
-
+                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation"
+                            width="60" height="50">Meditation</a></li>
             </ul>
         </nav>
-        <div class="subcontainer">
+        <!-- <h1 id="fruittitle">Animal Match</h1> -->
+        <div class="game">
+            <div class="controls">
+                <button>Start</button>
+                <div class="stats">
+                    <div class="moves">0 moves</div>
+                    <div class="timer">time: 0 sec</div>
+                </div>
+            </div>
+            <div class="board-container">
+                <div class="board" data-dimension="4"></div>
+                <div class="win">You won!</div>
+            </div>
+        </div>
+        <!-- <div class="subcontainer">
             <main>
-                <p>Welcome to your administrator profile</p>
+                <p>Welcome to your profile</p>
                 <p id="username">.</p>
                 <img src="/img/profilepic.png" alt="waman" class="profilepic">
-                <!-- table insertion -->
-                <table id="accounts" class="styled-table"></table>
                 <form action="/logout" class="form-group">
                     <button type="submit" id="logout">Logout</button>
                 </form>
             </main>
-        </div>
+        </div> -->
     </div>
-    <script src="/js/admin.js"></script>
 </body>
 
 </html>

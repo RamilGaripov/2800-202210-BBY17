@@ -10,6 +10,33 @@ html {
 
 body {
     height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    min-width:350px;        
+}
+
+.container {
+    height: 100%;
+}
+
+ /* Nav Stuff default */
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100vh;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -19,17 +46,26 @@ body {
 .container {
     height: 100%;
 }
-
 /* This is Large Titles has a delay appearance */
 .title {
     display: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.7em;
+    font-size: 2em;
     font-weight: bold;
-    line-height: 0;
+    letter-spacing: -1px;
+    line-height: 1;
     text-align: center;
     padding-right: 20px;
 }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+
+
 
 /* This is a Subheader Font */
 .subtitle {
@@ -48,6 +84,7 @@ nav {
 }
 
 /* Clickable Icons in nav */
+
 .navbarul {
     list-style-type: none;
     margin: 0;
@@ -145,6 +182,7 @@ section {
 
 
 #logout {
+
     border-radius: 20px;
     padding: 8px 40px;
     background-color: #ffa62b;
@@ -154,11 +192,43 @@ section {
 }
 
 #logout:hover {
+
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: ease-in 0.3s;
 }
 
+
+#submit:active {
+    background-color: #8b622a;
+}
+
+.noText {
+    color: #4874B5;
+    padding:5px
+}
+.noText:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    background-color: #4772e8;
+    transition: ease-in 0.3s;
+    border-radius: 10px;
+    color:white;
+}
+
+#errorMsg {
+    margin:0;
+    color:red;
+    font-family: 'Montserrat', sans-serif;
+    font-size:1.3em;
+    transition: ease-in 0.3s;
+    border-radius: 10px;
+    padding:4px;
+}
+
+@media screen and (min-width:0px) and (max-width:499px) {
+    body{
+        min-width:350px;
+  }
 #logout:active {
     background-color: #8b622a;
 }
@@ -221,6 +291,7 @@ section {
     body {
         min-width: 350px;
         height: 100%;
+
     }
 
     #logo {
@@ -248,7 +319,9 @@ section {
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
+        min-width:350px;
         height: auto;
+
     }
 
     nav {
@@ -256,9 +329,9 @@ section {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    
         background-image: linear-gradient(#16697a, #5b96a1);
         border-bottom: 2px solid black;
-
     }
 
     #logo {
@@ -270,6 +343,19 @@ section {
     .navbarul>.option:nth-child(n+4) {
         display: none;
     }
+    .form-group>input{
+        border-radius: 45px;
+        opacity:1;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:864px) {
+    .navbarul>.option:nth-child(n+4) {
+        display: none;
+    }
+    main{
+        
+        margin-top: 20px;
 
     .subcontainer {
         display: flex;
@@ -295,14 +381,14 @@ section {
     nav>h1.title {
         display: none;
     }
-
-
 }
 
 @media screen and (max-width:1172px) {
     .navbarul>.option:nth-child(n+4) {
         display: none;
+
     }
+
 }
 
 @media screen and (min-width:500px) and (max-width:3400px) {
@@ -367,6 +453,7 @@ section {
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
+
     }
     /* fieldset to hold choices */
     .carousel_border {
@@ -391,6 +478,8 @@ section {
 
     .form-group>input {
         border-radius: 8px;
+
     }
+    
 
 }

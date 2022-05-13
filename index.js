@@ -60,7 +60,6 @@ app.get("/main", function(req, res) {
 app.get("/dashboard", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
-
       console.log("This user is not an admin. Redirecting them back to their main page.");
       res.redirect("/main");
       return;
