@@ -109,7 +109,7 @@ section {
 .exer_card{
     flex: 1;
     background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
-    margin: 4px;
+    margin: 4px 8px;
     border-radius: 20px;
     padding: 5px;
 }
@@ -324,17 +324,27 @@ section {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 90%;
+        width: 95%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
-
+        margin-bottom: 10px;
     }
 }
 
 @media screen and (min-width:0px) and (max-width:793px) {
     nav>h1.title {
         display: none;
+    }
+    .profile_card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    .profilepic{
+        margin-top:10px;
     }
 
 
@@ -404,10 +414,11 @@ section {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 97%;
+        width: 80%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
+        margin-bottom: 10px;
     }
 
     .physical {
@@ -417,7 +428,7 @@ section {
     .exercise {
         min-height: 150px;
         min-width: 150px;
-        flex: 1;
+        flex: 1; 
     }
 
     .form-group {
