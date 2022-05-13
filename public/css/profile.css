@@ -31,7 +31,6 @@ body {
     padding-right: 20px;
 }
 
-
 .subtitle {
     font-size: 1em;
     color: #16697A;
@@ -42,14 +41,12 @@ body {
 }
 
 
-
 nav {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
     align-items: center;
     background-image: linear-gradient(#16697a, #5b96a1);
-
 }
 
 .navbarul {
@@ -99,6 +96,7 @@ nav {
 
 p {
     margin: 10px 0 0;
+
 }
 
 .edit_user {
@@ -154,14 +152,12 @@ a.back:active {
     margin-bottom: 10px;
 }
 
-
 #submit:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: ease-in 0.03s;
 }
 
-#logout {
 #submit:active {
     background-color: #8b622a;
 }
@@ -192,7 +188,6 @@ a.back:active {
 .profilepic {
     width: 100px;
     margin: 20px;
-
 }
 
 .profile_card {
@@ -217,7 +212,6 @@ display:none;
 
 .editMy {
     display: block;
-
 }
 
 @media screen and (max-width:499px) {
@@ -250,9 +244,10 @@ display:none;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        border-bottom: 2px solid black;
+    }
 
-        background-color: #16697a;
-  }
+
     #logo {
         order: 2;
         transform: scale(1.5);
@@ -276,9 +271,7 @@ display:none;
     main {
         display: flex;
         flex-direction: column;
-
         align-items: center;
-
         width: 90%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
@@ -304,9 +297,7 @@ display:none;
     }
 
     .container {
-
         background-image: url(/img/main_bg.jpg);
-
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
@@ -324,14 +315,6 @@ display:none;
         background-size: contain;
         width: 150px;
         height: 150px;
-
-    }
-
-    .title {
-        color: #ffff;
-        display: block;
-
-
     }
 
     /* .title {
@@ -343,18 +326,14 @@ display:none;
         display: flex;
         align-items: center;
         flex-direction: column;
-
         padding-bottom: 20px;
-
     }
 
     main {
         display: flex;
         align-items: center;
         flex-direction: column;
-
         flex: 1;
-
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;

@@ -40,6 +40,7 @@ body {
 
 }
 
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -97,6 +98,8 @@ p {
     margin: 10px 0 0;
 
 }
+
+
 
 #logout {
     border-radius: 20px;
@@ -204,7 +207,7 @@ p {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #16697a;
+        border-bottom: 2px solid black;
     }
 
 
@@ -293,7 +296,6 @@ p {
         align-items: center;
         flex-direction: column;
         flex: 1;
-
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
