@@ -63,7 +63,7 @@ app.get("/main", function (req, res) {
 });
 
 app.get("/profile", function (req, res) {
-  
+ 
     let profile = fs.readFileSync("./app/html/profile.html", "utf8");
     let profileDOM = new JSDOM(profile);
 
@@ -75,7 +75,13 @@ app.get("/profile", function (req, res) {
     profileDOM.window.document.getElementById("lastname").setAttribute("value", req.session.last_name);
     profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
     profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
-    profileDOM.window.document.getElementById("dob").setAttribute("value", req.session.dob);
+
+    console.log(req.session.dob);
+
+    // var dobJSON = JSON.stringify(req.session.dob);
+    var dobJSON = req.session.dob.substring(0, 10);
+
+    profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
     res.send(profileDOM.serialize());
   
 });
@@ -133,13 +139,10 @@ app.get('/get-accounts', function (req, res) {
 app.get("/edit", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
-
       // to bring user to edit page as a non-admin
-      console.log("This user is not an administrator. going to edit page but removing admin checkbox.");
+      console.log("This user is not an administrator. Going to edit page but removing admin checkbox.");
       res.redirect("/main");
       return;
-
-
     }
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
     let edit_profileDOM = new JSDOM(edit_profile);
@@ -225,6 +228,7 @@ app.post("/update-user", function (req, res) {
     console.log("session id to edit: ", user.id_edit);
   } else {
     console.log(req.session.user_id);
+    user.admin = req.session.admin;
     user.id_edit = req.session.user_id;
     console.log("session id:", user.id_edit);
   }
@@ -549,7 +553,7 @@ async function init() {
     let userRecords =
       "INSERT INTO BBY_17_accounts (email, first_name, last_name, password, is_admin, dob) VALUES ?";
     let recordUserValues = [
-      ["rgaripov@my.bcit.ca", "Ramil", "Garipov", "123456", is_admin, 19930401],
+      ["admin@test.ca", "Ramil", "Garipov", "123456", is_admin, 19930401],
       [
         "royxavier@yahoo.com",
         "Roy Xavier",
@@ -560,7 +564,7 @@ async function init() {
       ],
       ["joshuachenyyc@gmail.com", "Joshua", "Chen", "123456", is_admin, 20030101],
       ["rkong360@hotmail.com", "Randall", "Kong", "123456", is_admin, 20030423],
-      ["test@test.ca", "Tobey", "Maguire", "123456", !is_admin, 19750627],
+      ["user@test.ca", "Tobey", "Maguire", "123456", !is_admin, 19750627],
       [
         "callmeauntmay@bully.com",
         "May",
