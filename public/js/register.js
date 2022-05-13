@@ -14,8 +14,7 @@
 //     let password = document.getElementById("password");
 //     let passwordConfirm = document.getElementById("passwordConfirm");
 
-
-    
+  
 
 //     if (password.value != passwordConfirm.value) {
 //       return;
@@ -108,6 +107,7 @@ document.querySelector("#submit").addEventListener("click", function (e) {
     password : document.getElementById("password").value,
     passwordConfirm : document.getElementById("passwordConfirm").value
   })
+
 });
 
 async function createAccount(data) {

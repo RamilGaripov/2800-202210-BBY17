@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     padding: 0;
     margin: 0;
@@ -20,7 +20,6 @@ body {
     height: 100%;
 }
 
-/* This is Large Titles has a delay appearance */
 .title {
     display: none;
     font-family: 'Montserrat', sans-serif;
@@ -31,7 +30,7 @@ body {
     padding-right: 20px;
 }
 
-/* This is a Subheader Font */
+
 .subtitle {
     font-size: 1em;
     color: black;
@@ -39,7 +38,6 @@ body {
     margin: 0;
 }
 
-/* Univeral Nav that is flexible to screen sizes */
 nav {
     display: flex;
     justify-content: space-between;
@@ -47,7 +45,6 @@ nav {
     align-items: center;
 }
 
-/* Clickable Icons in nav */
 .navbarul {
     list-style-type: none;
     margin: 0;
@@ -74,6 +71,7 @@ nav {
 }
 
 .option>a>img {
+    width: 50px;
     height: 40px;
 }
 
@@ -93,14 +91,12 @@ nav {
     margin: 10px 0px;
 }
 
-/* body to hold carousels for the flexible card */
 section {
     width: 90%;
     height: 100%;
 }
 
-
-.carousel_border {
+.physical {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -110,7 +106,7 @@ section {
     margin: 8px 0;
 }
 
-.option_card {
+.exer_card{
     flex: 1;
     background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
     margin: 4px;
@@ -118,30 +114,88 @@ section {
     padding: 5px;
 }
 
-.carousel_item {
+.exer_card>.subtitle{
+    padding: 4px;
+}
+
+.exercise {
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bolder;
     font-size: 1.5em;
     letter-spacing: 3px;
-    background-image: url(/img/walking.png);
+    /* background-image: url(/img/walking.png); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
-    width: 100%;
+    /* width: 1.2fr; */
     border-radius: 20px;
+    height: 200px;
+    width: 100%;
+    /* margin: 8px; */
+    /* opacity: 0.6; */
+    text-decoration: none;
+    color: black;
 }
 
-.carousel_item:hover {
+.wordle {
+    background-image: url(/img/wordle.png);
+}
+
+.suduko {
+    background-image: url(/img/suduko.png);
+}
+
+.match {
+    background-image: url(/img/animalmatch.jpg);
+}
+
+.puzzle {
+    background-image: url(/img/puzzle.png);
+}
+
+
+.walk {
+    background-image: url(/img/walk.jpg);
+}
+
+.hike {
+    background-image: url(/img/hikee.jpg);
+}
+
+.yoga {
+    background-image: url(/img/yoga.jpg);
+}
+
+.meditation {
+    background-image: url(/img/meditation.jpg);
+}
+
+
+
+.exercise:hover {
     color: wheat;
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: 0.4s;
+    opacity: 1;
     font-size: 2em;
-    font-weight: bolder;
+    /* font-weight: bolder; */
+    cursor: pointer;
+    font-weight: 900;
+    /* filter: brightness(50%); */
 }
+
+/* .exercise>.imgname:hover{
+    filter: brightness(100%);
+} */
+
+/* .exercise:hover {
+   filter: brightness(100%);
+} */
+
 
 
 #logout {
@@ -163,58 +217,31 @@ section {
     background-color: #8b622a;
 }
 
-.profile_card {
-    display: flex;
-    padding-top:10px;
+/* #exercisesub {
+    border-radius: 10px;
+    padding: 8px 40px;
+    background-color: #BEE5B0;
+    color: black;
+    border: 2px solid black;
+    margin-bottom: 10px;
+    height: 50px;
+    width: 200px;
+    font-size: 20px;
 }
 
-.profile_card>div>div {
-    margin:2px;
-    font-size: 0.8em;
+#exercisesub:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.3s;
 }
+
+#exercisesub:active {
+    background-color: #BEE5B0;
+} */
 
 .profilepic {
     width: 100px;
-    height: 100px;  
-    margin:10px;    
-}
-/* fancy tables */
-.styled-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-.styled-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-}
-
-.styled-table th,
-.styled-table td {
-    padding: 12px 15px;
-    width: 100%;
-}
-
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-}
-
-.styled-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
+    margin: 20px;
 }
 
 @media screen and (max-width:499px) {
@@ -237,7 +264,7 @@ section {
         z-index: 1;
     }
 
-    .carousel_border {
+    .physical {
         display: flex;
         flex-direction: column;
         min-height: 150px;
@@ -248,7 +275,6 @@ section {
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
-        height: auto;
     }
 
     nav {
@@ -291,7 +317,6 @@ section {
 }
 
 @media screen and (min-width:0px) and (max-width:793px) {
-    /* using speceficity to nullify overide in the code below this */
     nav>h1.title {
         display: none;
     }
@@ -313,7 +338,7 @@ section {
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat;  
         background-size: cover;
         width: 100%;
     }
@@ -368,12 +393,12 @@ section {
         backdrop-filter: blur(4px);
         border-radius: 20px;
     }
-    /* fieldset to hold choices */
-    .carousel_border {
+
+    .physical {
         justify-content: space-between;
     }
 
-    .carousel_item {
+    .exercise {
         min-height: 150px;
         min-width: 150px;
         flex: 1;

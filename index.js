@@ -24,43 +24,34 @@ app.use(session({
 }));
 
 //This function feeds the index.html on first load. 
-app.get("/", function (req, res) {
-  //if the user is logged in, it'll redirect them to their profile
-  if (req.session.loggedIn) {
-    res.redirect("/profile");
-  } else {
-    let doc = fs.readFileSync("./app/html/index.html", "utf8");
-    res.set("Server", "RabbitServer"); //Random server name I came up with. When hosting a website on an actual server, you'd put their name here.
-    res.set("Powered-By", "0.1xHorsePower"); //Same as line above.
-    res.send(doc);
-  }
+app.get("/", function(req, res) {
+  //if the user is logged in, it'll redirect them to their main page
+    if(req.session.loggedIn) {
+      if(req.session.admin)
+        res.redirect("/admin");
+      else 
+        res.redirect("/main");
+    } else {
+        let doc = fs.readFileSync("./app/html/index.html", "utf8");
+        res.set("Server", "RabbitServer"); //Random server name I came up with. When hosting a website on an actual server, you'd put their name here.
+        res.set("Powered-By", "0.1xHorsePower"); //Same as line above.
+        res.send(doc);
+        
+    }
 });
 
-app.get("/mindgames", function (req, res) {
-  res.redirect("/mindgames");
-})
-
-
-app.get("/wordle", function (req, res) {
-  res.redirect("/wordle");
-})
-
-app.get("/profile", function (req, res) {
+app.get("/main", function(req, res) {
   if (req.session.loggedIn) {
-    if (req.session.admin) {
-      console.log("This user is an administrator. Redirecting them back to their admin dashboard.");
-      res.redirect("/dashboard");
-      return;
-    }
-    let profile = fs.readFileSync("./app/html/profile.html", "utf8");
+    if (req.session.admin) 
+      console.log("GO BACK TO THE ADMIN PAGE");
+      // res.redirect("/");
+    let profile = fs.readFileSync("./app/html/main.html", "utf8");
     let profileDOM = new JSDOM(profile);
 
-    console.log("Redirecting to the profile page of " + req.session.first_name, req.session.last_name);
+    console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
-
     res.send(profileDOM.serialize());
-
   } else {
     res.redirect("/");
   }
@@ -69,8 +60,9 @@ app.get("/profile", function (req, res) {
 app.get("/dashboard", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
-      console.log("This user is not an admin. Redirecting them back to their profile page.");
-      res.redirect("/profile");
+
+      console.log("This user is not an admin. Redirecting them back to their main page.");
+      res.redirect("/main");
       return;
     }
     let admin_profile = fs.readFileSync("./app/html/admin.html", "utf8");
@@ -79,7 +71,6 @@ app.get("/dashboard", function (req, res) {
     console.log("Redirecting to the admin dashboard page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
     profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
-
     res.send(profileDOM.serialize());
 
   } else {
@@ -120,9 +111,13 @@ app.get('/get-accounts', function (req, res) {
 app.get("/edit", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
-      console.log("This user is not an administrator. Redirecting them back to their profile.");
-      res.redirect("/profile");
+
+      // to bring user to edit page as a non-admin
+      console.log("This user is not an administrator. going to edit page but removing admin checkbox.");
+      res.redirect("/main");
       return;
+
+
     }
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
     let edit_profileDOM = new JSDOM(edit_profile);
