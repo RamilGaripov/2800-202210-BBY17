@@ -106,6 +106,18 @@ section {
     margin: 8px 0;
 }
 
+.exer_card{
+    flex: 1;
+    background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
+    margin: 4px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.exer_card>.subtitle{
+    padding: 4px;
+}
+
 .exercise {
     display: flex;
     justify-content: center;
@@ -119,25 +131,28 @@ section {
     background-size: cover;
     height: 200px;
     /* width: 1.2fr; */
-    border-radius: 14px;
-    width: 300px;
-    margin: 8px;
+    border-radius: 20px;
+    height: 200px;
+    width: 100%;
+    /* margin: 8px; */
     /* opacity: 0.6; */
+    text-decoration: none;
+    color: black;
 }
 
-#wordle {
+.wordle {
     background-image: url(/img/wordle.png);
 }
 
-#suduko {
+.suduko {
     background-image: url(/img/suduko.png);
 }
 
-#match {
+.match {
     background-image: url(/img/animalmatch.jpg);
 }
 
-#puzzle {
+.puzzle {
     background-image: url(/img/puzzle.png);
 }
 
@@ -146,15 +161,15 @@ section {
     background-image: url(/img/walk.jpg);
 }
 
-#hike {
+.hike {
     background-image: url(/img/hikee.jpg);
 }
 
-#yoga {
+.yoga {
     background-image: url(/img/yoga.jpg);
 }
 
-#meditation {
+.meditation {
     background-image: url(/img/meditation.jpg);
 }
 
@@ -166,8 +181,21 @@ section {
     transform: scale(1.04);
     transition: 0.4s;
     opacity: 1;
+    font-size: 2em;
+    /* font-weight: bolder; */
     cursor: pointer;
+    font-weight: 900;
+    /* filter: brightness(50%); */
 }
+
+/* .exercise>.imgname:hover{
+    filter: brightness(100%);
+} */
+
+/* .exercise:hover {
+   filter: brightness(100%);
+} */
+
 
 
 #logout {
