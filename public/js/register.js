@@ -1,57 +1,47 @@
-const mysql = require("mysql2");
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+document.querySelector("#submit").addEventListener("click", function (e) {
+  e.preventDefault(); //prevents standard behavior of the button. 
+  console.log("Registering a new user.");
+  createAccount({
+    firstName : document.getElementById("firstName").value,
+    lastName : document.getElementById("lastName").value,
+    email : document.getElementById("email").value,
+    birthday : document.getElementById("birthday").value,
+    password : document.getElementById("password").value,
+    passwordConfirm : document.getElementById("passwordConfirm").value
+  })
 
-const db=  mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "serenity"
-  });
+});
 
+async function createAccount(data) {
 
-const res = require("express/lib/response");
-const { DEC8_BIN } = require("mysql/lib/protocol/constants/charsets");
-
-exports.register = (req, res) => {
-    console.log(req.body);
-
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.password;
-    const passwordConfirm = req.passwordConfirm;
-
-    db.query('SELECT email FROM accounts WHERE email = ?', [email], async (error, results) =>  {
-        if(error) {
-            console.log(error);
-        }
-
-        // if users that come up is greater than 1 that means email is already being used
-        if (results.length > 0) {
-            return res.render('register', {
-                messsage: 'That email is already in use!'
-            } )
-        } else if(password !== passwordConfirm) {
-            return res.render('register', {
-                messsage: 'Passwords do not match!'
-            });
-        }
-
-
-        let hashedPassword = await bcrypt.hash(password, 8);
-        console.log(hashedPassword);
-
-     
-        db.query('INSERT INTO accounts SET ?', {name: name, email: email, password: hashedPassword},  (error, results) => {
-            if (error) {
-                console.log(error);
-            } else {
-                return res.render('register', {
-                    messsage: 'User registered!'
-                });
-            }
-        })
-
-    })
+  if (data.password != data.passwordConfirm) {
+    document.getElementById("errorMsg").textContent = "Passwords are not matching.";
+    return;
+  }
+  try {
+  console.log(data);
+  const response = await fetch("/create-account", {
+    method: "POST", 
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  let parsedJSON = await response.json();
+  console.log(parsedJSON);
+    // if fail -> error else redirect to correct pages;
+    if (parsedJSON.status == "fail") {
+      document.getElementById("errorMsg").textContent = parsedJSON.msg;
+    } else {
+      if (parsedJSON.privileges) {
+        window.location.replace("/dashboard");
+      } else {
+        window.location.replace("/profile");
+      }
+    }
+  } catch(err) {
+    console.log(err);
+  }
 
 }
