@@ -10,6 +10,9 @@ const {
 } = require("jsdom");
 //mysql2 is ALSO REQUIRED. 
 
+const mysql = require("mysql2");
+var connection = null;
+
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
 app.use("/img", express.static("./public/img"))
@@ -85,7 +88,6 @@ app.get("/main", function (req, res) {
 //   });
 
 //   console.log("results var: ", results);
-//   connection.end();
 // }
 
 app.get("/profile", function (req, res) {
@@ -139,13 +141,7 @@ app.use(express.urlencoded({
 
 //pulls all accounts for the admin dashboard table
 app.get('/get-accounts', function (req, res) {
-  const mysql = require("mysql2");
-  let connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'COMP2800'
-  });
+
   connection.connect();
   connection.query("SELECT * FROM BBY_17_accounts", function (error, results, fields) {
     if (error) {
@@ -158,7 +154,6 @@ app.get('/get-accounts', function (req, res) {
     });
 
   });
-  connection.end();
 });
 
 //Pre-populates the forms on the edit page. 
@@ -173,14 +168,6 @@ app.get("/edit", function (req, res) {
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
     let edit_profileDOM = new JSDOM(edit_profile);
 
-
-    const mysql = require("mysql2");
-    const connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "COMP2800"
-    });
     connection.connect();
     connection.query(
       "SELECT * FROM BBY_17_accounts WHERE id = ?", req.session.id_to_edit,
@@ -216,7 +203,6 @@ app.get("/edit", function (req, res) {
       }
 
     );
-    connection.end();
     // res.send(edit_profileDOM.serialize());
 
   } else {
@@ -240,13 +226,7 @@ app.post("/update-user", function (req, res) {
   console.log("New user information to be updated in the database:");
   console.log(req.body);
 
-  const mysql = require("mysql2");
-  const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'COMP2800'
-  });
+
   connection.connect();
 
   const user = req.body;
@@ -278,20 +258,12 @@ app.post("/update-user", function (req, res) {
     }
 
   });
-  connection.end();
 });
 
 //Deletes a user. Function accessible from the admin dashboard.
 app.post("/delete-user", function (req, res) {
   console.log("Deleting the user with the id of:", req.body.id);
 
-  const mysql = require("mysql2");
-  const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'COMP2800'
-  });
   connection.connect();
 
   connection.query("DELETE FROM BBY_17_accounts WHERE id=?", [req.body.id], function (error, results) {
@@ -312,23 +284,15 @@ app.post("/delete-user", function (req, res) {
     }
 
   });
-  connection.end();
 });
 
 //  register
 //  http://localhost/phpmyadmin/
 app.post('/create-account', function (req, res) {
 
-  const mysql = require("mysql2");
-  // const jwt = require('jsonwebtoken');
-  // const bcrypt = require('bcryptjs');
+  // // const jwt = require('jsonwebtoken');
+  // // const bcrypt = require('bcryptjs');
 
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800"
-  });
   connection.connect();
 
   console.log(req.body);
@@ -383,11 +347,26 @@ app.post('/create-account', function (req, res) {
     });
 
   });
-  // connection.end();
 
   // res.redirect("/");
 
 });
+
+app.post("/start-game", function(req, res) {
+  console.log("client sent us: ", req.body);
+  connection.connect();
+  
+  
+  connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err, results) {
+    if (err) {
+      console.log("ERROR: ", err);
+    } else {
+      console.log("RESULTS: ", results);
+    }
+  });
+  // console.log(rows);
+  
+})
 
 
 //Logs the user in. Creates a session. Determines if the user is an administrator or not.
@@ -454,13 +433,6 @@ app.get("/logout", function (req, res) {
 //checks if the user is found in the database or not
 function authenticate(email, pwd, callback) {
 
-  const mysql = require("mysql2");
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800"
-  });
   connection.connect();
   connection.query(
     //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
@@ -485,7 +457,6 @@ function authenticate(email, pwd, callback) {
 
     }
   );
-  connection.end();
 }
 
 // //initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
@@ -552,9 +523,9 @@ function authenticate(email, pwd, callback) {
 
 //initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
 async function init() {
-  const mysql = require("mysql2/promise");
+  const mysqlpromise = require("mysql2/promise");
   // Let's build the DB if it doesn't exist
-  const connection = await mysql.createConnection({
+  const connectionInit = await mysqlpromise.createConnection({
     host: "localhost",
     user: "root",
     password: "",
@@ -576,11 +547,21 @@ async function init() {
     CREATE TABLE IF NOT EXISTS BBY_17_activities (
       title VARCHAR(25) PRIMARY KEY,
       points INT NOT NULL
-    );`;
+    );
+    
+    CREATE TABLE IF NOT EXISTS BBY_17_plays (
+      id INT NOT NULL REFERENCES BBY_17_accounts(id),
+      title VARCHAR(25) NOT NULL REFERENCES BBY_17_activities(title),
+      completed BOOL DEFAULT false,
+      time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
+      time_completed DATETIME NULL,
+      PRIMARY KEY (id, title, time_started)
+    );
+    `;
 
-  await connection.query(createDBAndTables);
+  await connectionInit.query(createDBAndTables);
 
-  const [rows, fields] = await connection.query("SELECT * FROM BBY_17_accounts");
+  const [rows, acc_fields] = await connectionInit.query("SELECT * FROM BBY_17_accounts");
   // console.log("THE FIELDS", rows);
   // adds records if there are currently none
   if (rows.length == 0) {
@@ -602,10 +583,10 @@ async function init() {
         19641204
       ],
     ];
-    await connection.query(userRecords, [recordUserValues]);
+    await connectionInit.query(userRecords, [recordUserValues]);
    }
 
-   const [activities_rows, fields2] = await connection.query("SELECT * FROM BBY_17_activities");
+   const [activities_rows, activ_fields] = await connectionInit.query("SELECT * FROM BBY_17_activities");
    // console.log("THE FIELDS", rows);
    // adds records if there are currently none
    if (activities_rows.length == 0) {
@@ -616,10 +597,16 @@ async function init() {
        ["Match", 25],
        ["Wordle", 20]
      ];
-     await connection.query(activitiesSQL, [activitiesValues]);
+     await connectionInit.query(activitiesSQL, [activitiesValues]);
    }
 
   console.log("Listening on port " + port + "!");
+  connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800"
+  });
 }
 
 // Sets the port and runs the server. Calls init().

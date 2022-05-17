@@ -1,3 +1,5 @@
+const gameTitle = "Match";
+
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
     board: document.querySelector('.board'),
@@ -72,7 +74,7 @@ const generateGame = () => {
 const startGame = () => {
     state.gameStarted = true
     selectors.start.classList.add('disabled')
-
+    sendDataToServer();
     state.loop = setInterval(() => {
         state.totalTime++
 
@@ -80,6 +82,34 @@ const startGame = () => {
         selectors.timer.innerText = `time: ${state.totalTime} sec`
     }, 1000)
 }
+
+async function sendDataToServer() {
+
+    try {
+    console.log("Starting to match...");
+    const timeStamp = Date.now(); 
+    console.log(timeStamp);
+    const data = {title: gameTitle, time : timeStamp};
+    const response = await fetch("/start-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+    // let parsedJSON = await response.json();
+    //     if (parsedJSON.status == "fail") {
+    //         console.log("Cannot delete this user.");
+    //     } else {
+    //         console.log("User deleted.")
+    //     }
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+
 
 const flipBackCards = () => {
     document.querySelectorAll('.card:not(.matched)').forEach(card => {
@@ -93,8 +123,11 @@ const flipCard = card => {
     state.flippedCards++
     state.totalFlips++
 
+    let x = 10;
+        var y = 15;
     if (!state.gameStarted) {
-        startGame()
+        
+        startGame(x, y);
     }
 
     if (state.flippedCards <= 2) {
