@@ -17,6 +17,7 @@ async function getAccounts() {
                 <th class="first_name_header"><span>First Name</span></th>
                 <th class="last_name_header"><span>Last Name</span></th>
                 <th class="email_header"><span>Email</span></th>
+                <th class="points_header"><span>Total Points</span></th>
                 <th class="edit_header"></th>
                 <th class="delete_header"></th>
                 </tr>`;
@@ -28,6 +29,7 @@ async function getAccounts() {
                     "</td><td class='first_name'>" + row.first_name +
                     "</td><td class='last_name'>" + row.last_name +
                     "</td><td class='email'>" + row.email +
+                    "</td><td class='points'>" + row.points +
                     "</td><td class='edit'>" + "<button type='submit' class='edit_user'>Edit</button>" +
                     "</td><td class='delete'>" + "<button type='submit' class='delete_user'>Delete</button>" +
                     "</td></tr>");

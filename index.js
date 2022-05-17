@@ -51,9 +51,10 @@ app.get("/main", function (req, res) {
     let profileDOM = new JSDOM(profile);
 
     console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
-    profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Profile";
-    profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name + " " + req.session.last_name;
-    profileDOM.window.document.getElementById("email").innerHTML = req.session.email;
+    profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
+    profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
+    profileDOM.window.document.getElementById("email").textContent = req.session.email;
+    profileDOM.window.document.getElementById("points").textContent = req.session.points;
     // profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
     res.send(profileDOM.serialize());
@@ -61,6 +62,31 @@ app.get("/main", function (req, res) {
     res.redirect("/");
   }
 });
+
+
+// function getUserInfo(userId) {
+//   console.log("ID to look up: ", userId);
+//   const mysql = require("mysql2");
+//   let connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'COMP2800'
+//   });
+//   const results = connection.query(`SELECT * FROM BBY_17_accounts WHERE id=?`, userId, function(err, results) {
+//     if (err) {
+//       console.log("ERROR");
+//     } else {
+//       if (results.length > 0) {
+//         console.log("found this user: ", results[0]);
+        
+//       }
+//     }
+//   });
+
+//   console.log("results var: ", results);
+//   connection.end();
+// }
 
 app.get("/profile", function (req, res) {
  
@@ -184,6 +210,7 @@ app.get("/edit", function (req, res) {
           var dobJSON = dobJSON.substring(1, 11);
 
           edit_profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
+          edit_profileDOM.window.document.getElementById("points").setAttribute("value", results[0].points);
           res.send(edit_profileDOM.serialize());
         }
       }
@@ -233,7 +260,7 @@ app.post("/update-user", function (req, res) {
     console.log("session id:", user.id_edit);
   }
 
-  connection.query("UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, password=?, dob=? WHERE id=?", [user.first_name, user.last_name, user.email, user.admin, user.password, user.dob, user.id_edit], function (error, results) {
+  connection.query("UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, password=?, dob=?, points=? WHERE id=?", [user.first_name, user.last_name, user.email, user.admin, user.password, user.dob, user.points, user.id_edit], function (error, results) {
 
     if (error) {
       console.log(error);
@@ -385,6 +412,7 @@ app.post("/login", function (req, res) {
       req.session.password = userRecord.password;
       req.session.admin = userRecord.is_admin;
       req.session.dob = userRecord.dob;
+      req.session.points = userRecord.points;
       
       if (req.session.admin) {
         console.log("This user is an admin.");
@@ -536,17 +564,24 @@ async function init() {
   const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
     use COMP2800;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
-    id INT Primary Key AUTO_INCREMENT,
-    email VARCHAR(50) UNIQUE NOT NULL,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL, 
-    password VARCHAR(30) NOT NULL,
-    is_admin BOOL NULL, 
-    dob DATE NOT NULL);`;
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      email VARCHAR(50) UNIQUE NOT NULL,
+      first_name VARCHAR(30) NOT NULL,
+      last_name VARCHAR(30) NOT NULL, 
+      password VARCHAR(30) NOT NULL,
+      is_admin BOOL NULL, 
+      dob DATE NOT NULL,
+      points INT DEFAULT 0);
+    
+    CREATE TABLE IF NOT EXISTS BBY_17_activities (
+      title VARCHAR(25) PRIMARY KEY,
+      points INT NOT NULL
+    );`;
 
   await connection.query(createDBAndTables);
 
   const [rows, fields] = await connection.query("SELECT * FROM BBY_17_accounts");
+  // console.log("THE FIELDS", rows);
   // adds records if there are currently none
   if (rows.length == 0) {
     let is_admin = true;
@@ -554,14 +589,7 @@ async function init() {
       "INSERT INTO BBY_17_accounts (email, first_name, last_name, password, is_admin, dob) VALUES ?";
     let recordUserValues = [
       ["admin@test.ca", "Ramil", "Garipov", "123456", is_admin, 19930401],
-      [
-        "royxavier@yahoo.com",
-        "Roy Xavier",
-        "Pimentel",
-        "123456",
-        is_admin,
-        19880330,
-      ],
+      ["royxavier@yahoo.com", "Roy Xavier", "Pimentel", "123456", is_admin, 19880330],
       ["joshuachenyyc@gmail.com", "Joshua", "Chen", "123456", is_admin, 20030101],
       ["rkong360@hotmail.com", "Randall", "Kong", "123456", is_admin, 20030423],
       ["user@test.ca", "Tobey", "Maguire", "123456", !is_admin, 19750627],
@@ -571,11 +599,25 @@ async function init() {
         "Parker-Jameson",
         "123456",
         !is_admin,
-        19641204,
+        19641204
       ],
     ];
     await connection.query(userRecords, [recordUserValues]);
-  }
+   }
+
+   const [activities_rows, fields2] = await connection.query("SELECT * FROM BBY_17_activities");
+   // console.log("THE FIELDS", rows);
+   // adds records if there are currently none
+   if (activities_rows.length == 0) {
+     let activitiesSQL =
+       "INSERT INTO BBY_17_activities VALUES ?";
+     let activitiesValues = [
+       ["Sudoku", 50],
+       ["Match", 25],
+       ["Wordle", 20]
+     ];
+     await connection.query(activitiesSQL, [activitiesValues]);
+   }
 
   console.log("Listening on port " + port + "!");
 }
@@ -584,10 +626,9 @@ async function init() {
 let port = 8000;
 app.listen(port, init);
 
-
-
 let http = require('http');
 let url = require('url');
+const res = require("express/lib/response");
 
 http.createServer((req, res) => {
   let q = url.parse(req.url, true);
