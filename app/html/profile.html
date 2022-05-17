@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/adminnav.css">
     <title>Profile</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
@@ -34,6 +35,8 @@
                         Exercise</a></li>
                 <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="50"
                             height="50">Meditation</a></li>
+                <li class="option" id="adminlink"><a href="/html/admin.html"><img src="/img/wrench_icon.png"
+                            alt="meditation" width="60" height="50">Admin</a></li>
             </ul>
         </nav>
         <div class="subcontainer">
@@ -52,7 +55,7 @@
 
                 <form action="/edit" class="form-group">
                     <button type='submit' class='edit_user'>EDIT</button>
-                    <a href="/html/main" class="back">BACK</a> 
+                    <a href="/html/main" class="back">BACK</a>
                 </form>
 
                 <form action="/edit" class="form-group">
@@ -94,6 +97,7 @@
         </div>
     </div>
     <script src="/js/profile.js"></script>
+    <script src="/js/adminnav.js"></script>
 </body>
 
 </html>

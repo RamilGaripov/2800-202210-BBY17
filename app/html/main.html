@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/adminnav.css">
     <title>Welcome</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
@@ -21,8 +22,7 @@
             <h1 class="title">Welcome back</h1>
             <ul class="navbarul">
                 <!-- change all paths to /img -->
-                <li class="option"><img src="/img/profile_icon.png" alt="profile"
-                            height="60" id="go_to_profile">Profile
+                <li class="option"><img src="/img/profile_icon.png" alt="profile" height="60" id="go_to_profile">Profile
                 </li>
                 <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
                 </li>
@@ -36,6 +36,8 @@
                         Exercise</a></li>
                 <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="50"
                             height="50">Meditation</a></li>
+                <li class="option" id="adminlink"><a href="/html/admin.html"><img src="/img/wrench_icon.png"
+                            alt="meditation" width="60" height="50">Admin</a></li>
             </ul>
         </nav>
         <div class="subcontainer">
@@ -56,14 +58,16 @@
                     <fieldset class="physical">
                         <legend class="subtitle">Exercises</legend>
                         <div class="exer_card">
-                            <a class="exerciselink exercise walk" href="/html/walk.html"><p class="imgname">Walk</p></a>
+                            <a class="exerciselink exercise walk" href="/html/walk.html">
+                                <p class="imgname">Walk</p>
+                            </a>
                             <h2 class="subtitle">WALK</h2>
                             <p><b>Description:</b> Replace with text</p>
                         </div>
                         <div class="exer_card">
                             <a class="exerciselink exercise hike" href="./hike.html">Hike<a>
-                            <h2 class="subtitle">HIKE</h2>
-                            <p><b>Description:</b>Find your closes peak</p>
+                                    <h2 class="subtitle">HIKE</h2>
+                                    <p><b>Description:</b>Find your closes peak</p>
                         </div>
                         <div class="exer_card">
                             <a class="exerciselink exercise yoga" href="./yoga.html">Yoga</a>
@@ -100,7 +104,7 @@
                         </div>
                     </fieldset>
 
-               
+
 
                 </section>
                 <form action="/logout" class="form-group">
@@ -110,6 +114,7 @@
         </div>
     </div>
     <script src="/js/main.js"></script>
+    <script src="/js/adminnav.js"></script>
 </body>
 
 </html>

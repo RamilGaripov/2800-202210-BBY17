@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/puzzle.css">
-    <script src="/js/puzzle.js" defer></script>
+    <link rel="stylesheet" href="/css/adminnav.css">
     <title>Profile</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
@@ -24,20 +24,22 @@
             <h1 class="title">Welcome</h1>
             <ul class="navbarul">
                 <!-- change all paths to /img -->
-                <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile"
+                <li class="option"><a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile"
                             height="60">Profile</a>
                 </li>
                 <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
                 </li>
                 <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
                 </li>
-                <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
+                <li class="option"><a href="/html/main.html"><img src="/img/mind_games_icon.png" alt="mind games">Mind
                         Games</a></li>
-                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="20"
+                <li class="option"><a href="/html/main.html"><img src="/img/exercise_icon.png" alt="exercise" width="20"
                             height="65">
                         Exercise</a></li>
                 <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="60"
                             height="50">Meditation</a></li>
+                <li class="option" id="adminlink"><a href="/html/admin.html"><img src="/img/wrench_icon.png" alt="meditation" width="60"
+                            height="50">Admin</a></li>
             </ul>
         </nav>
 
@@ -65,7 +67,7 @@
                     <br>
                     <div id="board"></div>
                     <br>
-                   
+
                     <h2>Turns: <span id="turns">0</span></h2>
                     <br>
 
@@ -133,6 +135,8 @@
             </main>
         </div>
     </div>
+    <script src="/js/puzzle.js" defer></script>
+    <script src="/js/adminnav.js"></script>
 </body>
 
 </html>

@@ -8,10 +8,6 @@ html {
     background: #28282B;
 }
 
-.game {
-
-}
-
 .controls {
     display: flex;
     gap: 20px;
