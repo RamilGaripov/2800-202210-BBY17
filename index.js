@@ -45,11 +45,7 @@ app.get("/", function (req, res) {
 
 app.get("/main", function (req, res) {
   if (req.session.loggedIn) {
-    if (req.session.admin) {
-      console.log("Redirecting the admin back to the admin page.");
-      res.redirect("/dashboard");
-      return;
-    }
+    
     let profile = fs.readFileSync("./app/html/main.html", "utf8");
     let profileDOM = new JSDOM(profile);
 
@@ -232,12 +228,13 @@ app.post("/update-user", function (req, res) {
   const user = req.body;
   if (req.session.id_to_edit) {
     user.id_edit = req.session.id_to_edit;
-    console.log("session id to edit: ", user.id_edit);
   } else {
     console.log(req.session.user_id);
     user.admin = req.session.admin;
     user.id_edit = req.session.user_id;
-    console.log("session id:", user.id_edit);
+    user.points = req.session.points;
+    req.session.first_name = user.first_name;
+    req.session.last_name = user.last_name;
   }
 
   connection.query("UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, password=?, dob=?, points=? WHERE id=?", [user.first_name, user.last_name, user.email, user.admin, user.password, user.dob, user.points, user.id_edit], function (error, results) {
@@ -357,15 +354,36 @@ app.post("/start-game", function(req, res) {
   connection.connect();
   
   
-  connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err, results) {
+  connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err) {
     if (err) {
       console.log("ERROR: ", err);
+    } 
+  });
+
+  connection.query("SELECT Max(play_id) AS new_id FROM BBY_17_plays", function(err, results) {
+    if (err) {
+      console.log(err);
     } else {
-      console.log("RESULTS: ", results);
+      req.session.play_id = results[0].new_id;
+      res.send({status: "success"});
     }
   });
-  // console.log(rows);
-  
+})
+
+
+app.post("/finish-game", function(req, res) {
+  console.log("User finished the game!");
+  connection.connect();
+  connection.query("UPDATE BBY_17_plays SET completed=true, time_completed=CURRENT_TIMESTAMP WHERE play_id=?", [req.session.play_id], function (err) {
+    if (err) {
+      console.log("ERROR: ", err);
+    } 
+  });
+  connection.query("UPDATE BBY_17_accounts SET points=(points+ (SELECT points FROM BBY_17_activities WHERE title=?)) WHERE id = ?", [req.body.title, req.session.user_id], function(err) {
+    if (err) {
+      console.log("ERROR: ", err);
+    } 
+  });
 })
 
 
@@ -550,12 +568,12 @@ async function init() {
     );
     
     CREATE TABLE IF NOT EXISTS BBY_17_plays (
+      play_id INT PRIMARY KEY AUTO_INCREMENT,
       id INT NOT NULL REFERENCES BBY_17_accounts(id),
       title VARCHAR(25) NOT NULL REFERENCES BBY_17_activities(title),
       completed BOOL DEFAULT false,
       time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
-      time_completed DATETIME NULL,
-      PRIMARY KEY (id, title, time_started)
+      time_completed DATETIME NULL
     );
     `;
 
@@ -595,7 +613,8 @@ async function init() {
      let activitiesValues = [
        ["Sudoku", 50],
        ["Match", 25],
-       ["Wordle", 20]
+       ["Wordle", 20],
+       ["Puzzle", 25]
      ];
      await connectionInit.query(activitiesSQL, [activitiesValues]);
    }
@@ -616,6 +635,7 @@ app.listen(port, init);
 let http = require('http');
 let url = require('url');
 const res = require("express/lib/response");
+const { send } = require("process");
 
 http.createServer((req, res) => {
   let q = url.parse(req.url, true);

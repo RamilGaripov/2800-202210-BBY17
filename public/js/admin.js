@@ -123,4 +123,9 @@ async function deleteUser(data) {
     }
 }
 
+document.querySelector("#go_to_main").addEventListener("click", function(e) {
+    e.preventDefault();
+    window.location.replace("/main");
+})
+
 getAccounts();

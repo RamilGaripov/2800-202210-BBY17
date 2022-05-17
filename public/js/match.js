@@ -83,29 +83,19 @@ const startGame = () => {
     }, 1000)
 }
 
-async function sendDataToServer() {
+function sendDataToServer() {
 
-    try {
     console.log("Starting to match...");
     const timeStamp = Date.now(); 
     console.log(timeStamp);
-    const data = {title: gameTitle, time : timeStamp};
-    const response = await fetch("/start-game", {
+    const data = {title: gameTitle};
+    fetch("/start-game", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
     });
-    // let parsedJSON = await response.json();
-    //     if (parsedJSON.status == "fail") {
-    //         console.log("Cannot delete this user.");
-    //     } else {
-    //         console.log("User deleted.")
-    //     }
-    } catch (err) {
-        console.log(err);
-    }
 
 }
 
@@ -123,11 +113,8 @@ const flipCard = card => {
     state.flippedCards++
     state.totalFlips++
 
-    let x = 10;
-        var y = 15;
     if (!state.gameStarted) {
-        
-        startGame(x, y);
+        startGame();
     }
 
     if (state.flippedCards <= 2) {
@@ -161,7 +148,20 @@ const flipCard = card => {
 
             clearInterval(state.loop)
         }, 1000)
+        updateDataOnServer();
     }
+}
+
+function updateDataOnServer() {
+    console.log("finished matching!");
+    const data = {title: gameTitle};
+    fetch("/finish-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
 }
 
 const attachEventListeners = () => {
