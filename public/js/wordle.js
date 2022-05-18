@@ -5,8 +5,11 @@
  * @see https://www.youtube.com/watch?v=j7OhcuZQ-q8
  */
 
+ const gameTitle = "Wordle";
+
 document.addEventListener("DOMContentLoaded", () => {
     createSquares();
+    sendDataToServer();
 
 
     let guessedWords = [
@@ -731,6 +734,37 @@ document.addEventListener("DOMContentLoaded", () => {
         return "rgb(181, 159, 59)";
     }
 
+
+    function sendDataToServer() {
+
+        console.log("Starting to match...");
+        const timeStamp = Date.now(); 
+        console.log(timeStamp);
+        const data = {title: gameTitle};
+        fetch("/start-game", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+    
+    }
+
+
+
+    function updateDataOnServer() {
+        console.log("finished matching!");
+        const data = {title: gameTitle};
+        fetch("/finish-game", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+    }
+
     function handleSubmitWord() {
 
 
@@ -773,6 +807,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (currentWord === word) {
             window.alert("Congratulations!");
+            updateDataOnServer();
         }
 
         if (guessedWords.length === 6) {

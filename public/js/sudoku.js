@@ -1,10 +1,11 @@
 console.log("Connected to Sudoku.js!");
-
+const gameTitle = "Sudoku";
 
 var numSelected = null;
 var tileSelected = null;
 
 var errors = 0;
+var correct = 0;
 
 var board = [
     "--74916-5",
@@ -34,7 +35,39 @@ window.onload = function() {
     setGame();
 }
 
+
+function sendDataToServer() {
+
+    console.log("Starting to match...");
+    const timeStamp = Date.now(); 
+    console.log(timeStamp);
+    const data = {title: gameTitle};
+    fetch("/start-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+}
+
+
+
+function updateDataOnServer() {
+    console.log("finished matching!");
+    const data = {title: gameTitle};
+    fetch("/finish-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+}
+
 function setGame() {
+    sendDataToServer();
     for (let i = 1; i <= 9; i++) {
 
         let number = document.createElement("div");
@@ -91,9 +124,15 @@ function selectTile() {
 
         if (solution[r][c] == numSelected.id) {
             this.innerText = numSelected.id;
+            correct++;
         } else {
             errors += 1;
             document.getElementById("errors").innerText = errors;
+        }
+
+        if (correct == 46) {
+            window.alert("You won!");
+            updateDataOnServer();
         }
     }
 }

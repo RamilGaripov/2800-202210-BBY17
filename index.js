@@ -15,11 +15,9 @@ const mysql = require("mysql2");
 var connection = null;
 
 
-
 const is_heroku = process.env.IS_HEROKU || false;
 
 // server
-
 const dbConfigHeroku = {
   host: 'us-cdbr-east-05.cleardb.net',
   user: 'b689970dd665e4',
@@ -29,8 +27,6 @@ const dbConfigHeroku = {
 }
 
 // local 
-
-
 const dbConfigLocal = {
   host: "localhost",
   user: "root",
@@ -45,14 +41,10 @@ const dbConfigLocalCreate = {
   multipleStatements: true
 };
 
-
-
-
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
 app.use("/img", express.static("./public/img"))
 app.use("/html", express.static("./app/html"));
-
 
 //Still don't understand entirely what session is and why we need it, but I guess it's fine for now...
 app.use(session({
@@ -598,16 +590,17 @@ async function init() {
   //   multipleStatements: true,
   // });
 
-  if (is_heroku) {
-    const connectionInit = await mysqlpromise.createConnection(dbConfigHeroku);
-  } else {
-    const connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
-  }
+  
+    if (is_heroku) {
+      var connectionInit = await mysqlpromise.createConnection(dbConfigHeroku);
+    } else {
+    
+     var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
+    }
 
 
-
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
-    use COMP2800;
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_1ae8409afb1cb43;
+    use heroku_1ae8409afb1cb43;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
       email VARCHAR(50) UNIQUE NOT NULL,
@@ -676,8 +669,6 @@ async function init() {
    }
 
   console.log("Listening on port " + port + "!");
-
-
   // connection = mysql.createConnection({
   //   host: "localhost",
   //   user: "root",
@@ -685,15 +676,16 @@ async function init() {
   //   database: "COMP2800"
   // });
 
-  if (is_heroku) {
-    let connection = mysqlpromise.createConnection(dbConfigHeroku);
-  } else {
-    var connection = mysqlpromise.createConnection(dbConfigLocal);
-  }
+
+    if (is_heroku) {
+      connection = mysql.createConnection(dbConfigHeroku);
+    } else {
+      connection = mysql.createConnection(dbConfigLocal);
+    }
+    
 
 
-
-
+   
 }
 
 // Sets the port and runs the server. Calls init().
