@@ -19,6 +19,7 @@ async function getAccounts() {
                 <th class="email_header"><span>Email</span></th>
                 <th class="points_header"><span>Total Points</span></th>
                 <th class="edit_header"></th>
+                <th class="reset_header"></th>
                 <th class="delete_header"></th>
                 </tr>`;
 
@@ -31,6 +32,7 @@ async function getAccounts() {
                     "</td><td class='email'>" + row.email +
                     "</td><td class='points'>" + row.points +
                     "</td><td class='edit'>" + "<button type='submit' class='edit_user'>Edit</button>" +
+                    "</td><td class='reset'>" + "<button type='submit' class='reset_password'>Reset Password</button>" +
                     "</td><td class='delete'>" + "<button type='submit' class='delete_user'>Delete</button>" +
                     "</td></tr>");
                 // id_array.push(row)
@@ -49,6 +51,19 @@ async function getAccounts() {
                     });
                 })
             }
+
+             //provides RESET PASSWORD BUTTON functionality 
+             const resets = document.getElementsByClassName("reset_password");
+             for (let l = 0; l < resets.length; l++) {
+                resets[l].addEventListener("click", function (e) {
+                     e.preventDefault();
+                     console.log("Let's reset the password of the user with id", data.rows[l].id);
+                     //When calling this function, we're passing a JSON object in the parameters, using {key : value} format.
+                     resetPassword({
+                         id: data.rows[l].id
+                     });
+                 })
+             }
 
             //provides DELETE BUTTON functionality 
             const deletes = document.getElementsByClassName("delete_user");
@@ -90,6 +105,32 @@ async function editUser(data) {
             console.log("Couldn't edit this user's info.");
         } else {
             window.location.replace("/edit");
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+//sends id of the user to the server. Redirects to the edit.html
+async function resetPassword(data) {
+    try {
+        // console.log("Edit user activated.");
+        // console.log(data);
+        const response = await fetch("/reset-user-password", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        let parsedJSON = await response.json();
+        if (parsedJSON.status == "fail") {
+            console.log("Couldn't reset this user's pw.");
+        } else {
+            console.log("Password reset.");
+            getAccounts();
+            document.getElementById("serverMsg").textContent = parsedJSON.msg;
         }
     } catch (err) {
         console.log(err);

@@ -46,7 +46,7 @@ app.get("/", function (req, res) {
 
 app.get("/main", function (req, res) {
   if (req.session.loggedIn) {
-    
+
     let profile = fs.readFileSync("./app/html/main.html", "utf8");
     let profileDOM = new JSDOM(profile);
 
@@ -77,7 +77,7 @@ app.get("/main", function (req, res) {
 //     } else {
 //       if (results.length > 0) {
 //         console.log("found this user: ", results[0]);
-        
+
 //       }
 //     }
 //   });
@@ -86,24 +86,24 @@ app.get("/main", function (req, res) {
 // }
 
 app.get("/profile", function (req, res) {
- 
-    let profile = fs.readFileSync("./app/html/profile.html", "utf8");
-    let profileDOM = new JSDOM(profile);
 
-    console.log("Redirecting to the profile editing page of " + req.session.first_name, req.session.last_name);
+  let profile = fs.readFileSync("./app/html/profile.html", "utf8");
+  let profileDOM = new JSDOM(profile);
 
-    profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
-    profileDOM.window.document.getElementById("greeting").textContent = req.session.first_name 
-    profileDOM.window.document.getElementById("firstname").setAttribute("value", req.session.first_name);
-    profileDOM.window.document.getElementById("lastname").setAttribute("value", req.session.last_name);
-    profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
-    profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
+  console.log("Redirecting to the profile editing page of " + req.session.first_name, req.session.last_name);
 
-    var dobJSON = req.session.dob.substring(0, 10);
+  profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
+  profileDOM.window.document.getElementById("greeting").textContent = req.session.first_name
+  profileDOM.window.document.getElementById("firstname").setAttribute("value", req.session.first_name);
+  profileDOM.window.document.getElementById("lastname").setAttribute("value", req.session.last_name);
+  profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
+  profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
 
-    profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
-    res.send(profileDOM.serialize());
-  
+  var dobJSON = req.session.dob.substring(0, 10);
+
+  profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
+  res.send(profileDOM.serialize());
+
 });
 
 app.get("/dashboard", function (req, res) {
@@ -183,7 +183,7 @@ app.get("/edit", function (req, res) {
           if (results[0].is_admin) {
             edit_profileDOM.window.document.getElementById("admin").setAttribute("checked", "true");
           }
-          edit_profileDOM.window.document.getElementById("password").setAttribute("value", results[0].password);
+          // edit_profileDOM.window.document.getElementById("password").setAttribute("value", results[0].password);
 
           var dobJSON = JSON.stringify(results[0].dob);
           var dobJSON = dobJSON.substring(1, 11);
@@ -212,40 +212,60 @@ app.post("/edit-user", function (req, res) {
   });
 });
 
-//updates the user information in the db
-app.post("/update-user", function (req, res) {
+//Allows the admins to reset the user's password to 123456
+app.post("/reset-user-password", function (req, res) {
+  res.setHeader("Content-Type", "application/json");
   connection.connect();
-
-  const user = req.body;
-  if (req.session.id_to_edit) {
-    user.id_edit = req.session.id_to_edit;
-  } else {
-    console.log(req.session.user_id);
-    user.admin = req.session.admin;
-    user.id_edit = req.session.user_id;
-    user.points = req.session.points;
-    req.session.first_name = user.first_name;
-    req.session.last_name = user.last_name;
-  }
-
-  connection.query("UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, password=?, dob=?, points=? WHERE id=?", [user.first_name, user.last_name, user.email, user.admin, user.password, user.dob, user.points, user.id_edit], function (error, results) {
-
-    if (error) {
-      console.log(error);
-      res.send({
-        status: "fail",
-        msg: "Something went wrong there"
-      });
+  const reset_pw = "123456";
+  connection.query("UPDATE BBY_17_accounts SET password=? WHERE id=?", [reset_pw, req.body.id], function (err, results) {
+    if (err) {
+      console.log(err);
     } else {
-      // user not found
-      console.log("User info updated");
       res.send({
         status: "success",
-        msg: "User info has been updated."
-      })
+        msg: "User's password has been reset, and we will sent them an email about it."
+      });
+      //Here, we would want to send an email to the user telling them their temporary password is 123456 and they should change it ASAP.
+    }
+  });
+});
+
+//updates the user information in the db
+app.post("/update-user", function (req, res) {
+  if (req.session.loggedIn) {
+    connection.connect();
+
+    const user = req.body;
+    if (req.session.admin) {
+      var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
+      var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, req.session.id_to_edit];
+  
+    } else {
+      var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, password=?, dob=? WHERE id=?;";
+      var sql_vars = [user.first_name, user.last_name, user.email, user.password, user.dob, req.session.user_id];
+      req.session.first_name = user.first_name;
+      req.session.last_name = user.last_name;
     }
 
-  });
+    connection.query(sql_query, sql_vars, function (error, results) {
+
+      if (error) {
+        console.log(error);
+        res.send({
+          status: "fail",
+          msg: "Something went wrong there"
+        });
+      } else {
+        // user not found
+        console.log("User info updated");
+        res.send({
+          status: "success",
+          msg: "User info has been updated."
+        })
+      }
+
+    });
+  }
 });
 
 //Deletes a user. Function accessible from the admin dashboard.
@@ -340,59 +360,61 @@ app.post('/create-account', async function (req, res) {
 
 });
 
-app.post("/start-game", function(req, res) {
+app.post("/start-game", function (req, res) {
   console.log("client sent us: ", req.body);
   connection.connect();
-  
-  
+
+
   connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err) {
     if (err) {
       console.log("ERROR: ", err);
-    } 
+    }
   });
 
-  connection.query("SELECT Max(play_id) AS new_id FROM BBY_17_plays", function(err, results) {
+  connection.query("SELECT Max(play_id) AS new_id FROM BBY_17_plays", function (err, results) {
     if (err) {
       console.log(err);
     } else {
       req.session.play_id = results[0].new_id;
-      res.send({status: "success"});
+      res.send({
+        status: "success"
+      });
     }
   });
 })
 
 
-app.post("/finish-game", function(req, res) {
+app.post("/finish-game", function (req, res) {
   console.log("User finished the game!");
   connection.connect();
   connection.query("UPDATE BBY_17_plays SET completed=true, time_completed=CURRENT_TIMESTAMP WHERE play_id=?", [req.session.play_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
-    } 
+    }
   });
-  connection.query("UPDATE BBY_17_accounts SET points=(points+ (SELECT points FROM BBY_17_activities WHERE title=?)) WHERE id = ?", [req.body.title, req.session.user_id], function(err) {
+  connection.query("UPDATE BBY_17_accounts SET points=(points+ (SELECT points FROM BBY_17_activities WHERE title=?)) WHERE id = ?", [req.body.title, req.session.user_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
-    } 
+    }
   });
 })
 
-app.get("/previous_activities", function(req, res) {
-  if (req.session.loggedIn){
+app.get("/previous_activities", function (req, res) {
+  if (req.session.loggedIn) {
     const history = fs.readFileSync("./app/html/history.html", "utf8");
     const historyDOM = new JSDOM(history);
     historyDOM.window.document.getElementsByTagName("title")[0].textContent = "Activity History";
     historyDOM.window.document.getElementById("username").textContent = req.session.first_name;
-         
-  connection.connect();
-  connection.query("SELECT * FROM BBY_17_plays WHERE id=? AND time_completed", [req.session.user_id], function(err, results) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("We got", results.length, "record(s) for this user.");
-    }
-  });
-  res.send(historyDOM.serialize());
+
+    connection.connect();
+    connection.query("SELECT * FROM BBY_17_plays WHERE id=? AND time_completed", [req.session.user_id], function (err, results) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("We got", results.length, "record(s) for this user.");
+      }
+    });
+    res.send(historyDOM.serialize());
   } else {
     res.redirect("/");
   }
@@ -422,7 +444,7 @@ app.post("/login", function (req, res) {
       req.session.admin = userRecord.is_admin;
       req.session.dob = userRecord.dob;
       req.session.points = userRecord.points;
-      
+
       if (req.session.admin) {
         console.log("This user is an admin.");
         res.send({
@@ -469,8 +491,6 @@ function authenticate(email, pwd, callback) {
     //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
     "SELECT * FROM BBY_17_accounts WHERE email = ? AND password = ?", [email, pwd],
     function (error, results) {
-      console.log("Results from DB", results, "Number of records returned: ", results.length);
-
       if (error) {
         // in production, you'd really want to send an email to admin but for now, just console
         console.log(error);
@@ -614,22 +634,22 @@ async function init() {
       ],
     ];
     await connectionInit.query(userRecords, [recordUserValues]);
-   }
+  }
 
-   const [activities_rows, activ_fields] = await connectionInit.query("SELECT * FROM BBY_17_activities");
-   // console.log("THE FIELDS", rows);
-   // adds records if there are currently none
-   if (activities_rows.length == 0) {
-     let activitiesSQL =
-       "INSERT INTO BBY_17_activities VALUES ?";
-     let activitiesValues = [
-       ["Sudoku", 50],
-       ["Match", 25],
-       ["Wordle", 20],
-       ["Puzzle", 25]
-     ];
-     await connectionInit.query(activitiesSQL, [activitiesValues]);
-   }
+  const [activities_rows, activ_fields] = await connectionInit.query("SELECT * FROM BBY_17_activities");
+  // console.log("THE FIELDS", rows);
+  // adds records if there are currently none
+  if (activities_rows.length == 0) {
+    let activitiesSQL =
+      "INSERT INTO BBY_17_activities VALUES ?";
+    let activitiesValues = [
+      ["Sudoku", 50],
+      ["Match", 25],
+      ["Wordle", 20],
+      ["Puzzle", 25]
+    ];
+    await connectionInit.query(activitiesSQL, [activitiesValues]);
+  }
 
   console.log("Listening on port " + port + "!");
   connection = mysql.createConnection({
@@ -647,7 +667,9 @@ app.listen(port, init);
 let http = require('http');
 let url = require('url');
 const res = require("express/lib/response");
-const { send } = require("process");
+const {
+  send
+} = require("process");
 
 http.createServer((req, res) => {
   let q = url.parse(req.url, true);
