@@ -99,8 +99,6 @@ function sendDataToServer() {
 
 }
 
-
-
 const flipBackCards = () => {
     document.querySelectorAll('.card:not(.matched)').forEach(card => {
         card.classList.remove('flipped')

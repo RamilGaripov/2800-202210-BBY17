@@ -377,7 +377,7 @@ app.post("/finish-game", function(req, res) {
   });
 })
 
-app.get("/history", function(req, res) {
+app.get("/previous_activities", function(req, res) {
   if (req.session.loggedIn){
     const history = fs.readFileSync("./app/html/history.html", "utf8");
     const historyDOM = new JSDOM(history);
@@ -385,11 +385,11 @@ app.get("/history", function(req, res) {
     historyDOM.window.document.getElementById("username").textContent = req.session.first_name;
          
   connection.connect();
-  connection.query("SELECT * FROM BBY_17_plays WHERE id=?", [req.session.user_id], function(err, results) {
+  connection.query("SELECT * FROM BBY_17_plays WHERE id=? AND time_completed", [req.session.user_id], function(err, results) {
     if (err) {
       console.log(err);
     } else {
-      console.log(results);
+      console.log("We got", results.length, "record(s) for this user.");
     }
   });
   res.send(historyDOM.serialize());

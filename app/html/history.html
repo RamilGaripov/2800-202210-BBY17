@@ -20,23 +20,23 @@
             <div id="logo"></div>
             <h1 class="title">Administration</h1>
             <ul class="navbarul">
-                <!-- change all paths to /img -->
-                <li class="option"><a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile"
-                            height="60">Profile</a>
+                
+                <li class="option">
+                    <img src="/img/profile_icon.png" alt="profile" id="go_to_edit" class="nav_links">Edit Profile
                 </li>
-                <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
+                <li class="option">
+                    <img src="/img/rewards_icon.png" alt="rewards" id="go_to_rewards" class="nav_links">Rewards
                 </li>
-                <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
+                <li class="option">
+                    <img src="/img/clock.png" alt="history" id="go_to_history" class="nav_links">Completed Activities
                 </li>
-                <li class="option"><a href="/html/mindgames.html"><img src="/img/mind_games_icon.png"
-                            alt="mind games">Mind
-                        Games</a></li>
-                <li class="option"><img src="/img/exercise_icon.png" alt="main" width="45"
-                            height="65" id="go_to_main">
-                        Exercise</a></li>
-                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="50"
-                            height="50">Meditation</a></li>
+                <li class="option">
+                    <img src="/img/mind_games_icon.png" alt="main page" id="go_to_main" class="nav_links" >Main Page
+                </li>
             </ul>
+            <form action="/logout">
+                <button type="submit" id="logout" class="option"><img src="/img/bye.png" width>Logout</button>
+            </form>
         </nav>
         <div class="subcontainer">
             <main>
@@ -57,6 +57,7 @@
 
     </div>
 
+    <script src="/js/navbar.js"></script> 
     <script src="/js/history.js"></script>
 </body>
 

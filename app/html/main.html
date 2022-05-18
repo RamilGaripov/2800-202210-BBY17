@@ -20,22 +20,19 @@
         <nav>
             <a id="logo" href="/html/main.html"></a>
             <ul class="navbarul">
-
+                
                 <li class="option">
-                    <a href="/html/main.html"><img src="/img/mind_games_icon.png" alt="friends" id="go_to_main">Main Page</a>
+                    <img src="/img/profile_icon.png" alt="profile" id="go_to_edit" class="nav_links">Edit Profile
                 </li>
                 <li class="option">
-                    <a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile" height="60"
-                            id="go_to_profile">Edit Profile</a>
+                    <img src="/img/rewards_icon.png" alt="rewards" id="go_to_rewards" class="nav_links">Rewards
                 </li>
                 <li class="option">
-                    <a href="/html/reward.html"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
+                    <img src="/img/clock.png" alt="history" id="go_to_history" class="nav_links">Completed Activities
                 </li>
                 <li class="option">
-                    <a href="/html/history.html"><img src="/img/clock.png" alt="history">History</a>
-
+                    <img src="/img/mind_games_icon.png" alt="main page" id="go_to_main" class="nav_links" >Main Page
                 </li>
-
             </ul>
             <form action="/logout">
                 <button type="submit" id="logout" class="option"><img src="/img/bye.png" width>Logout</button>
@@ -49,8 +46,7 @@
                     <div>
                         <p id="username">.</p>
                         <div><b>Email:</b> <span id="email"></span></div>
-                        <div><b>Total Points: </b><span id="points"></span></div>
-                    </div>
+                        </div>
                     <br>
                     <div id="pointsholder"><b>&nbsp;Your Points: &nbsp; &nbsp; </b><span id="points"></span></div>
                 </section>
@@ -113,6 +109,8 @@
             </main>
         </div>
     </div>
+
+    <script src="/js/navbar.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/adminnav.js"></script>
 </body>

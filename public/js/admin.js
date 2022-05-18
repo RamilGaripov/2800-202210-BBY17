@@ -123,9 +123,14 @@ async function deleteUser(data) {
     }
 }
 
-document.querySelector("#go_to_main").addEventListener("click", function(e) {
-    e.preventDefault();
-    window.location.replace("/main");
-})
+// document.querySelector("#go_to_main").addEventListener("click", function(e) {
+//     e.preventDefault();
+//     window.location.replace("/main");
+// })
+
+// document.querySelector("#go_to_history").addEventListener("click", function(e) {
+//     e.preventDefault();
+//     window.location.replace("/previous_activities");
+// })
 
 getAccounts();
