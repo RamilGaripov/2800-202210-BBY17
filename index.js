@@ -26,6 +26,14 @@ const dbConfigHeroku = {
   multipleStatements: false
 }
 
+const dbConfigHerokuCreate = {
+  host: 'us-cdbr-east-05.cleardb.net',
+  user: 'b689970dd665e4',
+  password: '7da7c341',
+  multipleStatements: true
+}
+
+
 // local 
 const dbConfigLocal = {
   host: "localhost",
@@ -592,7 +600,7 @@ async function init() {
 
   
     if (is_heroku) {
-      var connectionInit = await mysqlpromise.createConnection(dbConfigHeroku);
+      var connectionInit = await mysqlpromise.createConnection(dbConfigHerokuCreate);
     } else {
     
      var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
