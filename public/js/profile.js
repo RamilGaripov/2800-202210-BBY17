@@ -1,43 +1,76 @@
-document.querySelector("#submit").addEventListener("click", function(e) {
-    e.preventDefault();
-    console.log("Submit pressed.")
-    
-    editUser({
-        first_name : document.getElementById("firstname").value,
-        last_name : document.getElementById("lastname").value,
-        email : document.getElementById("email").value,
-        password : document.getElementById("password").value,
-        dob : document.getElementById("dob").value
-    });
+document.querySelector("#submit").addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log("Submit pressed.");
+
+  editUser({
+    first_name: document.getElementById("firstname").value,
+    last_name: document.getElementById("lastname").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+    dob: document.getElementById("dob").value,
+  });
 });
 
 async function editUser(data) {
-    try{
+  try {
     console.log("Edit user activated.");
     console.log(data);
     const response = await fetch("/update-user", {
-        method: "POST",
-        headers: {
-            "Accept" : "application/json",
-            "Content-Type" : "application/json"
-          },
-        body: JSON.stringify(data)
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
-    let parsedJSON = await response.json();    
+    let parsedJSON = await response.json();
     if (parsedJSON.status == "fail") {
-        console.log("This user's info could not be updated.");
-      } else {
-        document.getElementById("serverMsg").textContent = parsedJSON.msg;
-        //need to take em back to the dashboard
-        // window.location.replace("/edit");
-      }
-    } catch(err) {
-        console.log(err);
+      console.log("This user's info could not be updated.");
+    } else {
+      document.getElementById("serverMsg").textContent = parsedJSON.msg;
+      //need to take em back to the dashboard
+      // window.location.replace("/edit");
     }
+  } catch (err) {
+    console.log(err);
+  }
+}
+//upload js for profile
+const upLoadForm = document.getElementById("upload-images-form");
+upLoadForm.addEventListener("submit", uploadImages);
+
+function uploadImages(e) {
+  e.preventDefault();
+
+  const imageUpload = document.querySelector("#image-upload");
+  const formData = new FormData();
+
+  for (let i = 0; i < imageUpload.files.length; i++) {
+    // put the images from the input into the form data
+    formData.append("files", imageUpload.files[i]);
+  }
+
+  const options = {
+    method: "POST",
+    body: formData,
+    // don't put a header in, the browser will do that for us
+    //                headers: {
+    //                  "Content-Type": "multipart/form-data"
+    //                }
+  };
+  //delete options.headers['Content-Type'];
+
+  // now use fetch
+  fetch("/upload-images", options)
+    .then(function (res) {
+      console.log(res);
+    })
+    .catch(function (err) {
+      "Error:", err;
+    });
 }
 
-document.querySelector("#go_back").addEventListener("click", function(e) {
-    e.preventDefault();    
-    window.location.replace("/main");
+document.querySelector("#go_back").addEventListener("click", function (e) {
+  e.preventDefault();
+  window.location.replace("/main");
 });
-
