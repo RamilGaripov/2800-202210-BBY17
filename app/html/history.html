@@ -1,14 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History of Activities</title>
+    <link rel="stylesheet" href="/css/history.css">
+    <title>Administration</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+    </style>
 </head>
+
 <body>
-    <div class="posts"></div>
+    <div class="container">
+        <!-- nav for all pages -->
+        <nav>
+            <div id="logo"></div>
+            <h1 class="title">Administration</h1>
+            <ul class="navbarul">
+                <!-- change all paths to /img -->
+                <li class="option"><a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile"
+                            height="60">Profile</a>
+                </li>
+                <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
+                </li>
+                <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
+                </li>
+                <li class="option"><a href="/html/mindgames.html"><img src="/img/mind_games_icon.png"
+                            alt="mind games">Mind
+                        Games</a></li>
+                <li class="option"><img src="/img/exercise_icon.png" alt="main" width="45"
+                            height="65" id="go_to_main">
+                        Exercise</a></li>
+                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="50"
+                            height="50">Meditation</a></li>
+            </ul>
+        </nav>
+        <div class="subcontainer">
+            <main>
+                <p>These are the activities you have done so far, <span id="username"></span>:</p>
+                
+                <img src="/img/profilepic.png" alt="waman" class="profilepic">
+                <!-- table insertion -->
+                <table id="accounts" class="styled-table"></table>
+                <form action="/main" class="form-group">
+                    <button type="submit" id="go_back">GO BACK</button>
+                </form>
+                <form action="/logout" class="form-group">
+                    <button type="submit" id="logout">LOGOUT</button>
+                </form>
+
+            </main>
+        </div>
+
+    </div>
 
     <script src="/js/history.js"></script>
 </body>
+
 </html>

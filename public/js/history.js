@@ -1,9 +1,9 @@
 //creates the dashboard table and populates it with data received from the app.get("/get-accounts") method on the server side. This is function declaration. The function is called at the bottom of this file!
-async function getPosts() {
-    try {
-        let response = await fetch("/get-posts", {
-            method: "GET"
-        });
+// async function getPosts() {
+//     try {
+//         let response = await fetch("/get-posts", {
+//             method: "GET"
+//         });
 
 
         // if (response.status === 200) {
@@ -64,10 +64,10 @@ async function getPosts() {
         //     console.log(response.status);
         // }
 
-    } catch (error) {
-        console.log(error);
-    }
-}
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 // //sends id of the user to the server. Redirects to the edit.html
 // async function editUser(data) {
@@ -120,9 +120,26 @@ async function getPosts() {
 //     }
 // }
 
-document.querySelector("#go_to_main").addEventListener("click", function(e) {
-    e.preventDefault();
-    window.location.replace("/main");
-})
+// document.querySelector("#go_to_main").addEventListener("click", function(e) {
+//     e.preventDefault();
+//     window.location.replace("/main");
+// })
+
+// getPosts();
+
+async function getPosts() {
+    try{
+        console.log("history: ");
+        const response = await fetch("/history", {
+            method: "GET"
+        })
+        const data = await response.json();
+        console.log(data);
+
+
+    } catch(err) {
+        console.log(err);
+    }
+}
 
 getPosts();

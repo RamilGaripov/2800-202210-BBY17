@@ -7,6 +7,6 @@ document.querySelector("#go_to_profile").addEventListener("click", function(e) {
 document.querySelector("#go_to_history").addEventListener("click", function(e) {
     e.preventDefault();
     console.log("history pressed")
-    window.location.replace("/dashboard");
+    window.location.replace("/history");
 });
 

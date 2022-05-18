@@ -55,15 +55,12 @@ app.get("/main", function (req, res) {
     profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
     profileDOM.window.document.getElementById("email").textContent = req.session.email;
     profileDOM.window.document.getElementById("points").textContent = req.session.points;
-    // profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
     res.send(profileDOM.serialize());
   } else {
     res.redirect("/");
   }
 });
-
-
 
 // function getUserInfo(userId) {
 //   console.log("ID to look up: ", userId);
@@ -102,9 +99,6 @@ app.get("/profile", function (req, res) {
     profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
     profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
 
-    console.log(req.session.dob);
-
-    // var dobJSON = JSON.stringify(req.session.dob);
     var dobJSON = req.session.dob.substring(0, 10);
 
     profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
@@ -199,7 +193,6 @@ app.get("/edit", function (req, res) {
           res.send(edit_profileDOM.serialize());
         }
       }
-
     );
     // res.send(edit_profileDOM.serialize());
 
@@ -221,10 +214,6 @@ app.post("/edit-user", function (req, res) {
 
 //updates the user information in the db
 app.post("/update-user", function (req, res) {
-  console.log("New user information to be updated in the database:");
-  console.log(req.body);
-
-
   connection.connect();
 
   const user = req.body;
@@ -393,18 +382,17 @@ app.get("/history", function(req, res) {
     const history = fs.readFileSync("./app/html/history.html", "utf8");
     const historyDOM = new JSDOM(history);
     historyDOM.window.document.getElementsByTagName("title")[0].textContent = "Activity History";
-          
-
-  console.log("Getting posts for user with id:", req.body.id);
+    historyDOM.window.document.getElementById("username").textContent = req.session.first_name;
+         
   connection.connect();
   connection.query("SELECT * FROM BBY_17_plays WHERE id=?", [req.session.user_id], function(err, results) {
     if (err) {
       console.log(err);
     } else {
-      console.log("here's all the activities of this user:");
       console.log(results);
     }
   });
+  res.send(historyDOM.serialize());
   } else {
     res.redirect("/");
   }
