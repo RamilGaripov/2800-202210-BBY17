@@ -8,6 +8,7 @@ const fs = require("fs");
 const {
   JSDOM
 } = require("jsdom");
+const bcrypt = require("bcrypt");
 //mysql2 is ALSO REQUIRED. 
 
 const mysql = require("mysql2");
@@ -61,6 +62,7 @@ app.get("/main", function (req, res) {
     res.redirect("/");
   }
 });
+
 
 
 // function getUserInfo(userId) {
@@ -285,10 +287,9 @@ app.post("/delete-user", function (req, res) {
 
 //  register
 //  http://localhost/phpmyadmin/
-app.post('/create-account', function (req, res) {
+app.post('/create-account', async function (req, res) {
 
   // // const jwt = require('jsonwebtoken');
-  // // const bcrypt = require('bcryptjs');
 
   connection.connect();
 
@@ -312,8 +313,9 @@ app.post('/create-account', function (req, res) {
       })
     }
 
-    //let hashedPassword = await bcrypt.hash(password, 8);
-    //console.log(hashedPassword);
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(pwd, salt);
+    console.log(hashedPassword);
 
     const isAdmin = 0;
 
@@ -384,6 +386,28 @@ app.post("/finish-game", function(req, res) {
       console.log("ERROR: ", err);
     } 
   });
+})
+
+app.get("/history", function(req, res) {
+  if (req.session.loggedIn){
+    const history = fs.readFileSync("./app/html/history.html", "utf8");
+    const historyDOM = new JSDOM(history);
+    historyDOM.window.document.getElementsByTagName("title")[0].textContent = "Activity History";
+          
+
+  console.log("Getting posts for user with id:", req.body.id);
+  connection.connect();
+  connection.query("SELECT * FROM BBY_17_plays WHERE id=?", [req.session.user_id], function(err, results) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("here's all the activities of this user:");
+      console.log(results);
+    }
+  });
+  } else {
+    res.redirect("/");
+  }
 })
 
 
