@@ -35,7 +35,8 @@ app.post("/post", upload.single('image'), (req, res) => {
         var imgsrc = 'localhost:8000/avatar/' + req.file.filename
         var insertData = "INSERT INTO BBY_17_accounts(avatar)VALUES(?)"
         console.log("uploaded new photo")
-        res.send(doc)
+       
+       profilePicArea =  req.file.path
         db.query(insertData, [imgsrc], (err, result) => {
             if (err) throw err
             console.log("avatar photo uploaded")
@@ -91,6 +92,10 @@ app.get("/main", function (req, res) {
       req.session.first_name + " " + req.session.last_name;
     profileDOM.window.document.getElementById("email").innerHTML =
       req.session.email;
+  //insert here for pic DOM
+  profileDOM.window.document.getElementById("profilepic").setAttribute("src",req.session.avatar); 
+      console.log(req.session.avatar);
+
     // profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
 
     res.send(profileDOM.serialize());
@@ -500,6 +505,7 @@ app.post("/login", function (req, res) {
       req.session.password = userRecord.password;
       req.session.admin = userRecord.is_admin;
       req.session.dob = userRecord.dob;
+      req.session.avatar = userRecord.avatar;
 
       if (req.session.admin) {
         console.log("This user is an admin.");
