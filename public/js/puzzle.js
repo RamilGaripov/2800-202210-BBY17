@@ -22,7 +22,7 @@ window.onload = function() {
             tile.addEventListener("drop", dragDrop);       //drop an image onto another one
             tile.addEventListener("dragend", dragEnd);      //after you completed dragDrop
 
-            document.getElementById("board").append(tile);
+            document.getElementById("puzzleboard").append(tile);
         }
     }
 
@@ -53,7 +53,7 @@ window.onload = function() {
         tile.addEventListener("drop", dragDrop);       //drop an image onto another one
         tile.addEventListener("dragend", dragEnd);      //after you completed dragDrop
 
-        document.getElementById("pieces").append(tile);
+        document.getElementById("puzzlepieces").append(tile);
     }
 }
 
@@ -88,5 +88,5 @@ function dragEnd() {
     otherTile.src = currImg;
 
     turns += 1;
-    document.getElementById("turns").innerText = turns;
+    document.getElementById("userturns").innerText = turns;
 }

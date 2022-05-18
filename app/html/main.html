@@ -22,7 +22,7 @@
             <h1 class="title">Welcome back</h1>
             <ul class="navbarul">
                 <!-- change all paths to /img -->
-                <li class="option"><img src="/img/profile_icon.png" alt="profile" height="60" id="go_to_profile">Profile
+                <li class="option prof"><img src="/img/profile_icon.png" alt="profile" id="go_to_profile">Profile
                 </li>
                 <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
                 </li>
@@ -47,11 +47,14 @@
                     <img src="/img/profilepic.png" alt="waman" class="profilepic">
                     <div>
                         <p id="username">.</p>
+                        
                         <!-- <div><b>First Name:</b> Replace this text</div>
                         <div><b>Last Name:</b> Replace this text</div> -->
                         <div><b>Email:</b> <span id="email"></span></div>
                         <!-- <div><b>Description:</b><p id=""></p></div> -->
                     </div>
+                    <br>
+                    <div id="pointsholder"><b>&nbsp;Your Points: &nbsp; &nbsp; </b><span id="points"></span></div>
                 </section>
 
                 <section>
@@ -110,6 +113,9 @@
                 <form action="/logout" class="form-group">
                     <button type="submit" id="logout">Logout</button>
                 </form>
+
+                <span id="admincheck"></span>
+
             </main>
         </div>
     </div>
