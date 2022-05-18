@@ -72,7 +72,7 @@ nav {
 
 .option>a>img {
     width: 50px;
-    height: 40px;
+    height: 50px;
 }
 
 .option:active {
@@ -82,6 +82,30 @@ nav {
 .option:hover {
     transform: scale(1.09);
     transition: ease-in 0.09s;
+}
+
+#logout {
+    background-color:transparent;
+    color: #ffff;
+    border: none;
+}
+#logout:hover{
+    color:red;
+    transform: none;
+}
+
+#logout {
+    background-color:transparent;
+    color: #ffff;
+    border: none;
+    padding-right: 10px;
+}
+
+
+button>img{
+    float: right;
+    width: 55px;
+    height: 55px;
 }
 
 #username {
@@ -109,9 +133,28 @@ section {
 .exer_card{
     flex: 1;
     background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
-    margin: 4px 8px;
+    margin: 4px 15px;
     border-radius: 20px;
-    padding: 5px;
+    padding: 10px;
+}
+
+.exer_card:nth-child(1){
+    background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%);
+}
+.exer_card:nth-child(2){
+    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+}
+.exer_card:nth-child(3){
+    background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);
+}
+.exer_card:nth-child(4){
+    background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%); 
+}
+.exer_card:nth-child(5){
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+}
+.exer_card:nth-child(6){
+    background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%);    
 }
 
 .exer_card>.subtitle{
@@ -135,7 +178,7 @@ section {
     height: 200px;
     width: 100%;
     /* margin: 8px; */
-    /* opacity: 0.6; */
+
     text-decoration: none;
     color: black;
 }
@@ -159,18 +202,22 @@ section {
 
 .walk {
     background-image: url(/img/walk.jpg);
+    flex:1;
 }
 
 .hike {
     background-image: url(/img/hikee.jpg);
+    flex:1;
 }
 
 .yoga {
     background-image: url(/img/yoga.jpg);
+    flex:1;
 }
 
 .meditation {
     background-image: url(/img/meditation.jpg);
+    flex:1;
 }
 
 
@@ -182,10 +229,11 @@ section {
     transition: 0.4s;
     opacity: 1;
     font-size: 2em;
-    /* font-weight: bolder; */
     cursor: pointer;
     font-weight: 900;
-    /* filter: brightness(50%); */
+    opacity: 0.5;
+    background-image: none;
+    background-color: black;
 }
 
 /* .exercise>.imgname:hover{
@@ -195,27 +243,6 @@ section {
 /* .exercise:hover {
    filter: brightness(100%);
 } */
-
-
-
-#logout {
-    border-radius: 20px;
-    padding: 8px 40px;
-    background-color: #ffa62b;
-    color: #ffff;
-    border: none;
-    margin-bottom: 10px;
-}
-
-#logout:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.3s;
-}
-
-#logout:active {
-    background-color: #8b622a;
-}
 
 /* #exercisesub {
     border-radius: 10px;
@@ -260,7 +287,7 @@ section {
     margin: 10px;
 }
 
-@media screen and (max-width:499px) {
+@media screen and (max-width:717px) {
     body {
         min-width: 350px;
         height: 100%;
@@ -274,6 +301,16 @@ section {
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
+        width: 50px;
+        height: 50px;
+        padding: 5px;
+        z-index: 1;
+    }
+
+    #logout{
+        position: fixed;
+        bottom: 30px;
+        left: 0;
         width: 50px;
         height: 50px;
         padding: 5px;
@@ -295,12 +332,18 @@ section {
 
     nav {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         background-image: linear-gradient(#16697a, #5b96a1);
         border-bottom: 2px solid black;
+    }
 
+    .navbarul{
+        display: flex;
+    }
+
+    option>a{
+        flex:1;
     }
 
     #logo {
@@ -309,9 +352,6 @@ section {
         margin: 5px;
     }
 
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
-    }
 
     .subcontainer {
         display: flex;
@@ -336,27 +376,12 @@ section {
     nav>h1.title {
         display: none;
     }
-    .profile_card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-    }
-    .profilepic{
-        margin-top:10px;
-    }
-
 
 }
 
-@media screen and (max-width:1172px) {
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
-    }
-}
 
-@media screen and (min-width:500px) and (max-width:3400px) {
+
+@media screen and (min-width:718px) and (max-width:3400px) {
     body {
         min-width: 350px;
     }
@@ -364,7 +389,7 @@ section {
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;  
+        background-repeat: repeat-y;  
         background-size: cover;
         width: 100%;
     }

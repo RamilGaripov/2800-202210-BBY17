@@ -9,6 +9,28 @@ html, body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+#logout {
+    background-color:transparent;
+    color: #ffff;
+    border: none;
+}
+#logout:hover{
+    color:red;
+}
+
+#logout {
+    background-color:transparent;
+    color: #ffff;
+    border: none;
+    margin-right: 10px;
+}
+
+button>img{
+    float: right;
+    width: 55px;
+    height: 55px;
+}
+
 
 #container {
     display: flex;

@@ -75,7 +75,8 @@ nav {
 }
 
 .option>a>img {
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 
 .option:active {
@@ -85,6 +86,29 @@ nav {
 .option:hover {
     transform: scale(1.09);
     transition: ease-in 0.09s;
+}
+
+#logout {
+    background-color: transparent;
+    color: #ffff;
+    border: none;
+}
+#logout:hover {
+    color: red;
+    transform: none;
+}
+
+#logout {
+    background-color: transparent;
+    color: #ffff;
+    border: none;
+    padding-right: 10px;
+}
+
+button > img {
+    float: right;
+    width: 55px;
+    height: 55px;
 }
 
 #username {
@@ -165,7 +189,6 @@ a.back:active {
 }
 
 
-
 #go_back {
     border-radius: 20px;
     padding: 4px 13px;
@@ -216,7 +239,7 @@ display:none;
     display: block;
 }
 
-@media screen and (max-width:499px) {
+@media screen and (max-width:717px) {
     body {
         min-width: 350px;
     }
@@ -233,6 +256,15 @@ display:none;
         height: 50px;
         padding: 5px;
     }
+    #logout{
+        position: fixed;
+        bottom: 30px;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        padding: 5px;
+        z-index: 1;
+    }
 
     .container {
         background-image: url(/img/main_bg.jpg);
@@ -247,8 +279,15 @@ display:none;
         justify-content: center;
         align-items: center;
         border-bottom: 2px solid black;
+      
+    }
+    .navbarul{
+        display: flex;
     }
 
+    option>a{
+        flex:1;
+    }
 
     #logo {
         order: 2;
@@ -256,11 +295,6 @@ display:none;
         margin: 5px;
     }
 
-
-
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
-    }
 
     .subcontainer {
         display: flex;
@@ -287,13 +321,8 @@ display:none;
     }
 }
 
-@media screen and (max-width:1172px) {
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
-    }
-}
 
-@media screen and (min-width:500px) and (max-width:3400px) {
+@media screen and (min-width:718px) and (max-width:3400px) {
     body {
         min-width: 350px;
     }
@@ -306,9 +335,6 @@ display:none;
         width: 100%;
     }
 
-    nav {
-        background-color: #16697A;
-    }
 
     #logo {
         background-image: url(/img/logo.png);
