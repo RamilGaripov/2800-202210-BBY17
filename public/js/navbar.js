@@ -11,14 +11,14 @@ function navInsertion() {
         <img src="/img/rewards_icon.png" alt="rewards" id="go_to_rewards" class="nav_links">Rewards
     </li>
     <li class="option">
-        <img src="/img/clock.png" alt="history" id="go_to_history" class="nav_links">Completed Activities
+        <img src="/img/clock.png" alt="history" id="go_to_history" class="nav_links">History
     </li>
     <li class="option">
         <img src="/img/mind_games_icon.png" alt="main page" id="go_to_main" class="nav_links" >Main Page
     </li>
 </ul>
-<form action="/logout">
-    <button type="submit" id="logout" class="option"><img src="/img/bye.png" width>Logout</button>
+<form action="/logout"class="logout">
+<button type="submit" id="logout"><img src="/img/bye.png" width>Leave</button>
 </form>`;
 
     container.prepend(nav);
