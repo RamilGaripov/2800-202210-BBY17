@@ -50,3 +50,12 @@ regular users but NOT able to delete all but one admim left
 Uncompleted requirements:
 No change picture ability
 No 1 admin left ability
+
+
+******************  REFERENCES
+
+Wordle.js
+Javascript for Wordle Application
+
+@author Ian Lenehan
+@see https://www.youtube.com/watch?v=j7OhcuZQ-q8

@@ -29,7 +29,6 @@ async function loginUser(data) {
         window.location.replace("/main");
       }
     }
-
   } catch(err) {
     console.log(err);
   }

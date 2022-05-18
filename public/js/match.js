@@ -1,3 +1,5 @@
+const gameTitle = "Match";
+
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
     board: document.querySelector('.board'),
@@ -72,7 +74,7 @@ const generateGame = () => {
 const startGame = () => {
     state.gameStarted = true
     selectors.start.classList.add('disabled')
-
+    sendDataToServer();
     state.loop = setInterval(() => {
         state.totalTime++
 
@@ -80,6 +82,24 @@ const startGame = () => {
         selectors.timer.innerText = `time: ${state.totalTime} sec`
     }, 1000)
 }
+
+function sendDataToServer() {
+
+    console.log("Starting to match...");
+    const timeStamp = Date.now(); 
+    console.log(timeStamp);
+    const data = {title: gameTitle};
+    fetch("/start-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+}
+
+
 
 const flipBackCards = () => {
     document.querySelectorAll('.card:not(.matched)').forEach(card => {
@@ -94,7 +114,7 @@ const flipCard = card => {
     state.totalFlips++
 
     if (!state.gameStarted) {
-        startGame()
+        startGame();
     }
 
     if (state.flippedCards <= 2) {
@@ -128,7 +148,20 @@ const flipCard = card => {
 
             clearInterval(state.loop)
         }, 1000)
+        updateDataOnServer();
     }
+}
+
+function updateDataOnServer() {
+    console.log("finished matching!");
+    const data = {title: gameTitle};
+    fetch("/finish-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
 }
 
 const attachEventListeners = () => {

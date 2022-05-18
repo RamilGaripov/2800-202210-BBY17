@@ -87,29 +87,6 @@ nav {
     transition: ease-in 0.09s;
 }
 
-#logout {
-    background-color:transparent;
-    color: #ffff;
-    border: none;
-}
-#logout:hover{
-    color:red;
-    transform:none;
-}
-
-#logout {
-    background-color:transparent;
-    color: #ffff;
-    border: none;
-    padding-right: 10px;
-}
-
-button>img{
-    float: right;
-    width: 55px;
-    height: 55px;
-}
-
 #username {
     font-size: 1em;
     color: #4874B5;
@@ -121,21 +98,38 @@ p {
     margin: 10px 0 0;
 
 }
-#add_user {
+#go_back {
     text-decoration: none;
     font-size:1em;
     background-color: #ffa62b;
     padding:4px 10px;
 }
 
+#logout {
+    background-color: gray;
+    padding:4px 10px;
+}
 
-#add_user {
+#logout, #go_back {
 
     border-radius: 20px;
   
     color: #ffff;
     border: none;
     margin:5px 2px;
+}
+
+#logout:hover, #go_back:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.2s;
+}
+
+
+
+
+#logout:active, #go_back:active {
+    background-color: #8b622a;
 }
 
 .profilepic {

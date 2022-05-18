@@ -19,39 +19,37 @@
         <!-- nav for all pages -->
         <nav>
             <a id="logo" href="/html/main.html"></a>
-            <h1 class="title">Welcome back</h1>
             <ul class="navbarul">
-                <!-- change all paths to /img -->
-                <li class="option prof"><img src="/img/profile_icon.png" alt="profile" id="go_to_profile">Profile
+
+                <li class="option">
+                    <a href="/html/main.html"><img src="/img/mind_games_icon.png" alt="friends" id="go_to_main">Main Page</a>
                 </li>
-                <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
+                <li class="option">
+                    <a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile" height="60"
+                            id="go_to_profile">Edit Profile</a>
                 </li>
-                <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
+                <li class="option">
+                    <a href="/html/reward.html"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
                 </li>
-                <li class="option"><a href="/html/mindgames.html"><img src="/img/mind_games_icon.png"
-                            alt="mind games">Mind
-                        Games</a></li>
-                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="45"
-                            height="60">
-                        Exercise</a></li>
-                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="50"
-                            height="50">Meditation</a></li>
-                <li class="option" id="adminlink"><a href="/html/admin.html"><img src="/img/wrench_icon.png"
-                            alt="meditation" width="60" height="50">Admin</a></li>
+                <li class="option">
+                    <a href="/html/history.html"><img src="/img/clock.png" alt="history">History</a>
+
+                </li>
+
             </ul>
+            <form action="/logout">
+                <button type="submit" id="logout" class="option"><img src="/img/bye.png" width>Logout</button>
+            </form>
         </nav>
         <div class="subcontainer">
             <main>
 
                 <section class="profile_card">
-                    <img src="/img/profilepic.png" alt="waman" class="profilepic">
+                    <img src="/avatar/profilepic.png" alt="profile" class="profilepic">
                     <div>
                         <p id="username">.</p>
-                        
-                        <!-- <div><b>First Name:</b> Replace this text</div>
-                        <div><b>Last Name:</b> Replace this text</div> -->
                         <div><b>Email:</b> <span id="email"></span></div>
-                        <!-- <div><b>Description:</b><p id=""></p></div> -->
+                        <div><b>Total Points: </b><span id="points"></span></div>
                     </div>
                     <br>
                     <div id="pointsholder"><b>&nbsp;Your Points: &nbsp; &nbsp; </b><span id="points"></span></div>
@@ -70,15 +68,16 @@
                         <div class="exer_card">
                             <a class="exerciselink exercise hike" href="./hike.html">Hike<a>
                                     <h2 class="subtitle">HIKE</h2>
-                                    <p><b>Description:</b>Find your closes peak</p>
+
+                                    <p><b>Description:</b>Find your closest peak</p>
                         </div>
                         <div class="exer_card">
-                            <a class="exerciselink exercise yoga" href="./yoga.html">Yoga</a>
+                            <a class="exerciselink exercise yoga" href="/html/yoga.html">Yoga</a>
                             <h2 class="subtitle">YOGA</h2>
                             <p><b>Description:</b>Namaste</p>
                         </div>
                         <div class="exer_card">
-                            <a class="exerciselink exercise meditation" href="./mediation.html">Meditation</a>
+                            <a class="exerciselink exercise meditation" href="./mediation.html">Meditate</a>
                             <h2 class="subtitle">MEDITATE</h2>
                             <p><b>Description:</b>Take a mental break</p>
                         </div>
@@ -91,7 +90,7 @@
                             <p><b>Description:</b>Test your vocabulary</p>
                         </div>
                         <div class="exer_card">
-                            <a class="exerciselink exercise suduko" href="/html/suduko.html">Suduko</a>
+                            <a class="exerciselink exercise suduko" href="/html/sudoku.html">Suduko</a>
                             <h2 class="subtitle">SUDOKU</h2>
                             <p><b>Description:</b>Test your skills</p>
                         </div>
@@ -109,12 +108,7 @@
 
 
 
-                </section>
-                <form action="/logout" class="form-group">
-                    <button type="submit" id="logout">Logout</button>
-                </form>
-
-                <span id="admincheck"></span>
+                      </section>
 
             </main>
         </div>
