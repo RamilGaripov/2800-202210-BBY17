@@ -5,8 +5,8 @@ document.querySelector("#go_to_history").addEventListener("click", function(e) {
 
 document.querySelector("#go_to_rewards").addEventListener("click", function(e) {
     e.preventDefault();
-    console.log("page doesnt exist yet");
-    // window.location.replace("/");
+    console.log("/timeline.html");
+    window.location.replace("/timeline.html");
 })
 
 document.querySelector("#go_to_edit").addEventListener("click", function(e) {
