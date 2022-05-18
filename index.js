@@ -25,10 +25,10 @@ const upload = multer({ storage: storage });
 
 //! Routes start
  
-//route for Home page
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/profile.html');
-});
+// //route for Home page
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/profile.html');
+// });
  
 //@type   POST
 //route for post data
@@ -37,7 +37,7 @@ app.post("/post", upload.single('image'), (req, res) => {
         console.log("No file upload");
     } else {
         console.log(req.file.filename)
-        var imgsrc = 'localhost:8000/img/' + req.file.filename
+        var imgsrc = 'localhost:8000/avatar/' + req.file.filename
         var insertData = "INSERT INTO BBY_17_accounts(avatar)VALUES(?)"
         db.query(insertData, [imgsrc], (err, result) => {
             if (err) throw err
@@ -664,8 +664,8 @@ async function init() {
     last_name VARCHAR(30) NOT NULL, 
     password VARCHAR(30) NOT NULL,
     is_admin BOOL NULL, 
-    dob DATE NOT NULL),
-    avatar VARCHAR(50) NULL;`;
+    dob DATE NOT NULL,
+    avatar VARCHAR(50) NULL);`;
 
   await connection.query(createDBAndTables);
 
