@@ -15,28 +15,26 @@
 
 <body>
     <div class="container">
-        <!-- nav for all pages -->
         <nav>
-            <div id="logo"></div>
-            <h1 class="title">Administration</h1>
+            <a id="logo" href="/html/main.html"></a>
             <ul class="navbarul">
-                <!-- change all paths to /img -->
-                <li class="option"><a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile"
-                            height="60">Profile</a>
+                <li class="option">
+                    <img src="/img/mind_games_icon.png" alt="friends" id="go_to_main">Main Page
                 </li>
-                <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
+                <li class="option">
+                    <a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile" height="60"
+                            id="go_to_profile">Edit Profile</a>
                 </li>
-                <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
+                <li class="option">
+                    <a href="/html/reward.html"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
                 </li>
-                <li class="option"><a href="/html/mindgames.html"><img src="/img/mind_games_icon.png"
-                            alt="mind games">Mind
-                        Games</a></li>
-                <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise" width="45"
-                            height="65">
-                        Exercise</a></li>
-                <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png" alt="meditation" width="50"
-                            height="50">Meditation</a></li>
+                <li class="option">
+                    <a href="/html/history.html"><img src="/img/clock.png" alt="history">History</a>
+                </li>
             </ul>
+            <form action="/logout">
+                <button type="submit" id="logout" class="option"><img src="/img/bye.png" width >Logout</button>
+            </form>
         </nav>
         <div class="subcontainer">
             <main>
@@ -46,10 +44,6 @@
                 <!-- table insertion -->
                 <table id="accounts" class="styled-table"></table>
                 <a href="html/register.html" id="add_user">ADD USER</a>
-                <form action="/logout" class="form-group">
-                    <button type="submit" id="logout">LOGOUT</button>
-                </form>
-
             </main>
         </div>
 

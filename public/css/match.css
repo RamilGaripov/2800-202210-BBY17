@@ -1,21 +1,10 @@
-body{
-    font-family: monospace;
-}
-
-html {
-    width: 100%;
-    height: 100%;
-    background: #28282B;
-}
-
-.game {
-
-}
-
 .controls {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
+    background-color: #282A3A;
+    padding:10px;
+    border-radius: 10px;
 }
 
 button {
@@ -131,12 +120,15 @@ button {
     color: #EDE7E3;
 }
 
-
-
-/*  */
+ /* Nav Stuff default */
+nav {
+    display: flex;
+    justify-content: space-between;
+}
 
 html {
     box-sizing: border-box;
+    height: 100vh;
 }
 
 *,
@@ -146,51 +138,23 @@ html {
 }
 
 body {
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     padding: 0;
     margin: 0;
-    /* font-family: 'Open Sans', sans-serif; */
-    min-width:350px;        
+    font-family: 'Open Sans', sans-serif;
 }
 
 .container {
     height: 100%;
 }
 
- /* Nav Stuff default */
-nav {
-    display: flex;
-    justify-content: space-between;
-}
-html {
-    box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-}
-
-body {
-    /* height: 100vh; */
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    /* font-family: 'Open Sans', sans-serif; */
-}
-
-/* .container {
-    height: 100%;
-} */
-
 .title {
     display: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
+    font-size: 1.7em;
     font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1;
+    line-height: 0;
     text-align: center;
     padding-right: 20px;
 }
@@ -200,6 +164,7 @@ nav {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+    align-items: center;
 }
 
 .navbarul {
@@ -241,6 +206,23 @@ nav {
     transition: ease-in 0.09s;
 }
 
+#logout:hover{
+    color:red;
+    transform:none;
+}
+
+#logout {
+    background-color:transparent;
+    color: #ffff;
+    border: none;
+    padding-right: 10px;
+}
+
+button>img{
+    float: right;
+    width: 55px;
+    height: 55px;
+}
 #username {
     font-size: 1em;
     color: #4874B5;
@@ -253,24 +235,21 @@ p {
 
 }
 
+#logout:hover{
+    color:red;
+}
 
 #logout {
-    border-radius: 20px;
-    padding: 8px 40px;
-    background-color: #ffa62b;
+    background-color:transparent;
     color: #ffff;
     border: none;
-    margin-bottom: 10px;
+    padding-right: 10px;
 }
 
-#logout:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.03s;
-}
-
-#logout:active {
-    background-color: #8b622a;
+button>img{
+    float: right;
+    width: 55px;
+    height: 55px;
 }
 
 .profilepic {
@@ -299,7 +278,7 @@ p {
     .container {
         background-image: url(/img/mobile_admin_bg.png);
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         background-size: cover;
     }
 
@@ -308,7 +287,6 @@ p {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #16697a;
     }
 
     #logo {
@@ -360,7 +338,6 @@ p {
     }
 
     nav {
-        background-color: #16697A;
     }
 
     #logo {
@@ -417,7 +394,6 @@ p {
     float: right;
     display: flex;
     flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .option a {
@@ -445,83 +421,6 @@ p {
     transition: ease-in 0.09s;
 }
 
-/* form>h2 {
-    font-size: 2em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
-}
-Form card stuff
-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-form>h2 {
-    font-size: 2em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
-    margin:0;
-}
-
-.form-group {
-    display: inline-block;
-    text-align: center;
-    margin: 2px;
-}
-
-.form-group>label {
-    font-weight: bolder;
-    padding:2px 6px;
-}
-
-.form-group>input{
-    border-radius: 8px;
-    transform: scale(1.3);
-    padding:4px 6px;
-    margin-top: 5px;
-}
-
-#submit {
-    border-radius: 20px;
-    padding: 8px 40px;
-    background-color: #ffa62b;
-    color: #ffff;
-    border: none;
-}
-
-#submit:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.03s;
-}
-
-#submit:active {
-    background-color: #8b622a;
-}
-
-.noText {
-    color: #4874B5;
-    padding:5px
-}
-.noText:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    background-color: #4772e8;
-    transition: ease-in 0.3s;
-    border-radius: 10px;
-    color:white;
-}
-
-#errorMsg {
-    margin:0;
-    color:red;
-    font-family: 'Montserrat', sans-serif;
-    font-size:1.3em;
-    transition: ease-in 0.3s;
-    border-radius: 10px;
-    padding:4px;
-}*/
 
 @media screen and (min-width:0px) and (max-width:499px) {
     body{
@@ -530,7 +429,7 @@ form>h2 {
     .container {
         /* background-image: url(/img/Mobile.png); */
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         background-size: cover;
         min-width:350px;
     }
@@ -540,7 +439,6 @@ form>h2 {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #8b622a;
     }
     #logo{
         order:2;
@@ -569,11 +467,27 @@ form>h2 {
 }
 
 @media screen and (min-width:500px) and (max-width:3400px) {
-    .container {
-        /* background-image: url(/img/main_bg.jpg); */
+
+    nav {
+        background-image: linear-gradient(#16697a, #5b96a1);
+        border-bottom: 2px solid black;
+    }
+
+    #logo {
+        background-image: url(/img/logo.png);
         background-position: center;
         background-repeat: no-repeat;
+        background-size: contain;
+        width: 150px;
+        height: 150px;
+    }
+
+    .container {
+        background-image: url(/img/main_bg.jpg);
+        background-position: center;
+        background-repeat: repeat-y;  
         background-size: cover;
+        width: 100%;
     }
 
     main {
@@ -582,14 +496,6 @@ form>h2 {
         align-items: center;
         flex-direction: column;
         padding-top: 30px;
-    }
-
-    form {
-        padding: 30px;
-        width: 400px;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 70.18%);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
     }
     
 
