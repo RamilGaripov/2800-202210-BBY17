@@ -33,11 +33,12 @@ app.post("/post", upload.single('image'), (req, res) => {
     } else {
         console.log(req.file.filename)
         var imgsrc = 'localhost:8000/avatar/' + req.file.filename
-        var insertData = "INSERT INTO BBY_17_accounts(avatar)VALUES(?)"
+        var insertData = "UPDATE BBY_17_accounts SET avatar = ? WHERE ID = ?"
         console.log("uploaded new photo")
-       
+      req.session.user_id 
        profilePicArea =  req.file.path
-        db.query(insertData, [imgsrc], (err, result) => {
+    connection.connect();
+        connection.query(insertData, [imgsrc, req.session.user_id], (err, result) => {
             if (err) throw err
             console.log("avatar photo uploaded")
         })
