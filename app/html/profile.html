@@ -16,41 +16,10 @@
 
 <body>
     <div class="container">
-        <nav>
-            <a id="logo" href="/html/main.html"></a>
-            <ul class="navbarul">
-                
-                <li class="option">
-                    <img src="/img/profile_icon.png" alt="profile" id="go_to_edit" class="nav_links">Edit Profile
-                </li>
-                <li class="option">
-                    <img src="/img/rewards_icon.png" alt="rewards" id="go_to_rewards" class="nav_links">Rewards
-                </li>
-                <li class="option">
-                    <img src="/img/clock.png" alt="history" id="go_to_history" class="nav_links">Completed Activities
-                </li>
-                <li class="option">
-                    <img src="/img/mind_games_icon.png" alt="main page" id="go_to_main" class="nav_links" >Main Page
-                </li>
-            </ul>
-            <form action="/logout">
-                <button type="submit" id="logout" class="option"><img src="/img/bye.png" width>Logout</button>
-            </form>
-        </nav>
         <div class="subcontainer">
             <main>
-                <p class="subtitle"><span id="greeting"></span>, here you can make changes to your account.</p>
-                <section class="profile_card">
-                    <img src="/img/profilepic.png" alt="waman" class="profilepic">
-                    <div>
-                        <!-- <p id="greeting">.</p> -->
-                        <!-- <div><b>First Name:</b><span id="fname"></span></div>
-                        <div><b>Last Name:</b><span id="lname"></span></div>
-                        <div><b>Email:</b><span id="email"></span></div>
-                        <div><b>Date of Birth:</b><span id="dob"></span></div> -->
-                    </div>
-                </section>
-
+                <p class="subtitle"><span id="greeting"></span>, edit your profile</p>
+                <img src="/img/profilepic.png" alt="waman" class="profilepic">
                 <form action="/edit" class="form-group">
                     <form action="/auth/register" method="POST" class="main">
                         <h1 class="title"> Edit&nbsp;<span id="username"></span>'s Profile</h1>
@@ -89,7 +58,7 @@
             </main>
         </div>
     </div>
-    
+
     <script src="/js/navbar.js"></script>
     <script src="/js/profile.js"></script>
     <script src="/js/adminnav.js"></script>
