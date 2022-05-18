@@ -83,6 +83,17 @@ function selectTile() {
         if (this.innerText != "") {
             return;
         }
-        this.innerText = numSelected.id;
+
+        let coords = this.id.split("-");
+        let r = parseInt(coords[0]);
+        let c = parseInt(coords[1]);
+
+
+        if (solution[r][c] == numSelected.id) {
+            this.innerText = numSelected.id;
+        } else {
+            errors += 1;
+            document.getElementById("errors").innerText = errors;
+        }
     }
 }
