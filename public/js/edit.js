@@ -8,7 +8,8 @@ document.querySelector("#submit").addEventListener("click", function(e) {
         email : document.getElementById("email").value,
         admin : document.getElementById("admin").checked,
         password : document.getElementById("password").value,
-        dob : document.getElementById("dob").value
+        dob : document.getElementById("dob").value,
+        points : document.getElementById("points").value
     });
 });
 
