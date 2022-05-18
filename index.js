@@ -9,29 +9,24 @@ const { JSDOM } = require("jsdom");
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
 app.use("/img", express.static("./public/img"));
+app.use("/avatar", express.static("./public/avatar"));
 app.use("/html", express.static("./app/html"));
+
 const multer = require("multer");
 
 //multer storage
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, "./public/img/");
+    callback(null, "./public/avatar/");
   },
   filename: function (req, file, callback) {
-    callback(null, "my-app-" + file.originalname.split("/").pop().trim());
+    callback(null, "new-avatar-" + file.originalname.split("/").pop().trim());
   },
 });
 const upload = multer({ storage: storage });
 
-//! Routes start
- 
-// //route for Home page
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/profile.html');
-// });
- 
-//@type   POST
-//route for post data
+
+//route for uploading data data
 app.post("/post", upload.single('image'), (req, res) => {
     if (!req.file) {
         console.log("No file upload");
@@ -39,9 +34,11 @@ app.post("/post", upload.single('image'), (req, res) => {
         console.log(req.file.filename)
         var imgsrc = 'localhost:8000/avatar/' + req.file.filename
         var insertData = "INSERT INTO BBY_17_accounts(avatar)VALUES(?)"
+        console.log("uploaded new photo")
+        res.send(doc)
         db.query(insertData, [imgsrc], (err, result) => {
             if (err) throw err
-            console.log("file uploaded")
+            console.log("avatar photo uploaded")
         })
     }
 });

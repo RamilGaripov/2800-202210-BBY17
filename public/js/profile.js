@@ -35,7 +35,8 @@ async function editUser(data) {
     console.log(err);
   }
 }
-//upload js for profile
+
+//upload photo js for profile
 const upLoadForm = document.getElementById("upload-images-form");
 upLoadForm.addEventListener("submit", uploadImages);
 
@@ -64,6 +65,8 @@ function uploadImages(e) {
   fetch("/upload-images", options)
     .then(function (res) {
       console.log(res);
+res.file.path
+
     })
     .catch(function (err) {
       "Error:", err;

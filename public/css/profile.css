@@ -190,6 +190,8 @@ a.back:active {
 .profilepic {
     width: 100px;
     margin: 20px;
+    border:2px solid gray;
+        
 }
 
 .profile_card {
@@ -214,6 +216,10 @@ display:none;
 
 .editMy {
     display: block;
+}
+
+.edit_section{
+    display: none;
 }
 
 @media screen and (max-width:499px) {
