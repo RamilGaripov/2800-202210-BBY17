@@ -5,11 +5,8 @@
  * @see https://www.youtube.com/watch?v=j7OhcuZQ-q8
  */
 
- const gameTitle = "Wordle";
-
-document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
     createSquares();
-    sendDataToServer();
 
 
     let guessedWords = [
@@ -19,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let word;
     let guessedWordCount = 0;
+    let lettersClicked = 0;
 
     const words = [
         'abuse',
@@ -734,37 +732,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return "rgb(181, 159, 59)";
     }
 
-
-    function sendDataToServer() {
-
-        console.log("Starting to match...");
-        const timeStamp = Date.now(); 
-        console.log(timeStamp);
-        const data = {title: gameTitle};
-        fetch("/start-game", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-    
-    }
-
-
-
-    function updateDataOnServer() {
-        console.log("finished matching!");
-        const data = {title: gameTitle};
-        fetch("/finish-game", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-    }
-
     function handleSubmitWord() {
 
 
@@ -805,9 +772,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         guessedWordCount += 1;
 
+        // Letters Clicked
+        lettersClicked = 0;
+
         if (currentWord === word) {
             window.alert("Congratulations!");
-            updateDataOnServer();
+            return;
         }
 
         if (guessedWords.length === 6) {
@@ -833,30 +803,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleDeleteLetter() {
         const currentWordArr = getCurrentWordArr();
-        const removedLetter = currentWordArr.pop();
-
+      
+    
         guessedWords[guessedWords.length - 1] = currentWordArr;
-
+    
         const lastLetterEl = document.getElementById(String(availableSpace - 1));
-
+    
         lastLetterEl.textContent = "";
         availableSpace = availableSpace - 1;
-    }
+      }
+
+
 
     for (let i = 0; i < keys.length; i++) {
         keys[i].onclick = ({ target }) => {
             const letter = target.getAttribute("data-key");
 
+           
+            
+            // Letters Clicked        
+            if (lettersClicked != 5) {
+                lettersClicked++;
+            }
+
+            
+
+      
             if (letter === "enter") {
-                handleSubmitWord();
+                handleSubmitWord(); 
                 return;
             }
 
+            // Letters Clicked
             if (letter === "del") {
-                handleDeleteLetter();
+                
+                lettersClicked--;
+                
+                if (lettersClicked == 0) {
+                    console.log("No letters do delete!");
+                    return;
+                }
+
+                lettersClicked--;
+                console.log(lettersClicked);
+
+                handleDeleteLetter();       
                 return;
             }
 
+            console.log(lettersClicked);
             updateGuessedWords(letter);
         };
     }

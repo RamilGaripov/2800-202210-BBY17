@@ -702,22 +702,25 @@ async function init() {
 let port = 8000;
 app.listen(port, init);
 
-let http = require('http');
-let url = require('url');
-const res = require("express/lib/response");
-const { send } = require("process");
 
-http.createServer((req, res) => {
-  let q = url.parse(req.url, true);
-  console.log(q.query);
 
-  res.writeHead(200, {
-    "Content-Type": "text/html",
-    "Access-Control-Alloy-Origin": "*"
-  });
 
-  res.end(`Hello ${q.query['name1']}`);
-}).listen(process.env.PORT || 5000);
+// let http = require('http');
+// let url = require('url');
+// const res = require("express/lib/response");
+// const { send } = require("process");
+
+// http.createServer((req, res) => {
+//   let q = url.parse(req.url, true);
+//   console.log(q.query);
+
+//   res.writeHead(200, {
+//     "Content-Type": "text/html",
+//     "Access-Control-Alloy-Origin": "*"
+//   });
+
+//   res.end(`Hello ${q.query['name1']}`);
+// }).listen(process.env.PORT || 5000);
 
 
 
