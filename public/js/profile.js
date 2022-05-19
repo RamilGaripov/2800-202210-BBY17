@@ -45,7 +45,8 @@ document.querySelector("#go_back").addEventListener("click", function(e) {
 const upLoadForm = document.getElementById("upload-images-form");
 upLoadForm.addEventListener("submit", uploadImages);
 
-function uploadImages(e) {
+async function uploadImages(e) {
+  try{
   e.preventDefault();
 
   const imageUpload = document.querySelector("#image-upload");
@@ -56,23 +57,31 @@ function uploadImages(e) {
     formData.append("files", imageUpload.files[i]);
   }
 
-  const options = {
+  console.log(formData);
+
+  const response = await fetch("/post-new-avatar", {
     method: "POST",
-    body: formData,
-  };
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: formData
+  })
+  const data = await response.json();
+  console.log(data);
 
-  // now use fetch
-  fetch("/upload-images", options)
-    .then(function (res) {
-      console.log(res);
-      profilePlace = document.getElementById("profilePlace");
-      profilePlace.setAtrribute("src", res.file.path);
+  if (data.status == "fail") {
+    console.log("Unable to update your photo.");
+    document.getElementById("serverMsg").textContent = data.msg;
+  } else {
+    console.log("Your photo has been updated.");
+    document.getElementById("serverMsg").textContent = data.msg;
+  }
 
-    })
-    .catch(function (err) {
-      "Error:", err;
-      console.log("photo not replaced");
-    });
+
+  } catch(err) {
+    console.log(err);
+  }
 }
 
 document.querySelector("#go_back").addEventListener("click", function (e) {

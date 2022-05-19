@@ -34,7 +34,7 @@ const upload = multer({
 });
 
 //route for uploading data data
-app.post("/post", upload.single('image'), (req, res) => {
+app.post("/post-new-avatar", upload.single('image'), (req, res) => {
   if (!req.file) {
     console.log("No file upload");
   } else {
@@ -52,15 +52,15 @@ app.post("/post", upload.single('image'), (req, res) => {
   }
 });
 
-//for Upload image function in profile page
-app.post("/upload-images", upload.array("files"), function (req, res) {
-  //console.log(req.body);
-  console.log(req.files);
+// //for Upload image function in profile page
+// app.post("/upload-images", upload.array("files"), function (req, res) {
+//   //console.log(req.body);
+//   console.log(req.files);
 
-  for (let i = 0; i < req.files.length; i++) {
-    req.files[i].filename = req.files[i].originalname;
-  }
-});
+//   for (let i = 0; i < req.files.length; i++) {
+//     req.files[i].filename = req.files[i].originalname;
+//   }
+// });
 
 //Still don't understand entirely what session is and why we need it, but I guess it's fine for now...
 app.use(session({
@@ -95,10 +95,11 @@ app.get("/main", function (req, res) {
 
     console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
+    profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
     profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
     profileDOM.window.document.getElementById("email").textContent = req.session.email;
     profileDOM.window.document.getElementById("points").textContent = req.session.points;
-    profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
+    
     console.log(req.session.avatar);
 
     res.send(profileDOM.serialize());
@@ -510,6 +511,7 @@ app.post("/login", function (req, res) {
       req.session.admin = userRecord.is_admin;
       req.session.dob = userRecord.dob;
       req.session.points = userRecord.points;
+      req.session.avatar = userRecord.avatar;
 
       if (req.session.admin) {
         console.log("This user is an admin.");
