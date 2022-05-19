@@ -700,9 +700,15 @@ async function init() {
 
 // Sets the port and runs the server. Calls init().
 let port = 8000;
-app.listen(process.env.PORT || 5000)
 
-// app.listen(port, init);
+if (is_heroku) { 
+  app.listen(process.env.PORT || 5000)
+} else {
+  app.listen(port, init);
+}
+
+
+
 
 
 
