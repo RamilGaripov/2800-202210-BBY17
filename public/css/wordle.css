@@ -53,81 +53,98 @@ header {
     border-bottom: 1px solid rgb(58, 58, 60);
 }
 
-.title {
-    color: gainsboro;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin: 0.4rem 0 0.4rem 0;
+body {
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+hr {
+    width: 500px;
+}
 
-#board-container {
+#title {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#board {
+    width: 350px;
+    height: 420px;
+    margin: 0 auto;
+    margin-top: 3px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    border: 2px solid lightgrey;
+    width: 60px;
+    height: 60px;
+    margin: 2.5px;
+
+    color: black;
+    font-size: 36px;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
-    overflow: hidden;
 }
 
-
-#board {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
-    padding: 10px;
-    box-sizing: border-box;
+.correct {
+    background-color: #6AAA64;
+    color: white;
+    border-color: white;
 }
 
-.square {
-    border: 2px solid rgb(58, 58, 60);
-    min-width: 60px;
-    min-height: 60px;
-    font-size: 50px;
-    font-weight: bold;
-    color: gainsboro;
-    text-transform: uppercase;
-
-    display: flex; 
-    justify-content: center;
-    align-items: center;
+.present {
+    background-color: #C9B458;
+    color: white;
+    border-color: white;
 }
 
-#keyboard-container {
-    height: 200px;      
+.absent {
+    background-color: #787c7e;
+    color: white;
+    border-color: white;
 }
 
 .keyboard-row {
-    display: flex;  
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto 8px;
-    touch-action: manipulation;
+    width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.keyboard-row button {
-    font-family: inherit;
+.key-tile {
+
+border: 1px solid lightgrey;
+width: 36px;
+height: 40px;
+margin: 1px;
+
+
+font-size: 20px;
+font-weight: bold;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+
+.enter-key-tile {
+
+    border: 1px solid lightgrey;
+    width: 76px;
+    height: 40px;
+    margin: 1px;
+    
+    
+    font-size: 20px;
     font-weight: bold;
-    border: 0;
-    padding: 0;
-    height: 58px;
-    cursor: pointer;
-    background-color: rgb(129, 131, 132);
-    color: rgb(215, 218, 220);
-    flex-grow: 1;
-    text-transform: uppercase;
-    margin-right: 6px;
-    border-radius: 4px;
-    user-select: none;
-
-}
-
-
-.keyboard-row button.wide-button {
-    flex-grow: 1.5;
-}
-
-.spacer-half {
-    flex-grow: 0.5;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    }
