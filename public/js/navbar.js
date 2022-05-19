@@ -37,8 +37,13 @@ document
   .querySelector("#go_to_rewards")
   .addEventListener("click", function (e) {
     e.preventDefault();
-    console.log("/timeline.html");
-    window.location.replace("/timeline.html");
+    // alert("this feature is coming soon!");
+    Swal.fire({
+      title: "Error", 
+      text: "This feature is coming soon!", 
+      icon: "warning", 
+      confirmButtonText: "Okay"});
+    // window.location.replace("/timeline.html");
   });
 
 document.querySelector("#go_to_edit").addEventListener("click", function (e) {
@@ -55,3 +60,4 @@ document.querySelector("#logout").addEventListener("click", function (e) {
   e.preventDefault();
   window.location.replace("/logout");
 });
+
