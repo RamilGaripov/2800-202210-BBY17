@@ -170,7 +170,7 @@ section {
 
 .walk {
     background-image: url(/img/walk.jpg);
-    flex:2;
+    flex:1;
 }
 
 .hike {
