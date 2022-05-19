@@ -24,6 +24,7 @@ $(document).ready(function () {
         $("#puzzlecontainer").html(emptystring);
         $(this).hide();
         $("#btnreset").show();
+        $("#btnback").hide();
         implementLogic();
     });
     $("#btnreset").click(function () {
@@ -31,6 +32,7 @@ $(document).ready(function () {
         $("#puzzlecontainer").html(newPieces);
         $(this).hide();
         $("#btnstart").show();
+        $("#btnback").hide();
         $("#piececontainer").empty();
     });
 
@@ -61,10 +63,14 @@ $(document).ready(function () {
             var item = $("#puzzlecontainer .droppedPiece:eq(" + k + ")");
             var order = item.data("order");
             if (k != order) {
-                $("#piececontainer").text("Ouch! Try Again!");
+                // $("#piececontainer").text("Oops, thats incorrect.");
+                $("#piececontainer").text("Please try again!");
+
                 return false; /* loss */
             } else {
-                $("#piececontainer").text("wow! you are a GENIUS");
+                $("#piececontainer").text("Congrats!");
+                $("#btnreset").hide();
+                $("#btnback").show();
                 updateDataOnServer();
                 return true; /* win */
             }

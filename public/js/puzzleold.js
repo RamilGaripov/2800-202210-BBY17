@@ -21,7 +21,6 @@ window.onload = function() {
             tile.addEventListener("dragleave", dragLeave); //dragging an image away from another one
             tile.addEventListener("drop", dragDrop);       //drop an image onto another one
             tile.addEventListener("dragend", dragEnd);      //after you completed dragDrop
-
             document.getElementById("puzzleboard").append(tile);
         }
     }

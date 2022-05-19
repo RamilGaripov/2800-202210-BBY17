@@ -4,25 +4,52 @@
     border-radius: 20px;
     margin: 10px auto;
     padding: 10px;
+    background-color: #FFA62B;
+    align-items: center;
+    text-align: center;
 }
 
 #piececontainer {
-    width: 408px;
-    height: 408px;
+    width: 402px;
+    height: 402px;
     border: 1px solid black;
-    float: left; /* makes side by side */
+    float: left;
     text-align: center;
     font-size: 30px;
     line-height: 400px;
     position: relative;
+    background-color: #EDE7E3;
 }
 
 #puzzlecontainer {
-    width: 408px;
-    height: 408px;
+    width: 402px;
+    height: 402px;
     border: 1px solid black;
     float: right;
+    background-color: #EDE7E3;
 }
+
+#btnback {
+    display: none;
+}
+
+/* @media screen and (max-width: 600px) {
+    #peicecontainer {
+        float: right;
+        position: relative;
+        align-items: center;
+    }
+
+    #puzzlecontainer {
+        float: left;
+    }
+
+    #container {
+        width: 100%;
+    }
+    
+
+} */
 
 ul {
     list-style-type: none;
@@ -36,6 +63,7 @@ ul button {
     border-radius: 5px;
     padding: 5px;
     margin-top: 10px;
+    background-color: #BEE5B0;
 }
 
 #btnreset {
@@ -49,4 +77,404 @@ ul button {
     float: left;
     background-image: url(/img/puzpic.jpg);
     background-repeat: no-repeat;
+}
+
+/* ------------------ template */
+
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    height: 100%;
+}
+
+/* This is Large Titles has a delay appearance */
+.title {
+    display: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7em;
+    font-weight: bold;
+    line-height: 0;
+    text-align: center;
+    padding-right: 20px;
+}
+
+/* This is a Subheader Font */
+.subtitle {
+    font-size: 1em;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+/* Univeral Nav that is flexible to screen sizes */
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+/* Clickable Icons in nav */
+.navbarul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.option {
+    float: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.option a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    align-items: center;
+}
+
+.option>a>img {
+    height: 40px;
+}
+
+.option:active {
+    filter: invert(100%) sepia(16%) saturate(7463%) hue-rotate(222deg) brightness(119%) contrast(115%);
+}
+
+.option:hover {
+    transform: scale(1.09);
+    transition: ease-in 0.09s;
+}
+
+#username {
+    font-size: 1.2em;
+    color: #4874B5;
+    font-family: 'Montserrat', sans-serif;
+    margin: 10px 0px;
+}
+
+/* body to hold carousels for the flexible card */
+section {
+    width: 90%;
+    height: 100%;
+}
+
+
+.carousel_border {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-color: #16697a;
+    border-radius: 12px;
+    min-width: 100px;
+    margin: 8px 0;
+}
+
+.option_card {
+    flex: 1;
+    background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
+    margin: 4px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.carousel_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.5em;
+    letter-spacing: 3px;
+    background-image: url(/img/walking.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.carousel_item:hover {
+    color: wheat;
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: 0.4s;
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+
+#logout {
+    border-radius: 20px;
+    padding: 8px 40px;
+    background-color: #ffa62b;
+    color: #ffff;
+    border: none;
+    margin-bottom: 10px;
+}
+
+#logout:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.3s;
+}
+
+#logout:active {
+    background-color: #8b622a;
+}
+
+.profile_card {
+    display: flex;
+    padding-top:10px;
+}
+
+.profile_card>div>div {
+    margin:2px;
+    font-size: 0.8em;
+}
+
+.profilepic {
+    width: 100px;
+    height: 100px;  
+    margin:10px;    
+}
+/* fancy tables */
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    width: 100%;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+@media screen and (max-width:499px) {
+    body {
+        min-width: 350px;
+        height: 100%;
+    }
+
+    #logo {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background-image: url(/img/logo.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 50px;
+        height: 50px;
+        padding: 5px;
+        z-index: 1;
+    }
+
+    .carousel_border {
+        display: flex;
+        flex-direction: column;
+        min-height: 150px;
+    }
+
+    .container {
+        background-image: url(/img/main_bg.jpg);
+        background-position: center;
+        background-repeat: repeat-y;
+        background-size: cover;
+        height: auto;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: linear-gradient(#16697a, #5b96a1);
+        border-bottom: 2px solid black;
+
+    }
+
+    #logo {
+        order: 2;
+        transform: scale(1.5);
+        margin: 5px;
+    }
+
+    .navbarul>.option:nth-child(n+4) {
+        display: none;
+    }
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 90%;
+        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+
+    }
+}
+
+@media screen and (min-width:0px) and (max-width:793px) {
+    /* using speceficity to nullify overide in the code below this */
+    nav>h1.title {
+        display: none;
+    }
+
+
+}
+
+@media screen and (max-width:1172px) {
+    .navbarul>.option:nth-child(n+4) {
+        display: none;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:3400px) {
+    body {
+        min-width: 350px;
+    }
+
+    .container {
+        background-image: url(/img/main_bg.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+    }
+
+    nav {
+        background-image: linear-gradient(#16697a, #5b96a1);
+        border-bottom: 2px solid black;
+    }
+
+    #logo {
+        background-image: url(/img/logo.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 150px;
+        height: 150px;
+    }
+
+    .title {
+        color: #ffff;
+        display: inline-flex;
+        align-self: center;
+        text-align: center;
+        opacity: 0;
+        animation: 2s fadeIn;
+        animation-fill-mode: forwards;
+        transition: opacity 1.5s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 97%;
+        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+    }
+    /* fieldset to hold choices */
+    .carousel_border {
+        justify-content: space-between;
+    }
+
+    .carousel_item {
+        min-height: 150px;
+        min-width: 150px;
+        flex: 1;
+    }
+
+    .form-group {
+        display: inline-block;
+        text-align: center;
+        margin: 2px;
+    }
+
+    .form-group>label {
+        font-weight: bolder;
+    }
+
+    .form-group>input {
+        border-radius: 8px;
+    }
+
 }
