@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const {
-  append
+  append, redirect
 } = require("express/lib/response");
 const app = express();
 const fs = require("fs");
@@ -162,7 +162,7 @@ app.get("/edit", function (req, res) {
 
     connection.connect();
     connection.query(
-      "SELECT * FROM BBY_17_accounts WHERE id = ?", req.session.id_to_edit,
+      "SELECT * FROM BBY_17_accounts WHERE id=?", req.session.id_to_edit,
       function (error, results) {
         if (error) {
           console.log(error);
@@ -399,25 +399,45 @@ app.post("/finish-game", function (req, res) {
   });
 })
 
-app.get("/previous_activities", function (req, res) {
+app.get("/history", function (req, res) {
   if (req.session.loggedIn) {
     const history = fs.readFileSync("./app/html/history.html", "utf8");
     const historyDOM = new JSDOM(history);
     historyDOM.window.document.getElementsByTagName("title")[0].textContent = "Activity History";
     historyDOM.window.document.getElementById("username").textContent = req.session.first_name;
-
-    connection.connect();
-    connection.query("SELECT * FROM BBY_17_plays WHERE id=? AND time_completed", [req.session.user_id], function (err, results) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("We got", results.length, "record(s) for this user.");
-      }
-    });
     res.send(historyDOM.serialize());
   } else {
     res.redirect("/");
   }
+})
+
+app.get("/get-previous-activities", function(req, res) {
+  connection.connect();
+  connection.query("SELECT * FROM BBY_17_plays WHERE id=? AND completed", [req.session.user_id], function (err, results) {
+    if (err) {
+      console.log(err);
+    } else {
+      if (results.length > 0) {
+        console.log("We got", results.length, "record(s) for this user.");
+        res.send({status: "success", rows: results});
+      } else {
+        res.send({status: "fail", msg: "You have not completed any activities before."});
+      }
+      
+    }
+  });
+})
+
+app.post("/update-comment", function(req, res) {
+  connection.connect();
+  connection.query("UPDATE BBY_17_plays SET comment=? WHERE play_id=?", [req.body.comment, req.body.play_id], function(err) {
+    if (err) {
+      res.send({status: "fail", msg: "Could not save your comment."});
+    } else {
+      console.log("Activity comment updated.");
+      res.send({status: "success", msg: "Your comment has been saved."});
+    }
+  });
 })
 
 
@@ -605,7 +625,8 @@ async function init() {
       title VARCHAR(25) NOT NULL REFERENCES BBY_17_activities(title),
       completed BOOL DEFAULT false,
       time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
-      time_completed DATETIME NULL
+      time_completed DATETIME NULL,
+      comment VARCHAR(255) DEFAULT "How did you feel about this experience?"
     );
     `;
 
@@ -645,7 +666,7 @@ async function init() {
     let activitiesValues = [
       ["Sudoku", 50],
       ["Match", 25],
-      ["Wordle", 20],
+      ["Wordle", 10],
       ["Puzzle", 25]
     ];
     await connectionInit.query(activitiesSQL, [activitiesValues]);
