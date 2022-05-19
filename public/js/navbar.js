@@ -1,6 +1,6 @@
 document.querySelector("#go_to_history").addEventListener("click", function(e) {
     e.preventDefault();
-    window.location.replace("/previous_activities");
+    window.location.replace("/history");
 })
 
 document.querySelector("#go_to_rewards").addEventListener("click", function(e) {
