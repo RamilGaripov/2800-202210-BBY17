@@ -702,7 +702,7 @@ async function init() {
 let port = 8000;
 
 if (is_heroku) { 
-  app.listen(process.env.PORT, init)
+  app.listen(process.env.PORT || 5000, init)
 } else {
   app.listen(port, init);
 }
