@@ -1,3 +1,6 @@
+const gameTitle = "Wordle";
+
+
 var height = 6;
 var width = 5;
 
@@ -15,8 +18,40 @@ var word = wordList[Math.floor(Math.random() * wordList.length)].toUpperCase();
 console.log(word);
 
 
+function sendDataToServer() {
+
+    console.log("Starting to match...");
+    const timeStamp = Date.now(); 
+    console.log(timeStamp);
+    const data = {title: gameTitle};
+    fetch("/start-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+}
+
+
+function updateDataOnServer() {
+    console.log("finished matching!");
+    const data = {title: gameTitle};
+    fetch("/finish-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+}
+
+
 window.onload = function(){
+    sendDataToServer();
     initalize();
+    
 }
 
 function initalize(){
@@ -87,7 +122,10 @@ function processKey() {
 
 
 function processInput(e) {
-    if (gameOver) return;
+    if (gameOver) {
+        return;
+    }
+   
 
     if("KeyA" <= e.code && e.code <= "KeyZ") {
         if (col < width) {
@@ -113,6 +151,7 @@ function processInput(e) {
     }
 
     if (!gameOver && row == height) {
+        // You lose
         gameOver = true;
         document.getElementById("answer").innerText = word;
     }
@@ -122,6 +161,13 @@ function update() {
 
     let guess = "";
     document.getElementById("answer").innerText = "";
+
+    // if (guess == word) {
+    //     console.log("You win!");
+    //     return;
+    // }
+
+
 
     for (let c = 0; c < width; c++) {
         let currentTile = document.getElementById(row.toString() + "-" + c.toString());
@@ -164,7 +210,9 @@ function update() {
             letterCount[letter] -= 1;
         } 
 
+        // Win Condition
         if (correct == width) {
+            updateDataOnServer();
             gameOver = true;
         }
     }
