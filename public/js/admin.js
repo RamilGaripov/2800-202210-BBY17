@@ -31,9 +31,9 @@ async function getAccounts() {
                     "</td><td class='last_name'>" + row.last_name +
                     "</td><td class='email'>" + row.email +
                     "</td><td class='points'>" + row.points +
-                    "</td><td class='edit'>" + "<button type='submit' class='edit_user'>Edit</button>" +
-                    "</td><td class='reset'>" + "<button type='submit' class='reset_password'>Reset Password</button>" +
-                    "</td><td class='delete'>" + "<button type='submit' class='delete_user'>Delete</button>" +
+                    "</td><td class='edit'>" + "<button type='submit' class='edit_user dash'>Edit</button>" +
+                    "</td><td class='reset'>" + "<button type='submit' class='reset_password dash'>Reset Password</button>" +
+                    "</td><td class='delete'>" + "<button type='submit' class='delete_user dash'>Delete</button>" +
                     "</td></tr>");
                 // id_array.push(row)
             }

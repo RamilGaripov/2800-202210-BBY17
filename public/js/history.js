@@ -32,7 +32,7 @@ async function getPosts() {
               </form>
             </div>
             <div style="display: block">
-              <div><p>Name: <span class="activity_title"></p><p>Points: <span class="points"></span></p></div>
+              <div><p>Name: <span class="activity_title"></p><p>Points Received: <span class="points"></span></p></div>
               <textarea class="comment_section" cols="30" rows="10"></textarea>
               <button type="submit" class="submit_comment">SAVE</button>
             </div>
@@ -48,6 +48,7 @@ async function getPosts() {
                 console.log("Converted time: ", row.time_completed.toLocaleString('en-GB', { timeZone: 'UTC' }));
                 document.getElementsByClassName("activity_title")[i].textContent = row.title;
                 document.getElementsByClassName("comment_section")[i].textContent = row.comment;
+                document.getElementsByClassName("points")[i].textContent = row.points;
             }
 
             // provides SAVE BUTTON functionality 
