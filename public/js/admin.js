@@ -157,6 +157,7 @@ async function deleteUser(data) {
         } else {
             console.log("User deleted.")
             getAccounts();
+            document.getElementById("serverMsg").textContent = parsedJSON.msg;
         }
 
     } catch (err) {

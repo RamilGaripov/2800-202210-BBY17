@@ -9,26 +9,26 @@
         // if (response.status === 200) {
         //     const data = await response.json();
         //     // console.log("the data: ", data);
-        //     let str = `<tr>
-        //         <th class="id_header"><span>ID</span></th>
-        //         <th class="first_name_header"><span>First Name</span></th>
-        //         <th class="last_name_header"><span>Last Name</span></th>
-        //         <th class="email_header"><span>Email</span></th>
-        //         <th class="points_header"><span>Total Points</span></th>
-        //         <th class="edit_header"></th>
-        //         <th class="delete_header"></th>
-        //         </tr>`;
+            // let str = `<tr>
+            //     <th class="id_header"><span>ID</span></th>
+            //     <th class="first_name_header"><span>First Name</span></th>
+            //     <th class="last_name_header"><span>Last Name</span></th>
+            //     <th class="email_header"><span>Email</span></th>
+            //     <th class="points_header"><span>Total Points</span></th>
+            //     <th class="edit_header"></th>
+            //     <th class="delete_header"></th>
+            //     </tr>`;
 
-        //     for (let i = 0; i < data.rows.length; i++) {
-        //         let row = data.rows[i];
-        //         //console.log("row", row);
-        //         str += ("<tr><td class='id'>" + row.id +
-        //             "</td><td class='first_name'>" + row.first_name +
-        //             "</td><td class='last_name'>" + row.last_name +
-        //             "</td><td class='email'>" + row.email +
-        //             "</td><td class='points'>" + row.points +
-        //             "</td><td class='edit'>" + "<button type='submit' class='edit_user'>Edit</button>" +
-        //             "</td><td class='delete'>" + "<button type='submit' class='delete_user'>Delete</button>" +
+            // for (let i = 0; i < data.rows.length; i++) {
+            //     let row = data.rows[i];
+            //     //console.log("row", row);
+            //     str += ("<tr><td class='id'>" + row.id +
+            //         "</td><td class='first_name'>" + row.first_name +
+            //         "</td><td class='last_name'>" + row.last_name +
+            //         "</td><td class='email'>" + row.email +
+            //         "</td><td class='points'>" + row.points +
+            //         "</td><td class='edit'>" + "<button type='submit' class='edit_user'>Edit</button>" +
+            //         "</td><td class='delete'>" + "<button type='submit' class='delete_user'>Delete</button>" +
         //             "</td></tr>");
         //         // id_array.push(row)
         //     }
@@ -127,17 +127,141 @@
 
 // getPosts();
 
+{/* <section style="border:1px solid black; padding:10px;">
+            <h2 class="subtitle">post title placehodl</h2>
+            <div style="display: flex">
+              <div class="left_box">
+                <img src="" alt="" />
+                <form id="upload-images-form">
+                  <input
+                    id="image-upload"
+                    type="file"
+                    value="Upload Image"
+                    accept="image/png, image/gif, image/jpeg"
+                    multiple="multiple"
+                  />
+                  <input id="submit" type="submit" value="Submit" />
+                </form>
+              </div>
+              <div style="display: block">
+                <div><span>Name:Hello</span> <span>Points:World</span></div>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+              </div>
+            </div>
+          </section> */}
+
 async function getPosts() {
     try{
-        console.log("history: ");
-        const response = await fetch("/history", {
+        const response = await fetch("/get-previous-activities", {
             method: "GET"
-        })
+        });
+
         const data = await response.json();
         console.log(data);
+        const rows = data.rows;
 
+        // const comments_response = await fetch("/get-comments", {
+        //     method: "GET"
+        // });
+        // const comments = await comments_response.json();
+        // console.log(comments);
+        if (data.status == "fail") {
+            document.getElementById("serverMsg").textContent = data.msg;
+        } else {
+           
+        //     let str = `<section class="user_posts"><h2 class="subtitle">post title placehodl</h2><div class="user_post_div">
+        //     <div class="left_box">
+        //       <img src="" alt="" />
+        //       <form id="upload-images-form">
+        //         <input
+        //           id="image-upload"
+        //           type="file"
+        //           value="Upload Image"
+        //           accept="image/png, image/gif, image/jpeg"
+        //           multiple="multiple"
+        //         />
+        //         <input id="submit" type="submit" value="Submit" />
+        //       </form>
+        //     </div>
+        //     <div style="display: block">
+        //       <div><p>Name: <span class="activity_title"></span></p> <span>Points:World</span></div>
+        //       <textarea name="" id="" cols="30" rows="10"></textarea>
+        //     </div>
+        //   </div></section>`;
 
+          let str = `<section class="user_posts"><h2 class="subtitle"></h2><div class="user_post_div">
+            <div class="left_box">
+              <img src="" alt="" />
+              <form class="upload-images-form">
+                <input
+                  class="image-upload"
+                  type="file"
+                  value="Upload Image"
+                  accept="image/png, image/gif, image/jpeg"
+                  multiple="multiple"
+                />
+                <input class="submit" type="submit" value="Submit" />
+              </form>
+            </div>
+            <div style="display: block">
+              <div><p>Name: <span class="activity_title"></p><p>Points: <span class="points"></span></p></div>
+              <textarea class="comment_section" cols="30" rows="10"></textarea>
+              <button type="submit" class="submit_comment">SAVE</button>
+            </div>
+          </div></section>`;
+
+            for (let i = 0; i < rows.length; i++) {
+                let row = rows[i];
+
+                
+                document.getElementsByClassName("posts")[i].innerHTML = str;
+                document.getElementsByClassName("subtitle")[i].textContent = "You completed a " + row.title + " game on " + row.time_completed;
+                console.log("Time: ", row.time_completed);
+                console.log("Converted time: ", row.time_completed.toLocaleString('en-GB', { timeZone: 'UTC' }));
+                document.getElementsByClassName("activity_title")[i].textContent = row.title;
+                document.getElementsByClassName("comment_section")[i].textContent = row.comment;
+            }
+
+            // provides SAVE BUTTON functionality 
+            const saves = document.getElementsByClassName("submit_comment");
+            for (let j = 0; j < saves.length; j++) {
+                saves[j].addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const user_comment = document.getElementsByClassName("comment_section")[j].value;
+                    saveComment({play_id : rows[j].play_id, comment: user_comment});
+                });
+            }
+            
+            // document.getElementById("activity_title").textContent = rows[0].title;
+
+        }
     } catch(err) {
+        console.log(err);
+    }
+}
+
+async function saveComment(data) {
+    try {
+        console.log("Saving the comment");
+        // console.log(data);
+
+        const response = await fetch("/update-comment", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        let parsedJSON = await response.json();
+        if (parsedJSON.status == "fail") {
+            document.getElementById("serverMsg").textContent = parsedJSON.msg;
+        } else {
+            getPosts();
+            document.getElementById("serverMsg").textContent = parsedJSON.msg;
+        }
+
+    } catch (err) {
         console.log(err);
     }
 }
