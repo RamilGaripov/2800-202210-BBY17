@@ -25,6 +25,7 @@ function navInsertion() {
 }
 navInsertion();
 
+
 document
   .querySelector("#go_to_history")
   .addEventListener("click", function (e) {
