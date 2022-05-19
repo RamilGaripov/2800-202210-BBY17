@@ -6,56 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/profile.css">
-    <link rel="stylesheet" href="/css/adminnav.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     <title>Profile</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
     </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png"/>
+    <link rel="mask-icon" href="/safari-pinned-tab.svg"  color="#5bbad5"/>
+    <meta name="msapplication-TileColor" content="#da532c"/>
+    <meta name="theme-color" content="#ffffff"/>
 </head>
 
 <body>
     <div class="container">
-        <nav>
-            <a id="logo" href="/html/main.html"></a>
-            <ul class="navbarul">
-                <li class="option">
-                    <a href="/html/main.html"><img src="/img/mind_games_icon.png" alt="friends" id="go_to_main">Main Page</a>
-                </li>
-                <li class="option">
-                    <a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile" height="60"
-                            id="go_to_profile">Edit Profile</a>
-                </li>
-                <li class="option">
-                    <a href="/html/reward.html"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
-                </li>
-                <li class="option">
-                    <a href="/html/history.html"><img src="/img/clock.png" alt="history">History</a>
-                </li>
-            </ul>
-            <form action="/logout">
-                <button type="submit" id="logout" class="option"><img src="/img/bye.png" width >Logout</button>
-            </form>
-        </nav>
         <div class="subcontainer">
             <main>
-                <p class="subtitle"><span id="greeting"></span>, here you can make changes to your account.</p>
-                <section class="profile_card">
-                    <img src="/img/profilepic.png" alt="waman" class="profilepic">
-                    <div>
-                        <!-- <p id="greeting">.</p> -->
-                        <!-- <div><b>First Name:</b><span id="fname"></span></div>
-                        <div><b>Last Name:</b><span id="lname"></span></div>
-                        <div><b>Email:</b><span id="email"></span></div>
-                        <div><b>Date of Birth:</b><span id="dob"></span></div> -->
-                    </div>
-                </section>
-
-                <form action="/edit" class="form-group">
-                    <button type='submit' class='edit_user'>EDIT</button>
-                    <a href="/html/main" class="back">BACK</a>
-                </form>
-
+                <p class="subtitle"><span id="greeting"></span>, edit your profile</p>
+                <img src="/img/profilepic.png" alt="waman" class="profilepic">
                 <form action="/edit" class="form-group">
                     <form action="/auth/register" method="POST" class="main">
                         <h1 class="title"> Edit&nbsp;<span id="username"></span>'s Profile</h1>
@@ -94,8 +64,10 @@
             </main>
         </div>
     </div>
+
+    <script src="/js/navbar.js"></script>
     <script src="/js/profile.js"></script>
-    <script src="/js/adminnav.js"></script>
+    <script src="/js/favicon.js"></script>
 </body>
 
 </html>

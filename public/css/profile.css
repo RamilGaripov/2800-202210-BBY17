@@ -37,77 +37,6 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 7px;
-
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    align-items: center;
-    background-image: linear-gradient(#16697a, #5b96a1);
-}
-
-.navbarul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    padding: 10px;
-}
-
-.option {
-    float: right;
-    display: flex;
-    flex-direction: column;
-}
-
-.option a {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-    align-items: center;
-}
-
-.option>a>img {
-    width: 50px;
-    height: 50px;
-}
-
-.option:active {
-    filter: invert(100%) sepia(16%) saturate(7463%) hue-rotate(222deg) brightness(119%) contrast(115%);
-}
-
-.option:hover {
-    transform: scale(1.09);
-    transition: ease-in 0.09s;
-}
-
-#logout {
-    background-color: transparent;
-    color: #ffff;
-    border: none;
-}
-#logout:hover {
-    color: red;
-    transform: none;
-}
-
-#logout {
-    background-color: transparent;
-    color: #ffff;
-    border: none;
-    padding-right: 10px;
-}
-
-button > img {
-    float: right;
-    width: 55px;
-    height: 55px;
 }
 
 #username {
@@ -117,12 +46,8 @@ button > img {
     margin: 0;
 }
 
-p {
-    margin: 10px 0 0;
 
-}
-
-.edit_user {
+main>form>#submit {
     border-radius: 20px;
     padding: 4px 13px;
     background-color:#ffa62b;
@@ -133,57 +58,13 @@ p {
     margin-bottom: 10px;
 }
 
-.edit_user:hover {
+main>form>#submit:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: ease-in 0.03s;
 }
 
-.edit_user:active {
-    background-color: #8b622a;
-}
-
-a.back {
-    border-radius: 20px;
-    padding:4px 10px;
-    background-color:gray;
-    color: #ffff;
-    text-decoration: none;
-    border: none;
-    font-weight: bolder;
-    font-size: 16px;
-    
-    
-}
-
-a.back:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.03s;
-}
-
-a.back:active {
-    background-color: darkgray;
-}
-
-#submit {
-    border-radius: 20px;
-    padding: 4px 13px;
-    background-color:#ffa62b;
-    color: #ffff;
-    text-decoration: none;
-    border: none;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-#submit:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.03s;
-}
-
-#submit:active {
+main>form>#submit:active {
     background-color: #8b622a;
 }
 
@@ -209,20 +90,6 @@ a.back:active {
     background-color: #8b622a;
 }
 
-.profilepic {
-    width: 100px;
-    margin: 20px;
-}
-
-.profile_card {
-    display: flex;
-    padding: 10px;
-}
-
-.profile_card>div>div {
-    margin: 2px;
-    font-size: 0.7em;
-}
 
 .profilepic {
     width: 100px;
@@ -230,69 +97,18 @@ a.back:active {
     margin: 10px;
 }
 
-/* .form-group {
-display:none;
-} */
-
-.editMy {
-    display: block;
-}
-
 @media screen and (max-width:717px) {
     body {
         min-width: 350px;
     }
 
-    #logo {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        background-image: url(/img/logo.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 50px;
-        height: 50px;
-        padding: 5px;
-    }
-    #logout{
-        position: fixed;
-        bottom: 30px;
-        left: 0;
-        width: 50px;
-        height: 50px;
-        padding: 5px;
-        z-index: 1;
-    }
-
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         background-size: cover;
     }
 
-    nav {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 2px solid black;
-      
-    }
-    .navbarul{
-        display: flex;
-    }
-
-    option>a{
-        flex:1;
-    }
-
-    #logo {
-        order: 2;
-        transform: scale(1.5);
-        margin: 5px;
-    }
 
 
     .subcontainer {
@@ -314,12 +130,6 @@ display:none;
     }
 }
 
-@media screen and (min-width:0px) and (max-width:793px) {
-    nav>h1.title {
-        display: none;
-    }
-}
-
 
 @media screen and (min-width:718px) and (max-width:3400px) {
     body {
@@ -334,21 +144,15 @@ display:none;
         width: 100%;
     }
 
-
-    #logo {
-        background-image: url(/img/logo.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 150px;
-        height: 150px;
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
     }
-
-    /* .title {
-        color: #ffff;
-        display: block;
-    } */
-
     .subcontainer {
         display: flex;
         align-items: center;
@@ -356,15 +160,6 @@ display:none;
         padding-bottom: 20px;
     }
 
-    main {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        flex: 1;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
-    }
 
     .form-group {
         text-align: center;

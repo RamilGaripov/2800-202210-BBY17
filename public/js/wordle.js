@@ -570,7 +570,6 @@ document.addEventListener("DOMContentLoaded", () => {
         'sleek',
         'slyly',
         'small',
-        'so-so',
         'sound',
         'spang',
         'srsly',
@@ -681,6 +680,20 @@ document.addEventListener("DOMContentLoaded", () => {
         'yeesh',
         'yowch',
         'zowie',
+        'ghost',
+        'ghoul',
+        'brawl',
+        'frogs',
+        'otter',
+        'hater',
+        'faker',
+        'radar',
+        'egypt',
+        'pizza',
+        'rates',
+        'ranch',
+        'rotor',
+        'trees',
     ];
 
 
@@ -744,7 +757,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const currentWord = currentWordArr.join("");
 
-        for (let i = 0; i < words.length - 1; i++) {
+        for (let i = 0; i < words.length; i++) {
             if (words[i] == currentWord) {
                 test = 1;
             }
