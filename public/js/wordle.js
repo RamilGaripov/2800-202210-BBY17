@@ -184,6 +184,10 @@ function update() {
             letterCount[letter] -= 1;
         } else {
             currentTile.classList.add("absent");
+            let keyTile = document.getElementById("Key" + letter);
+            if (!keyTile.classList.contains("present" || "correct")) {
+                keyTile.classList.add("absent")
+              }
         }
     }
     }
