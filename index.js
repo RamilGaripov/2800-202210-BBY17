@@ -698,7 +698,7 @@ async function init() {
 
 // Sets the port and runs the server. Calls init().
 let port = 8000;
-app.listen(process.env.PORT || port, init);
+app.listen(port, init);
 
 let http = require('http');
 let url = require('url');
