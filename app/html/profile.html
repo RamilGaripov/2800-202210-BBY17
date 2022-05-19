@@ -25,7 +25,7 @@
         <div class="subcontainer">
             <main>
                 <p class="subtitle"><span id="greeting"></span>, edit your profile!</p>
-                <img src="/img/profilepic.png" alt="waman" class="profilepic">
+                <img alt="waman" class="profilepic" id="profilepic" src="#"> 
                 <form action="/edit" class="form-group">
                     <form action="/auth/register" method="POST" class="main">
                         <h1 class="title"> Edit&nbsp;<span id="username"></span>'s Profile</h1>
@@ -59,6 +59,13 @@
                         <button type="submit" id="submit">SAVE</button>
                         <button type="submit" id="go_back">BACK</button>
                         <p id="serverMsg"></p>
+                    </form>
+
+                    <h2 class="subtitle">Change Avatar Photo</h2>
+                    <form id="upload-images-form" action="/upload-images" method="POST" >
+                        <input id="image-upload" type="file" value="Upload Image"
+                            accept="image/png, image/gif, image/jpeg" multiple="multiple" />
+                        <input id="submit" type="submit" value="Submit" />
                     </form>
 
             </main>

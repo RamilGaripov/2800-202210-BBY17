@@ -41,3 +41,41 @@ document.querySelector("#go_back").addEventListener("click", function(e) {
     window.location.replace("/main");
 });
 
+//upload photo js for profile
+const upLoadForm = document.getElementById("upload-images-form");
+upLoadForm.addEventListener("submit", uploadImages);
+
+function uploadImages(e) {
+  e.preventDefault();
+
+  const imageUpload = document.querySelector("#image-upload");
+  const formData = new FormData();
+
+  for (let i = 0; i < imageUpload.files.length; i++) {
+    // put the images from the input into the form data
+    formData.append("files", imageUpload.files[i]);
+  }
+
+  const options = {
+    method: "POST",
+    body: formData,
+  };
+
+  // now use fetch
+  fetch("/upload-images", options)
+    .then(function (res) {
+      console.log(res);
+      profilePlace = document.getElementById("profilePlace");
+      profilePlace.setAtrribute("src", res.file.path);
+
+    })
+    .catch(function (err) {
+      "Error:", err;
+      console.log("photo not replaced");
+    });
+}
+
+document.querySelector("#go_back").addEventListener("click", function (e) {
+  e.preventDefault();
+  window.location.replace("/main");
+});

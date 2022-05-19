@@ -10,14 +10,57 @@ const {
 } = require("jsdom");
 const bcrypt = require("bcrypt");
 //mysql2 is ALSO REQUIRED. 
-
+const multer = require("multer");
 const mysql = require("mysql2");
 var connection = null;
 
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
-app.use("/img", express.static("./public/img"))
+app.use("/img", express.static("./public/img"));
+app.use("/avatar", express.static("./public/avatar"));
 app.use("/html", express.static("./app/html"));
+
+//multer storage for uploading photos in profile page
+const storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, "./public/avatar/");
+  },
+  filename: function (req, file, callback) {
+    callback(null, "new-avatar-" + file.originalname.split("/").pop().trim());
+  },
+});
+const upload = multer({
+  storage: storage
+});
+
+//route for uploading data data
+app.post("/post", upload.single('image'), (req, res) => {
+  if (!req.file) {
+    console.log("No file upload");
+  } else {
+    console.log(req.file.filename)
+    var imgsrc = 'localhost:8000/avatar/' + req.file.filename
+    var insertData = "UPDATE BBY_17_accounts SET avatar = ? WHERE ID = ?"
+    console.log("uploaded a photo!")
+    req.session.user_id
+    profilePicArea = req.file.path
+    connection.connect();
+    connection.query(insertData, [imgsrc, req.session.user_id], (err, result) => {
+      if (err) throw err
+      console.log("avatar photo uploaded")
+    })
+  }
+});
+
+//for Upload image function in profile page
+app.post("/upload-images", upload.array("files"), function (req, res) {
+  //console.log(req.body);
+  console.log(req.files);
+
+  for (let i = 0; i < req.files.length; i++) {
+    req.files[i].filename = req.files[i].originalname;
+  }
+});
 
 //Still don't understand entirely what session is and why we need it, but I guess it's fine for now...
 app.use(session({
@@ -55,6 +98,8 @@ app.get("/main", function (req, res) {
     profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
     profileDOM.window.document.getElementById("email").textContent = req.session.email;
     profileDOM.window.document.getElementById("points").textContent = req.session.points;
+    profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
+    console.log(req.session.avatar);
 
     res.send(profileDOM.serialize());
   } else {
@@ -98,6 +143,7 @@ app.get("/profile", function (req, res) {
   profileDOM.window.document.getElementById("lastname").setAttribute("value", req.session.last_name);
   profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
   profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
+  profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
 
   var dobJSON = req.session.dob.substring(0, 10);
 
@@ -612,7 +658,8 @@ async function init() {
       password VARCHAR(30) NOT NULL,
       is_admin BOOL NULL, 
       dob DATE NOT NULL,
-      points INT DEFAULT 0);
+      points INT DEFAULT 0,
+      avatar VARCHAR(50) DEFAULT "/avatar/profilepic.png");
     
     CREATE TABLE IF NOT EXISTS BBY_17_activities (
       title VARCHAR(25) PRIMARY KEY,
