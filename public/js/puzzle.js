@@ -1,3 +1,5 @@
+const gameTitle = "Puzzle";
+
 $(document).ready(function () {
 
     // console.log(pieces);
@@ -6,6 +8,7 @@ $(document).ready(function () {
 
 
     $("#btnstart").click(function () {
+        sendDataToServer();
         var pieces = $("#puzzlecontainer div");
         pieces.each(function () {
             var leftposition = Math.floor(Math.random() * 290) + "px";
@@ -62,6 +65,7 @@ $(document).ready(function () {
                 return false; /* loss */
             } else {
                 $("#piececontainer").text("wow! you are a GENIUS");
+                updateDataOnServer();
                 return true; /* win */
             }
         }
@@ -95,8 +99,34 @@ $(document).ready(function () {
                     position: "relative"
                 }).appendTo(droppedOn);
                 checkIfPuzzleSolved();
-
             }
         });
     }
 });
+
+function sendDataToServer() {
+
+    console.log("Starting to match...");
+    const timeStamp = Date.now(); 
+    console.log(timeStamp);
+    const data = {title: gameTitle};
+    fetch("/start-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+}
+
+function updateDataOnServer() {
+    console.log("finished matching!");
+    const data = {title: gameTitle};
+    fetch("/finish-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+}
