@@ -1,0 +1,161 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    align-items: center;
+    background-image: linear-gradient(#16697a, #5b96a1);
+}
+
+.navbarul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    padding: 10px;
+    display:flex;
+    justify-content: space-between;
+    min-width: 340px;
+}
+
+#logo {
+    background-image: url(/img/logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 120px;
+    height: 120px;
+}
+
+.option {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color:white;
+    font-size: bolder;
+    white-space: nowrap;
+    margin:0 15px;
+}
+
+.option>img {
+    width: 50px;
+    height: 50px;
+    align-self: center;
+}
+
+.option:active {
+    filter: invert(100%) sepia(16%) saturate(7463%) hue-rotate(222deg) brightness(119%) contrast(115%);
+}
+
+.option:hover {
+    transform: scale(1.09);
+    transition: ease-in 0.09s;
+}
+
+#logout {
+    background-color: transparent;
+    color: #ffff;
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+#logout:hover {
+    color: red;
+    transform: none;
+}
+
+#logout {
+    background-color: transparent;
+    color: #ffff;
+    border: none;
+    padding-right: 10px;
+}
+
+button > img {
+    float: right;
+    width: 55px;
+    height: 55px;
+}
+
+#username {
+    font-size: 1em;
+    color: #4874B5;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+@media screen and (max-width:717px) {
+
+    .option {
+        margin:0 8px;
+    }
+   
+    #logo {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background-image: url(/img/logo.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 75px;
+        height: 75px;
+        padding: 5px;
+        margin: 5px;
+    }
+    
+    #logo:hover{
+        transform: scale(1.09);
+    }
+
+    #logout{
+        font-size: 0.70em;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+    }
+
+    .logout{
+        z-index:1;
+        border-radius: 90px;
+        background-color: black;
+        border:1.5px solid #ffa62b;
+        position: fixed;
+        bottom: 10px;
+        left: 5px;
+        z-index: 1;
+        width: 55px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logout:hover{
+        transform: scale(1.09);
+    }
+
+    button>img{
+       display:none;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid black;
+      
+    }
+
+    .navbarul{
+        width: 100%;
+        min-width: 300px;
+    }
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+    }
+}
+

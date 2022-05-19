@@ -30,6 +30,33 @@ body {
     padding-right: 20px;
 }
 
+#pointsholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    width: 200px;
+    height: 50px; 
+    border-radius: 15px;
+    top: 30px;
+}
+
+@media screen and (min-width: 790px){
+    .profile_card > #pointsholder {
+        float: right;
+        margin: 0 auto;
+        position: absolute;
+        right: 60px;
+    }
+}
+
+/* .profile_card > #pointsholder {
+    float: right;
+    margin: 0 auto;
+    position: absolute;
+    right: 60px;
+} */
 
 .subtitle {
     font-size: 1em;
@@ -38,28 +65,7 @@ body {
     margin: 0;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    align-items: center;
-}
-
-.navbarul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    padding: 10px;
-}
-
-.option {
-    float: right;
-    display: flex;
-    flex-direction: column;
-}
-
-.option a {
+.prof {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -67,21 +73,7 @@ nav {
     text-align: center;
     padding: 16px;
     text-decoration: none;
-    align-items: center;
-}
-
-.option>a>img {
-    width: 50px;
-    height: 40px;
-}
-
-.option:active {
-    filter: invert(100%) sepia(16%) saturate(7463%) hue-rotate(222deg) brightness(119%) contrast(115%);
-}
-
-.option:hover {
-    transform: scale(1.09);
-    transition: ease-in 0.09s;
+    align-items: center; 
 }
 
 #username {
@@ -109,9 +101,28 @@ section {
 .exer_card{
     flex: 1;
     background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
-    margin: 4px 8px;
+    margin: 4px 15px;
     border-radius: 20px;
-    padding: 5px;
+    padding: 10px;
+}
+
+.exer_card:nth-child(1){
+    background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%);
+}
+.exer_card:nth-child(2){
+    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+}
+.exer_card:nth-child(3){
+    background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);
+}
+.exer_card:nth-child(4){
+    background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%); 
+}
+.exer_card:nth-child(5){
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+}
+.exer_card:nth-child(6){
+    background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%);    
 }
 
 .exer_card>.subtitle{
@@ -135,7 +146,7 @@ section {
     height: 200px;
     width: 100%;
     /* margin: 8px; */
-    /* opacity: 0.6; */
+
     text-decoration: none;
     color: black;
 }
@@ -159,18 +170,22 @@ section {
 
 .walk {
     background-image: url(/img/walk.jpg);
+    flex:1;
 }
 
 .hike {
     background-image: url(/img/hikee.jpg);
+    flex:1;
 }
 
 .yoga {
     background-image: url(/img/yoga.jpg);
+    flex:1;
 }
 
 .meditation {
     background-image: url(/img/meditation.jpg);
+    flex:1;
 }
 
 
@@ -182,10 +197,11 @@ section {
     transition: 0.4s;
     opacity: 1;
     font-size: 2em;
-    /* font-weight: bolder; */
     cursor: pointer;
     font-weight: 900;
-    /* filter: brightness(50%); */
+    opacity: 0.5;
+    background-image: none;
+    background-color: black;
 }
 
 /* .exercise>.imgname:hover{
@@ -195,27 +211,6 @@ section {
 /* .exercise:hover {
    filter: brightness(100%);
 } */
-
-
-
-#logout {
-    border-radius: 20px;
-    padding: 8px 40px;
-    background-color: #ffa62b;
-    color: #ffff;
-    border: none;
-    margin-bottom: 10px;
-}
-
-#logout:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.3s;
-}
-
-#logout:active {
-    background-color: #8b622a;
-}
 
 /* #exercisesub {
     border-radius: 10px;
@@ -241,43 +236,14 @@ section {
 
 .profilepic {
     width: 100px;
-    margin: 20px;
-}
-
-.profile_card {
-    display: flex;
-    padding: 10px;
-}
-
-.profile_card>div>div {
-    margin: 2px;
-    font-size: 0.9em;
-}
-
-.profilepic {
-    width: 100px;
     height: 100px;
     margin: 10px;
 }
 
-@media screen and (max-width:499px) {
+@media screen and (max-width:717px) {
     body {
         min-width: 350px;
         height: 100%;
-    }
-
-    #logo {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        background-image: url(/img/logo.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 50px;
-        height: 50px;
-        padding: 5px;
-        z-index: 1;
     }
 
     .physical {
@@ -291,26 +257,6 @@ section {
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
-    }
-
-    nav {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-image: linear-gradient(#16697a, #5b96a1);
-        border-bottom: 2px solid black;
-
-    }
-
-    #logo {
-        order: 2;
-        transform: scale(1.5);
-        margin: 5px;
-    }
-
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
     }
 
     .subcontainer {
@@ -332,31 +278,7 @@ section {
     }
 }
 
-@media screen and (min-width:0px) and (max-width:793px) {
-    nav>h1.title {
-        display: none;
-    }
-    .profile_card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-    }
-    .profilepic{
-        margin-top:10px;
-    }
-
-
-}
-
-@media screen and (max-width:1172px) {
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
-    }
-}
-
-@media screen and (min-width:500px) and (max-width:3400px) {
+@media screen and (min-width:718px) and (max-width:3400px) {
     body {
         min-width: 350px;
     }
@@ -364,23 +286,9 @@ section {
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;  
+        background-repeat: repeat-y;  
         background-size: cover;
         width: 100%;
-    }
-
-    nav {
-        background-image: linear-gradient(#16697a, #5b96a1);
-        border-bottom: 2px solid black;
-    }
-
-    #logo {
-        background-image: url(/img/logo.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 150px;
-        height: 150px;
     }
 
     .title {

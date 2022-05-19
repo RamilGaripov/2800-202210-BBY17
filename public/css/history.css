@@ -1,0 +1,217 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    height: 100%;
+}
+
+.title {
+    display: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.subtitle {
+    font-size: 1em;
+    color: #16697A;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 7px;
+
+}
+
+#username {
+    font-size: 1em;
+    color: #4874B5;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+p {
+    margin: 10px 0 0;
+
+}
+
+#go_back {
+    text-decoration: none;
+    font-size:1em;
+    background-color: #ffa62b;
+    padding:4px 10px;
+}
+
+#logout {
+    background-color: gray;
+    padding:4px 10px;
+}
+
+#logout, #go_back {
+
+    border-radius: 20px;
+  
+    color: #ffff;
+    border: none;
+    margin:5px 2px;
+}
+
+#logout:hover, #go_back:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.2s;
+}
+
+#logout:active, #go_back:active {
+    background-color: #8b622a;
+}
+
+
+.profilepic {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+
+}
+
+.user_posts {
+    border: 1px solid black; 
+    padding: 10px;
+    background-color: #e7c84d;
+}
+
+.user_post_div {
+    display: flex;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 5px 0;
+    font-size: 0.7em;
+    font-family: sans-serif;
+    min-width: 350px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    overflow: auto;
+}
+
+.styled-table thead tr {
+    background-color: linear-gradient(#489FB5, #009879);
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 6px 7px;
+    width: 100%;
+}
+
+.styled-table tr {
+    border-bottom: 1px solid #dddddd;
+    width: 100%;
+    overflow: auto;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+@media screen and (max-width:499px) {
+    body {
+        min-width: 350px;
+    }
+
+    .container {
+        background-image: url(/img/main_bg.jpg);
+        background-position: center;
+        background-repeat: repeat-y;
+        background-size: cover;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid black;
+    }
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:3400px) {
+    body {
+        min-width: 350px;
+    }
+
+    .container {
+        background-image: url(/img/main_bg.jpg);
+        background-position: center;
+        background-repeat: repeat-y;
+        background-size: cover;
+        width: 100%;
+    }
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        /* padding-bottom: 20px; */
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex: 1;
+        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+    }
+
+    .form-group {
+        text-align: center;
+        margin: 2px;
+    }
+
+    .form-group>label {
+        font-weight: bolder;
+    }
+
+    .form-group>input {
+        border-radius: 8px;
+    }
+
+}

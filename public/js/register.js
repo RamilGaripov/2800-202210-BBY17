@@ -37,7 +37,7 @@ async function createAccount(data) {
       if (parsedJSON.privileges) {
         window.location.replace("/dashboard");
       } else {
-        window.location.replace("/profile");
+        window.location.replace("/");
       }
     }
   } catch(err) {
