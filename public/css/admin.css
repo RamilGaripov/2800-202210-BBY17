@@ -124,9 +124,6 @@ p {
 @media screen and (max-width:499px) {
     body {
         min-width: 350px;
-    }
-
-    .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;

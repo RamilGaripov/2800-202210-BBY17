@@ -30,34 +30,38 @@ body {
     padding-right: 20px;
 }
 
+.profile_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-color: #16697a;
+    border-radius: 12px;
+    min-width: 350px;
+    margin: 15px 0 8px 0;
+}
+
+b,
+span {
+    margin: 5px;
+}
+
 #pointsholder {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    color: white;
+    color: black;
+    font-weight: 300;
     width: 200px;
-    height: 50px; 
+    height: 50px;
     border-radius: 15px;
-    top: 30px;
+    margin: 5px 0;
+    border: 3px dotted #c67700;
 }
 
-@media screen and (min-width: 790px){
-    .profile_card > #pointsholder {
-        float: right;
-        margin: 0 auto;
-        position: absolute;
-        right: 60px;
-    }
+div>b+span {
+    color: #16697a;
 }
-
-/* .profile_card > #pointsholder {
-    float: right;
-    margin: 0 auto;
-    position: absolute;
-    right: 60px;
-} */
-
 .subtitle {
     font-size: 1em;
     color: black;
@@ -73,7 +77,7 @@ body {
     text-align: center;
     padding: 16px;
     text-decoration: none;
-    align-items: center; 
+    align-items: center;
 }
 
 #username {
@@ -88,67 +92,55 @@ section {
     height: 100%;
 }
 
-.physical {
+.border {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     border-color: #16697a;
     border-radius: 12px;
     min-width: 100px;
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
-.exer_card{
+.card {
     flex: 1;
-    background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
+    background-image: linear-gradient(to right, #bd6f2d, #b15f48, #985759, #77535d, #564f53);
     margin: 4px 15px;
     border-radius: 20px;
-    padding: 10px;
+    padding: 0;
+    text-align: center;
 }
 
-.exer_card:nth-child(1){
-    background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%);
-}
-.exer_card:nth-child(2){
-    background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
-}
-.exer_card:nth-child(3){
-    background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);
-}
-.exer_card:nth-child(4){
-    background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%); 
-}
-.exer_card:nth-child(5){
-    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
-}
-.exer_card:nth-child(6){
-    background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%);    
-}
 
-.exer_card>.subtitle{
-    padding: 4px;
-}
-
-.exercise {
+.link {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bolder;
-    font-size: 1.5em;
+    font-size: 2em;
     letter-spacing: 3px;
-    /* background-image: url(/img/walking.png); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 200px;
-    /* width: 1.2fr; */
     border-radius: 20px;
     height: 200px;
     width: 100%;
-    /* margin: 8px; */
-
     text-decoration: none;
-    color: black;
+    color: transparent;
+}
+
+.link:hover {
+    color: white;
+    box-shadow: 1px 1px 1px 3px gray;
+    transform: scale(1.04);
+    transition: 0.4s;
+    opacity: 1;
+    cursor: pointer;
+    font-weight: 900;
+    /* background-image:none; */
+    background-blend-mode: soft-light;
+    background-color:gray;
+    backdrop-filter: blur(4px);
+    opacity: 0.99;
 }
 
 .wordle {
@@ -170,93 +162,46 @@ section {
 
 .walk {
     background-image: url(/img/walk.jpg);
-    flex:1;
+    flex: 1;
 }
 
 .hike {
     background-image: url(/img/hikee.jpg);
-    flex:1;
+    flex: 1;
 }
 
 .yoga {
     background-image: url(/img/yoga.jpg);
-    flex:1;
+    flex: 1;
 }
 
 .meditation {
     background-image: url(/img/meditation.jpg);
-    flex:1;
-}
+    flex: 1;
+} 
 
-
-
-.exercise:hover {
-    color: wheat;
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: 0.4s;
-    opacity: 1;
-    font-size: 2em;
-    cursor: pointer;
-    font-weight: 900;
-    opacity: 0.5;
-    background-image: none;
-    background-color: black;
-}
-
-/* .exercise>.imgname:hover{
-    filter: brightness(100%);
-} */
-
-/* .exercise:hover {
-   filter: brightness(100%);
-} */
-
-/* #exercisesub {
-    border-radius: 10px;
-    padding: 8px 40px;
-    background-color: #BEE5B0;
-    color: black;
-    border: 2px solid black;
-    margin-bottom: 10px;
-    height: 50px;
-    width: 200px;
-    font-size: 20px;
-}
-
-#exercisesub:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.3s;
-}
-
-#exercisesub:active {
-    background-color: #BEE5B0;
-} */
-
-.profilepic {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-}
+    .profilepic {
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        border: 2px solid #8b622a;
+        border-radius: 10px;
+    }
 
 @media screen and (max-width:717px) {
     body {
         min-width: 350px;
-        height: 100%;
-    }
-
-    .physical {
-        display: flex;
-        flex-direction: column;
-        min-height: 150px;
-    }
-
-    .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
+    }
+
+    .border {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 150px;
     }
 
     .subcontainer {
@@ -276,6 +221,20 @@ section {
         border-radius: 20px;
         margin-bottom: 10px;
     }
+
+    .profilepic {
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        border: 2px solid #8b622a;
+        border-radius: 10px;
+    }
+
+    .card{
+        margin: 15px auto;
+        width:80%;
+        
+    }
 }
 
 @media screen and (min-width:718px) and (max-width:3400px) {
@@ -286,30 +245,9 @@ section {
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: repeat-y;  
+        background-repeat: repeat-y;
         background-size: cover;
         width: 100%;
-    }
-
-    .title {
-        color: #ffff;
-        display: inline-flex;
-        align-self: center;
-        text-align: center;
-        opacity: 0;
-        animation: 2s fadeIn;
-        animation-fill-mode: forwards;
-        transition: opacity 1.5s;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
     }
 
     .subcontainer {
@@ -329,28 +267,16 @@ section {
         margin-bottom: 10px;
     }
 
-    .physical {
+    .card{
+        margin:10px;
+    }
+    .border {
         justify-content: space-between;
     }
 
-    .exercise {
+    .link {
         min-height: 150px;
         min-width: 150px;
-        flex: 1; 
+        flex: 1;
     }
-
-    .form-group {
-        display: inline-block;
-        text-align: center;
-        margin: 2px;
-    }
-
-    .form-group>label {
-        font-weight: bolder;
-    }
-
-    .form-group>input {
-        border-radius: 8px;
-    }
-
 }

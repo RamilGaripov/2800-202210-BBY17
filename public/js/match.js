@@ -177,3 +177,5 @@ const attachEventListeners = () => {
 
 generateGame()
 attachEventListeners()
+
+

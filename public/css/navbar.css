@@ -11,9 +11,10 @@ nav {
     padding: 0;
     overflow: hidden;
     padding: 10px;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     min-width: 340px;
+    font-size: 0.9rem;
 }
 
 #logo {
@@ -30,10 +31,10 @@ nav {
     display: flex;
     flex-direction: column;
     text-align: center;
-    color:white;
+    color: white;
     font-size: bolder;
     white-space: nowrap;
-    margin:0 15px;
+    margin: 0 30px;
 }
 
 .option>img {
@@ -58,8 +59,9 @@ nav {
     display: flex;
     flex-direction: column;
 }
+
 #logout:hover {
-    color: red;
+    color: #ffa62b;
     transform: none;
 }
 
@@ -70,8 +72,7 @@ nav {
     padding-right: 10px;
 }
 
-button > img {
-    float: right;
+button>img {
     width: 55px;
     height: 55px;
 }
@@ -86,8 +87,9 @@ button > img {
 @media screen and (max-width:717px) {
 
     .option {
-        margin:0 8px;
+        margin: 0 8px;
     }
+
    
     #logo {
         position: fixed;
@@ -101,41 +103,54 @@ button > img {
         height: 75px;
         padding: 5px;
         margin: 5px;
-    }
-    
-    #logo:hover{
-        transform: scale(1.09);
+        z-index: 1000;
+        border-radius: 90px;
     }
 
-    #logout{
+    #logo:hover {
+        transform: scale(1.1);
+        border: 2px solid #4874B5;
+        border-radius: 90px;
+        transition: ease-in-out 0.3s;
+    }
+
+  
+
+    #logout {
         font-size: 0.70em;
         font-family: 'Montserrat', sans-serif;
         text-align: center;
+        padding: 0;
     }
 
-    .logout{
-        z-index:1;
+
+    button>b{
+        display: none;
+    }
+
+    .logout {
+        z-index: 1000;
         border-radius: 90px;
-        background-color: black;
-        border:1.5px solid #ffa62b;
+        background-color: #4874B5;
+        border: 1.5px solid #ffa62b;
         position: fixed;
         bottom: 10px;
         left: 5px;
-        z-index: 1;
         width: 55px;
         height: 55px;
         display: flex;
         justify-content: center;
+        text-align: center;
         align-items: center;
+        padding: 0;
     }
 
-    .logout:hover{
-        transform: scale(1.09);
+    .logout:hover {
+        transform: scale(1.1);
+        background-color: #ffa62b;
+        transition:ease-in-out 0.4s;
     }
 
-    button>img{
-       display:none;
-    }
 
     nav {
         display: flex;
@@ -143,10 +158,10 @@ button > img {
         justify-content: center;
         align-items: center;
         border-bottom: 2px solid black;
-      
+
     }
 
-    .navbarul{
+    .navbarul {
         width: 100%;
         min-width: 300px;
     }
@@ -158,4 +173,3 @@ button > img {
         height: 100%;
     }
 }
-

@@ -610,7 +610,7 @@ async function init() {
       completed BOOL DEFAULT false,
       time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
       time_completed DATETIME NULL,
-      comment VARCHAR(255) DEFAULT "How did you feel about this experience?"
+      comment VARCHAR(255) NULL
     );
     `;
 

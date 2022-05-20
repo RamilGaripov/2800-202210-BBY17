@@ -1,0 +1,126 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.cinema {
+    margin: auto;
+}
+
+fieldset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: #16697a;
+    border-radius: 12px;
+    min-width: 350px;
+    margin: 8px 0;
+}
+
+legend {
+    font-size: 2em;
+    color: #4874B5;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.egg{
+    position:absolute;
+    background-image: url(/img/chungus.png);
+    background-size: cover;
+    background-position: center;
+    opacity:0.1;
+    bottom:0;
+    right:200px;
+    width:40px;
+    height: 40px;
+    z-index:100;
+}
+
+.egg:hover{
+    opacity:0.5;
+    transition: ease-in 2s;
+}
+
+.carnival{
+    margin-top: 150px;
+    padding-top: 100px;
+}
+
+
+@media screen and (max-width:716px) {
+    body {
+        min-width: 350px;
+        background-color: wheat;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+    .cinema {
+        margin: 0 4px;
+    }
+
+    fieldset {
+        margin: 10px 5px;
+        padding: 5px 10px;
+        height: 70%;
+    }
+
+
+    iframe {
+        width: 100%;
+        height: 70%;
+    }
+
+    span {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width:717px) and (max-width:3400px) {
+
+    .cinema {
+        justify-items: center;
+        align-items: center;
+        width: 700px;
+        height: 530px;
+        padding: 30px;
+        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 70.18%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+        margin: auto;
+    }
+
+    fieldset {
+        padding: 20px 4px;
+    }
+
+    iframe {
+        min-width: 500px;
+        min-height: 360px;
+        margin: auto;
+    }
+
+    /* video width="560" height="315" */
+
+}
