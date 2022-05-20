@@ -13,11 +13,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png"/>
-    <link rel="mask-icon" href="/safari-pinned-tab.svg"  color="#5bbad5"/>
-    <meta name="msapplication-TileColor" content="#da532c"/>
-    <meta name="theme-color" content="#ffffff"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -25,49 +25,55 @@
     <div class="container">
         <div class="subcontainer">
             <main>
-                <p class="subtitle"><span id="greeting"></span>, edit your profile!</p>
-                <img alt="Your Avatar" class="profilepic" id="profilepic"> 
-                <form action="/edit" class="form-group">
-                    <form action="/auth/register" method="POST" class="main">
-                        <h1 class="title"> Edit&nbsp;<span id="username"></span>'s Profile</h1>
 
-                        <div class="form-group">
-                            <label for="firstname">First Name</label><br>
-                            <input type="text" class="form-control" id="firstname" name="firstname">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="lastname">Last Name</label><br>
-                            <input type="text" class="form-control" id="lastname" name="lastname">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email</label><br>
-                            <input type="text" class="form-control" id="email" name="email">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Password</label><br>
-                            <input type="text" class="form-control" id="password" name="password">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dob">Date of Birth</label><br>
-                            <input type="date" class="form-control" id="dob" name="dob">
-
-                        </div>
-                        <br>
-                        <button type="submit" id="submit">SAVE</button>
-                        <button type="submit" id="go_back">BACK</button>
-                        <p id="serverMsg"></p>
-                    </form>
-
-                    <h2 class="subtitle">Change Avatar Photo</h2>
-                    <form id="upload-images-form" action="/upload-images" method="POST" >
+                <fieldset class="border">
+                    <img alt="Your Avatar" class="profilepic" id="profilepic">
+                    <legend class="subtitle">Change Avatar Photo</legend>
+                    <form id="upload-images-form" action="/upload-images" method="POST">
                         <input id="image-upload" type="file" value="Upload Image"
-                            accept="image/png, image/gif, image/jpeg" name="avatar"/>
+                            accept="image/png, image/gif, image/jpeg" name="avatar" />
                         <input id="submit" type="submit" value="Submit" />
                     </form>
+                </fieldset>
+
+                <fieldset class="border">
+                    <legend class="subtitle"><span id="greeting"></span>, edit your profile!</p>
+                    </legend>
+                    <form action="/edit" class="form-group">
+                        <form action="/auth/register" method="POST" class="main">
+                            <h1 class="title"> Edit&nbsp;<span id="username"></span>'s Profile</h1>
+
+                            <div class="form-group">
+                                <label for="firstname">First Name</label><br>
+                                <input type="text" class="form-control" id="firstname" name="firstname">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastname">Last Name</label><br>
+                                <input type="text" class="form-control" id="lastname" name="lastname">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label><br>
+                                <input type="text" class="form-control" id="email" name="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label><br>
+                                <input type="text" class="form-control" id="password" name="password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label><br>
+                                <input type="date" class="form-control" id="dob" name="dob">
+
+                            </div>
+                            <br>
+                            <button type="submit" id="submit">SAVE</button>
+                            <button type="submit" id="go_back">BACK</button>
+                            <p id="serverMsg"></p>
+                        </form>
+                </fieldset>
 
             </main>
         </div>

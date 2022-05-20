@@ -107,11 +107,10 @@ p {
 }
 
 .dash {
-    height: 3em;
+    height:50px;
     border-radius: 10px;
     border: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
+   padding: 1px 10px;
     background-color: #ffa62b;
 }
 
@@ -124,9 +123,6 @@ p {
 @media screen and (max-width:499px) {
     body {
         min-width: 350px;
-    }
-
-    .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
@@ -154,9 +150,6 @@ p {
 @media screen and (min-width:500px) and (max-width:3400px) {
     body {
         min-width: 350px;
-    }
-
-    .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
@@ -180,6 +173,7 @@ p {
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
+        margin-bottom: 30px;
     }
 
     .form-group {

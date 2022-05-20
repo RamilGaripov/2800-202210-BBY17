@@ -47,7 +47,7 @@ body {
 }
 
 
-main>form>#submit {
+form>#submit {
     border-radius: 20px;
     padding: 4px 13px;
     background-color:#ffa62b;
@@ -58,18 +58,31 @@ main>form>#submit {
     margin-bottom: 10px;
 }
 
-main>form>#submit:hover {
+form>#submit:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: ease-in 0.03s;
 }
 
-main>form>#submit:active {
+form>#submit:active {
     background-color: #8b622a;
 }
 
+#image-upload{
+display: flex;
+flex-direction: column;
+/* padding:10px 4px; */
+margin:6px 2px;
+border-radius: 0 10px 10px 0;
+}
 
-#go_back {
+#image-upload:hover{
+    background-color: wheat;
+    box-shadow: 1px 2px 2px 2px grey;
+    transition: ease-in 0.2s;
+    }
+
+#go_back  {
     border-radius: 20px;
     padding: 4px 13px;
     background-color: gray;
@@ -92,34 +105,30 @@ main>form>#submit:active {
 
 
 .profilepic {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin: 10px;
+    border: 2px solid #8b622a;
+    border-radius: 10px;
+}
+
+.border{
+    border-color: #16697a;
+    border-radius: 12px;
+    min-width: 350px;
+    margin: 8px 0;
 }
 
 @media screen and (max-width:717px) {
     body {
-        min-width: 350px;
-    }
-
-    .container {
+        min-width: 370px;
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
     }
 
-
-
-    .subcontainer {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        height: 100%;
-    }
-
-
-    main {
+   main {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -128,15 +137,30 @@ main>form>#submit:active {
         backdrop-filter: blur(4px);
         border-radius: 20px;
     }
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    
+    .border{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        min-width: 350px;
+        margin: 10px;
+    }
 }
 
 
 @media screen and (min-width:718px) and (max-width:3400px) {
     body {
         min-width: 350px;
-    }
-
-    .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
@@ -144,15 +168,16 @@ main>form>#submit:active {
         width: 100%;
     }
 
+
     main {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        width: 50%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
+        padding:10px;
     }
+
     .subcontainer {
         display: flex;
         align-items: center;
@@ -172,6 +197,17 @@ main>form>#submit:active {
 
     .form-group>input {
         border-radius: 8px;
+    }
+
+
+    .border{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        min-width: 350px;
+        margin: 10px;
     }
 
 }

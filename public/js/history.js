@@ -17,26 +17,31 @@ async function getPosts() {
             document.getElementById("serverMsg").textContent = data.msg;
         } else {
 
-          let str = `<section class="user_posts"><h2 class="subtitle"></h2><div class="user_post_div">
+          let str = 
+          `<section class="user_posts">
+          <legend class="subtitle"></legend>
+          <fieldset class="border user_post_div">
             <div class="left_box">
               <img src="" alt="" />
               <form class="upload-images-form">
-                <input
-                  class="image-upload"
-                  type="file"
-                  value="Upload Image"
-                  accept="image/png, image/gif, image/jpeg"
-                  multiple="multiple"
-                />
+                <input class="image-upload" type="file" value="Upload Image" accept="image/png, image/gif, image/jpeg"
+                  multiple="multiple" />
                 <input class="submit" type="submit" value="Submit" />
               </form>
             </div>
-            <div style="display: block">
-              <div><p>Name: <span class="activity_title"></p><p>Points Received: <span class="points"></span></p></div>
-              <textarea class="comment_section" cols="30" rows="10"></textarea>
-              <button type="submit" class="submit_comment">SAVE</button>
+          </fieldset>
+
+          <fieldset class="border">
+            <div>
+              <b>Name: </b><span class="activity_title"></span>
+              <b>Points Received: <span class="points"></span></b>
             </div>
-          </div></section>`;
+            <textarea class="comment_section" cols="40" rows="10"
+              placeholder="How did you feel about this experience?"></textarea>
+            <button type="submit" class="submit_comment">SAVE</button>
+          </fieldset>
+    </div>
+    </section>`;
 
             for (let i = 0; i < rows.length; i++) {
                 let row = rows[i];

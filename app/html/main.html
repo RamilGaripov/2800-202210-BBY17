@@ -13,11 +13,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png"/>
-    <link rel="mask-icon" href="/safari-pinned-tab.svg"  color="#5bbad5"/>
-    <meta name="msapplication-TileColor" content="#da532c"/>
-    <meta name="theme-color" content="#ffffff"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -25,68 +25,61 @@
     <div class="container top">
         <div class="subcontainer">
             <main>
-                <section class="profile_card">
+                <fieldset class="profile_card">
+                    <legend id="username">.</legend>
                     <img alt="profile" class="profilepic" id="profilepic">
                     <div>
-                        <p id="username">.</p>
-                        <div><b>Email:</b> <span id="email"></span></div>
-                        </div>
-                    <br>
-                    <div id="pointsholder"><b>&nbsp;Your Points: &nbsp; &nbsp; </b><span id="points"></span></div>
-                </section>
+                        <div><b>Email:</b><span id="email"></span></div>
+                    </div>
+                    <div id="pointsholder"><b>Your Points: </b><span id="points"></span></div>
+                </fieldset>
 
                 <section>
-                    <fieldset class="physical">
+                    <fieldset class="border">
                         <legend class="subtitle">Exercises</legend>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise walk" href="/html/walk.html">
-                                <p class="imgname">Walk</p>
+                        <div class="card">
+                            <a class="exerciselink link walk" href="/html/walk.html">
+                                <p class="imgname">BODY</p>
                             </a>
                             <h2 class="subtitle">WALK</h2>
-                            <p><b>Description:</b> Replace with text</p>
                         </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise hike" href="./hike.html">Hike<a>
+
+                        <div class="card">
+                            <a class="exerciselink link hike" href="./hike.html">MIND<a>
                                     <h2 class="subtitle">HIKE</h2>
-
-                                    <p><b>Description:</b>Find your closest peak</p>
                         </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise yoga" href="/html/yoga.html">Yoga</a>
+
+                        <div class="card">
+                            <a class="exerciselink link yoga" href="/html/yoga.html">BODY</a>
                             <h2 class="subtitle">YOGA</h2>
-                            <p><b>Description:</b>Namaste</p>
                         </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise meditation" href="./mediation.html">Meditate</a>
+
+                        <div class="card">
+                            <a class="exerciselink link meditation" href="./mediation.html">MIND</a>
                             <h2 class="subtitle">MEDITATE</h2>
-                            <p><b>Description:</b>Take a mental break</p>
                         </div>
                     </fieldset>
-                    <fieldset class="physical">
+                    <fieldset class="border">
                         <legend class="subtitle">Brain Games</legend>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise wordle" href="/html/wordle.html">Wordle</a>
+                        <div class="card">
+                            <a class="exerciselink link wordle" href="/html/wordle.html">Wordle</a>
                             <h2 class="subtitle">WORDLE</h2>
-                            <p><b>Description:</b>Test your vocabulary</p>
                         </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise suduko" href="/html/sudoku.html">Sudoku</a>
+                        <div class="card">
+                            <a class="exerciselink link suduko" href="/html/sudoku.html">Sudoku</a>
                             <h2 class="subtitle">SUDOKU</h2>
-                            <p><b>Description:</b>Test your skills</p>
                         </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise match" href="/html/match.html">Match</a>
+                        <div class="card">
+                            <a class="exerciselink link match" href="/html/match.html">Match</a>
                             <h2 class="subtitle">MATCH UP</h2>
-                            <p><b>Description:</b>Match pairs</p>
                         </div>
-                        <div class="exer_card">
-                            <a class="exerciselink exercise puzzle" href="/html/puzzle.html">Puzzle</a>
+                        <div class="card">
+                            <a class="exerciselink link puzzle" href="/html/puzzle.html">Puzzle</a>
                             <h2 class="subtitle">PUZZLE</h2>
-                            <p><b>Description:</b> A simple puzzle game</p>
                         </div>
                     </fieldset>
 
-                      </section>
+                </section>
 
             </main>
         </div>
