@@ -26,20 +26,20 @@ const localConfig = {
 const is_heroku = process.env.IS_HEROKU || false;
 
 
-// mysql://bbbf1ed5716748:0548f8d4@us-cdbr-east-05.cleardb.net/heroku_ea347eecae4ecfd?reconnect=true
+// mysql://be46a623c032da:271c02ac@us-cdbr-east-05.cleardb.net/heroku_0517524a798819b?reconnect=true
 // server
 const dbConfigHeroku = {
   host: 'us-cdbr-east-05.cleardb.net',
-  user: 'bbbf1ed5716748',
-  password: '0548f8d4',
-  database: 'heroku_ea347eecae4ecfd',
+  user: 'be46a623c032da',
+  password: '271c02ac',
+  database: 'heroku_0517524a798819b',
   multipleStatements: false
 }
 
 const dbConfigHerokuCreate = {
   host: 'us-cdbr-east-05.cleardb.net',
-  user: 'bbbf1ed5716748',
-  password: '0548f8d4',
+  user: 'be46a623c032da',
+  password: '271c02ac',
   multipleStatements: true
 }
 
@@ -49,7 +49,7 @@ const dbConfigLocal = {
   host: "localhost",
   user: "root",
   password: "",
-  database: "heroku_ea347eecae4ecfd"
+  database: "heroku_0517524a798819b"
 }
 
 const dbConfigLocalCreate = {
@@ -632,8 +632,8 @@ async function init() {
     }
 
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_ea347eecae4ecfd;
-    use heroku_ea347eecae4ecfd;
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_0517524a798819b;
+    use heroku_0517524a798819b;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
       email VARCHAR(50) UNIQUE NOT NULL,
