@@ -52,7 +52,7 @@ app.use(session({
 app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
   if (req.file) {
     const avatarPath = req.file.path.substring(6);
-   
+    connection = mysql.createConnection(localConfig); 
     var insertData = "UPDATE BBY_17_accounts SET avatar=? WHERE id=?"
     connection.connect();
     connection.query(insertData, [avatarPath, req.session.user_id], function (err) {
@@ -63,6 +63,7 @@ app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
         res.send({status: "success", msg: "PHOTO UPDATED. REFRESH THE PAGE TO SEE IT."});
       }
     });
+    connection.end();
     
   } else {
     console.log("No file uploaded.");
