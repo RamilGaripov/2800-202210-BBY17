@@ -1,7 +1,8 @@
 const express = require("express");
 const session = require("express-session");
 const {
-  append, redirect
+  append,
+  redirect
 } = require("express/lib/response");
 const app = express();
 const fs = require("fs");
@@ -10,7 +11,8 @@ const {
 } = require("jsdom");
 const bcrypt = require("bcrypt");
 //mysql2 is ALSO REQUIRED. 
-
+const multer = require("multer");
+const path = require("path");
 const mysql = require("mysql2");
 var connection = null;
 const localConfig = {
@@ -22,16 +24,50 @@ const localConfig = {
 
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
-app.use("/img", express.static("./public/img"))
+app.use("/img", express.static("./public/img"));
+app.use("/avatar", express.static("./public/avatar"));
 app.use("/html", express.static("./app/html"));
 
-//Still don't understand entirely what session is and why we need it, but I guess it's fine for now...
+//multer storage for uploading photos in profile page
+const storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, "./public/avatar/");
+  },
+  filename: function (req, file, callback) {
+    callback(null, Date.now() + file.originalname.split('/').pop().trim());
+  },
+});
+const upload = multer({
+  storage: storage
+});
+
 app.use(session({
   secret: "I can Put HERE Whatever I Want. Security Reasons.", //basically a random string of characters. You can input smth yourself, or generate an actual random string. Protects vs hackers trying to get into your session.
   name: "MyVeryPrivateSession_ID", //similar as line above 
   resave: false,
   saveUninitialized: true //allows us to stay logged in or something? Gotta double check.
 }));
+
+//route for uploading data data
+app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
+  if (req.file) {
+    const avatarPath = req.file.path.substring(6);
+   
+    var insertData = "UPDATE BBY_17_accounts SET avatar=? WHERE id=?"
+    connection.connect();
+    connection.query(insertData, [avatarPath, req.session.user_id], function (err) {
+      if (err) {
+        res.send({status: "fail", msg: "Unable to upload your photo."});
+      } else {
+        req.session.avatar = avatarPath;
+        res.send({status: "success", msg: "PHOTO UPDATED. REFRESH THE PAGE TO SEE IT."});
+      }
+    });
+    
+  } else {
+    console.log("No file uploaded.");
+  }
+});
 
 //This function feeds the index.html on first load. 
 app.get("/", function (req, res) {
@@ -58,6 +94,7 @@ app.get("/main", function (req, res) {
 
     console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
     profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
+    profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
     profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
     profileDOM.window.document.getElementById("email").textContent = req.session.email;
     profileDOM.window.document.getElementById("points").textContent = req.session.points;
@@ -81,7 +118,8 @@ app.get("/profile", function (req, res) {
   profileDOM.window.document.getElementById("lastname").setAttribute("value", req.session.last_name);
   profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
   profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
-
+  profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
+  
   var dobJSON = req.session.dob.substring(0, 10);
 
   profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
@@ -226,7 +264,7 @@ app.post("/update-user", function (req, res) {
     if (req.session.admin) {
       var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
       var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, req.session.id_to_edit];
-  
+
     } else {
       var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, password=?, dob=? WHERE id=?;";
       var sql_vars = [user.first_name, user.last_name, user.email, user.password, user.dob, req.session.user_id];
@@ -260,7 +298,7 @@ app.post("/delete-user", function (req, res) {
   console.log("Deleting the user with the id of:", req.body.id);
   connection = mysql.createConnection(localConfig); 
   connection.connect();
-
+  //ADD CODE HERE TO SEE IF THERE's ONLY ONE ADMIN LEFT. DO NOT ALLOW TO DELETE THEM!
   connection.query("DELETE FROM BBY_17_accounts WHERE id=?", [req.body.id], function (error, results) {
 
     if (error) {
@@ -405,11 +443,17 @@ app.get("/get-previous-activities", function(req, res) {
     } else {
       if (results.length > 0) {
         console.log("We got", results.length, "record(s) for this user.");
-        res.send({status: "success", rows: results});
+        res.send({
+          status: "success",
+          rows: results
+        });
       } else {
-        res.send({status: "fail", msg: "You have not completed any activities before."});
+        res.send({
+          status: "fail",
+          msg: "You have not completed any activities before."
+        });
       }
-      
+
     }
   });
   connection.end();
@@ -418,12 +462,18 @@ app.get("/get-previous-activities", function(req, res) {
 app.post("/update-comment", function(req, res) {
   connection = mysql.createConnection(localConfig); 
   connection.connect();
-  connection.query("UPDATE BBY_17_plays SET comment=? WHERE play_id=?", [req.body.comment, req.body.play_id], function(err) {
+  connection.query("UPDATE BBY_17_plays SET comment=? WHERE play_id=?", [req.body.comment, req.body.play_id], function (err) {
     if (err) {
-      res.send({status: "fail", msg: "Could not save your comment."});
+      res.send({
+        status: "fail",
+        msg: "Could not save your comment."
+      });
     } else {
       console.log("Activity comment updated.");
-      res.send({status: "success", msg: "Your comment has been saved."});
+      res.send({
+        status: "success",
+        msg: "Your comment has been saved."
+      });
     }
   });
   connection.end();
@@ -452,6 +502,7 @@ app.post("/login", function (req, res) {
       req.session.admin = userRecord.is_admin;
       req.session.dob = userRecord.dob;
       req.session.points = userRecord.points;
+      req.session.avatar = userRecord.avatar;
 
       if (req.session.admin) {
         console.log("This user is an admin.");
@@ -538,7 +589,8 @@ async function init() {
       password VARCHAR(30) NOT NULL,
       is_admin BOOL NULL, 
       dob DATE NOT NULL,
-      points INT DEFAULT 0);
+      points INT DEFAULT 0,
+      avatar VARCHAR(50) DEFAULT "/avatar/profilepic.png");
     
     CREATE TABLE IF NOT EXISTS BBY_17_activities (
       title VARCHAR(25) PRIMARY KEY,
