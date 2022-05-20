@@ -14,6 +14,7 @@ const bcrypt = require("bcrypt");
 const multer = require("multer");
 const path = require("path");
 const mysql = require("mysql2");
+const res = require("express/lib/response");
 var connection = null;
 const localConfig = {
   host: "localhost",
@@ -89,19 +90,25 @@ app.use(session({
 app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
   if (req.file) {
     const avatarPath = req.file.path.substring(6);
-    connection = mysql.createConnection(localConfig); 
+    connection = mysql.createConnection(localConfig);
     var insertData = "UPDATE BBY_17_accounts SET avatar=? WHERE id=?"
     connection.connect();
     connection.query(insertData, [avatarPath, req.session.user_id], function (err) {
       if (err) {
-        res.send({status: "fail", msg: "Unable to upload your photo."});
+        res.send({
+          status: "fail",
+          msg: "Unable to upload your photo."
+        });
       } else {
         req.session.avatar = avatarPath;
-        res.send({status: "success", msg: "PHOTO UPDATED. REFRESH THE PAGE TO SEE IT."});
+        res.send({
+          status: "success",
+          msg: "PHOTO UPDATED. REFRESH THE PAGE TO SEE IT."
+        });
       }
     });
     connection.end();
-    
+
   } else {
     console.log("No file uploaded.");
   }
@@ -124,24 +131,62 @@ app.get("/", function (req, res) {
   }
 });
 
-app.get("/main", function (req, res) {
-  if (req.session.loggedIn) {
+app.get("/main", async function (req, res) {
+  try {
+    if (req.session.loggedIn) {
 
-    let profile = fs.readFileSync("./app/html/main.html", "utf8");
-    let profileDOM = new JSDOM(profile);
+      let profile = fs.readFileSync("./app/html/main.html", "utf8");
+      let profileDOM = new JSDOM(profile);
 
-    console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
-    profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
-    profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
-    profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
-    profileDOM.window.document.getElementById("email").textContent = req.session.email;
-    profileDOM.window.document.getElementById("points").textContent = req.session.points;
-
-    res.send(profileDOM.serialize());
-  } else {
-    res.redirect("/");
+      console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
+      profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
+      profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
+      profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
+      profileDOM.window.document.getElementById("email").textContent = req.session.email;
+      // console.log("SESH POINTS BEFORE UPDATE:", req.session.points);
+      updatePoints(req.session.user_id, function(updatedRecord) {
+        if (!updatedRecord) {
+          res.send({
+            status: "fail",
+            msg: "Could not update user's points."
+          });
+        } else {
+          // console.log("UPDATED POINTS:", updatedRecord.points);
+          req.session.points = updatedRecord.points;
+          req.session.save();
+          // console.log("UPDATED SESH POINTS:", req.session.points);
+        }
+        
+      });
+      profileDOM.window.document.getElementById("points").textContent = req.session.points;
+      // console.log("SESH POINTS AT THE END OF THE UPDATE:", req.session.points);
+      res.send(profileDOM.serialize());
+    } else {
+      res.redirect("/");
+    }
+  } catch (err) {
+    console.log(err);
   }
 });
+
+
+function updatePoints(id, callback) {
+  const connection = mysql.createConnection(localConfig);
+  connection.connect();
+  connection.query("SELECT * FROM BBY_17_accounts WHERE id=?", id, function (err, results) {
+    if (err) {
+      console.log(err);
+    } 
+    if (results.length > 0) {
+      return callback(results[0]);
+    } else {
+      console.log("User info not found.");
+      return callback(null);
+    }
+  });
+  connection.end();
+  
+}
 
 app.get("/profile", function (req, res) {
   if (req.session.loggedIn) {
@@ -157,7 +202,7 @@ app.get("/profile", function (req, res) {
     profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
     profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
     profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
-  
+
     var dobJSON = req.session.dob.substring(0, 10);
 
     profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
@@ -462,6 +507,7 @@ app.post("/finish-game", function (req, res) {
       console.log("ERROR: ", err);
     }
   });
+
   connection.end();
 })
 
@@ -623,13 +669,13 @@ async function init() {
   //   multipleStatements: true,
   // });
 
-  
-    if (is_heroku) {
-      var connectionInit = await mysqlpromise.createConnection(dbConfigHerokuCreate);
-    } else {
-    
-     var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
-    }
+
+  if (is_heroku) {
+    var connectionInit = await mysqlpromise.createConnection(dbConfigHerokuCreate);
+  } else {
+
+    var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
+  }
 
 
   const createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_ea347eecae4ecfd;
@@ -712,21 +758,21 @@ async function init() {
   // });
 
 
-    if (is_heroku) {
-      connection = mysql.createConnection(dbConfigHeroku);
-    } else {
-      connection = mysql.createConnection(dbConfigLocal);
-    }
-    
+  if (is_heroku) {
+    connection = mysql.createConnection(dbConfigHeroku);
+  } else {
+    connection = mysql.createConnection(dbConfigLocal);
+  }
 
 
-   
+
+
 }
 
 // Sets the port and runs the server. Calls init().
 let port = 8000;
 
-if (is_heroku) { 
+if (is_heroku) {
   app.listen(process.env.PORT || 5000, init)
 } else {
   app.listen(port, init);
@@ -755,6 +801,3 @@ if (is_heroku) {
 
 //   res.end(`Hello ${q.query['name1']}`);
 // }).listen(process.env.PORT || 5000);
-
-
-
