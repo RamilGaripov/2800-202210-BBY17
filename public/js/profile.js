@@ -54,30 +54,22 @@ async function uploadImages(e) {
 
   for (let i = 0; i < imageUpload.files.length; i++) {
     // put the images from the input into the form data
-    formData.append("files", imageUpload.files[i]);
+    formData.append("avatar", imageUpload.files[i]);
   }
 
   console.log(formData);
 
   const response = await fetch("/post-new-avatar", {
     method: "POST",
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    },
     body: formData
   })
   const data = await response.json();
-  console.log(data);
-
+  
   if (data.status == "fail") {
-    console.log("Unable to update your photo.");
     document.getElementById("serverMsg").textContent = data.msg;
   } else {
-    console.log("Your photo has been updated.");
     document.getElementById("serverMsg").textContent = data.msg;
   }
-
 
   } catch(err) {
     console.log(err);
