@@ -190,15 +190,16 @@ body {
     body {
         min-width: 350px;
         height: 100%;
-    }
-    
-
-    .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
-        width: 100%;
+    
+    }
+    
+
+    .container {
+       width: 100%;
     }
 
 

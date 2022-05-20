@@ -8,27 +8,37 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <title>Sudoku</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png"/>
-<link rel="mask-icon" href="/safari-pinned-tab.svg"  color="#5bbad5"/>
-<meta name="msapplication-TileColor" content="#da532c"/>
-<meta name="theme-color" content="#ffffff"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/video.css">
+    <style>
+        body {
+            background-image: url(/img/summer.jpg);
+            background-size: cover;
+            background-repeat: repeat-y;
+        }
+    </style>
 </head>
 
 <body>
-<div class="container"></div>
-    <h1> Sudoku </h1>
-    <hr>
-    <h2 id="errors">0</h2>
+    <div class="container">
 
-    <!-- Board -->
-    <div id="board"></div>
-    <br>
-    <div id="digits">
+        <div class="cinema">
 
+            <fieldset>
+                <legend> Sudoku </legend>
+                <div>
+
+                    <h2 id="errors">0</h2>
+                    <!-- Board -->
+                    <div id="board"></div>
+                    <div id="digits"></div>
+                </div>
+            </fieldset>
+
+        </div>
     </div>
-
-
 
 
     <script src="/js/sudoku.js"></script>

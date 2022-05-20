@@ -11,18 +11,25 @@ html {
 body {
     height: 100vh;
     width: 100%;
+    min-width: fit-content;
     padding: 0;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
 
 .container {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
+}
+
+.subcontainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .cinema {
-    margin: auto;
+    margin:10px;
 }
 
 fieldset {
@@ -31,7 +38,7 @@ fieldset {
     justify-content: center;
     border-color: #16697a;
     border-radius: 12px;
-    min-width: 350px;
+    min-width: 310px;
     margin: 8px 0;
 }
 
@@ -64,6 +71,10 @@ legend {
     padding-top: 100px;
 }
 
+#errors {
+    background-color:#4874B5;
+    border-radius: 10px;
+}
 
 @media screen and (max-width:716px) {
     body {
@@ -82,13 +93,13 @@ legend {
     fieldset {
         margin: 10px 5px;
         padding: 5px 10px;
-        height: 70%;
+        height: 100%;
     }
 
 
     iframe {
         width: 100%;
-        height: 70%;
+        height: 90%;
     }
 
     span {
@@ -100,10 +111,6 @@ legend {
 @media screen and (min-width:717px) and (max-width:3400px) {
 
     .cinema {
-        justify-items: center;
-        align-items: center;
-        width: 700px;
-        height: 530px;
         padding: 30px;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 70.18%);
         backdrop-filter: blur(4px);
@@ -116,8 +123,8 @@ legend {
     }
 
     iframe {
-        min-width: 500px;
-        min-height: 360px;
+        min-width: 400px;
+        min-height: 250px;
         margin: auto;
     }
 

@@ -90,10 +90,10 @@ button>img {
         margin: 0 8px;
     }
 
-   
+
     #logo {
         position: fixed;
-        bottom: 0;
+        bottom: 4px;
         right: 0;
         background-image: url(/img/logo.png);
         background-position: center;
@@ -114,7 +114,7 @@ button>img {
         transition: ease-in-out 0.3s;
     }
 
-  
+
 
     #logout {
         font-size: 0.70em;
@@ -124,7 +124,7 @@ button>img {
     }
 
 
-    button>b{
+    button>b {
         display: none;
     }
 
@@ -134,7 +134,7 @@ button>img {
         background-color: #4874B5;
         border: 1.5px solid #ffa62b;
         position: fixed;
-        bottom: 10px;
+        bottom: 0;
         left: 5px;
         width: 55px;
         height: 55px;
@@ -148,7 +148,7 @@ button>img {
     .logout:hover {
         transform: scale(1.1);
         background-color: #ffa62b;
-        transition:ease-in-out 0.4s;
+        transition: ease-in-out 0.4s;
     }
 
 
@@ -158,7 +158,7 @@ button>img {
         justify-content: center;
         align-items: center;
         border-bottom: 2px solid black;
-
+        width: 100%;
     }
 
     .navbarul {
