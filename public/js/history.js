@@ -22,7 +22,7 @@ async function getPosts() {
           <legend class="subtitle"></legend>
           <fieldset class="border user_post_div">
             <div class="left_box">
-              <img src="" alt="" />
+              <img alt="activity" class="activity_pic"/>
               <form class="upload-images-form">
                 <input class="image-upload" type="file" value="Upload Image" accept="image/png, image/gif, image/jpeg"
                   multiple="multiple" />
@@ -42,18 +42,26 @@ async function getPosts() {
           </fieldset>
     </div>
     </section>`;
+           
+            //Temporary solution for history posts creation. Need to re-think this part.
+
+             // var putHere;
+            // for (let m = 0; m < rows.length; m++) {
+            //     var post = document.createElement("fieldset");
+            //     putHere = document.getElementById("postshere");
+            //     putHere.appendChild(post);
+            //     post.textContent="HIII";
+            // }
 
             for (let i = 0; i < rows.length; i++) {
                 let row = rows[i];
 
-                
                 document.getElementsByClassName("posts")[i].innerHTML = str;
                 document.getElementsByClassName("subtitle")[i].textContent = "You completed a " + row.title + " game on " + row.time_completed;
-                console.log("Time: ", row.time_completed);
-                console.log("Converted time: ", row.time_completed.toLocaleString('en-GB', { timeZone: 'UTC' }));
                 document.getElementsByClassName("activity_title")[i].textContent = row.title;
                 document.getElementsByClassName("comment_section")[i].textContent = row.comment;
                 document.getElementsByClassName("points")[i].textContent = row.points;
+                document.getElementsByClassName("activity_pic")[i].setAttribute("src", row.image);
             }
 
             // provides SAVE BUTTON functionality 

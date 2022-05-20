@@ -16,12 +16,7 @@ const path = require("path");
 const mysql = require("mysql2");
 const res = require("express/lib/response");
 var connection = null;
-const localConfig = {
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "heroku_ea347eecae4ecfd"
-}
+
 
 
 const is_heroku = process.env.IS_HEROKU || false;
@@ -46,11 +41,17 @@ const dbConfigHerokuCreate = {
 
 
 // local 
+const localConfig = {
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "COMP2800"
+}
 const dbConfigLocal = {
   host: "localhost",
   user: "root",
   password: "",
-  database: "heroku_ea347eecae4ecfd"
+  database: "COMP2800"
 }
 
 const dbConfigLocalCreate = {
@@ -531,6 +532,7 @@ app.get("/get-previous-activities", function (req, res) {
       console.log(err);
     } else {
       if (results.length > 0) {
+        // console.log("We got", results.length, "record(s) for this user.");
         console.log("We got", results.length, "record(s) for this user.");
         res.send({
           status: "success",
@@ -672,13 +674,7 @@ async function init() {
 
   if (is_heroku) {
     var connectionInit = await mysqlpromise.createConnection(dbConfigHerokuCreate);
-  } else {
-
-    var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
-  }
-
-
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_ea347eecae4ecfd;
+    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_ea347eecae4ecfd;
     use heroku_ea347eecae4ecfd;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
@@ -703,9 +699,43 @@ async function init() {
       completed BOOL DEFAULT false,
       time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
       time_completed DATETIME NULL,
-      comment VARCHAR(255) NULL
+      comment VARCHAR(255) NULL,
+      image VARCHAR(50) DEFAULT "/avatar/general.png"
     );
     `;
+  } else {
+
+    var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
+    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
+    use COMP2800;
+    CREATE TABLE IF NOT EXISTS BBY_17_accounts (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      email VARCHAR(50) UNIQUE NOT NULL,
+      first_name VARCHAR(30) NOT NULL,
+      last_name VARCHAR(30) NOT NULL, 
+      password VARCHAR(30) NOT NULL,
+      is_admin BOOL NULL, 
+      dob DATE NOT NULL,
+      points INT DEFAULT 0,
+      avatar VARCHAR(50) DEFAULT "/avatar/profilepic.png");
+    
+    CREATE TABLE IF NOT EXISTS BBY_17_activities (
+      title VARCHAR(25) PRIMARY KEY,
+      points INT NOT NULL
+    );
+    
+    CREATE TABLE IF NOT EXISTS BBY_17_plays (
+      play_id INT PRIMARY KEY AUTO_INCREMENT,
+      id INT NOT NULL REFERENCES BBY_17_accounts(id),
+      title VARCHAR(25) NOT NULL REFERENCES BBY_17_activities(title),
+      completed BOOL DEFAULT false,
+      time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
+      time_completed DATETIME NULL,
+      comment VARCHAR(255) NULL,
+      image VARCHAR(50) DEFAULT "/avatar/general.png"
+    );
+    `;
+  }
 
   await connectionInit.query(createDBAndTables);
 
