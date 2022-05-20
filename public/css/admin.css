@@ -110,10 +110,12 @@ p {
     height: 3em;
     border-radius: 10px;
     border: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
     background-color: #ffa62b;
 }
 
-.dash:hover {
+.dash:hover, #add_user:hover {
     cursor: pointer;
     background-color: #f9c071;
 }

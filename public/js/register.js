@@ -12,6 +12,7 @@ document.querySelector("#submit").addEventListener("click", function (e) {
 
 });
 
+
 async function createAccount(data) {
 
   if (data.password != data.passwordConfirm) {
@@ -45,3 +46,8 @@ async function createAccount(data) {
   }
 
 }
+
+document.querySelector("#go_back").addEventListener("click", function (e) {
+  e.preventDefault(); 
+  window.location.replace("/");
+});

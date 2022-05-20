@@ -70,12 +70,27 @@ async function getAccounts() {
             for (let k = 0; k < deletes.length; k++) {
                 deletes[k].addEventListener("click", function (e) {
                     e.preventDefault();
-                    if (confirm("Delete " + data.rows[k].first_name + " " + data.rows[k].last_name + "'s account?")) {
-                        console.log("Let's delete the user with id", data.rows[k].id);
-                        deleteUser({
+
+                    Swal.fire({
+                        title: 'Delete ' + data.rows[k].first_name + ' ' + data.rows[k].last_name + "'s account?",
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#ffa62b',
+                        confirmButtonText: 'Delete!'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          Swal.fire(
+                            'Deleted!',
+                            data.rows[k].first_name + ' ' + data.rows[k].last_name + "'s account has been deleted.",
+                            'success'
+                          )
+                          deleteUser({
                             id: data.rows[k].id
-                        });
-                    }
+                          });
+                        }
+                      })
                 });
             }
         } else {
@@ -114,8 +129,7 @@ async function editUser(data) {
 //sends id of the user to the server. Redirects to the edit.html
 async function resetPassword(data) {
     try {
-        // console.log("Edit user activated.");
-        // console.log(data);
+
         const response = await fetch("/reset-user-password", {
             method: "POST",
             headers: {
@@ -140,9 +154,6 @@ async function resetPassword(data) {
 //deletes the user from the db and refreshes the page
 async function deleteUser(data) {
     try {
-        // console.log("Delete user activated");
-        // console.log(data);
-
         const response = await fetch("/delete-user", {
             method: "POST",
             headers: {
@@ -157,22 +168,10 @@ async function deleteUser(data) {
         } else {
             console.log("User deleted.")
             getAccounts();
-            document.getElementById("serverMsg").textContent = parsedJSON.msg;
         }
-
     } catch (err) {
         console.log(err);
     }
 }
-
-// document.querySelector("#go_to_main").addEventListener("click", function(e) {
-//     e.preventDefault();
-//     window.location.replace("/main");
-// })
-
-// document.querySelector("#go_to_history").addEventListener("click", function(e) {
-//     e.preventDefault();
-//     window.location.replace("/previous_activities");
-// })
 
 getAccounts();
