@@ -4,40 +4,10 @@
 
 }
 
-html, body {
+html,
+body {
     height: 100%;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-#logout {
-    background-color:transparent;
-    color: #ffff;
-    border: none;
-}
-#logout:hover{
-    color:red;
-}
-
-#logout {
-    background-color:transparent;
-    color: #ffff;
-    border: none;
-    margin-right: 10px;
-}
-
-button>img{
-    float: right;
-    width: 55px;
-    height: 55px;
-}
-
-
-#container {
-    display: flex;
-    background-color: black;
-    height: 100%;
-    align-items: center;
-    flex-direction: column;
 }
 
 
@@ -54,12 +24,13 @@ header {
 }
 
 .title {
-    color: gainsboro;
+
+    color: #227181;
     font-size: 2.5rem;
     font-weight: bold;
     margin: 0.4rem 0 0.4rem 0;
     text-align: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
@@ -78,6 +49,7 @@ header {
     grid-gap: 5px;
     padding: 10px;
     box-sizing: border-box;
+
 }
 
 .square {
@@ -86,20 +58,22 @@ header {
     min-height: 60px;
     font-size: 50px;
     font-weight: bold;
-    color: gainsboro;
+    color: black;
     text-transform: uppercase;
-
-    display: flex; 
+    border-radius: 6px;
+    background-color: lightgray;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #keyboard-container {
-    height: 200px;      
+    height: 200px;
+    margin: 20px;
 }
 
 .keyboard-row {
-    display: flex;  
+    display: flex;
     justify-content: center;
     width: 100%;
     margin: 0 auto 8px;
@@ -114,7 +88,7 @@ header {
     height: 58px;
     cursor: pointer;
     background-color: rgb(129, 131, 132);
-    color: rgb(215, 218, 220);
+    color: gainsboro;
     flex-grow: 1;
     text-transform: uppercase;
     margin-right: 6px;

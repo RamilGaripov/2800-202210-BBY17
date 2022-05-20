@@ -93,7 +93,7 @@ button>img {
 
     #logo {
         position: fixed;
-        bottom: 4px;
+        bottom: 0;
         right: 0;
         background-image: url(/img/logo.png);
         background-position: center;
@@ -134,7 +134,7 @@ button>img {
         background-color: #4874B5;
         border: 1.5px solid #ffa62b;
         position: fixed;
-        bottom: 0;
+        bottom: 10px;
         left: 5px;
         width: 55px;
         height: 55px;
