@@ -137,3 +137,8 @@ function updateDataOnServer() {
         body: JSON.stringify(data)
     })
 }
+
+document.querySelector("#btnback").addEventListener("click", function (e) {
+    e.preventDefault();
+    window.location.replace("/main");
+});
