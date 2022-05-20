@@ -85,6 +85,13 @@ body {
     margin: 8px 10px;
 }
 
+.activity_pic {
+    
+    height: 80px;
+    width: 80px;
+    border: 1px black;
+}
+
 form>#submit {
     border-radius: 20px;
     padding: 4px 13px;
