@@ -36,10 +36,10 @@ fieldset {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-color: #16697a;
     border-radius: 12px;
     min-width: 310px;
     margin: 8px 0;
+    border:2px solid #16697a;
 }
 
 legend {

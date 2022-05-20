@@ -29,9 +29,9 @@
                 <fieldset class="border">
                     <img alt="Your Avatar" class="profilepic" id="profilepic">
                     <legend class="subtitle">Change Avatar Photo</legend>
-                    <form id="upload-images-form">
+                    <form id="upload-images-form" action="/upload-images" method="POST">
                         <input id="image-upload" type="file" value="Upload Image"
-                            accept="image/png, image/gif, image/jpeg" name="avatar"/>
+                            accept="image/png, image/gif, image/jpeg" name="avatar" />
                         <input id="submit" type="submit" value="Submit" />
                     </form>
                 </fieldset>
@@ -69,7 +69,7 @@
 
                             </div>
                             <br>
-                            <button type="submit" id="submit_edits">SAVE</button>
+                            <button type="submit" id="submit">SAVE</button>
                             <button type="submit" id="go_back">BACK</button>
                             <p id="serverMsg"></p>
                         </form>

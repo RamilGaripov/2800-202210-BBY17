@@ -1,60 +1,45 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wordle</title>
-    <link rel="stylesheet" href="/css/wordle2.css">
+    <link rel="stylesheet" href="/css/wordle2.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
+    <link rel="stylesheet" href="/css/video.css" />
+    <style>
+      body {
+        background-image: url(/img/wordle_bg.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+      }
+    </style>
 
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-   
-</head>
-<body>
-   
-    <div id="container">
-        <nav>
-            <a id="logo" href="/html/main.html"></a>
-            <ul class="navbarul">
-                <li class="option">
-                    <a href="/html/main.html"><img src="/img/mind_games_icon.png" alt="friends" id="go_to_main">Main Page</a>
-                </li>
-                <li class="option">
-                    <a href="/html/profile.html"><img src="/img/profile_icon.png" alt="profile" height="60"
-                            id="go_to_profile">Edit Profile</a>
-                </li>
-                <li class="option">
-                    <a href="/html/reward.html"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
-                </li>
-                <li class="option">
-                    <a href="/html/history.html"><img src="/img/clock.png" alt="history">History</a>
-                </li>
-            </ul>
-            <form action="/logout">
-                <button type="submit" id="logout" class="option"><img src="/img/bye.png" width >Logout</button>
-            </form>
-        </nav>
-        
+  </head>
+  <body>
+    <div id="container" class="container">
+      <div class="cinema">
         <div id="game">
-           
-            <h1 id = "title">Wordle </h1>
-            <hr>
-            <br>
-            <div id="board">
-            </div>
-        
-            <br>
-            <h1 id = "answer"></h1>
-
-            
-
+          <fieldset>
+            <legend id="title">Wordle</legend>
+            <br />
+            <div id="board"></div>
+            <br />
+            <h1 id="answer"></h1>
+          </fieldset>
+        </div>
+      </div>
     </div>
 
-
-   
-  
+    <script src="/js/navbar.js"></script>
     <script src="/js/wordle2.js"></script>
-</body>
+    <script src="/js/favicon.js"></script>
+  </body>
 </html>
