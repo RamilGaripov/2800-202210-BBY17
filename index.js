@@ -22,6 +22,43 @@ const localConfig = {
   database: "COMP2800"
 }
 
+
+const is_heroku = process.env.IS_HEROKU || false;
+
+
+// mysql://bbbf1ed5716748:0548f8d4@us-cdbr-east-05.cleardb.net/heroku_ea347eecae4ecfd?reconnect=true
+// server
+const dbConfigHeroku = {
+  host: 'us-cdbr-east-05.cleardb.net',
+  user: 'bbbf1ed5716748',
+  password: '0548f8d4',
+  database: 'heroku_ea347eecae4ecfd',
+  multipleStatements: false
+}
+
+const dbConfigHerokuCreate = {
+  host: 'us-cdbr-east-05.cleardb.net',
+  user: 'bbbf1ed5716748',
+  password: '0548f8d4',
+  multipleStatements: true
+}
+
+
+// local 
+const dbConfigLocal = {
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "heroku_ea347eecae4ecfd"
+}
+
+const dbConfigLocalCreate = {
+  host: "localhost",
+  user: "root",
+  password: "",
+  multipleStatements: true
+};
+
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
 app.use("/img", express.static("./public/img"));
@@ -578,15 +615,25 @@ function authenticate(email, pwd, callback) {
 async function init() {
   const mysqlpromise = require("mysql2/promise");
   // Let's build the DB if it doesn't exist
-  const connectionInit = await mysqlpromise.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    multipleStatements: true,
-  });
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
-    use COMP2800;
+  // const connectionInit = await mysqlpromise.createConnection({
+  //   host: "localhost",
+  //   user: "root",
+  //   password: "",
+  //   multipleStatements: true,
+  // });
+
+  
+    if (is_heroku) {
+      var connectionInit = await mysqlpromise.createConnection(dbConfigHerokuCreate);
+    } else {
+    
+     var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
+    }
+
+
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_ea347eecae4ecfd;
+    use heroku_ea347eecae4ecfd;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
       email VARCHAR(50) UNIQUE NOT NULL,
@@ -657,9 +704,57 @@ async function init() {
   }
 
   console.log("Listening on port " + port + "!");
-  // connection = mysql.createConnection(localConfig);
+  // connection = mysql.createConnection({
+  //   host: "localhost",
+  //   user: "root",
+  //   password: "",
+  //   database: "COMP2800"
+  // });
+
+
+    if (is_heroku) {
+      connection = mysql.createConnection(dbConfigHeroku);
+    } else {
+      connection = mysql.createConnection(dbConfigLocal);
+    }
+    
+
+
+   
 }
 
 // Sets the port and runs the server. Calls init().
 let port = 8000;
-app.listen(port, init);
+
+if (is_heroku) { 
+  app.listen(process.env.PORT || 5000, init)
+} else {
+  app.listen(port, init);
+}
+
+
+
+
+
+
+
+
+// let http = require('http');
+// let url = require('url');
+// const res = require("express/lib/response");
+// const { send } = require("process");
+
+// http.createServer((req, res) => {
+//   let q = url.parse(req.url, true);
+//   console.log(q.query);
+
+//   res.writeHead(200, {
+//     "Content-Type": "text/html",
+//     "Access-Control-Alloy-Origin": "*"
+//   });
+
+//   res.end(`Hello ${q.query['name1']}`);
+// }).listen(process.env.PORT || 5000);
+
+
+
