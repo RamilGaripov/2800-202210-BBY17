@@ -1,14 +1,14 @@
 const gameTitle = "Puzzle";
 
 $(document).ready(function () {
-
+    sendDataToServer();
     // console.log(pieces);
     var pieces = createPieces(true);
     $("#puzzlecontainer").html(pieces);
 
 
     $("#btnstart").click(function () {
-        sendDataToServer();
+        // sendDataToServer();
         var pieces = $("#puzzlecontainer div");
         pieces.each(function () {
             var leftposition = Math.floor(Math.random() * 290) + "px";
@@ -33,6 +33,8 @@ $(document).ready(function () {
         $(this).hide();
         $("#btnstart").show();
         $("#btnback").hide();
+        $("#winmessage").hide();
+        $("#lossmessage").hide();
         $("#piececontainer").empty();
     });
 
@@ -63,20 +65,19 @@ $(document).ready(function () {
             var item = $("#puzzlecontainer .droppedPiece:eq(" + k + ")");
             var order = item.data("order");
             if (k != order) {
+                $("#lossmessage").show();      
                 // $("#piececontainer").text("Oops, thats incorrect.");
-                $("#piececontainer").text("Please try again!");
 
                 return false; /* loss */
             } else {
-                $("#piececontainer").text("Congrats!");
+                // $("#piececontainer").text("Congrats! You won 25 reward points!");
+                $("#winmessage").show();
                 $("#btnreset").hide();
                 $("#btnback").show();
                 updateDataOnServer();
                 return true; /* win */
             }
         }
-        // $("#piececontainer").text("wow! you are a GENIUS");
-        // return true; /* win */
     }
 
     function implementLogic() {

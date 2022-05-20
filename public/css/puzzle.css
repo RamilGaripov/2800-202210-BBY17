@@ -6,6 +6,7 @@
     padding: 10px;
     background-color: #FFA62B;
     align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
@@ -13,43 +14,61 @@
     width: 402px;
     height: 402px;
     border: 1px solid black;
-    float: left;
     text-align: center;
     font-size: 30px;
-    line-height: 400px;
     position: relative;
     background-color: #EDE7E3;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #puzzlecontainer {
     width: 402px;
     height: 402px;
     border: 1px solid black;
-    float: right;
     background-color: #EDE7E3;
+}
+
+#puzzletitle {
+    font-family: monospace;
+}
+
+#lossmessage {
+    font-size: 20px;
+    display: none;
+}
+
+#winmessage{
+    display: none;
+    font-size: 20px;
+
 }
 
 #btnback {
     display: none;
 }
 
-/* @media screen and (max-width: 600px) {
-    #peicecontainer {
-        float: right;
-        position: relative;
-        align-items: center;
-    }
-
-    #puzzlecontainer {
+@media screen and (min-width: 860px) {
+    #piececontainer {
         float: left;
     }
 
+    #puzzlecontainer {
+        float: right;
+    }
+    
+}
+
+@media screen and (max-width: 860px) {
     #container {
-        width: 100%;
+        width: 425px;
+        /* z-index: 1; */
     }
     
 
-} */
+}
 
 ul {
     list-style-type: none;
@@ -58,12 +77,13 @@ ul {
 
 ul button {
     width: 100px;
+    height: 50px;
     border: 1px solid black;
-    font-size: 2-px;
     border-radius: 5px;
     padding: 5px;
     margin-top: 10px;
     background-color: #BEE5B0;
+    font-size: 20px;
 }
 
 #btnreset {
@@ -93,7 +113,7 @@ html {
 }
 
 body {
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     padding: 0;
     margin: 0;
@@ -414,6 +434,7 @@ section {
         background-size: contain;
         width: 150px;
         height: 150px;
+        z-index: 10;
     }
 
     .title {
