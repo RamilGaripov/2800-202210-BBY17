@@ -1,4 +1,4 @@
-document.querySelector("#submit").addEventListener("click", function(e) {
+document.querySelector("#submit_edits").addEventListener("click", function(e) {
     e.preventDefault();
     console.log("Submit pressed.")
     

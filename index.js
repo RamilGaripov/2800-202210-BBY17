@@ -19,7 +19,7 @@ const localConfig = {
   host: "localhost",
   user: "root",
   password: "",
-  database: "COMP2800"
+  database: "heroku_ea347eecae4ecfd"
 }
 
 
