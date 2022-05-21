@@ -60,30 +60,35 @@ Team Members:
 [Ramil Garipov], [A01286613], [Set2B], [May 20th, 2022]
 [Joshua Chen], [A01233767], [Set2B], [May 20th, 2022]
 This assignment is [90]% complete.
-[We had issues with link pathing as not all of us are fully familiar with node. unfamiliarity with github caused us delay. Unable to find proper resource to change picture via node and DB]
+[We had issues with link pathing as not all of us are fully familiar with node. Unfamiliarity with github caused us delay. Unable to find proper resource to change picture via node and DB]
 
 Week 4 Milestone (iteration):
 Responsive design:
-Admin, walk, hike, are not
+The admin page, walk, and hike, are still lacking proper styling.
 
-TIMLINE(80%):
-User is able to go to timeline page.
-Timeline add add a new history of a game after completed then go to timeline page and see a new post.
-User is able to add/update a photo to a corresponding post. 
+TIMELINE(80%):
+User is able to go to the timeline page.
+Timeline creates a post every time a user completes an activity. To see the posts, users need to go to the timeline page.
+Users are able to see what game they played and when they completed it(though the date formatting requires a fix) and also add comments about those experiences.
 
-Admin can reset users password but cannot assign specific values
-Profile page can upload new photo 
+
+Admins can no longer see everyone's password, but they can reset users passwords to a default value.
+Users are able to upload a profile picture on the profile page. 
 
 
 Uncompleted requirements:
-Timeline able to save new comments to database but unable to update live unless user refreshes page. 
-Unfortunately our /upload-images call broke before we uploaded this zip.
-Multer is no longer able to activate because for the bug
-No 1 admin left ability
-no multiple picture add
+It's still possible to delete all the admins.
+Users are still unable to add/update pictures on their posts. 
 
 
 ******************  REFERENCES
+
+Uploading Files: 
+Arron Ferguson's COMP2537 examples
+
+Easter Egg:
+Carnival CSS animations taken from: 
+https://codepen.io/gxash/pen/YqmxWg
 
 Wordle.js
 Javascript for Wordle Application
