@@ -33,7 +33,7 @@ const dbConfigHeroku = {
   user: 'be46a623c032da',
   password: '271c02ac',
   database: 'heroku_0517524a798819b',
-  multipleStatements: false
+  multipleStatements: false 
 }
 
 const dbConfigHerokuCreate = {
@@ -727,7 +727,9 @@ async function init() {
 let port = 8000;
 
 if (is_heroku) { 
-  app.listen(process.env.PORT || 5000, init)
+  app.listen(port, function () {
+    init();
+  })
 } else {
   app.listen(port, init);
 }
