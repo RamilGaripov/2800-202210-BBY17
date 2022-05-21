@@ -92,12 +92,101 @@ ul button {
     display: none;
 }
 
+.puz1 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image:  url(/img/puzzle/1.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz2 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image:  url(/img/puzzle/2.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz3 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image:  url(/img/puzzle/3.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz4 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image:  url(/img/puzzle/4.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz5 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image:  url(/img/puzzle/5.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz6 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/6.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz7 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image:  url(/img/puzzle/7.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz8 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image:  url(/img/puzzle/8.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz9 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/9.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz10 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image:  url(/img/puzzle/10.jpg);
+    background-repeat: no-repeat;
+}
+
 .piece {
     width: 100px;
     height: 100px;
     border: 1px solid black;
     float: left;
-    background-image: url(/img/puzpic.jpg);
     background-repeat: no-repeat;
 }
 
