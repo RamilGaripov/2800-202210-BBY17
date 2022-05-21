@@ -122,7 +122,7 @@ app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
     const avatarPath = req.file.path.substring(6);
     connection = mysql.createPool(config); 
     var insertData = "UPDATE BBY_17_accounts SET avatar=? WHERE id=?"
-    connection.connect();
+    connection.getConnection();
     connection.query(insertData, [avatarPath, req.session.user_id], function (err) {
       if (err) {
         res.send({status: "fail", msg: "Unable to upload your photo."});
@@ -226,7 +226,7 @@ app.use(express.urlencoded({
 //pulls all accounts for the admin dashboard table
 app.get('/get-accounts', function (req, res) {
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
   connection.query("SELECT * FROM BBY_17_accounts", function (error, results, fields) {
     if (error) {
       console.log(error);
@@ -253,7 +253,7 @@ app.get("/edit", function (req, res) {
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
     let edit_profileDOM = new JSDOM(edit_profile);
     connection = mysql.createPool(config);
-    connection.connect();
+    connection.getConnection();
     connection.query(
       "SELECT * FROM BBY_17_accounts WHERE id=?", req.session.id_to_edit,
       function (error, results) {
@@ -309,7 +309,7 @@ app.post("/edit-user", function (req, res) {
 app.post("/reset-user-password", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
   const reset_pw = "123456";
   connection.query("UPDATE BBY_17_accounts SET password=? WHERE id=?", [reset_pw, req.body.id], function (err, results) {
     if (err) {
@@ -329,7 +329,7 @@ app.post("/reset-user-password", function (req, res) {
 app.post("/update-user", function (req, res) {
   if (req.session.loggedIn) {
     connection = mysql.createPool(config);
-    connection.connect();
+    connection.getConnection();
 
     const user = req.body;
     if (req.session.admin) {
@@ -368,7 +368,7 @@ app.post("/update-user", function (req, res) {
 app.post("/delete-user", function (req, res) {
   console.log("Deleting the user with the id of:", req.body.id);
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
   //ADD CODE HERE TO SEE IF THERE's ONLY ONE ADMIN LEFT. DO NOT ALLOW TO DELETE THEM!
   connection.query("DELETE FROM BBY_17_accounts WHERE id=?", [req.body.id], function (error, results) {
 
@@ -395,7 +395,7 @@ app.post("/delete-user", function (req, res) {
 //  http://localhost/phpmyadmin/
 app.post('/create-account', async function (req, res) {
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
 
   const fname = req.body.firstName;
   const lname = req.body.lastName;
@@ -425,7 +425,7 @@ app.post('/create-account', async function (req, res) {
 
     var sql = "INSERT INTO `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('" + email + "', '" + fname + "', '" + lname + "', '" + pwd + "', '" + isAdmin + "', '" + dob + "')"
     connection = mysql.createPool(config);
-    connection.connect();
+    connection.getConnection();
     connection.query(sql, function (err, result) {
       if (err) {
         console.log(err);
@@ -458,7 +458,7 @@ app.post('/create-account', async function (req, res) {
 app.post("/start-game", function (req, res) {
   console.log("client sent us: ", req.body);
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
   connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err) {
     if (err) {
       console.log("ERROR: ", err);
@@ -482,7 +482,7 @@ app.post("/start-game", function (req, res) {
 app.post("/finish-game", function (req, res) {
   console.log("User finished the game!");
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
   connection.query("UPDATE BBY_17_plays SET completed=true, time_completed=CURRENT_TIMESTAMP WHERE play_id=?", [req.session.play_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
@@ -510,7 +510,7 @@ app.get("/history", function (req, res) {
 
 app.get("/get-previous-activities", function (req, res) {
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
   connection.query("SELECT * FROM BBY_17_plays AS P JOIN BBY_17_activities AS A ON P.title = A.title WHERE id=? AND completed", [req.session.user_id], function (err, results) {
     if (err) {
       console.log(err);
@@ -535,7 +535,7 @@ app.get("/get-previous-activities", function (req, res) {
 
 app.post("/update-comment", function (req, res) {
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
   connection.query("UPDATE BBY_17_plays SET comment=? WHERE play_id=?", [req.body.comment, req.body.play_id], function (err) {
     if (err) {
       res.send({
@@ -618,7 +618,7 @@ app.get("/logout", function (req, res) {
 //checks if the user is found in the database or not
 function authenticate(email, pwd, callback) {
   connection = mysql.createPool(config);
-  connection.connect();
+  connection.getConnection();
   connection.query(
     //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
     //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
