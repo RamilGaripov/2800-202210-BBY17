@@ -381,7 +381,7 @@ app.post("/update-user", function (req, res) {
 
 //Deletes a user. Function accessible from the admin dashboard.
 app.post("/delete-user", function (req, res) {
-  console.log("Deleting the user with the id of:", req.body.id);
+  // console.log("Deleting the user with the id of:", req.body.id);
   connection = mysql.createConnection(localConfig);
   connection.connect();
   //ADD CODE HERE TO SEE IF THERE's ONLY ONE ADMIN LEFT. DO NOT ALLOW TO DELETE THEM!
@@ -471,7 +471,6 @@ app.post('/create-account', async function (req, res) {
 });
 
 app.post("/start-game", function (req, res) {
-  console.log("client sent us: ", req.body);
   connection = mysql.createConnection(localConfig);
   connection.connect();
   connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err) {

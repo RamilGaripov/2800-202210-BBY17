@@ -13,8 +13,6 @@ document.querySelector("#submit_edits").addEventListener("click", function(e) {
 
 async function editUser(data) {
     try{
-    console.log("Edit user activated.");
-    console.log(data);
     const response = await fetch("/update-user", {
         method: "POST",
         headers: {
@@ -42,13 +40,14 @@ document.querySelector("#go_back").addEventListener("click", function(e) {
 });
 
 //upload photo js for profile
-const upLoadForm = document.getElementById("upload-images-form");
-upLoadForm.addEventListener("submit", uploadImages);
+//This code is taken from Arron Ferguson's example "UPLOAD-FILE"
+// @author Arron Ferguson
+const uploadForm = document.getElementById("upload-images-form");
+uploadForm.addEventListener("submit", uploadImages);
 
 async function uploadImages(e) {
-  try{
   e.preventDefault();
-
+  try{
   const imageUpload = document.querySelector("#image-upload");
   const formData = new FormData();
 
@@ -75,8 +74,3 @@ async function uploadImages(e) {
     console.log(err);
   }
 }
-
-document.querySelector("#go_back").addEventListener("click", function (e) {
-  e.preventDefault();
-  window.location.replace("/main");
-});
