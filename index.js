@@ -717,14 +717,17 @@ async function init() {
     } else {
       connection = mysql.createConnection(dbConfigLocal);
     }
-    
-
-
-   
+     
 }
 
 // Sets the port and runs the server. Calls init().
 let port = process.env.PORT || 8000;
+
+app.listen(80, function() {
+  init();
+});
+
+
 
 // if (is_heroku) { 
 //   app.listen(port, function () {
@@ -734,9 +737,6 @@ let port = process.env.PORT || 8000;
 //   app.listen(port, init);
 // }
 
-app.listen(port, function() {
-  init();
-});
 
 
 
