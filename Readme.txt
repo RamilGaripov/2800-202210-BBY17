@@ -52,6 +52,37 @@ No change picture ability
 No 1 admin left ability
 
 
+
+**********************************MILESTONE WEEK 4
+Team Members:
+[Xavier Pimentel], [A00697839], [Set1C], [May 20th, 2022]
+[Randall Kong], [A01279243], [Set1C], [May 20th, 2022]
+[Ramil Garipov], [A01286613], [Set2B], [May 20th, 2022]
+[Joshua Chen], [A01233767], [Set2B], [May 20th, 2022]
+This assignment is [90]% complete.
+[We had issues with link pathing as not all of us are fully familiar with node. unfamiliarity with github caused us delay. Unable to find proper resource to change picture via node and DB]
+
+Week 4 Milestone (iteration):
+Responsive design:
+Admin, walk, hike, are not
+
+TIMLINE(80%):
+User is able to go to timeline page.
+Timeline add add a new history of a game after completed then go to timeline page and see a new post.
+User is able to add/update a photo to a corresponding post. 
+
+Admin can reset users password but cannot assign specific values
+Profile page can upload new photo 
+
+
+Uncompleted requirements:
+Timeline able to save new comments to database but unable to update live unless user refreshes page. 
+Unfortunately our /upload-images call broke before we uploaded this zip.
+Multer is no longer able to activate because for the bug
+No 1 admin left ability
+no multiple picture add
+
+
 ******************  REFERENCES
 
 Wordle.js
@@ -59,3 +90,5 @@ Javascript for Wordle Application
 
 @author Ian Lenehan
 @see https://www.youtube.com/watch?v=j7OhcuZQ-q8
+
+`
