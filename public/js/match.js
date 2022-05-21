@@ -75,6 +75,7 @@ const startGame = () => {
     state.gameStarted = true
     selectors.start.classList.add('disabled')
     sendDataToServer();
+    document.getElementById("startbtn").style.display = "none";
     state.loop = setInterval(() => {
         state.totalTime++
 
@@ -138,15 +139,16 @@ const flipCard = card => {
             selectors.boardContainer.classList.add('flipped')
             selectors.win.innerHTML = `
                 <span class="win-text">
-                    You won!<br />
-                    with <span class="highlight">${state.totalFlips}</span> moves<br />
-                    under <span class="highlight">${state.totalTime}</span> seconds
+                    <p>Congrats! You won 25 reward points!</p>
+                    <p>In <span class="highlight">${state.totalFlips}</span> moves <br>
+                    under <span class="highlight">${state.totalTime}</span> seconds</p>
                 </span>
             `
 
             clearInterval(state.loop)
         }, 1000)
         updateDataOnServer();
+        document.getElementById("homebtn").style.visibility = "visible";
     }
 }
 
@@ -177,5 +179,10 @@ const attachEventListeners = () => {
 
 generateGame()
 attachEventListeners()
+
+document.querySelector("#homebtn").addEventListener("click", function (e) {
+    e.preventDefault();
+    window.location.replace("/main");
+});
 
 
