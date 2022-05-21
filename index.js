@@ -130,7 +130,7 @@ app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
         res.send({status: "success", msg: "PHOTO UPDATED. REFRESH THE PAGE TO SEE IT."});
       }
     });
-    connection.end();
+  
     
   } else {
     console.log("No file uploaded.");
@@ -237,7 +237,7 @@ app.get('/get-accounts', function (req, res) {
     });
 
   });
-  connection.end();
+
 });
 
 //Pre-populates the forms on the edit page. 
@@ -286,7 +286,7 @@ app.get("/edit", function (req, res) {
         }
       }
     );
-    connection.end();
+   
 
   } else {
     res.redirect("/");
@@ -321,7 +321,7 @@ app.post("/reset-user-password", function (req, res) {
       //Here, we would want to send an email to the user telling them their temporary password is 123456 and they should change it ASAP.
     }
   });
-  connection.end();
+
 });
 
 //updates the user information in the db
@@ -359,7 +359,7 @@ app.post("/update-user", function (req, res) {
         })
       }
     });
-    connection.end();
+
   }
 });
 
@@ -387,7 +387,7 @@ app.post("/delete-user", function (req, res) {
     }
 
   });
-  connection.end();
+ 
 });
 
 //  register
@@ -450,7 +450,7 @@ app.post('/create-account', async function (req, res) {
     });
 
   });
-  connection.end();
+
 
 });
 
@@ -474,7 +474,7 @@ app.post("/start-game", function (req, res) {
       });
     }
   });
-  connection.end();
+
 })
 
 
@@ -492,7 +492,7 @@ app.post("/finish-game", function (req, res) {
       console.log("ERROR: ", err);
     }
   });
-  connection.end();
+
 })
 
 app.get("/history", function (req, res) {
@@ -529,7 +529,7 @@ app.get("/get-previous-activities", function (req, res) {
 
     }
   });
-  connection.end();
+
 })
 
 app.post("/update-comment", function (req, res) {
@@ -549,7 +549,7 @@ app.post("/update-comment", function (req, res) {
       });
     }
   });
-  connection.end();
+
 })
 
 
@@ -638,7 +638,7 @@ function authenticate(email, pwd, callback) {
 
     }
   );
-  connection.end();
+
 }
 
 //initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
