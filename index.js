@@ -23,13 +23,13 @@ const is_heroku = process.env.IS_HEROKU || false;
 
 
 
-  const config= {
-    host: "us-cdbr-east-05.cleardb.net",
-    user: "be46a623c032da",
-    password: "271c02ac",
-    database: "heroku_0517524a798819b"
+  // const config= {
+  //   host: "us-cdbr-east-05.cleardb.net",
+  //   user: "be46a623c032da",
+  //   password: "271c02ac",
+  //   database: "heroku_0517524a798819b"
   
-  }
+  // }
 
   // const config = {
   //   host: "localhost",
@@ -37,6 +37,24 @@ const is_heroku = process.env.IS_HEROKU || false;
   //   password: "",
   //   database: "COMP2800"
   // }
+
+  if (is_heroku) {
+    var config= {
+      host: "us-cdbr-east-05.cleardb.net",
+      user: "be46a623c032da",
+      password: "271c02ac",
+      database: "heroku_0517524a798819b"
+    
+    }
+  } else {
+    var config = {
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "COMP2800"
+    }
+  
+  }
 
 
 // mysql://be46a623c032da:271c02ac@us-cdbr-east-05.cleardb.net/heroku_0517524a798819b?reconnect=true
