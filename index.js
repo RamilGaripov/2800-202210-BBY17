@@ -22,7 +22,7 @@ var connection = null;
 const is_heroku = process.env.IS_HEROKU || false;
 
 
-if (is_heroku) {
+
   const config= {
     host: "us-cdbr-east-05.cleardb.net",
     user: "be46a623c032da",
@@ -30,15 +30,13 @@ if (is_heroku) {
     database: "heroku_0517524a798819b"
   
   }
-} else {
-  const config = {
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "COMP2800"
-  
-  }
-}
+
+  // const config = {
+  //   host: "localhost",
+  //   user: "root",
+  //   password: "",
+  //   database: "COMP2800"
+  // }
 
 
 // mysql://be46a623c032da:271c02ac@us-cdbr-east-05.cleardb.net/heroku_0517524a798819b?reconnect=true
