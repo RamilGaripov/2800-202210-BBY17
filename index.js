@@ -723,7 +723,7 @@ async function init() {
 // Sets the port and runs the server. Calls init().
 let port = process.env.PORT || 8000;
 
-app.listen(20572, function() {
+app.listen(port, function() {
   init();
 });
 
@@ -736,11 +736,6 @@ app.listen(20572, function() {
 // } else {
 //   app.listen(port, init);
 // }
-
-
-
-
-
 
 
 // let http = require('http');
