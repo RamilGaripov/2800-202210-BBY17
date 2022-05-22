@@ -112,6 +112,10 @@ button {
     transform: translate(-50%, -50%);
     font-size: 21pt;
     color: #282A3A;
+    user-select: none; 
+    -webkit-user-select: none;     
+    -moz-user-select: none;
+    -ms-user-select: none;  
 }
 
 .highlight {
