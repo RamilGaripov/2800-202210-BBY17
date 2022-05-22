@@ -50,6 +50,7 @@ nav {
 .option:hover {
     transform: scale(1.09);
     transition: ease-in 0.09s;
+    cursor: pointer;
 }
 
 #logout {
@@ -63,6 +64,7 @@ nav {
 #logout:hover {
     color: #ffa62b;
     transform: none;
+    cursor: pointer;
 }
 
 #logout {

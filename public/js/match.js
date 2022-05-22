@@ -1,3 +1,10 @@
+/**
+ * Javascript for Match Application
+ * 
+ * @author Ferenc Almasi
+ * @see https://www.webtips.dev/memory-game-in-javascript
+ */
+
 const gameTitle = "Match";
 
 const selectors = {

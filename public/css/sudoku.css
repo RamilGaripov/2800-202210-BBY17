@@ -39,6 +39,10 @@ hr {
     flex-wrap: wrap;
 }
 
+.number:hover {
+    cursor: pointer;
+}
+
 .number {
     width: 44px;
     height: 44px;
