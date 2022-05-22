@@ -50,7 +50,8 @@ $(document).ready(function () {
 
     function createPieces(withImage) {
         var pieces = "";
-        var rows = 4, columns = 4;  
+        var rows = 4, 
+            columns = 4;  
 
         var classname = "";
 
@@ -106,6 +107,8 @@ $(document).ready(function () {
                 break;
         }
 
+        // console.log(classname + " was chosen.");
+
 
 
         for (var i = 0, top = 0, order = 0; i < rows; i++, top -= 100) {
@@ -131,12 +134,12 @@ $(document).ready(function () {
             var item = $("#puzzlecontainer .droppedPiece:eq(" + k + ")");
             var order = item.data("order");
             if (k != order) {
-                $("#lossmessage").show();      
-                // $("#piececontainer").text("Oops, thats incorrect.");
-
+                $("#lossmessage").show();
+                $("#btnreset").show();
+                $("#piececontainer").text("Oops, thats incorrect.");
                 return false; /* loss */
             } else {
-                // $("#piececontainer").text("Congrats! You won 25 reward points!");
+                $("#piececontainer").text("Congrats! You won 25 reward points!");
                 $("#winmessage").show();
                 $("#btnreset").hide();
                 $("#btnback").show();
