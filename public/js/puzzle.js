@@ -136,7 +136,7 @@ $(document).ready(function () {
             if (k != order) {
                 $("#lossmessage").show();
                 $("#btnreset").show();
-                $("#piececontainer").text("Oops, thats incorrect.");
+                $("#piececontainer").text("Oops, please try again.");
                 return false; /* loss */
             } else {
                 $("#piececontainer").text("Congrats! You won 25 reward points!");

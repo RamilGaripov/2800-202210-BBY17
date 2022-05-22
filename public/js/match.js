@@ -153,7 +153,7 @@ const flipCard = card => {
             `
 
             clearInterval(state.loop)
-        }, 1000)
+        }, 250)
         updateDataOnServer();
         document.getElementById("homebtn").style.visibility = "visible";
     }
