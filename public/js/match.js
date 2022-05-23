@@ -1,3 +1,10 @@
+/**
+ * Javascript for Match Application
+ * 
+ * @author Ferenc Almasi
+ * @see https://www.webtips.dev/memory-game-in-javascript
+ */
+
 const gameTitle = "Match";
 
 const selectors = {
@@ -146,7 +153,7 @@ const flipCard = card => {
             `
 
             clearInterval(state.loop)
-        }, 1000)
+        }, 250)
         updateDataOnServer();
         document.getElementById("homebtn").style.visibility = "visible";
     }

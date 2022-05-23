@@ -50,7 +50,8 @@ $(document).ready(function () {
 
     function createPieces(withImage) {
         var pieces = "";
-        var rows = 4, columns = 4;  
+        var rows = 4, 
+            columns = 4;  
 
         var classname = "";
 
@@ -106,6 +107,8 @@ $(document).ready(function () {
                 break;
         }
 
+        // console.log(classname + " was chosen.");
+
 
 
         for (var i = 0, top = 0, order = 0; i < rows; i++, top -= 100) {
@@ -131,12 +134,12 @@ $(document).ready(function () {
             var item = $("#puzzlecontainer .droppedPiece:eq(" + k + ")");
             var order = item.data("order");
             if (k != order) {
-                $("#lossmessage").show();      
-                // $("#piececontainer").text("Oops, thats incorrect.");
-
+                $("#lossmessage").show();
+                $("#btnreset").show();
+                $("#piececontainer").text("Oops, please try again.");
                 return false; /* loss */
             } else {
-                // $("#piececontainer").text("Congrats! You won 25 reward points!");
+                $("#piececontainer").text("Congrats! You won 25 reward points!");
                 $("#winmessage").show();
                 $("#btnreset").hide();
                 $("#btnback").show();
@@ -208,44 +211,3 @@ document.querySelector("#btnback").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.replace("/main");
 });
-
-// function pickPuzzle() {
-    
-//     const images = [
-//         'url("/img/puzzle/1.jpg")',
-//         'url("/img/puzzle/2.jpg")',
-//         'url("/img/puzzle/3.jpg")',
-//         'url("/img/puzzle/4.jpg")',
-//         'url("/img/puzzle/5.jpg")',
-//         'url("/img/puzzle/6.jpg")',
-//         'url("/img/puzzle/7.jpg")',
-//         'url("/img/puzzle/8.jpg")',
-//         'url("/img/puzzle/9.jpg")',
-//         'url("/img/puzzle/10.jpg")'
-//     ];
-
-//     const bg = images[Math.floor(Math.random() * 
-//     images.length)];
-
-//     const piecesection = document.querySelectorAll(".piece");
-   
-    // const piecesection = document.getElementsByClassName("piece")[0];
-
-    // const piecesection = document.getElementById("piecepart");
-
-
-    // const piecesection = document.getElementsByClassName("piece")[p];
-
-    // console.log(piecesection);
-
-
-    // console.log(bg);
-
-    // piecesection.style.backgroundImage = bg;
-
-    // document.getElementsByClassName("piece").style.backgroundImage = bg;
-    
-    // piecesection.style.backgroundImage = bg;
-
-    // piecesection.setAttribute("src", bg); 
-// }

@@ -90,6 +90,10 @@ hr {
   border-radius: 10px;
 }
 
+.key-tile:hover {
+  cursor: pointer;
+}
+
 .enter-key-tile {
   border: 1px solid black;
   width: 76px;
