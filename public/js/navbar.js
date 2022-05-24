@@ -3,20 +3,20 @@ let container = document.querySelector(".container");
 function navInsertion() {
 
   let nav = document.createElement("nav");
-  nav.innerHTML = `<a id="logo" href="/html/main.html"></a>
-<ul class="navbarul">
-    <li class="option">
-        <img src="/img/home_icon.png" alt="main page" id="go_to_main" class="nav_links" >Main Page
+  nav.innerHTML = `<a id="logo" href="#top"></a>
+<ul class="navbarul" id="top">
+    <li class="option" id="go_to_main">
+        <img src="/img/home_icon.png" alt="main page"  class="nav_links" >Main Page
     
-    <li class="option">
-        <img src="/img/rewards_icon.png" alt="rewards" id="go_to_rewards" class="nav_links">Rewards
+    <li class="option" id="go_to_reward">
+        <img src="/img/rewards_icon.png" alt="rewards"  class="nav_links">Rewards
     </li>
-    <li class="option">
-        <img src="/img/clock.png" alt="history" id="go_to_history" class="nav_links">History
+    <li class="option" id="go_to_history">
+        <img src="/img/clock.png" alt="history"  class="nav_links">History
     </li>
     </li>
-    <li class="option">
-        <img src="/img/profile_icon.png" alt="profile" id="go_to_edit" class="nav_links">Edit Profile
+    <li class="option" id="go_to_edit" >
+        <img src="/img/profile_icon.png" alt="profile" class="nav_links">Edit Profile
     </li>
     <li class="option" id="adminLink">
     <img src="/img/wrench_icon.png" alt="profile" class="nav_links">Admin Dash
@@ -39,7 +39,7 @@ document
   })
 
 document
-  .querySelector("#go_to_rewards")
+  .querySelector("#go_to_reward")
   .addEventListener("click", function (e) {
     e.preventDefault();
     // alert("this feature is coming soon!");
@@ -60,6 +60,11 @@ document.querySelector("#go_to_edit").addEventListener("click", function (e) {
 document.querySelector("#go_to_main").addEventListener("click", function (e) {
   e.preventDefault();
   window.location.replace("/main");
+});
+
+document.querySelector("#go_to_reward").addEventListener("click", function (e) {
+  e.preventDefault();
+  window.location.replace("/reward");
 });
 
 document.querySelector("#logout").addEventListener("click", function (e) {
@@ -84,9 +89,7 @@ async function adminShow() {
   const is_admin = data.privileges;
 
   if (is_admin) {
-    console.log("This is an admin."); //take this out once you dont need it
     document.querySelector("#adminLink").style.display = "flex";
-
   } 
 }
 adminShow();
