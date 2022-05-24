@@ -15,6 +15,7 @@ const multer = require("multer");
 const path = require("path");
 const mysql = require("mysql2");
 const res = require("express/lib/response");
+const { send } = require("process");
 var connection = null;
 
 
@@ -144,23 +145,7 @@ app.get("/main", async function (req, res) {
       profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
       profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
       profileDOM.window.document.getElementById("email").textContent = req.session.email;
-      // console.log("SESH POINTS BEFORE UPDATE:", req.session.points);
-      updatePoints(req.session.user_id, function(updatedRecord) {
-        if (!updatedRecord) {
-          res.send({
-            status: "fail",
-            msg: "Could not update user's points."
-          });
-        } else {
-          // console.log("UPDATED POINTS:", updatedRecord.points);
-          req.session.points = updatedRecord.points;
-          req.session.save();
-          // console.log("UPDATED SESH POINTS:", req.session.points);
-        }
-        
-      });
       profileDOM.window.document.getElementById("points").textContent = req.session.points;
-      // console.log("SESH POINTS AT THE END OF THE UPDATE:", req.session.points);
       res.send(profileDOM.serialize());
     } else {
       res.redirect("/");
@@ -169,25 +154,6 @@ app.get("/main", async function (req, res) {
     console.log(err);
   }
 });
-
-
-function updatePoints(id, callback) {
-  const connection = mysql.createConnection(localConfig);
-  connection.connect();
-  connection.query("SELECT * FROM BBY_17_accounts WHERE id=?", id, function (err, results) {
-    if (err) {
-      console.log(err);
-    } 
-    if (results.length > 0) {
-      return callback(results[0]);
-    } else {
-      console.log("User info not found.");
-      return callback(null);
-    }
-  });
-  connection.end();
-  
-}
 
 app.get("/profile", function (req, res) {
   if (req.session.loggedIn) {
@@ -511,7 +477,13 @@ app.post("/finish-game", function (req, res) {
       console.log("ERROR: ", err);
     }
   });
-
+  connection.query("SELECT points FROM BBY_17_accounts WHERE id=?", req.session.user_id, function (err, results) {
+    if (err) {
+      console.log(err);
+    } 
+    req.session.points = results[0].points;
+    res.send({status: "success"});
+  });
   connection.end();
 })
 
