@@ -56,8 +56,17 @@ async function getPosts() {
             for (let i = 0; i < rows.length; i++) {
                 let row = rows[i];
 
+                console.log("DB format: ", row.time_completed);
+                var date = new Date(row.time_completed);
+                date = new Date(date.getTime());
+                let dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+                var day = date.toLocaleString("en-US", dateOptions);
+                let timeOptions = { hour12: 'true', hour: "numeric", minute: "numeric", second: "numeric"};
+                var time = date.toLocaleString("en-US", timeOptions);
+                
+                console.log("Format post locale-string conversion: ", date);
                 document.getElementsByClassName("posts")[i].innerHTML = str;
-                document.getElementsByClassName("subtitle")[i].textContent = "You completed a " + row.title + " game on " + row.time_completed;
+                document.getElementsByClassName("subtitle")[i].textContent = "You completed a " + row.title + " game on " + day + " at " + time;
                 document.getElementsByClassName("activity_title")[i].textContent = row.title;
                 document.getElementsByClassName("comment_section")[i].textContent = row.comment;
                 document.getElementsByClassName("points")[i].textContent = row.points;

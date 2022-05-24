@@ -507,7 +507,6 @@ app.get("/get-previous-activities", function (req, res) {
       console.log(err);
     } else {
       if (results.length > 0) {
-        // console.log("We got", results.length, "record(s) for this user.");
         console.log("We got", results.length, "record(s) for this user.");
         res.send({
           status: "success",
@@ -524,6 +523,8 @@ app.get("/get-previous-activities", function (req, res) {
   });
   connection.end();
 })
+
+
 
 app.post("/update-comment", function (req, res) {
   connection = mysql.createConnection(localConfig);

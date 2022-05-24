@@ -36,7 +36,7 @@ hr {
   width: 60px;
   height: 60px;
   margin: 2.5px;
-  background-color: wheat;
+  background-color: #EBEAE0;
   color: black;
   font-size: 36px;
   font-weight: bold;
@@ -58,7 +58,7 @@ hr {
 }
 
 .present {
-  background-color: lightgreen;
+  background-color: gold;
   color: white;
   border-color: white;
 }
