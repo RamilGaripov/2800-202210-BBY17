@@ -18,6 +18,9 @@ function navInsertion() {
     <li class="option">
         <img src="/img/profile_icon.png" alt="profile" id="go_to_edit" class="nav_links">Edit Profile
     </li>
+    <li class="option" id="adminLink">
+    <img src="/img/wrench_icon.png" alt="profile" class="nav_links">Admin Dash
+    </li>
 </ul>
 <form action="/logout"class="logout">
 <button type="submit" id="logout"><img src="/img/bye.png" alt="exit"><b>Leave</b></button>
@@ -63,3 +66,20 @@ document.querySelector("#logout").addEventListener("click", function (e) {
   e.preventDefault();
   window.location.replace("/logout");
 });
+
+// allows the admins to redirect back to the dashboard
+
+// console.log(is_admin);
+
+async function adminShow() {
+  const response = await fetch("/is-admin", {
+    method: "GET"
+  });
+  const data = await response.json();
+  const is_admin = data.privileges;
+  if (is_admin) {
+    console.log("This is an admin."); //take this out once you dont need it
+    document.getElementById("adminlink").style.display = "flex";
+  } 
+}
+adminShow();

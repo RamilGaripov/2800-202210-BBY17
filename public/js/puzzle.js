@@ -1,6 +1,16 @@
+/**
+ * Javascript for Puzzle Application
+ * 
+ * @author Crypters Infotech
+ * @see https://www.youtube.com/watch?v=6mgsMcOwfoE
+ */
+
 const gameTitle = "Puzzle";
 
 $(document).ready(function () {
+
+    var randompuz = Math.floor(Math.random() * 10 + 1);
+
     sendDataToServer();
     // console.log(pieces);
     var pieces = createPieces(true);
@@ -40,15 +50,74 @@ $(document).ready(function () {
 
     function createPieces(withImage) {
         var pieces = "";
-        var rows = 4,
-            columns = 4;
+        var rows = 4, 
+            columns = 4;  
+
+        var classname = "";
+
+        switch (randompuz) {
+            case 1:
+                classname = "puz1";
+                isChanged = 1;
+                break;
+
+            case 2:
+                classname = "puz2";
+                isChanged = 1;
+                break;
+
+            case 3:
+                classname = "puz3";
+                isChanged = 1;
+                break;
+
+            case 4:
+                classname = "puz4";
+                isChanged = 1;
+                break;
+
+            case 5:
+                classname = "puz5";
+                isChanged = 1;
+                break;
+
+            case 6:
+                classname = "puz6";
+                isChanged = 1;
+                break;
+
+            case 7:
+                classname = "puz7";
+                isChanged = 1;
+                break;
+
+            case 8:
+                classname = "puz8";
+                isChanged = 1;
+                break;
+
+            case 9:
+                classname = "puz9";
+                isChanged = 1;
+                break;
+
+            case 10:
+                classname = "puz10";
+                isChanged = 1;
+                break;
+        }
+
+        // console.log(classname + " was chosen.");
+
+
+
         for (var i = 0, top = 0, order = 0; i < rows; i++, top -= 100) {
             for (var j = 0, left = 0; j < columns; j++, left -= 100, order++) {
 
                 if (withImage) {
-                    pieces += "<div style='background-position:" + left + "px " + top + "px;' class='piece' data-order=" + order + "></div>";
+                    pieces += "<div style='background-position:" + left + "px " + top + "px;' class='piece " + classname + "' data-order=" + order + "></div>";
                 } else {
-                    pieces += "<div style='background-image: none;' class='piece droppablespace'></div>";
+                    pieces += "<div style='background-image: none;' class='piece " + classname + " droppablespace'></div>";
                 }
 
             }
@@ -65,12 +134,12 @@ $(document).ready(function () {
             var item = $("#puzzlecontainer .droppedPiece:eq(" + k + ")");
             var order = item.data("order");
             if (k != order) {
-                $("#lossmessage").show();      
-                // $("#piececontainer").text("Oops, thats incorrect.");
-
+                $("#lossmessage").show();
+                $("#btnreset").show();
+                $("#piececontainer").text("Oops, please try again.");
                 return false; /* loss */
             } else {
-                // $("#piececontainer").text("Congrats! You won 25 reward points!");
+                $("#piececontainer").text("Congrats! You won 25 reward points!");
                 $("#winmessage").show();
                 $("#btnreset").hide();
                 $("#btnback").show();

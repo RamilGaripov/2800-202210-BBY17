@@ -47,7 +47,7 @@ body {
 }
 
 
-form>#submit {
+form>#submit, #submit_edits {
     border-radius: 20px;
     padding: 4px 13px;
     background-color:#ffa62b;
@@ -58,7 +58,7 @@ form>#submit {
     margin-bottom: 10px;
 }
 
-form>#submit:hover {
+form>#submit:hover, #submit_edits:hover {
     box-shadow: 1px 1px 1px 2px gray;
     transform: scale(1.04);
     transition: ease-in 0.03s;

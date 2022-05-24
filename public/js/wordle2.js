@@ -77,6 +77,7 @@ function initalize(){
     ]
 
     for (let i = 0; i < keyboard.length; i++) {
+        let keyboardArea = document.querySelector("#game");
         let currentRow = keyboard[i];
         let keyboardRow = document.createElement("div");
         keyboardRow.classList.add("keyboard-row");
@@ -103,7 +104,7 @@ function initalize(){
             }
             keyboardRow.appendChild(keyTile);
         }
-        document.body.appendChild(keyboardRow);
+        keyboardArea.appendChild(keyboardRow);
     }
 
     // Waiting for user input

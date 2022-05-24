@@ -1,95 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+  height: 100%;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 hr {
-    width: 500px;
+  width: 500px;
 }
 
 #title {
-    font-size: 36px;
-    font-weight: bold;
-    letter-spacing: 2px;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 #board {
-    width: 350px;
-    height: 420px;
-    margin: 0 auto;
-    margin-top: 3px;
-    display: flex;
-    flex-wrap: wrap;
+  width: 350px;
+  height: 420px;
+  margin: 0 auto;
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .tile {
-    border: 2px solid lightgrey;
-    width: 60px;
-    height: 60px;
-    margin: 2.5px;
-
-    color: black;
-    font-size: 36px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border: 2px solid darkgray;
+  width: 60px;
+  height: 60px;
+  margin: 2.5px;
+  background-color: wheat;
+  color: black;
+  font-size: 36px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
 }
-
+#game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .correct {
-    background-color: #6AAA64;
-    color: white;
-    border-color: white;
+  background-color: darkgreen;
+  color: white;
+  border-color: white;
 }
 
 .present {
-    background-color: #C9B458;
-    color: white;
-    border-color: white;
+  background-color: lightgreen;
+  color: white;
+  border-color: white;
 }
 
 .absent {
-    background-color: #787c7e;
-    color: white;
-    border-color: white;
+  background-color: #787c7e;
+  color: white;
+  border-color: white;
 }
 
 .keyboard-row {
-    width: 400px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .key-tile {
-
-border: 1px solid lightgrey;
-width: 36px;
-height: 40px;
-margin: 1px;
-
-
-font-size: 20px;
-font-weight: bold;
-display: flex;
-justify-content: center;
-align-items: center;
-
+  border: 1px solid black;
+  width: 36px;
+  height: 40px;
+  margin: 1px;
+    background-color: #787c7e;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }
 
+.key-tile:hover {
+  cursor: pointer;
+}
 
 .enter-key-tile {
-
-    border: 1px solid lightgrey;
-    width: 76px;
-    height: 40px;
-    margin: 1px;
-    
-    
-    font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    }
+  border: 1px solid black;
+  width: 76px;
+  height: 40px;
+  margin: 1px;
+  background-color: #787c7e;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
