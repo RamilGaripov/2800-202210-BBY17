@@ -53,6 +53,10 @@ nav {
     cursor: pointer;
 }
 
+#adminLink{
+    /* display:none; */
+}
+
 #logout {
     background-color: transparent;
     color: #ffff;

@@ -18,8 +18,8 @@ function navInsertion() {
     <li class="option">
         <img src="/img/profile_icon.png" alt="profile" id="go_to_edit" class="nav_links">Edit Profile
     </li>
-    <li class="option adminLink">
-    <img src="/img/profile_icon.png" alt="profile" id="go_to_dashboard" class="nav_links">Edit Profile
+    <li class="option" id="adminLink">
+    <img src="/img/wrench_icon.png" alt="profile" class="nav_links">Admin Dash
     </li>
 </ul>
 <form action="/logout"class="logout">
@@ -66,3 +66,16 @@ document.querySelector("#logout").addEventListener("click", function (e) {
   e.preventDefault();
   window.location.replace("/logout");
 });
+
+// allows the admins to redirect back to the dashboard
+
+var admin = req.session.is_admin.value;
+
+// console.log(is_admin);
+
+// async function adminShow() {
+//   if ( is_admin == !is_admin) {
+//       document.getElementById("adminlink").style.display = "flex";
+//   } 
+// }
+// adminShow();
