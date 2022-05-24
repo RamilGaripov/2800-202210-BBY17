@@ -67,6 +67,11 @@ document.querySelector("#logout").addEventListener("click", function (e) {
   window.location.replace("/logout");
 });
 
+document.querySelector("#adminLink").addEventListener("click", function (e) {
+  e.preventDefault();
+  window.location.replace("/dashboard");
+});
+
 // allows the admins to redirect back to the dashboard
 
 // console.log(is_admin);
@@ -77,9 +82,11 @@ async function adminShow() {
   });
   const data = await response.json();
   const is_admin = data.privileges;
+
   if (is_admin) {
     console.log("This is an admin."); //take this out once you dont need it
-    document.getElementById("adminlink").style.display = "flex";
+    document.querySelector("#adminLink").style.display = "flex";
+
   } 
 }
 adminShow();
