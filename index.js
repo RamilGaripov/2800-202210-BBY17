@@ -784,10 +784,20 @@ if (is_heroku) {
 }
 
 
+// ***added 13:00 05/24 XP***
+app.get("/reward", function (req, res) {
+  if (req.session.loggedIn) {
+    let profile = fs.readFileSync("./app/html/reward.html", "utf8");
+    let profileDOM = new JSDOM(profile);
 
-
-
-
+    // console.log("Redirecting to the admin dashboard page of " + req.session.first_name, req.session.last_name);
+    // profileDOM.window.document.getElementsByTagName("title")[0].innerHTML = req.session.first_name + "'s Admin Profile";
+    // profileDOM.window.document.getElementById("username").innerHTML = req.session.first_name;
+    res.send(profileDOM.serialize());
+  } else {
+    res.redirect("/");
+  }
+});
 
 
 // let http = require('http');
@@ -806,3 +816,6 @@ if (is_heroku) {
 
 //   res.end(`Hello ${q.query['name1']}`);
 // }).listen(process.env.PORT || 5000);
+
+
+
