@@ -18,6 +18,9 @@ function navInsertion() {
     <li class="option">
         <img src="/img/profile_icon.png" alt="profile" id="go_to_edit" class="nav_links">Edit Profile
     </li>
+    <li class="option adminLink">
+    <img src="/img/profile_icon.png" alt="profile" id="go_to_dashboard" class="nav_links">Edit Profile
+    </li>
 </ul>
 <form action="/logout"class="logout">
 <button type="submit" id="logout"><img src="/img/bye.png" alt="exit"><b>Leave</b></button>
