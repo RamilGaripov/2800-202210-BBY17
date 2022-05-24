@@ -69,13 +69,17 @@ document.querySelector("#logout").addEventListener("click", function (e) {
 
 // allows the admins to redirect back to the dashboard
 
-var admin = req.session.is_admin.value;
-
 // console.log(is_admin);
 
-// async function adminShow() {
-//   if ( is_admin == !is_admin) {
-//       document.getElementById("adminlink").style.display = "flex";
-//   } 
-// }
-// adminShow();
+async function adminShow() {
+  const response = await fetch("/is-admin", {
+    method: "GET"
+  });
+  const data = await response.json();
+  const is_admin = data.privileges;
+  if (is_admin) {
+    console.log("This is an admin."); //take this out once you dont need it
+    document.getElementById("adminlink").style.display = "flex";
+  } 
+}
+adminShow();

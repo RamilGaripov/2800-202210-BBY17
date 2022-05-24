@@ -470,6 +470,10 @@ app.post('/create-account', async function (req, res) {
 
 });
 
+app.get("/is-admin", function(req, res) {
+    res.send({status: "success", privileges: req.session.admin});
+});
+
 app.post("/start-game", function (req, res) {
   connection = mysql.createConnection(localConfig);
   connection.connect();
