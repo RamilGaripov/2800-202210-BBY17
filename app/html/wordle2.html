@@ -1,5 +1,6 @@
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,35 +12,39 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
     <link rel="stylesheet" href="/css/video.css" />
     <style>
-      body {
-        background-image: url(/img/wordle_bg.jpg);
-        background-size: cover;
-        background-repeat: repeat-y;
-      }
+        body {
+            background-image: url(/img/wordle_bg.jpg);
+            background-size: cover;
+            background-repeat: repeat-y;
+        }
     </style>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
     <div id="container" class="container">
-      <div class="cinema">
-        <div id="game">
-          <fieldset>
-            <legend id="title">Wordle</legend>
-            <br />
-            <div id="board"></div>
-            <br />
-            <h1 id="answer"></h1>
-          </fieldset>
+        <div class="cinema">
+            <div id="game">
+                <fieldset>
+                    <legend id="title">How to play</legend>
+                    Wordle is a word guessing game where you get six attempts to guess a word, and with every guess you do the more hints you get on what word it is. When you type word you might notice that there are different colors.
+                    <br> <br> Green: The letter is in the correct position. <br> Yellow: The letter is in the word but not he correct position. <br> Grey: The letter is not in the word.
+                </fieldset>
+                <fieldset>
+                    <legend id="title">Wordle</legend>
+                    <br />
+                    <div id="board"></div>
+                    <br />
+                    <h1 id="answer"></h1>
+                </fieldset>
+            </div>
         </div>
-      </div>
     </div>
 
     <script src="/js/navbar.js"></script>
     <script src="/js/wordle2.js"></script>
     <script src="/js/favicon.js"></script>
-  </body>
+</body>
+
 </html>
