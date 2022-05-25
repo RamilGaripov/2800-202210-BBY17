@@ -862,7 +862,7 @@ app.get("/reward", function (req, res) {
 
 
 app.get("*", (req, res) =>  {
-  res.sendFile(__dirname + "/app/error.html");
+  res.redirect("/error")
 });
 
 
