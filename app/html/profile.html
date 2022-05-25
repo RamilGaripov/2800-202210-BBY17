@@ -27,17 +27,17 @@
             <main>
 
                 <fieldset class="border">
-                    <img alt="Your Avatar" class="profilepic" id="profilepic">
                     <legend class="subtitle">Change Avatar Photo</legend>
+                    <img src="/avatar/profilepic.png" alt="Your Avatar" class="profilepic" id="profilepic">
                     <form id="upload-images-form">
-                        <input id="image-upload" type="file" value="Upload Image"
-                            accept="image/png, image/gif, image/jpeg" name="avatar" />
-                        <input id="submit" type="submit" value="Submit" />
+                        <input id="image-upload" type="file"
+                            accept="image/png, image/gif, image/jpeg" name="avatar"/>
+                        <input id="submit" type="submit" value="Submit"/>
                     </form>
                 </fieldset>
 
                 <fieldset class="border">
-                    <legend class="subtitle"><span id="greeting"></span>, edit your profile!</p>
+                    <legend class="subtitle"><span id="greeting"></span>, edit your profile!
                     </legend>
                     <form action="/edit" class="form-group">
                         <form action="/auth/register" method="POST" class="main">
@@ -73,6 +73,7 @@
                             <button type="submit" id="go_back">BACK</button>
                             <p id="serverMsg"></p>
                         </form>
+                    </form>
                 </fieldset>
 
             </main>

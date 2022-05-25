@@ -75,8 +75,8 @@
         display: flex;
         justify-content: center;
         float: none;
-        padding: none;
-        margin: none;
+        padding: 0;
+        margin: 0;
     }
 }
 
