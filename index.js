@@ -15,7 +15,9 @@ const multer = require("multer");
 const path = require("path");
 const mysql = require("mysql2");
 const res = require("express/lib/response");
-const { send } = require("process");
+const {
+  send
+} = require("process");
 var connection = null;
 
 
@@ -350,27 +352,58 @@ app.post("/delete-user", function (req, res) {
   // console.log("Deleting the user with the id of:", req.body.id);
   connection = mysql.createConnection(localConfig);
   connection.connect();
-  //ADD CODE HERE TO SEE IF THERE's ONLY ONE ADMIN LEFT. DO NOT ALLOW TO DELETE THEM!
-  connection.query("DELETE FROM BBY_17_accounts WHERE id=?", [req.body.id], function (error, results) {
+
+  connection.query("SELECT is_admin FROM BBY_17_accounts WHERE id=?", [req.body.id], function (err, results) {
+    if (err) {
+      console.log(err);
+    }
+    if (results[0].is_admin) {
+      //if the user that they're trying to delete is an admin, we have to check that he's not the last one remaining  
+      connection.query("SELECT * FROM BBY_17_accounts WHERE is_admin", function (err, results) {
+        if (err) {
+          console.log(err);
+        }
+        if (results.length == 1) {
+          res.send({
+            status: "fail",
+            msg: "You cannot delete the last remaining administrator."
+          });
+        } else {
+          if (deleteUser(req.body.id)) {
+            res.send({
+              status: "success",
+              msg: "User record deleted."
+            });
+          }
+        }
+      });
+    } else {
+      //if they're not an admin, we can delete them
+      if (deleteUser(req.body.id)) {
+        res.send({
+          status: "success",
+          msg: "User record deleted."
+        });
+      }
+    }
+  });
+});
+
+async function deleteUser(id) {
+  connection = mysql.createConnection(localConfig);
+  connection.connect();
+  connection.query("DELETE FROM BBY_17_accounts WHERE id=?", [id], function (error, results) {
 
     if (error) {
       console.log(error);
-      res.send({
-        status: "fail",
-        msg: "Something went wrong there"
-      });
+      return false;
     } else {
       // user not found
       console.log("User record deleted.");
-      res.send({
-        status: "success",
-        msg: "User record deleted."
-      })
+      return true;
     }
-
   });
-  connection.end();
-});
+}
 
 //  register
 //  http://localhost/phpmyadmin/
@@ -436,8 +469,11 @@ app.post('/create-account', async function (req, res) {
 
 });
 
-app.get("/is-admin", function(req, res) {
-    res.send({status: "success", privileges: req.session.admin});
+app.get("/is-admin", function (req, res) {
+  res.send({
+    status: "success",
+    privileges: req.session.admin
+  });
 });
 
 app.post("/start-game", function (req, res) {
@@ -480,9 +516,11 @@ app.post("/finish-game", function (req, res) {
   connection.query("SELECT points FROM BBY_17_accounts WHERE id=?", req.session.user_id, function (err, results) {
     if (err) {
       console.log(err);
-    } 
+    }
     req.session.points = results[0].points;
-    res.send({status: "success"});
+    res.send({
+      status: "success"
+    });
   });
   connection.end();
 })
@@ -822,6 +860,3 @@ app.get("*", (req, res) =>  {
 
 //   res.end(`Hello ${q.query['name1']}`);
 // }).listen(process.env.PORT || 5000);
-
-
-
