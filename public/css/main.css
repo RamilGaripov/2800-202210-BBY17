@@ -114,6 +114,10 @@ section {
 .card:hover{
     transform: scale(1.04);
     transition: 0.4s;
+
+}
+.card:hover .subtitle{
+    color:white;
 }
 
 .link {
@@ -136,13 +140,6 @@ section {
     color: white;
     opacity: 1;
     cursor: pointer;
-    font-weight: 900;
-    /* background-image:none; */
-    background-blend-mode: soft-light;
-    background-color:gray;
-    backdrop-filter: blur(4px);
-    opacity: 0.99;
-
 }
 
 .wordle {
