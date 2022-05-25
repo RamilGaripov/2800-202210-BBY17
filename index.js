@@ -777,7 +777,9 @@ async function init() {
       ["Sudoku", 50],
       ["Match", 25],
       ["Wordle", 10],
-      ["Puzzle", 25]
+      ["Puzzle", 25],
+      ["Video", 50],
+      ["Exercise", 100]
     ];
     await connectionInit.query(activitiesSQL, [activitiesValues]);
   }
