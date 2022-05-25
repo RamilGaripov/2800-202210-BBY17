@@ -56,6 +56,12 @@ const is_heroku = process.env.IS_HEROKU || false;
   
   }
 
+  if (is_heroku) {
+    var database = "heroku_0517524a798819b";
+  } else {
+    var database = "COMP2800"
+  }
+
 
 // mysql://be46a623c032da:271c02ac@us-cdbr-east-05.cleardb.net/heroku_0517524a798819b?reconnect=true
 // server
@@ -662,8 +668,8 @@ async function init() {
     }
 
 
-  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_0517524a798819b;
-    use heroku_0517524a798819b;
+  const createDBAndTables = `CREATE DATABASE IF NOT EXISTS `+database+`;
+    use `+database+`;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
       email VARCHAR(50) UNIQUE NOT NULL,
