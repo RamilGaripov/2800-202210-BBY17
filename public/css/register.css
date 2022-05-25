@@ -67,6 +67,18 @@ form {
     background-color: #8b622a;
 }
 
+#errorMsg {
+    margin: 0;
+    color: red;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25em;
+    font-weight: 700;
+    text-align: center;
+    transition: ease-in 0.3s;
+    border-radius: 10px;
+    padding: 4px;
+}
+
 
 
 @media screen and (max-width:499px) {

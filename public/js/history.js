@@ -8,11 +8,6 @@ async function getPosts() {
         console.log(data);
         const rows = data.rows;
 
-        // const comments_response = await fetch("/get-comments", {
-        //     method: "GET"
-        // });
-        // const comments = await comments_response.json();
-        // console.log(comments);
         if (data.status == "fail") {
             document.getElementById("serverMsg").textContent = data.msg;
         } else {
@@ -23,15 +18,7 @@ async function getPosts() {
           <fieldset class="border user_post_div">
             <div class="left_box">
               <img alt="activity" class="activity_pic"/>
-              <form class="upload-images-form">
-                <input class="image-upload" type="file" value="Upload Image" accept="image/png, image/gif, image/jpeg"
-                  multiple="multiple" />
-                <input class="submit" type="submit" value="Submit" />
-              </form>
             </div>
-          </fieldset>
-
-          <fieldset class="border">
             <div>
               <b>Name: </b><span class="activity_title"></span>
               <b>Points Received: <span class="points"></span></b>

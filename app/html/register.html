@@ -18,7 +18,7 @@
 <body>
     <div class="container">
 <main>
-    <form action="/register" method="POST">
+    <form>
         <h1> Register </h1>
         <p id="errorMsg"></p>
 
@@ -34,13 +34,13 @@
 
         <div class="form-group">
             <label for="email">Email</label><br>
-            <input type="text" class="form-control" id="email" name="email" placeholder="your@email.com">
+            <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com">
         </div>
 
 
         <div class="form-group">
             <label for="birthday">Birthday</label><br>
-            <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01">
+            <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01" max="2020-01-01">
         </div>
 
         <div class="form-group">
@@ -65,7 +65,7 @@
 
     {{/if}} -->
 </div>
-<script src="/js/register.js"></script>
+<script defer src="/js/register.js"></script>
 <script src="/js/favicon.js"></script>
 </body>
 
