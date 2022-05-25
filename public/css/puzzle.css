@@ -1,0 +1,327 @@
+#container {
+    width: 850px;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: wheat;
+    text-align: center;
+}
+
+#piececontainer {
+    width: 402px;
+    height: 402px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 30px;
+    position: relative;
+    background-color: #EDE7E3;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#puzzlecontainer {
+    width: 402px;
+    height: 402px;
+    border: 1px solid black;
+    background-color: #EDE7E3;
+}
+
+#puzzletitle {
+    font-family: monospace;
+}
+
+#lossmessage {
+    font-size: 20px;
+    display: none;
+}
+
+#winmessage {
+    display: none;
+    font-size: 20px;
+}
+
+
+
+#btnback {
+    display: none;
+}
+
+@media screen and (min-width: 860px) {
+    #piececontainer {
+        float: left;
+    }
+
+
+    #puzzlecontainer {
+        float: right;
+    }
+
+}
+
+@media screen and (max-width: 860px) {
+    #container {
+        width: 425px;
+        z-index: 1;
+    }
+
+   #container >#buttons {
+        display: flex;
+        justify-content: center;
+        float: none;
+        padding: none;
+        margin: none;
+    }
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+ul button {
+    width: 100px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    background-color: #BEE5B0;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+#btnreset {
+    display: none;
+}
+
+.puz1 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/1.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz2 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/2.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz3 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/3.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz4 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/4.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz5 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/5.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz6 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/6.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz7 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/7.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz8 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/8.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz9 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/9.jpg);
+    background-repeat: no-repeat;
+}
+
+.puz10 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-image: url(/img/puzzle/10.jpg);
+    background-repeat: no-repeat;
+}
+
+.piece {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    float: left;
+    background-repeat: no-repeat;
+}
+
+.piece {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.piece:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/* ------------------ template */
+
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    /* height: 100vh; */
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    height: 100%;
+}
+
+/* This is a Subheader Font */
+.subtitle {
+    font-size: 1em;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+
+
+#username {
+    font-size: 1.2em;
+    color: #4874B5;
+    font-family: 'Montserrat', sans-serif;
+    margin: 10px 0px;
+}
+
+@media screen and (max-width:499px) {
+    body {
+        min-width: 350px;
+        height: 100%;
+        background-image: url(/img/puzzle_bg.jpg);
+        background-position: center;
+        background-repeat: repeat-y;
+        background-size: cover;
+        height: auto;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 90%;
+        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:3400px) {
+    body {
+        min-width: 350px;
+        height: 100vh;
+        background-image: url(/img/puzzle_bg.jpg);
+        background-position: center;
+        background-repeat: repeat-y;
+        background-size: cover;
+    }
+
+    .container {
+        width: 100%;
+
+    }
+
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 97%;
+        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+    }
+
+    .form-group {
+        display: inline-block;
+        text-align: center;
+        margin: 2px;
+    }
+
+    .form-group>label {
+        font-weight: bolder;
+    }
+
+    .form-group>input {
+        border-radius: 8px;
+    }
+
+}

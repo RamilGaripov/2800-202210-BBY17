@@ -1,3 +1,12 @@
+/**
+ * Javascript for Match Application
+ * 
+ * @author Ferenc Almasi
+ * @see https://www.webtips.dev/memory-game-in-javascript
+ */
+
+const gameTitle = "Match";
+
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
     board: document.querySelector('.board'),
@@ -72,13 +81,30 @@ const generateGame = () => {
 const startGame = () => {
     state.gameStarted = true
     selectors.start.classList.add('disabled')
-
+    sendDataToServer();
+    document.getElementById("startbtn").style.display = "none";
     state.loop = setInterval(() => {
         state.totalTime++
 
         selectors.moves.innerText = `${state.totalFlips} moves`
         selectors.timer.innerText = `time: ${state.totalTime} sec`
     }, 1000)
+}
+
+function sendDataToServer() {
+
+    console.log("Starting to match...");
+    const timeStamp = Date.now(); 
+    console.log(timeStamp);
+    const data = {title: gameTitle};
+    fetch("/start-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
 }
 
 const flipBackCards = () => {
@@ -94,7 +120,7 @@ const flipCard = card => {
     state.totalFlips++
 
     if (!state.gameStarted) {
-        startGame()
+        startGame();
     }
 
     if (state.flippedCards <= 2) {
@@ -120,15 +146,29 @@ const flipCard = card => {
             selectors.boardContainer.classList.add('flipped')
             selectors.win.innerHTML = `
                 <span class="win-text">
-                    You won!<br />
-                    with <span class="highlight">${state.totalFlips}</span> moves<br />
-                    under <span class="highlight">${state.totalTime}</span> seconds
+                    <p>Congrats! You won 25 reward points!</p>
+                    <p>In <span class="highlight">${state.totalFlips}</span> moves <br>
+                    under <span class="highlight">${state.totalTime}</span> seconds</p>
                 </span>
             `
 
             clearInterval(state.loop)
-        }, 1000)
+        }, 250)
+        updateDataOnServer();
+        document.getElementById("homebtn").style.visibility = "visible";
     }
+}
+
+function updateDataOnServer() {
+    console.log("finished matching!");
+    const data = {title: gameTitle};
+    fetch("/finish-game", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
 }
 
 const attachEventListeners = () => {
@@ -146,3 +186,10 @@ const attachEventListeners = () => {
 
 generateGame()
 attachEventListeners()
+
+document.querySelector("#homebtn").addEventListener("click", function (e) {
+    e.preventDefault();
+    window.location.replace("/main");
+});
+
+

@@ -30,7 +30,38 @@ body {
     padding-right: 20px;
 }
 
+.profile_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-color: #16697a;
+    border-radius: 12px;
+    min-width: 350px;
+    margin: 15px 0 8px 0;
+}
 
+b,
+span {
+    margin: 5px;
+}
+
+#pointsholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: 300;
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    margin: 5px 0;
+    border: 3px dotted #c67700;
+}
+
+div>b+span {
+    color: #16697a;
+}
 .subtitle {
     font-size: 1em;
     color: black;
@@ -38,28 +69,7 @@ body {
     margin: 0;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    align-items: center;
-}
-
-.navbarul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    padding: 10px;
-}
-
-.option {
-    float: right;
-    display: flex;
-    flex-direction: column;
-}
-
-.option a {
+.prof {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -68,20 +78,6 @@ nav {
     padding: 16px;
     text-decoration: none;
     align-items: center;
-}
-
-.option>a>img {
-    width: 50px;
-    height: 40px;
-}
-
-.option:active {
-    filter: invert(100%) sepia(16%) saturate(7463%) hue-rotate(222deg) brightness(119%) contrast(115%);
-}
-
-.option:hover {
-    transform: scale(1.09);
-    transition: ease-in 0.09s;
 }
 
 #username {
@@ -96,48 +92,54 @@ section {
     height: 100%;
 }
 
-.physical {
+.border {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     border-color: #16697a;
     border-radius: 12px;
     min-width: 100px;
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
-.exer_card{
+.card {
     flex: 1;
-    background: linear-gradient(to bottom, #EDE7E3 0%, #D5AE98 100%);
-    margin: 4px 8px;
+    background-image: linear-gradient(to right, #bd6f2d, #b15f48, #985759, #77535d, #564f53);
+    margin: 4px 15px;
     border-radius: 20px;
-    padding: 5px;
+    padding: 0;
+    text-align: center;
 }
 
-.exer_card>.subtitle{
-    padding: 4px;
+.card:hover{
+    transform: scale(1.04);
+    transition: 0.4s;
+
+}
+.card:hover .subtitle{
+    color:white;
 }
 
-.exercise {
+.link {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bolder;
-    font-size: 1.5em;
+    font-size: 2em;
     letter-spacing: 3px;
-    /* background-image: url(/img/walking.png); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 200px;
-    /* width: 1.2fr; */
     border-radius: 20px;
     height: 200px;
     width: 100%;
-    /* margin: 8px; */
-    /* opacity: 0.6; */
     text-decoration: none;
-    color: black;
+    color: transparent;
+}
+
+.link:hover {
+    color: white;
+    opacity: 1;
+    cursor: pointer;
 }
 
 .wordle {
@@ -159,158 +161,46 @@ section {
 
 .walk {
     background-image: url(/img/walk.jpg);
+    flex: 1;
 }
 
 .hike {
     background-image: url(/img/hikee.jpg);
+    flex: 1;
 }
 
 .yoga {
     background-image: url(/img/yoga.jpg);
+    flex: 1;
 }
 
 .meditation {
     background-image: url(/img/meditation.jpg);
-}
+    flex: 1;
+} 
 
+    .profilepic {
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        border: 2px solid #8b622a;
+        border-radius: 10px;
+    }
 
-
-.exercise:hover {
-    color: wheat;
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: 0.4s;
-    opacity: 1;
-    font-size: 2em;
-    /* font-weight: bolder; */
-    cursor: pointer;
-    font-weight: 900;
-    /* filter: brightness(50%); */
-}
-
-/* .exercise>.imgname:hover{
-    filter: brightness(100%);
-} */
-
-/* .exercise:hover {
-   filter: brightness(100%);
-} */
-
-
-
-#logout {
-    border-radius: 20px;
-    padding: 8px 40px;
-    background-color: #ffa62b;
-    color: #ffff;
-    border: none;
-    margin-bottom: 10px;
-}
-
-#logout:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.3s;
-}
-
-#logout:active {
-    background-color: #8b622a;
-}
-
-/* #exercisesub {
-    border-radius: 10px;
-    padding: 8px 40px;
-    background-color: #BEE5B0;
-    color: black;
-    border: 2px solid black;
-    margin-bottom: 10px;
-    height: 50px;
-    width: 200px;
-    font-size: 20px;
-}
-
-#exercisesub:hover {
-    box-shadow: 1px 1px 1px 2px gray;
-    transform: scale(1.04);
-    transition: ease-in 0.3s;
-}
-
-#exercisesub:active {
-    background-color: #BEE5B0;
-} */
-
-.profilepic {
-    width: 100px;
-    margin: 20px;
-}
-
-.profile_card {
-    display: flex;
-    padding: 10px;
-}
-
-.profile_card>div>div {
-    margin: 2px;
-    font-size: 0.9em;
-}
-
-.profilepic {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-}
-
-@media screen and (max-width:499px) {
+@media screen and (max-width:717px) {
     body {
         min-width: 350px;
-        height: 100%;
-    }
-
-    #logo {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        background-image: url(/img/logo.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 50px;
-        height: 50px;
-        padding: 5px;
-        z-index: 1;
-    }
-
-    .physical {
-        display: flex;
-        flex-direction: column;
-        min-height: 150px;
-    }
-
-    .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
     }
 
-    nav {
+    .border {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        background-image: linear-gradient(#16697a, #5b96a1);
-        border-bottom: 2px solid black;
-
-    }
-
-    #logo {
-        order: 2;
-        transform: scale(1.5);
-        margin: 5px;
-    }
-
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
+        min-height: 150px;
     }
 
     .subcontainer {
@@ -330,33 +220,23 @@ section {
         border-radius: 20px;
         margin-bottom: 10px;
     }
-}
 
-@media screen and (min-width:0px) and (max-width:793px) {
-    nav>h1.title {
-        display: none;
-    }
-    .profile_card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-    }
-    .profilepic{
-        margin-top:10px;
+    .profilepic {
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        border: 2px solid #8b622a;
+        border-radius: 10px;
     }
 
-
-}
-
-@media screen and (max-width:1172px) {
-    .navbarul>.option:nth-child(n+4) {
-        display: none;
+    .card{
+        margin: 15px auto;
+        width:80%;
+        
     }
 }
 
-@media screen and (min-width:500px) and (max-width:3400px) {
+@media screen and (min-width:718px) and (max-width:3400px) {
     body {
         min-width: 350px;
     }
@@ -364,44 +244,9 @@ section {
     .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
-        background-repeat: no-repeat;  
+        background-repeat: repeat-y;
         background-size: cover;
         width: 100%;
-    }
-
-    nav {
-        background-image: linear-gradient(#16697a, #5b96a1);
-        border-bottom: 2px solid black;
-    }
-
-    #logo {
-        background-image: url(/img/logo.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        width: 150px;
-        height: 150px;
-    }
-
-    .title {
-        color: #ffff;
-        display: inline-flex;
-        align-self: center;
-        text-align: center;
-        opacity: 0;
-        animation: 2s fadeIn;
-        animation-fill-mode: forwards;
-        transition: opacity 1.5s;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
     }
 
     .subcontainer {
@@ -421,28 +266,16 @@ section {
         margin-bottom: 10px;
     }
 
-    .physical {
+    .card{
+        margin:10px;
+    }
+    .border {
         justify-content: space-between;
     }
 
-    .exercise {
+    .link {
         min-height: 150px;
         min-width: 150px;
-        flex: 1; 
+        flex: 1;
     }
-
-    .form-group {
-        display: inline-block;
-        text-align: center;
-        margin: 2px;
-    }
-
-    .form-group>label {
-        font-weight: bolder;
-    }
-
-    .form-group>input {
-        border-radius: 8px;
-    }
-
 }

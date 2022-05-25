@@ -7,53 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/register.css">
     <title>Document</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png"/>
+<link rel="mask-icon" href="/safari-pinned-tab.svg"  color="#5bbad5"/>
+<meta name="msapplication-TileColor" content="#da532c"/>
+<meta name="theme-color" content="#ffffff"/>
 </head>
 
 <body>
     <div class="container">
-
-    <nav>
-        <img src="/img/logo.png" alt="logo" width="150" height="150" id="logo">
-        <ul class="navbarul">
-            <!-- change all paths to /img -->
-            <li class="option"><a href="#profile"><img src="/img/profile_icon.png" alt="profile">Profile</a>
-            </li>
-            <li class="option"><a href="#friends"><img src="/img/friends_icon.png" alt="friends">Friends</a>
-            </li>
-            <li class="option"><a href="#rewards"><img src="/img/rewards_icon.png" alt="rewards">Rewards</a>
-            </li>
-            <li class="option"><a href="#mindgames"><img src="/img/mind_games_icon.png" alt="mind games">Mind
-                    Games</a></li>
-            <li class="option"><a href="#exercise"><img src="/img/exercise_icon.png" alt="exercise">
-                    Exercise</a></li>
-            <li class="option"><a href="#meditation"><img src="/img/meditate_icon.png"
-                        alt="meditation">Meditation</a></li>
-        </ul>
-    </nav>
 <main>
-    <form action="/register" method="POST">
+    <form>
         <h1> Register </h1>
         <p id="errorMsg"></p>
 
         <div class="form-group">
             <label for="name">First Name</label><br>
-            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John">
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Jamie">
         </div>
 
         <div class="form-group">
             <label for="name">Last Name</label><br>
-            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe">
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Smith">
         </div>
 
         <div class="form-group">
             <label for="email">Email</label><br>
-            <input type="text" class="form-control" id="email" name="email" placeholder="your@email.com">
+            <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com">
         </div>
 
 
         <div class="form-group">
             <label for="birthday">Birthday</label><br>
-            <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01">
+            <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01" max="2020-01-01">
         </div>
 
         <div class="form-group">
@@ -67,7 +54,8 @@
             <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
         </div>
         <br>
-        <button type="submit" id = "submit" class="btn btn-primary register">SUBMIT</button>
+        <button type="submit" id = "submit" class="register">SUBMIT</button>
+        <button type="submit" id = "go_back" class="register">GO BACK</button>
     </form>
 </main>
 
@@ -77,9 +65,8 @@
 
     {{/if}} -->
 </div>
-
-<script src="/js/register.js"></script>
-
+<script defer src="/js/register.js"></script>
+<script src="/js/favicon.js"></script>
 </body>
 
 

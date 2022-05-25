@@ -1,0 +1,237 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    height: 100%;
+}
+
+.title {
+    display: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    padding-right: 20px;
+}
+main>p{
+    padding:7px 20px;
+}
+main>p:first-child{
+    background-color: white;
+    border-radius: 45px;
+}
+.subtitle {
+    font-size: 1em;
+    color: #16697A;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 7px;
+}
+
+#username {
+    font-size: 1em;
+    color: #4874B5;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+
+.profilepic {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+
+}
+
+.user_posts {
+   margin:10px;
+}
+
+.user_post_div {
+    display: flex;
+}
+
+
+.subtitle {
+    font-size: 1em;
+    color: #16697A;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 7px;
+}
+
+#username {
+    font-size: 1em;
+    color: #4874B5;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+.border{
+    border-color: #16697a;
+    border-radius: 12px;
+    min-width: 350px;
+    margin: 8px 10px;
+}
+
+.activity_pic {
+    
+    height: 80px;
+    width: 80px;
+    border: 1px black;
+}
+
+form>#submit {
+    border-radius: 20px;
+    padding: 4px 13px;
+    background-color: #ffa62b;
+    color: #ffff;
+    text-decoration: none;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+form>#submit:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.03s;
+}
+
+form>#submit:active {
+    background-color: #8b622a;
+}
+
+.image-upload {
+    margin: 6px 2px;
+    border-radius: 0 10px 10px 0;
+}
+
+.image-upload:hover {
+    background-color: wheat;
+    box-shadow: 1px 2px 2px 2px grey;
+    transition: ease-in 0.2s;
+}
+
+.upload-images-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit_comment{
+    border-radius: 20px;
+    padding: 4px 13px;
+    background-color:#ffa62b;
+    color: #ffff;
+    text-decoration: none;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+}
+
+.submit_comment:hover {
+    box-shadow: 1px 1px 1px 2px gray;
+    transform: scale(1.04);
+    transition: ease-in 0.03s;
+}
+
+.submit_comment:active {
+    background-color: #8b622a;
+}
+
+@media screen and (max-width:499px) {
+    body {
+        min-width: 350px;
+        background-image: url(/img/timeline_bg.jpg);
+        background-position: center;
+        background-repeat: repeat-y;
+        background-size: cover;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid black;
+    }
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        background-color: #a39984;
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:3400px) {
+    body {
+        min-width: 350px;
+        background-image: url(/img/timeline_bg.jpg);
+        background-position: center;
+        background-repeat: repeat-y;
+        background-size: cover;
+    }
+
+    .subcontainer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        /* padding-bottom: 20px; */
+    }
+
+    main {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex: 1;
+        background: linear-gradient(180deg, #A39984 0%, rgba(242, 166, 4, 0) 100%);
+        backdrop-filter: blur(4px);
+        border-radius: 20px;
+    }
+
+    .form-group {
+        text-align: center;
+        margin: 2px;
+    }
+
+    .form-group>label {
+        font-weight: bolder;
+    }
+
+    .form-group>input {
+        border-radius: 8px;
+    }
+
+    .left_box{
+        padding:0 10px;
+    }
+}

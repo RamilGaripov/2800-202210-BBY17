@@ -2,39 +2,87 @@
 async function getAccounts() {
     try {
         let response = await fetch("/get-accounts", {
-            method: "GET"
+            method: "GET",
         });
 
-        //ATTRIBUTION: 
-        //This table creation code is taken from the examples of our COMP2537 professor, Mr. Arron Ferguson. 
-        //RDBMS-CRUD MySQL example. 
-
+        //ATTRIBUTION:
+        //This table creation code is taken from the examples of our COMP2537 professor, Mr. Arron Ferguson.
+        //RDBMS-CRUD MySQL example.
+        var str;
+        console.log("BEFORE", str);
         if (response.status === 200) {
             const data = await response.json();
             // console.log("the data: ", data);
-            let str = `<tr>
+
+            //For veiwport width above 682px
+            if (window.innerWidth > 682) {
+                str = `<tr>
                 <th class="id_header"><span>ID</span></th>
                 <th class="first_name_header"><span>First Name</span></th>
                 <th class="last_name_header"><span>Last Name</span></th>
                 <th class="email_header"><span>Email</span></th>
+                <th class="points_header"><span>Total Points</span></th>
                 <th class="edit_header"></th>
+                <th class="reset_header"></th>
                 <th class="delete_header"></th>
                 </tr>`;
 
-            for (let i = 0; i < data.rows.length; i++) {
-                let row = data.rows[i];
-                //console.log("row", row);
-                str += ("<tr><td class='id'>" + row.id +
-                    "</td><td class='first_name'>" + row.first_name +
-                    "</td><td class='last_name'>" + row.last_name +
-                    "</td><td class='email'>" + row.email +
-                    "</td><td class='edit'>" + "<button type='submit' class='edit_user'>Edit</button>" +
-                    "</td><td class='delete'>" + "<button type='submit' class='delete_user'>Delete</button>" +
-                    "</td></tr>");
-                // id_array.push(row)
+                for (let i = 0; i < data.rows.length; i++) {
+                    let row = data.rows[i];
+                    //console.log("row", row);
+                    str += ("<tr><td class='id'>" + row.id +
+                        "</td><td class='first_name'>" + row.first_name +
+                        "</td><td class='last_name'>" + row.last_name +
+                        "</td><td class='email'>" + row.email +
+                        "</td><td class='points'>" + row.points +
+                        "</td><td class='edit'>" + "<button type='submit' class='edit_user dash'>Edit</button>" +
+                        "</td><td class='reset'>" + "<button type='submit' class='reset_password dash'>Reset Password</button>" +
+                        "</td><td class='delete'>" + "<button type='submit' class='delete_user dash'>Delete</button>" +
+                        "</td></tr>");
+                    // id_array.push(row)
+                }
+                console.log("DURING", str);
+                assignFunctionality();
+                
+            } else {
+                str = `<tr>
+                    <th class="id_header"><span>ID</span></th>
+                    <th class="first_name_header"><span>First Name</span></th>
+                    <th class="last_name_header"><span>Last Name</span></th>
+                    <th class="email_header"><span>Email</span></th>
+                    <th class="points_header"><span>Total Points</span></th>
+                    </tr>`;
+
+                for (let i = 0; i < data.rows.length; i++) {
+                    let row = data.rows[i];
+                    //console.log("row", row);
+                    str +=
+                        "<tr><td class='id'>" +
+                        row.id +
+                        "</td><td class='first_name'>" +
+                        row.first_name +
+                        "</td><td class='last_name'>" +
+                        row.last_name +
+                        "</td><td class='email'>" +
+                        row.email +
+                        "</td><td class='points'>" +
+                        row.points +
+                        "</td></tr><tr class='button_area'><td class='edit'>" +
+                        "<button type='submit' class='edit_user dash'>Edit</button>" +
+                        "</td><td></td><td class='reset'>" +
+                        "<button type='submit' class='reset_password dash'>Reset</button>" +
+                        "</td><td></td><td class='delete'>" +
+                        "<button type='submit' class='delete_user dash'>Delete</button>" +
+                        "</td></tr>";
+                    // id_array.push(row)
+                }
+                console.log("DURING", str);
+                assignFunctionality();
             }
 
+            function assignFunctionality() {
             //provides EDIT BUTTON functionality 
+            console.log("WHEN IN USE", str);
             document.getElementById("accounts").innerHTML = str;
             const edits = document.getElementsByClassName("edit_user");
             for (let j = 0; j < edits.length; j++) {
@@ -48,19 +96,45 @@ async function getAccounts() {
                 })
             }
 
+            //provides RESET PASSWORD BUTTON functionality 
+            const resets = document.getElementsByClassName("reset_password");
+            for (let l = 0; l < resets.length; l++) {
+                resets[l].addEventListener("click", function (e) {
+                    e.preventDefault();
+                    console.log("Let's reset the password of the user with id", data.rows[l].id);
+                    //When calling this function, we're passing a JSON object in the parameters, using {key : value} format.
+                    resetPassword({
+                        id: data.rows[l].id
+                    });
+                })
+            }
+
             //provides DELETE BUTTON functionality 
             const deletes = document.getElementsByClassName("delete_user");
             for (let k = 0; k < deletes.length; k++) {
                 deletes[k].addEventListener("click", function (e) {
                     e.preventDefault();
-                    if (confirm("Delete " + data.rows[k].first_name + " " + data.rows[k].last_name + "'s account?")) {
-                        console.log("Let's delete the user with id", data.rows[k].id);
-                        deleteUser({
-                            id: data.rows[k].id
-                        });
-                    }
+
+                    Swal.fire({
+                        title: 'Delete ' + data.rows[k].first_name + ' ' + data.rows[k].last_name + "'s account?",
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#ffa62b',
+                        confirmButtonText: 'Delete!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            deleteUser({
+                                id: data.rows[k].id,
+                                fName: data.rows[k].first_name,
+                                lName: data.rows[k].last_name
+                            });
+                        }
+                    })
                 });
             }
+        }
         } else {
             console.log(response.status);
         }
@@ -78,10 +152,10 @@ async function editUser(data) {
         const response = await fetch("/edit-user", {
             method: "POST",
             headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
+                Accept: "application/json",
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         });
         let parsedJSON = await response.json();
         if (parsedJSON.status == "fail") {
@@ -94,12 +168,33 @@ async function editUser(data) {
     }
 }
 
+//sends id of the user to the server. Redirects to the edit.html
+async function resetPassword(data) {
+    try {
+        const response = await fetch("/reset-user-password", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        let parsedJSON = await response.json();
+        if (parsedJSON.status == "fail") {
+            console.log("Couldn't reset this user's pw.");
+        } else {
+            console.log("Password reset.");
+            getAccounts();
+            document.getElementById("serverMsg").textContent = parsedJSON.msg;
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 //deletes the user from the db and refreshes the page
 async function deleteUser(data) {
     try {
-        // console.log("Delete user activated");
-        // console.log(data);
-
         const response = await fetch("/delete-user", {
             method: "POST",
             headers: {
@@ -110,15 +205,29 @@ async function deleteUser(data) {
         });
         let parsedJSON = await response.json();
         if (parsedJSON.status == "fail") {
-            console.log("Cannot delete this user.");
+            Swal.fire(
+                'Warning!',
+                "You cannot delete the last remaining administrator.",
+                'info'
+            )
         } else {
             console.log("User deleted.")
             getAccounts();
+            Swal.fire(
+                'Deleted!',
+                data.fName + ' ' + data.lName + "'s account has been deleted.",
+                'success'
+            )
         }
-
     } catch (err) {
         console.log(err);
     }
 }
+
+function resize() {
+    //   console.log(window.innerHeight + window.innerWidth);
+    getAccounts();
+}
+window.onresize = resize;
 
 getAccounts();

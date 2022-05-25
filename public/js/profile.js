@@ -1,4 +1,4 @@
-document.querySelector("#submit").addEventListener("click", function(e) {
+document.querySelector("#submit_edits").addEventListener("click", function(e) {
     e.preventDefault();
     console.log("Submit pressed.")
     
@@ -13,8 +13,6 @@ document.querySelector("#submit").addEventListener("click", function(e) {
 
 async function editUser(data) {
     try{
-    console.log("Edit user activated.");
-    console.log(data);
     const response = await fetch("/update-user", {
         method: "POST",
         headers: {
@@ -41,3 +39,38 @@ document.querySelector("#go_back").addEventListener("click", function(e) {
     window.location.replace("/main");
 });
 
+//upload photo js for profile
+//This code is taken from Arron Ferguson's example "UPLOAD-FILE"
+// @author Arron Ferguson
+const uploadForm = document.getElementById("upload-images-form");
+uploadForm.addEventListener("submit", uploadImages);
+
+async function uploadImages(e) {
+  e.preventDefault();
+  try{
+  const imageUpload = document.querySelector("#image-upload");
+  const formData = new FormData();
+
+  for (let i = 0; i < imageUpload.files.length; i++) {
+    // put the images from the input into the form data
+    formData.append("avatar", imageUpload.files[i]);
+  }
+
+  console.log(formData);
+
+  const response = await fetch("/post-new-avatar", {
+    method: "POST",
+    body: formData
+  })
+  const data = await response.json();
+  
+  if (data.status == "fail") {
+    document.getElementById("serverMsg").textContent = data.msg;
+  } else {
+    document.getElementById("serverMsg").textContent = data.msg;
+  }
+
+  } catch(err) {
+    console.log(err);
+  }
+}
