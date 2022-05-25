@@ -52,18 +52,18 @@ async function getAccounts() {
                 })
             }
 
-             //provides RESET PASSWORD BUTTON functionality 
-             const resets = document.getElementsByClassName("reset_password");
-             for (let l = 0; l < resets.length; l++) {
+            //provides RESET PASSWORD BUTTON functionality 
+            const resets = document.getElementsByClassName("reset_password");
+            for (let l = 0; l < resets.length; l++) {
                 resets[l].addEventListener("click", function (e) {
-                     e.preventDefault();
-                     console.log("Let's reset the password of the user with id", data.rows[l].id);
-                     //When calling this function, we're passing a JSON object in the parameters, using {key : value} format.
-                     resetPassword({
-                         id: data.rows[l].id
-                     });
-                 })
-             }
+                    e.preventDefault();
+                    console.log("Let's reset the password of the user with id", data.rows[l].id);
+                    //When calling this function, we're passing a JSON object in the parameters, using {key : value} format.
+                    resetPassword({
+                        id: data.rows[l].id
+                    });
+                })
+            }
 
             //provides DELETE BUTTON functionality 
             const deletes = document.getElementsByClassName("delete_user");
@@ -79,18 +79,15 @@ async function getAccounts() {
                         confirmButtonColor: '#d33',
                         cancelButtonColor: '#ffa62b',
                         confirmButtonText: 'Delete!'
-                      }).then((result) => {
+                    }).then((result) => {
                         if (result.isConfirmed) {
-                          Swal.fire(
-                            'Deleted!',
-                            data.rows[k].first_name + ' ' + data.rows[k].last_name + "'s account has been deleted.",
-                            'success'
-                          )
-                          deleteUser({
-                            id: data.rows[k].id
-                          });
+                            deleteUser({
+                                id: data.rows[k].id,
+                                fName: data.rows[k].first_name,
+                                lName: data.rows[k].last_name
+                            });
                         }
-                      })
+                    })
                 });
             }
         } else {
@@ -164,10 +161,19 @@ async function deleteUser(data) {
         });
         let parsedJSON = await response.json();
         if (parsedJSON.status == "fail") {
-            console.log("Cannot delete this user.");
+            Swal.fire(
+                'Warning!',
+                "You cannot delete the last remaining administrator.",
+                'info'
+            )
         } else {
             console.log("User deleted.")
             getAccounts();
+            Swal.fire(
+                'Deleted!',
+                data.fName + ' ' + data.lName + "'s account has been deleted.",
+                'success'
+            )
         }
     } catch (err) {
         console.log(err);
