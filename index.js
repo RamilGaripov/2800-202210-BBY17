@@ -20,9 +20,33 @@ const {
 } = require("process");
 var connection = null;
 
-
-
 const is_heroku = process.env.IS_HEROKU || false;
+
+
+if (is_heroku) {
+  var config= {
+    host: "us-cdbr-east-05.cleardb.net",
+    user: "be46a623c032da",
+    password: "271c02ac",
+    database: "heroku_0517524a798819b"
+  
+  }
+} else {
+  var config = {
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800"
+  }
+
+}
+
+if (is_heroku) {
+  var database = "heroku_0517524a798819b";
+} else {
+  var database = "COMP2800"
+}
+
 
 
 // mysql://bbbf1ed5716748:0548f8d4@us-cdbr-east-05.cleardb.net/heroku_ea347eecae4ecfd?reconnect=true
@@ -94,9 +118,8 @@ app.use(session({
 app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
   if (req.file) {
     const avatarPath = req.file.path.substring(6);
-    connection = mysql.createConnection(localConfig);
+    connection = mysql.createPool(config);
     var insertData = "UPDATE BBY_17_accounts SET avatar=? WHERE id=?"
-    connection.connect();
     connection.query(insertData, [avatarPath, req.session.user_id], function (err) {
       if (err) {
         res.send({
@@ -111,7 +134,6 @@ app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
         });
       }
     });
-    connection.end();
 
   } else {
     console.log("No file uploaded.");
@@ -208,8 +230,8 @@ app.use(express.urlencoded({
 
 //pulls all accounts for the admin dashboard table
 app.get('/get-accounts', function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+
   connection.query("SELECT * FROM BBY_17_accounts", function (error, results, fields) {
     if (error) {
       console.log(error);
@@ -221,7 +243,7 @@ app.get('/get-accounts', function (req, res) {
     });
 
   });
-  connection.end();
+
 });
 
 //Pre-populates the forms on the edit page. 
@@ -235,8 +257,8 @@ app.get("/edit", function (req, res) {
     }
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
     let edit_profileDOM = new JSDOM(edit_profile);
-    connection = mysql.createConnection(localConfig);
-    connection.connect();
+    connection = mysql.createPool(config);
+  
     connection.query(
       "SELECT * FROM BBY_17_accounts WHERE id=?", req.session.id_to_edit,
       function (error, results) {
@@ -270,7 +292,7 @@ app.get("/edit", function (req, res) {
         }
       }
     );
-    connection.end();
+    
 
   } else {
     res.redirect("/");
@@ -291,8 +313,8 @@ app.post("/edit-user", function (req, res) {
 //Allows the admins to reset the user's password to 123456
 app.post("/reset-user-password", function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+
   const reset_pw = "123456";
   connection.query("UPDATE BBY_17_accounts SET password=? WHERE id=?", [reset_pw, req.body.id], function (err, results) {
     if (err) {
@@ -305,14 +327,14 @@ app.post("/reset-user-password", function (req, res) {
       //Here, we would want to send an email to the user telling them their temporary password is 123456 and they should change it ASAP.
     }
   });
-  connection.end();
+
 });
 
 //updates the user information in the db
 app.post("/update-user", function (req, res) {
   if (req.session.loggedIn) {
-    connection = mysql.createConnection(localConfig);
-    connection.connect();
+    connection = mysql.createPool(config);
+ 
 
     const user = req.body;
     if (req.session.admin) {
@@ -343,15 +365,15 @@ app.post("/update-user", function (req, res) {
         })
       }
     });
-    connection.end();
+ 
   }
 });
 
 //Deletes a user. Function accessible from the admin dashboard.
 app.post("/delete-user", function (req, res) {
   // console.log("Deleting the user with the id of:", req.body.id);
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+ 
 
   connection.query("SELECT is_admin FROM BBY_17_accounts WHERE id=?", [req.body.id], function (err, results) {
     if (err) {
@@ -390,8 +412,8 @@ app.post("/delete-user", function (req, res) {
 });
 
 async function deleteUser(id) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+  
   connection.query("DELETE FROM BBY_17_accounts WHERE id=?", [id], function (error, results) {
 
     if (error) {
@@ -408,8 +430,8 @@ async function deleteUser(id) {
 //  register
 //  http://localhost/phpmyadmin/
 app.post('/create-account', async function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+
 
   const fname = req.body.firstName;
   const lname = req.body.lastName;
@@ -438,8 +460,8 @@ app.post('/create-account', async function (req, res) {
     const isAdmin = 0;
 
     var sql = "INSERT INTO `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('" + email + "', '" + fname + "', '" + lname + "', '" + pwd + "', '" + isAdmin + "', '" + dob + "')"
-    connection = mysql.createConnection(localConfig);
-    connection.connect();
+    connection = mysql.createPool(config);
+ 
     connection.query(sql, function (err, result) {
       if (err) {
         console.log(err);
@@ -465,7 +487,7 @@ app.post('/create-account', async function (req, res) {
     });
 
   });
-  connection.end();
+  
 
 });
 
@@ -477,8 +499,8 @@ app.get("/is-admin", function (req, res) {
 });
 
 app.post("/start-game", function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+  
   connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err) {
     if (err) {
       console.log("ERROR: ", err);
@@ -495,14 +517,14 @@ app.post("/start-game", function (req, res) {
       });
     }
   });
-  connection.end();
+ 
 })
 
 
 app.post("/finish-game", function (req, res) {
   console.log("User finished the game!");
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+  
   connection.query("UPDATE BBY_17_plays SET completed=true, time_completed=CURRENT_TIMESTAMP WHERE play_id=?", [req.session.play_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
@@ -522,7 +544,7 @@ app.post("/finish-game", function (req, res) {
       status: "success"
     });
   });
-  connection.end();
+
 })
 
 app.get("/history", function (req, res) {
@@ -538,8 +560,8 @@ app.get("/history", function (req, res) {
 })
 
 app.get("/get-previous-activities", function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+  
   connection.query("SELECT * FROM BBY_17_plays AS P JOIN BBY_17_activities AS A ON P.title = A.title WHERE id=? AND completed", [req.session.user_id], function (err, results) {
     if (err) {
       console.log(err);
@@ -559,14 +581,14 @@ app.get("/get-previous-activities", function (req, res) {
 
     }
   });
-  connection.end();
+  
 })
 
 
 
 app.post("/update-comment", function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+  
   connection.query("UPDATE BBY_17_plays SET comment=? WHERE play_id=?", [req.body.comment, req.body.play_id], function (err) {
     if (err) {
       res.send({
@@ -581,7 +603,7 @@ app.post("/update-comment", function (req, res) {
       });
     }
   });
-  connection.end();
+
 })
 
 
@@ -648,8 +670,8 @@ app.get("/logout", function (req, res) {
 
 //checks if the user is found in the database or not
 function authenticate(email, pwd, callback) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  connection = mysql.createPool(config);
+
   connection.query(
     //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
     //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
@@ -670,7 +692,7 @@ function authenticate(email, pwd, callback) {
 
     }
   );
-  connection.end();
+ 
 }
 
 //initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
@@ -687,7 +709,7 @@ async function init() {
 
 
   if (is_heroku) {
-    var connectionInit = await mysqlpromise.createConnection(dbConfigHerokuCreate);
+    var connectionInit = await mysqlpromise.createPool(dbConfigHerokuCreate);
     var createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_ea347eecae4ecfd;
     use heroku_ea347eecae4ecfd;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
@@ -719,7 +741,7 @@ async function init() {
     `;
   } else {
 
-    var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
+    var connectionInit = await mysqlpromise.createPool(dbConfigLocalCreate);
     var createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
     use COMP2800;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
@@ -805,9 +827,9 @@ async function init() {
 
 
   if (is_heroku) {
-    connection = mysql.createConnection(dbConfigHeroku);
+    connection = mysql.createPool(dbConfigHeroku);
   } else {
-    connection = mysql.createConnection(dbConfigLocal);
+    connection = mysql.createPool(dbConfigLocal);
   }
 
 }
