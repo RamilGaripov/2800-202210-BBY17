@@ -154,14 +154,14 @@ function processInput(e) {
     if (!gameOver && row == height) {
         // You lose
         gameOver = true;
-        document.getElementById("answer").innerText = word;
+        document.getElementById("answer").textContent = "The answer is " + word;
     }
 }
 
 function update() {
 
     let guess = "";
-    document.getElementById("answer").innerText = "";
+    document.getElementById("answer").textContent = "";
 
     // if (guess == word) {
     //     console.log("You win!");
@@ -178,7 +178,7 @@ function update() {
 
     guess = guess.toLowerCase();
     if (!guessList.includes(guess)) {
-        document.getElementById("answer").innerText = "Not in word list";
+        document.getElementById("answer").textContent = "Not in word list";
         return;
     }
 
