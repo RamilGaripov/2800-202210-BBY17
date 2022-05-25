@@ -53,27 +53,21 @@ if (is_heroku) {
 // server
 const dbConfigHeroku = {
   host: 'us-cdbr-east-05.cleardb.net',
-  user: 'bbbf1ed5716748',
-  password: '0548f8d4',
-  database: 'heroku_ea347eecae4ecfd',
-  multipleStatements: false
+  user: 'be46a623c032da',
+  password: '271c02ac',
+  database: 'heroku_0517524a798819b',
+  multipleStatements: false 
 }
 
 const dbConfigHerokuCreate = {
   host: 'us-cdbr-east-05.cleardb.net',
-  user: 'bbbf1ed5716748',
-  password: '0548f8d4',
+  user: 'be46a623c032da',
+  password: '271c02ac',
   multipleStatements: true
 }
 
 
 // local 
-const localConfig = {
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "COMP2800"
-}
 const dbConfigLocal = {
   host: "localhost",
   user: "root",
@@ -742,8 +736,8 @@ async function init() {
   } else {
 
     var connectionInit = await mysqlpromise.createPool(dbConfigLocalCreate);
-    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
-    use COMP2800;
+    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS `+database+`;
+    use `+database+`;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
       email VARCHAR(50) UNIQUE NOT NULL,
