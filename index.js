@@ -856,7 +856,7 @@ app.get("/reward", function (req, res) {
 
 
 app.use(function(req, res) {
-  res.status(404).end('error');
+  res.status(404).redirect('/error');
 });
 
 
