@@ -704,8 +704,8 @@ async function init() {
 
   if (is_heroku) {
     var connectionInit = await mysqlpromise.createPool(dbConfigHerokuCreate);
-    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_ea347eecae4ecfd;
-    use heroku_ea347eecae4ecfd;
+    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS `+database+`;
+    use `+database+`;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
       email VARCHAR(50) UNIQUE NOT NULL,
