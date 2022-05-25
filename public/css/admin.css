@@ -123,7 +123,7 @@ p {
 @media screen and (max-width:499px) {
     body {
         min-width: 350px;
-        background-image: url(/img/main_bg.jpg);
+        background-image: url(/img/admin_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
@@ -150,7 +150,7 @@ p {
 @media screen and (min-width:500px) and (max-width:3400px) {
     body {
         min-width: 350px;
-        background-image: url(/img/main_bg.jpg);
+        background-image: url(/img/admin_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
