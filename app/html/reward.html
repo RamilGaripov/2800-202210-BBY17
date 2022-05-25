@@ -1,48 +1,48 @@
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rewards</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
-
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/video.css">
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/video.css" />
     <style>
-        body {
-            background-image: url(/img/yoga_bg.jpg);
-            background-size: cover;
-            background-repeat: repeat-y;
-        }
+      body {
+        background-image: url(/img/win.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-            <main class="cinema">
-                <fieldset>
-                    <legend>Gold-Tier-Reward<span>Required:200pts</span></legend>
-                <img src="" alt="">
-                </fieldset>
-                <fieldset>
-                    <legend>Gold-Tier-Reward<span>Required:200pts</span></legend>
-                <img src="" alt="">
-                </fieldset>
-                <fieldset>
-                    <legend>Gold-Tier-Reward<span>Required:200pts</span></legend>
-                <img src="" alt="">
-                </fieldset>
-            </main>
-       
+      <main class="cinema">
+        <fieldset>
+          <legend>Gold-Tier req:500pts</legend>
+          <form method="POST" action="/redeem" class="form-group">
+            <input type="button" value="redeem" id="redeemGold" />
+          </form>
+        </fieldset>
+        <fieldset>
+          <legend>Silver-Tier req:200pts</legend>
+          <form method="POST" action="/redeem" class="form-group">
+            <input type="button" value="redeem" id="redeemSilver" />
+          </form>
+        </fieldset>
+        <fieldset>
+          <legend>Bronze-Tier req:200pts</legend>
+          <form method="POST" action="/redeem" class="form-group">
+            <input type="button" value="redeem" id="redeemBronze" />
+          </form>
+        </fieldset>
+      </main>
     </div>
-    <div class="egg"></div>
     <script src="/js/favicon.js"></script>
     <script src="/js/navbar.js"></script>
-    <script src="/js/egg.js"></script>
-
-</body>
-
+    <script src="/js/reward.js"></script>
+  </body>
 </html>

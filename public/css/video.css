@@ -1,20 +1,20 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-    height: 100vh;
-    width: 100%;
-    min-width: fit-content;
-    padding: 0;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+  width: 100%;
+  min-width: fit-content;
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* .container {
@@ -23,149 +23,208 @@ body {
 } */
 
 .subcontainer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-
 #homebtn {
-    visibility: hidden;
-    width: 100px;
-    height: 40px;
-    background: #BEE5B0;
-    border-radius: 15px;
-    cursor: pointer;
-    color: black;
-    visibility: hidden;
+  visibility: hidden;
+  width: 100px;
+  height: 40px;
+  background: #bee5b0;
+  border-radius: 15px;
+  cursor: pointer;
+  color: black;
+  visibility: hidden;
 }
 
 #winmessage {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 #bottominfo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #bottominfo {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 #buttondiv {
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .cinema {
-    margin:10px;
+  margin: 10px;
+}
+.form-group {
+  width: fit-content;
 }
 
+input{
+    font-weight: bolder;
+    font-size: 2em;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+#redeemGold {
+  width: 310px;
+  height: 250px;
+  background-image: url(/img/RCSS.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-width: 8px;
+  border-color: #fedb37;
+  box-shadow: 0 0 50px #ccc;
+}
+
+#redeemSilver {
+  width: 240px;
+  height: 300px;
+  background-image: url(/img/Subway.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-width: 8px;
+  border-color: #f5f7fa;
+  box-shadow: 0 0 50px #ccc;
+  border-radius: 10px;
+}
+
+#redeemBronze {
+  width: 300px;
+  height: 200px;
+  background-image: url(/img/shoppers.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-width: 8px;
+  border-color: #cd7f32;
+  box-shadow: 0 0 50px #ccc;
+  border-radius: 10px;
+}
 fieldset {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    min-width: 310px;
-    margin: 8px 0;
-    border:2px solid #16697a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  min-width: 310px;
+  margin: 8px 0;
+  border: 2px solid #16697a;
 }
 
 legend {
-    font-size: 2em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  color: #4874b5;
+  font-family: "Montserrat", sans-serif;
 }
 
-
-.egg{
-    position:absolute;
-    background-image: url(/img/chungus.png);
-    background-size: cover;
-    background-position: center;
-    opacity:0.1;
-    bottom:0;
-    right:200px;
-    width:40px;
-    height: 40px;
-    z-index:100;
+.egg {
+  position: absolute;
+  background-image: url(/img/chungus.png);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  bottom: 0;
+  right: 200px;
+  width: 40px;
+  height: 40px;
+  z-index: 100;
 }
 
-.egg:hover{
-    opacity:0.5;
-    transition: ease-in 2s;
+.egg:hover {
+  opacity: 0.5;
+  transition: ease-in 2s;
 }
 
-.carnival{
-    margin-top: 150px;
-    padding-top: 100px;
+.carnival {
+  margin-top: 150px;
+  padding: 100px;
 }
 
 #errors {
-    background-color:#4874B5;
-    border-radius: 10px;
+  background-color: #4874b5;
+  border-radius: 10px;
 }
 
+@media screen and (max-width: 716px) {
+  body {
+    min-width: 350px;
+    background-color: wheat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .cinema {
+    margin: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(237, 231, 227, 0) 6.92%,
+        #ede7e3 98.18%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(237, 231, 227, 0.9) 19.36%,
+        rgba(237, 231, 227, 0) 70.18%
+      );
+    backdrop-filter: blur(4px);
+    padding-bottom: 10px;
+  }
 
-@media screen and (max-width:716px) {
-    body {
-        min-width: 350px;
-        background-color: wheat;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+  fieldset {
+    margin: 0 10px 5px;
+    padding: 10px;
+  }
 
-    .cinema {
-        margin: 0 4px;
-    }
+  iframe {
+    width: 70%;
+  }
 
-    fieldset {
-        margin: 10px 5px;
-        padding:10px;
-    }
+  span {
+    display: none;
+  }
 
-
-    iframe {
-        width: 70%;
-    }
-
-    span {
-        display: none;
-    }
-
-    h2 {
-        color: white;
-    }
-
+  h2 {
+    color: white;
+  }
 }
 
-@media screen and (min-width:717px) and (max-width:3400px) {
+@media screen and (min-width: 717px) and (max-width: 3400px) {
+  .cinema {
+    padding: 30px;
+    background: linear-gradient(
+        180deg,
+        rgba(237, 231, 227, 0) 6.92%,
+        #ede7e3 98.18%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(237, 231, 227, 0.9) 19.36%,
+        rgba(237, 231, 227, 0) 70.18%
+      );
+    backdrop-filter: blur(4px);
+    border-radius: 20px;
+    margin: auto;
+    min-width: 500px;
+    max-width: 700px;
+  }
 
-    .cinema {
-        padding: 30px;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 70.18%);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
-        margin: auto;
-        min-width: 500px;
-        max-width:700px;
-    }
+  fieldset {
+    padding: 20px 4px;
+  }
+  iframe {
+    min-width: 400px;
+    min-height: 300px;
+    margin: auto;
+  }
 
-    fieldset {
-        padding: 20px 4px;
-    }
-
-    iframe {
-        min-width: 400px;
-        min-height: 250px;
-        margin: auto;
-    }
-
-    /* video width="560" height="315" */
-
+  /* video width="560" height="315" */
 }
