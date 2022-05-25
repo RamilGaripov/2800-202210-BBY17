@@ -12,7 +12,7 @@ async function getAccounts() {
     if (response.status === 200) {
       const data = await response.json();
       // console.log("the data: ", data);
-      function tablesetter() {
+
       //For veiwport width above 682px
       if (window.innerWidth > 682) {
         let str = `<tr>
@@ -43,7 +43,7 @@ async function getAccounts() {
             "</td><td class='edit'>" +
             "<button type='submit' class='edit_user dash'>Edit</button>" +
             "</td><td class='reset'>" +
-            "<button type='submit' class='reset_password dash'>Reset Password</button>" +
+            "<button type='submit' class='reset_password dash'>Reset</button>" +
             "</td><td class='delete'>" +
             "<button type='submit' class='delete_user dash'>Delete</button>" +
             "</td></tr>";
@@ -141,11 +141,11 @@ async function getAccounts() {
               row.email +
               "</td><td class='points'>" +
               row.points +
-              "</td></tr><tr><td class='edit'>" +
+              "</td></tr><tr class='button_area'><td class='edit'>" +
               "<button type='submit' class='edit_user dash'>Edit</button>" +
-              "</td><td class='reset'>" +
-              "<button type='submit' class='reset_password dash'>Reset Password</button>" +
-              "</td><td class='delete'>" +
+              "</td><td></td><td class='reset'>" +
+              "<button type='submit' class='reset_password dash'>Reset</button>" +
+              "</td><td></td><td class='delete'>" +
               "<button type='submit' class='delete_user dash'>Delete</button>" +
               "</td></tr>";
             // id_array.push(row)
@@ -219,8 +219,6 @@ async function getAccounts() {
           }
         }
       }
-    }
-    window.addEventListener("resize",tablesetter())
     } else {
       console.log(response.status);
     }
@@ -299,5 +297,11 @@ async function deleteUser(data) {
     console.log(err);
   }
 }
+
+function resize() {
+//   console.log(window.innerHeight + window.innerWidth);
+  getAccounts();
+}  
+window.onresize = resize;
 
 getAccounts();

@@ -82,10 +82,16 @@ p {
   color: #ffffff;
   text-align: center;
 }
-
+.button_area {
+  width: 100%;
+  padding: 0 2px;
+}
+.dash {
+  padding: 3px;
+}
 .styled-table th,
 .styled-table td {
-  padding: 3px 7px;
+  padding: 3px 2px;
   width: 100%;
   text-align: center;
 }
@@ -117,7 +123,7 @@ p {
 
 @media screen and (max-width: 600px) {
   body {
-    min-width: 350px;
+    min-width: 390px;
     background-image: url(/img/admin_bg.jpg);
     background-position: center;
     background-repeat: repeat-y;
@@ -158,6 +164,16 @@ p {
     background-repeat: repeat-y;
     background-size: cover;
     width: 100%;
+  }
+
+  .styled-table {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 5px 10px;
   }
 
   .subcontainer {
