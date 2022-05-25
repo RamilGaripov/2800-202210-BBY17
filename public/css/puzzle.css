@@ -78,6 +78,7 @@
         padding: none;
         margin: none;
     }
+
 }
 
 ul {
@@ -257,7 +258,7 @@ body {
 
 @media screen and (max-width:499px) {
     body {
-        min-width: 350px;
+        min-width: 4500px;
         height: 100%;
         background-image: url(/img/puzzle_bg.jpg);
         background-position: center;
@@ -265,6 +266,7 @@ body {
         background-size: cover;
         height: auto;
     }
+
 
     main {
         display: flex;
@@ -274,7 +276,6 @@ body {
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
-
     }
 }
 
@@ -290,9 +291,7 @@ body {
 
     .container {
         width: 100%;
-
     }
-
 
     .subcontainer {
         display: flex;
