@@ -769,9 +769,6 @@ async function init() {
     connection = mysql.createConnection(dbConfigLocal);
   }
 
-
-
-
 }
 
 // Sets the port and runs the server. Calls init().
@@ -797,6 +794,12 @@ app.get("/reward", function (req, res) {
   } else {
     res.redirect("/");
   }
+});
+
+
+
+app.get("*", (req, res) =>  {
+  res.sendFile(__dirname + "/app/error.html");
 });
 
 
