@@ -40,7 +40,6 @@ async function getAccounts() {
                         "</td></tr>");
                     // id_array.push(row)
                 }
-                console.log("DURING", str);
                 assignFunctionality();
                 
             } else {
