@@ -732,7 +732,7 @@ async function init() {
       time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
       time_completed DATETIME NULL,
       comment VARCHAR(255) NULL,
-      image VARCHAR(50) DEFAULT "/avatar/general.png"
+      image VARCHAR(255) DEFAULT "/avatar/general.png"
     );
     `;
   } else {
@@ -764,7 +764,7 @@ async function init() {
       time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
       time_completed DATETIME NULL,
       comment VARCHAR(255) NULL,
-      image VARCHAR(50) DEFAULT "/avatar/general.png"
+      image VARCHAR(255) DEFAULT "/avatar/general.png"
     );
     `;
   }
