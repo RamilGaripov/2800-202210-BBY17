@@ -54,8 +54,7 @@ window.onload = function() {
 
         document.getElementById("puzzlepieces").append(tile);
     }
-}
-
+};
 //DRAG TILES
 function dragStart() {
     currTile = this; //this refers to image that was clicked on for dragging

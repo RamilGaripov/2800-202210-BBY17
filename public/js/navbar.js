@@ -36,7 +36,7 @@ document
   .addEventListener("click", function (e) {
     e.preventDefault();
     window.location.replace("/history");
-  })
+  });
 
 
 document.querySelector("#go_to_edit").addEventListener("click", function (e) {

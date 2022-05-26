@@ -93,7 +93,7 @@ async function getAccounts() {
                     editUser({
                         id: data.rows[j].id
                     });
-                })
+                });
             }
 
             //provides RESET PASSWORD BUTTON functionality 
@@ -106,7 +106,7 @@ async function getAccounts() {
                     resetPassword({
                         id: data.rows[l].id
                     });
-                })
+                });
             }
 
             //provides DELETE BUTTON functionality 
@@ -131,7 +131,7 @@ async function getAccounts() {
                                 lName: data.rows[k].last_name
                             });
                         }
-                    })
+                    });
                 });
             }
         }
@@ -209,15 +209,15 @@ async function deleteUser(data) {
                 'Warning!',
                 "You cannot delete the last remaining administrator.",
                 'info'
-            )
+            );
         } else {
-            console.log("User deleted.")
+            console.log("User deleted.");
             getAccounts();
             Swal.fire(
                 'Deleted!',
                 data.fName + ' ' + data.lName + "'s account has been deleted.",
                 'success'
-            )
+            );
         }
     } catch (err) {
         console.log(err);

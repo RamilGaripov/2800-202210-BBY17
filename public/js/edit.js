@@ -1,6 +1,6 @@
 document.querySelector("#submit").addEventListener("click", function(e) {
     e.preventDefault();
-    console.log("Submit pressed.")
+    console.log("Submit pressed.");
     
     editUser({
         first_name : document.getElementById("firstname").value,

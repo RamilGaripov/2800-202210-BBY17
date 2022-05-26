@@ -1,6 +1,6 @@
 document.querySelector("#submit_edits").addEventListener("click", function(e) {
     e.preventDefault();
-    console.log("Submit pressed.")
+    console.log("Submit pressed.");
     
     editUser({
         first_name : document.getElementById("firstname").value,
@@ -61,7 +61,7 @@ async function uploadImages(e) {
   const response = await fetch("/post-new-avatar", {
     method: "POST",
     body: formData
-  })
+  });
   const data = await response.json();
   
   if (data.status == "fail") {

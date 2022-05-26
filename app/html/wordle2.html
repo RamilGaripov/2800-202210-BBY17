@@ -18,7 +18,7 @@
             background-repeat: repeat-y;
         }
     </style>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
@@ -26,11 +26,10 @@
     <div id="container" class="container">
         <div class="cinema">
             <div id="game">
-                <fieldset>
-                    <legend id="title">How to play</legend>
-                    Wordle is a word guessing game where you get six attempts to guess a word, and with every guess you do the more hints you get on what word it is. When you type word you might notice that there are different colors.
-                    <br> <br> Green: The letter is in the correct position. <br> Yellow: The letter is in the word but not he correct position. <br> Grey: The letter is not in the word.
-                </fieldset>
+           
+                    <input type="button" value="Rules" id="wordleHelp" />
+                   
+              
                 <fieldset>
                     <legend id="title">Wordle</legend>
                     <br />

@@ -152,7 +152,7 @@ async function getAccounts() {
             for (let i = 0; i < data.rows.length; i++) {
                 let row = data.rows[i];
                 //console.log("row", row);
-                new_row = document.querySelector()
+                new_row = document.querySelector();
 
                    one_post = document.querySelector(".card_template");
             postInsert = document.getElementById("postInsert");
@@ -182,7 +182,7 @@ async function getAccounts() {
                     editUser({
                         id: data.rows[j].id
                     });
-                })
+                });
             }
 
              //provides RESET PASSWORD BUTTON functionality 
@@ -195,7 +195,7 @@ async function getAccounts() {
                      resetPassword({
                          id: data.rows[l].id
                      });
-                 })
+                 });
              }
 
             //provides DELETE BUTTON functionality 
@@ -218,12 +218,12 @@ async function getAccounts() {
                             'Deleted!',
                             data.rows[k].first_name + ' ' + data.rows[k].last_name + "'s account has been deleted.",
                             'success'
-                          )
+                          );
                           deleteUser({
                             id: data.rows[k].id
                           });
                         }
-                      })
+                      });
                 });
             }
         } else {
@@ -299,7 +299,7 @@ async function deleteUser(data) {
         if (parsedJSON.status == "fail") {
             console.log("Cannot delete this user.");
         } else {
-            console.log("User deleted.")
+            console.log("User deleted.");
             getAccounts();
         }
     } catch (err) {

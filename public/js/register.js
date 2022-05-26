@@ -57,7 +57,7 @@ document.querySelector("#submit").addEventListener("click", function (e) {
       birthday: document.getElementById("birthday").value,
       password: document.getElementById("password").value,
       passwordConfirm: document.getElementById("passwordConfirm").value
-    })
+    });
   }
 
 });
@@ -78,7 +78,7 @@ async function createAccount(data) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
-    })
+    });
     let parsedJSON = await response.json();
     console.log(parsedJSON);
     // if fail -> error else redirect to correct pages;

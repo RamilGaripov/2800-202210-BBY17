@@ -131,3 +131,15 @@ function selectTile() {
     }
   }
 }
+
+
+document.getElementById("sudokuHelp").addEventListener("click", function(e) {
+  e.preventDefault();
+  console.log("Rules");
+  Swal.fire(
+      'Put numbers into the grid!',
+      "Each row and column must contain numbers from 1-9 without any repetition",
+      'info',
+      
+  );
+}) ;
