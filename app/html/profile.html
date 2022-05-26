@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/profile.css">
-    <link rel="stylesheet" href="/css/navbar.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
     <title>Profile</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
@@ -19,70 +18,89 @@
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="subcontainer">
-            <main>
+      <div class="subcontainer">
+          <main>
+        <fieldset class="border">
+          <legend class="subtitle">Change Avatar Photo</legend>
+          <img
+            src="/avatar/profilepic.png"
+            alt="Your Avatar"
+            class="profilepic"
+            id="profilepic"
+          />
+          <form id="upload-images-form">
+            <input
+              id="image-upload"
+              type="file"
+              accept="image/png, image/gif, image/jpeg"
+              name="avatar"
+            />
+            <input id="submit" type="submit" value="Submit" />
+          </form>
+        </fieldset>
+   
+        <fieldset class="border">
+          <legend class="subtitle">
+            <span id="greeting"></span>, here you can edit your profile.
+          </legend>
+            <h1 class="title">
+              Edit&nbsp;<span id="username"></span>'s Profile
+            </h1>
 
-                <fieldset class="border">
-                    <legend class="subtitle">Change Avatar Photo</legend>
-                    <img src="/avatar/profilepic.png" alt="Your Avatar" class="profilepic" id="profilepic">
-                    <form id="upload-images-form">
-                        <input id="image-upload" type="file"
-                            accept="image/png, image/gif, image/jpeg" name="avatar"/>
-                        <input id="submit" type="submit" value="Submit"/>
-                    </form>
-                </fieldset>
+            <div class="form-group">
+              <label for="firstname">First Name</label><br />
+              <input
+                type="text"
+                class="form-control"
+                id="firstname"
+                name="firstname"
+              />
+            </div>
 
-                <fieldset class="border">
-                    <legend class="subtitle"><span id="greeting"></span>, here you can edit your profile.
-                    </legend>
-                    <form action="/edit" class="form-group">
-                        <form action="/auth/register" method="POST" class="main">
-                            <h1 class="title"> Edit&nbsp;<span id="username"></span>'s Profile</h1>
+            <div class="form-group">
+              <label for="lastname">Last Name</label><br />
+              <input
+                type="text"
+                class="form-control"
+                id="lastname"
+                name="lastname"
+              />
+            </div>
 
-                            <div class="form-group">
-                                <label for="firstname">First Name</label><br>
-                                <input type="text" class="form-control" id="firstname" name="firstname">
-                            </div>
+            <div class="form-group">
+              <label for="email">Email</label><br />
+              <input type="text" class="form-control" id="email" name="email" />
+            </div>
 
-                            <div class="form-group">
-                                <label for="lastname">Last Name</label><br>
-                                <input type="text" class="form-control" id="lastname" name="lastname">
-                            </div>
+            <div class="form-group">
+              <label for="password">Password</label><br />
+              <input
+                type="text"
+                class="form-control"
+                id="password"
+                name="password"
+              />
+            </div>
 
-                            <div class="form-group">
-                                <label for="email">Email</label><br>
-                                <input type="text" class="form-control" id="email" name="email">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Password</label><br>
-                                <input type="text" class="form-control" id="password" name="password">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="dob">Date of Birth</label><br>
-                                <input type="date" class="form-control" id="dob" name="dob">
-
-                            </div>
-                            <br>
-                            <button type="submit" id="submit_edits">SAVE</button>
-                            <button type="submit" id="go_back">BACK</button>
-                            <p id="serverMsg"></p>
-                        </form>
-                    </form>
-                </fieldset>
-
-            </main>
-        </div>
+            <div class="form-group">
+              <label for="dob">Date of Birth</label><br />
+              <input type="date" class="form-control" id="dob" name="dob" />
+            </div>
+            <br />
+            <button type="submit" id="submit_edits">SAVE</button>
+            <button type="submit" id="go_back">BACK</button>
+            <p id="serverMsg"></p>
+          </main>
+        </fieldset>
+      </div>
     </div>
 
     <script src="/js/navbar.js"></script>
     <script src="/js/profile.js"></script>
     <script src="/js/favicon.js"></script>
-</body>
-
+  </body>
 </html>
