@@ -22,13 +22,14 @@ var connection = null;
 
 const is_heroku = process.env.IS_HEROKU || false;
 
+// mysql://b57e3859fd3a81:83a3feea@us-cdbr-east-05.cleardb.net/heroku_56bef8a03d99490?reconnect=true
 
 if (is_heroku) {
   var config= {
     host: "us-cdbr-east-05.cleardb.net",
-    user: "be46a623c032da",
-    password: "271c02ac",
-    database: "heroku_0517524a798819b"
+    user: "b57e3859fd3a81",
+    password: "83a3feea",
+    database: "heroku_56bef8a03d99490"
   
   }
 } else {
@@ -42,7 +43,7 @@ if (is_heroku) {
 }
 
 if (is_heroku) {
-  var database = "heroku_0517524a798819b";
+  var database = "heroku_56bef8a03d99490";
 } else {
   var database = "COMP2800"
 }
@@ -52,17 +53,17 @@ if (is_heroku) {
 // mysql://bbbf1ed5716748:0548f8d4@us-cdbr-east-05.cleardb.net/heroku_ea347eecae4ecfd?reconnect=true
 // server
 const dbConfigHeroku = {
-  host: 'us-cdbr-east-05.cleardb.net',
-  user: 'be46a623c032da',
-  password: '271c02ac',
-  database: 'heroku_0517524a798819b',
+  host: "us-cdbr-east-05.cleardb.net",
+  user: "b57e3859fd3a81",
+  password: "83a3feea",
+  database: "heroku_56bef8a03d99490",
   multipleStatements: false 
 }
 
 const dbConfigHerokuCreate = {
-  host: 'us-cdbr-east-05.cleardb.net',
-  user: 'be46a623c032da',
-  password: '271c02ac',
+  host: "us-cdbr-east-05.cleardb.net",
+  user: "b57e3859fd3a81",
+  password: "83a3feea",
   multipleStatements: true
 }
 
