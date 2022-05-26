@@ -23,7 +23,7 @@ body {
 .title {
     display: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
+    font-size: 1.4em;
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 1;
@@ -32,6 +32,7 @@ body {
 }
 main>p{
     padding:7px 20px;
+    margin:10px;
 }
 main>p:first-child{
     background-color: white;
@@ -43,6 +44,7 @@ main>p:first-child{
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 7px;
+    
 }
 
 #username {
@@ -60,15 +62,6 @@ main>p:first-child{
 
 }
 
-.user_posts {
-   margin:10px;
-}
-
-.user_post_div {
-    display: flex;
-}
-
-
 .subtitle {
     font-size: 1em;
     color: #16697A;
@@ -85,12 +78,26 @@ main>p:first-child{
 }
 
 .border{
+    display:flex;
     border-color: #16697a;
     border-radius: 12px;
     min-width: 350px;
     margin: 8px 10px;
 }
 
+.box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin:5px;
+}
+.submit_comment{
+    margin:5px;
+}
+.textarea{
+    border-radius: 20px;
+}   
 .activity_pic {
     
     height: 80px;
@@ -157,7 +164,7 @@ form>#submit:active {
     background-color: #8b622a;
 }
 
-@media screen and (max-width:499px) {
+@media screen and (max-width:599px) {
     body {
         min-width: 350px;
         background-image: url(/img/timeline_bg.jpg);
@@ -185,14 +192,19 @@ form>#submit:active {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 90%;
-        background-color: #a39984;
+        width: 100%;
+        background: linear-gradient(180deg, #A39984 0%, rgba(242, 166, 4, 0) 100%);
         backdrop-filter: blur(4px);
-        border-radius: 20px;
+        opacity: 0.9;
+        border-radius: 0px;
+    }
+
+    .border{
+        flex-direction: column;
     }
 }
 
-@media screen and (min-width:500px) and (max-width:3400px) {
+@media screen and (min-width:600px) and (max-width:3400px) {
     body {
         min-width: 350px;
         background-image: url(/img/timeline_bg.jpg);
@@ -216,6 +228,11 @@ form>#submit:active {
         background: linear-gradient(180deg, #A39984 0%, rgba(242, 166, 4, 0) 100%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
+        padding:0 20px;
+        margin:10px;
+    }
+    .border{
+        justify-content: space-around;
     }
 
     .form-group {
@@ -231,7 +248,4 @@ form>#submit:active {
         border-radius: 8px;
     }
 
-    .left_box{
-        padding:0 10px;
-    }
 }

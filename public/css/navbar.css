@@ -1,7 +1,6 @@
 nav {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
     align-items: center;
     background-image: linear-gradient(#16697a, #5b96a1);
     width: 100vw;
@@ -35,7 +34,7 @@ nav {
     color: white;
     font-weight: bolder;
     white-space: nowrap;
-    margin: 0 30px;
+    margin: 0 20px;
 }
 
 .option>img {
@@ -96,7 +95,9 @@ button>img {
     .option {
         margin: 0 8px;
     }
-  
+    nav{
+        margin-bottom: 0;
+    }
 
 
     #logo {
