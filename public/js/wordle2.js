@@ -250,8 +250,8 @@ document.getElementById("wordleHelp").addEventListener("click", function(e) {
     e.preventDefault();
     console.log("Rules");
     Swal.fire(
-        'Type 5 letter words and get hints if you get it wrong!',
-        "Green: The letter is in the correct position. <br> Yellow: The letter is in the word but not he correct position. <br> Grey: The letter is not in the word.",
+        'Type 5-letter words and get hints if you get it wrong!',
+        "Green: The letter is in the correct position. <br> Yellow: The letter is in the word but not the correct position. <br> Grey: The letter is not in the word.",
         'info',
         
     )

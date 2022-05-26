@@ -20,7 +20,7 @@ document.querySelector("#submit").addEventListener("click", function (e) {
 
   // console.log(email.value);
   // console.log(email.value.length);
-  if (email.value.length < 5) {
+  if (email.value.length < 1) {
     messages.push("Email is required.");
   }
 
@@ -38,7 +38,6 @@ document.querySelector("#submit").addEventListener("click", function (e) {
   }
 
   if (pword.value.length < 6) {
-    console.log("ZHOAAAAPA");
     messages.push("Password must contain at least 6 characters.");
   }
   
@@ -49,7 +48,6 @@ document.querySelector("#submit").addEventListener("click", function (e) {
    
   } else {
     e.preventDefault();
-    console.log("Registering a new user.");
     createAccount({
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,

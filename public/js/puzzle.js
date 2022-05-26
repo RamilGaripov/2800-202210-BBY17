@@ -16,7 +16,6 @@ $(document).ready(function () {
     var pieces = createPieces(true);
     $("#puzzlecontainer").html(pieces);
 
-
     $("#btnstart").click(function () {
         // sendDataToServer();
         var pieces = $("#puzzlecontainer div");
