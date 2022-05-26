@@ -239,6 +239,9 @@ h2 {
   fieldset {
     padding: 10px 4px;
   }
+  nav{
+    width:100vw;
+  }
 
   iframe {
     width: 450px;

@@ -16,10 +16,6 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.container {
-    height: 100%;
-}
-
 .title {
     display: none;
     font-family: 'Montserrat', sans-serif;
@@ -72,8 +68,6 @@ div>b+span {
     font-size: 1.3em;
     color:black;
 }
-
-
 
 .prof {
     display: flex;

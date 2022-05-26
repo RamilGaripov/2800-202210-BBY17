@@ -3,7 +3,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     background-image: linear-gradient(#16697a, #5b96a1);
-    width: 100vw;
+    width: 100%;
 }
 
 .navbarul {
