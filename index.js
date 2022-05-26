@@ -88,6 +88,8 @@ app.use("/img", express.static("./public/img"));
 app.use("/avatar", express.static("./public/avatar"));
 app.use("/html", express.static("./app/html"));
 
+connection = mysql.createPool(config);
+
 //multer storage for uploading photos in profile page
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -112,7 +114,7 @@ app.use(session({
 app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
   if (req.file) {
     const avatarPath = req.file.path.substring(6);
-    connection = mysql.createPool(config);
+    // connection = mysql.createPool(config);
     var insertData = "UPDATE BBY_17_accounts SET avatar=? WHERE id=?"
     connection.query(insertData, [avatarPath, req.session.user_id], function (err) {
       if (err) {
@@ -224,7 +226,7 @@ app.use(express.urlencoded({
 
 //pulls all accounts for the admin dashboard table
 app.get('/get-accounts', function (req, res) {
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
 
   connection.query("SELECT * FROM BBY_17_accounts", function (error, results, fields) {
     if (error) {
@@ -251,7 +253,7 @@ app.get("/edit", function (req, res) {
     }
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
     let edit_profileDOM = new JSDOM(edit_profile);
-    connection = mysql.createPool(config);
+    // connection = mysql.createPool(config);
   
     connection.query(
       "SELECT * FROM BBY_17_accounts WHERE id=?", req.session.id_to_edit,
@@ -307,7 +309,7 @@ app.post("/edit-user", function (req, res) {
 //Allows the admins to reset the user's password to 123456
 app.post("/reset-user-password", function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
 
   const reset_pw = "123456";
   connection.query("UPDATE BBY_17_accounts SET password=? WHERE id=?", [reset_pw, req.body.id], function (err, results) {
@@ -327,7 +329,7 @@ app.post("/reset-user-password", function (req, res) {
 //updates the user information in the db
 app.post("/update-user", function (req, res) {
   if (req.session.loggedIn) {
-    connection = mysql.createPool(config);
+    // connection = mysql.createPool(config);
  
 
     const user = req.body;
@@ -366,7 +368,7 @@ app.post("/update-user", function (req, res) {
 //Deletes a user. Function accessible from the admin dashboard.
 app.post("/delete-user", function (req, res) {
   // console.log("Deleting the user with the id of:", req.body.id);
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
  
 
   connection.query("SELECT is_admin FROM BBY_17_accounts WHERE id=?", [req.body.id], function (err, results) {
@@ -406,7 +408,7 @@ app.post("/delete-user", function (req, res) {
 });
 
 async function deleteUser(id) {
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
   
   connection.query("DELETE FROM BBY_17_accounts WHERE id=?", [id], function (error, results) {
 
@@ -424,7 +426,7 @@ async function deleteUser(id) {
 //  register
 //  http://localhost/phpmyadmin/
 app.post('/create-account', async function (req, res) {
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
 
 
   const fname = req.body.firstName;
@@ -454,7 +456,7 @@ app.post('/create-account', async function (req, res) {
     const isAdmin = 0;
 
     var sql = "INSERT INTO `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('" + email + "', '" + fname + "', '" + lname + "', '" + pwd + "', '" + isAdmin + "', '" + dob + "')"
-    connection = mysql.createPool(config);
+    // connection = mysql.createPool(config);
  
     connection.query(sql, function (err, result) {
       if (err) {
@@ -493,7 +495,7 @@ app.get("/is-admin", function (req, res) {
 });
 
 app.post("/start-game", function (req, res) {
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
   
   connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err) {
     if (err) {
@@ -517,7 +519,7 @@ app.post("/start-game", function (req, res) {
 
 app.post("/finish-game", function (req, res) {
   console.log("User finished the game!");
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
   
   connection.query("UPDATE BBY_17_plays SET completed=true, time_completed=CURRENT_TIMESTAMP WHERE play_id=?", [req.session.play_id], function (err) {
     if (err) {
@@ -554,7 +556,7 @@ app.get("/history", function (req, res) {
 })
 
 app.get("/get-previous-activities", function (req, res) {
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
   
   connection.query("SELECT * FROM BBY_17_plays AS P JOIN BBY_17_activities AS A ON P.title = A.title WHERE id=? AND completed", [req.session.user_id], function (err, results) {
     if (err) {
@@ -581,7 +583,7 @@ app.get("/get-previous-activities", function (req, res) {
 
 
 app.post("/update-comment", function (req, res) {
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
   
   connection.query("UPDATE BBY_17_plays SET comment=? WHERE play_id=?", [req.body.comment, req.body.play_id], function (err) {
     if (err) {
@@ -664,7 +666,7 @@ app.get("/logout", function (req, res) {
 
 //checks if the user is found in the database or not
 function authenticate(email, pwd, callback) {
-  connection = mysql.createPool(config);
+  // connection = mysql.createPool(config);
 
   connection.query(
     //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
