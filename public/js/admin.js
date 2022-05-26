@@ -9,7 +9,6 @@ async function getAccounts() {
         //This table creation code is taken from the examples of our COMP2537 professor, Mr. Arron Ferguson.
         //RDBMS-CRUD MySQL example.
         var str;
-        console.log("BEFORE", str);
         if (response.status === 200) {
             const data = await response.json();
             // console.log("the data: ", data);
@@ -76,13 +75,11 @@ async function getAccounts() {
                         "</td></tr>";
                     // id_array.push(row)
                 }
-                console.log("DURING", str);
                 assignFunctionality();
             }
 
             function assignFunctionality() {
             //provides EDIT BUTTON functionality 
-            console.log("WHEN IN USE", str);
             document.getElementById("accounts").innerHTML = str;
             const edits = document.getElementsByClassName("edit_user");
             for (let j = 0; j < edits.length; j++) {
