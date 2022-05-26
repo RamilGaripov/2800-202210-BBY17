@@ -13,7 +13,6 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-    min-width: 350px;
 }
 
 .container {
@@ -116,9 +115,9 @@ form>h2 {
     padding: 4px;
 }
 
-@media screen and (min-width:0px) and (max-width:499px) {
+@media screen and (min-width:0px) and (max-width:450px) {
     body {
-        min-width: 350px;
+        min-width: 330px;
     }
 
     #logo {
@@ -189,7 +188,6 @@ form>h2 {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        min-width: 350px;
     }
 
     nav {
@@ -217,15 +215,8 @@ form>h2 {
     }
 }
 
-@media screen and (min-width:500px) and (max-width:864px) {
 
-    main {
-        margin-top: 20px;
-    }
-
-}
-
-@media screen and (min-width:500px) and (max-width:3400px) {
+@media screen and (min-width:451px) and (max-width:3400px) {
     .container {
         background-image: url(/img/backgroundLong.jpg);
         background-position: center;
@@ -251,8 +242,8 @@ form>h2 {
     }
 
     form {
-        padding: 30px;
-        width: 400px;
+        padding: 10px 30px;
+        min-width:300px;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 70.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;

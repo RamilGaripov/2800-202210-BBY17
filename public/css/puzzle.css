@@ -5,7 +5,8 @@
   margin: 10px auto;
   padding: 10px;
   font-size: 1.2em;
-  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  background-image: url(/img/puzzle_board.jpg);
+  background-position: center;
   background-blend-mode: lighten;
   text-align: center;
 }
@@ -99,8 +100,8 @@ button {
 .help {
   border-radius: 20px;
   padding: 10px 13px;
-  background-color: gray;
-  color: black;
+  background-color:#e9cc6b;
+  color: white;
   text-decoration: none;
   border: none;
   font-weight: bold;
@@ -252,7 +253,7 @@ body {
 /* This is a Subheader Font */
 .subtitle {
   font-size: 2em;
-  color:#4874B5;
+  color:black;
   font-family: 'Montserrat', sans-serif;
   margin: 10px 0 20px;
 }
