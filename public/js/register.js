@@ -11,11 +11,11 @@ document.querySelector("#submit").addEventListener("click", function (e) {
   var messages = [];
   console.log(messages);
   if (fName.value === "" || fName.value == null) {
-    messages.push("First name is required.");
+    messages.push("First Name is required.");
   }
 
   if (lName.value === "" || lName.value == null) {
-    messages.push("Last name is required.");
+    messages.push("Last Name is required.");
   }
 
   // console.log(email.value);

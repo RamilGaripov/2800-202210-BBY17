@@ -611,7 +611,7 @@ app.post("/login", function (req, res) {
     if (!userRecord) {
       res.send({
         status: "fail",
-        msg: "Wrong password or user does not exist."
+        msg: "Wrong password or email does not exist."
       });
     } else {
       req.session.loggedIn = true;
