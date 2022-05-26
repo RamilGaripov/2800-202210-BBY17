@@ -43,7 +43,7 @@ if (is_heroku) {
 }
 
 if (is_heroku) {
-  var database = "heroku_e03ed466564a40";
+  var database = "heroku_e03ed466564a407";
 } else {
   var database = "COMP2800"
 }
