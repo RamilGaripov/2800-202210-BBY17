@@ -71,6 +71,17 @@ input {
   font-size: 2em;
   font-family: "Montserrat", sans-serif;
 }
+.help{
+  border-radius: 20px;
+  padding: 4px 13px;
+  background-color:#ffa62b;
+  color: #ffff;
+  text-decoration: none;
+  border: none;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
 
 #redeemGold {
   width: 310px;
@@ -222,6 +233,7 @@ h2 {
     max-width: 800px;
     align-self: center;
     margin:30px auto 20px;
+    padding-bottom:30px;
   }
 
   fieldset {

@@ -1,85 +1,83 @@
 #container {
-    max-width: 850px;
-    border: 2px solid black;
-    border-radius: 20px;
-    margin: 10px auto;
-    padding: 10px;
-    font-size: 1.2em;
-    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
-    background-blend-mode:lighten;
-    text-align: center;
+  max-width: 850px;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 1.2em;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  background-blend-mode: lighten;
+  text-align: center;
 }
-h1{
-    margin:2px;
+h1 {
+  margin: 2px;
 }
 #piececontainer {
-    width: 402px;
-    height: 402px;
-    border: 1px solid black;
-    text-align: center;
-    font-size: 30px;
-    position: relative;
-    background-color: #EDE7E3;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+  width: 402px;
+  height: 402px;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 30px;
+  position: relative;
+  background-color: #ede7e3;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 #puzzlecontainer {
-    width: 402px;
-    height: 402px;
-    border: 1px solid black;
-    background-color: #EDE7E3;
+  width: 402px;
+  height: 402px;
+  border: 1px solid black;
+  background-color: #ede7e3;
 }
 
 #puzzletitle {
-    font-family: monospace;
+  font-family: monospace;
 }
 
 #lossmessage {
-    font-size: 20px;
-    display: none;
+  font-size: 20px;
+  display: none;
 }
 
 #winmessage {
-    display: none;
-    font-size: 20px;
+  display: none;
+  font-size: 20px;
 }
 
 #btnback {
-    display: none;
+  display: none;
 }
 
 @media screen and (min-width: 860px) {
-    #piececontainer {
-        float: left;
-    }
+  #piececontainer {
+    float: left;
+  }
 
-
-    #puzzlecontainer {
-        float: right;
-    }
-
+  #puzzlecontainer {
+    float: right;
+  }
 }
 
 @media screen and (max-width: 860px) {
-    #container {
-        width: 425px;
-    }
+  #container {
+    width: 425px;
+  }
 
-   #container >#buttons {
-        display: flex;
-        justify-content: center;
-        float: none;
-        padding: none;
-        margin: none;
-        align-items: center;
-    }
+  #container > #buttons {
+    display: flex;
+    justify-content: center;
+    float: none;
+    padding: none;
+    margin: none;
+    align-items: center;
+  }
 }
 
 /* {
@@ -88,252 +86,272 @@ h1{
 } */
 
 button {
-    width: 100px;
-    height: 50px;
-    border: 1px solid black;
-    border-radius:20px;
-    padding: 5px;
-    margin-top: 10px;
-    background-color:#4874B5;
-    font-size: 1.3em;
-    cursor: pointer;
-    color:white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 9px 13px;
+  margin-top: 3px;
+  background-color: #4874b5;
+  font-size: 1em;
+  cursor: pointer;
+  color: white;
 }
 
-#buttons{
-    padding:0px;
+.help {
+  border-radius: 20px;
+  padding: 10px 13px;
+  background-color: gray;
+  color: black;
+  text-decoration: none;
+  border: none;
+  font-weight: bold;
+  margin: 10px;
+}
+#buttons {
+  padding: 0px;
 }
 
 #btnreset {
-    display: none;
+  display: none;
 }
 
 .puz1 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/1.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/1.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz2 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/2.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/2.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz3 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/3.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/3.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz4 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/4.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/4.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz5 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/5.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/5.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz6 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/6.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/6.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz7 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/7.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/7.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz8 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/8.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/8.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz9 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/9.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/9.jpg);
+  background-repeat: no-repeat;
 }
 
 .puz10 {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-image: url(/img/puzzle/10.jpg);
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-image: url(/img/puzzle/10.jpg);
+  background-repeat: no-repeat;
 }
 
 .piece {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    float: left;
-    background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  float: left;
+  background-repeat: no-repeat;
 }
 
 .piece {
-    cursor: move;
-    cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 }
 
 .piece:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
 }
 
 /* ------------------ template */
 
-
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-    /* height: 100vh; */
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+  /* height: 100vh; */
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 .container {
-    height: 100%;
+  height: 100%;
 }
 
 /* This is a Subheader Font */
 .subtitle {
-    font-size: 1em;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
+  font-size: 2em;
+  color:#4874B5;
+  font-family: 'Montserrat', sans-serif;
+  margin: 10px 0 20px;
 }
-
-
 
 #username {
-    font-size: 1.2em;
-    color: #4874B5;
-    font-family: 'Montserrat', sans-serif;
-    margin: 10px 0px;
+  font-size: 1.2em;
+  color: #4874b5;
+  font-family: "Montserrat", sans-serif;
+  margin: 10px 0px;
 }
 
-@media screen and (max-width:499px) {
-    body {
-        min-width: 350px;
-        height: 100%;
-        background-image: url(/img/puzzle_bg.jpg);
-        background-position: center;
-        background-repeat: repeat-y;
-        background-size: cover;
-        height: auto;
-    }
-#container{
+@media screen and (max-width: 499px) {
+  body {
+    min-width: 350px;
+    height: 100%;
+    background-image: url(/img/puzzle_bg.jpg);
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    height: auto;
+  }
+  #container {
     border-radius: 0;
     width: 100%;
-    margin:0;
+    margin: 0;
+  }
+  main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(237, 231, 227, 0) 6.92%,
+        #ede7e3 98.18%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(237, 231, 227, 0.9) 19.36%,
+        rgba(237, 231, 227, 0) 40.18%
+      );
+    backdrop-filter: blur(4px);
+  }
+
+  #btnstart {
+    color: white;
+  }
 }
-    main {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
-        backdrop-filter: blur(4px);
-    }
- 
-    #btnstart{
-        color:white;
-    }
-}
 
-@media screen and (min-width:500px) and (max-width:3400px) {
-    body {
-        min-width: 350px;
-        height: 100vh;
-        background-image: url(/img/puzzle_bg.jpg);
-        background-position: center;
-        background-repeat: repeat-y;
-        background-size: cover;
-    }
+@media screen and (min-width: 500px) and (max-width: 3400px) {
+  body {
+    min-width: 350px;
+    height: 100vh;
+    background-image: url(/img/puzzle_bg.jpg);
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+  }
 
-    .container {
-        width: 100%;
+  .container {
+    width: 100%;
+  }
 
-    }
+  .subcontainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 
+  main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 97%;
+    background: linear-gradient(
+        180deg,
+        rgba(237, 231, 227, 0) 6.92%,
+        #ede7e3 98.18%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(237, 231, 227, 0.9) 19.36%,
+        rgba(237, 231, 227, 0) 50.18%
+      );
+    backdrop-filter: blur(4px);
+    border-radius: 20px;
+  }
 
-    .subcontainer {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
+  .form-group {
+    display: inline-block;
+    text-align: center;
+    margin: 2px;
+  }
 
-    main {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        width: 97%;
-        background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
-        backdrop-filter: blur(4px);
-        border-radius: 20px;
-    }
+  .form-group > label {
+    font-weight: bolder;
+  }
 
-    .form-group {
-        display: inline-block;
-        text-align: center;
-        margin: 2px;
-    }
-
-    .form-group>label {
-        font-weight: bolder;
-    }
-
-    .form-group>input {
-        border-radius: 8px;
-    }
-
+  .form-group > input {
+    border-radius: 8px;
+  }
 }

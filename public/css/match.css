@@ -1,7 +1,8 @@
 .controls {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
   background-color: #282a3a;
   padding: 10px;
   border-radius: 10px;
@@ -19,11 +20,12 @@ button {
 }
 
 .disabled {
+  display: none;
   color: #757575;
 }
 
 #homebtn {
-  visibility: hidden;
+  display: none;
 }
 
 .stats {
@@ -65,7 +67,16 @@ button {
   height: 100px;
   cursor: pointer;
 }
-
+.help {
+  border-radius: 20px;
+  padding: 4px 13px;
+  background-color: #ffa62b;
+  color: #ffff;
+  text-decoration: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1em;
+}
 .card-front,
 .card-back {
   position: absolute;
@@ -150,16 +161,6 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: linear-gradient(
-      180deg,
-      rgba(237, 231, 227, 0) 6.92%,
-      #ede7e3 98.18%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(237, 231, 227, 0.9) 19.36%,
-      rgba(237, 231, 227, 0) 70.18%
-    );
 }
 .container {
   height: 100%;
@@ -171,22 +172,25 @@ main {
   font-weight: bold;
   line-height: 0;
   text-align: center;
-  color: #16697a;
+  color: white;
   font-weight: bolder;
-  margin:20px 4px 4px;
-
 }
 
-@media screen and (max-width: 499px) {
+@media screen and (max-width: 650px) {
   body {
     min-width: 350px;
-    background-image: url(/img/main_bg.jpg);
+    background-image: url(/img/match_mobile.jpg);
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
   }
-
-  .container {
+  .controls {
+    margin: 0;
+    border-radius: 0;
+    opacity: 0.9;
+  }
+  .board{
+    opacity: 0.96;
   }
 
   .subcontainer {
@@ -194,16 +198,13 @@ main {
     align-items: center;
     flex-direction: column;
   }
-
-  main {
-  }
 }
 
-@media screen and (min-width: 500px) and (max-width: 3400px) {
+@media screen and (min-width: 651px) and (max-width: 3400px) {
   body {
-    min-width: 350px;
+    min-width: 450px;
     height: 100%;
-    background-image: url(/img/main_bg.jpg);
+    background-image: url(/img/match_bg.jpg);
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
@@ -212,6 +213,12 @@ main {
   .container {
     width: 100%;
   }
+  .controls {
+    opacity: 0.9;
+  }
+  .board{
+    opacity: 0.9;
+  }
 
   .subcontainer {
     display: flex;
@@ -220,9 +227,9 @@ main {
   }
 
   main {
-    margin: 30px 10px 20px;
+    margin: 0;
     border-radius: 20px;
-    padding:10px 20px;
+    padding: 30px 20px;
     width: 80%;
   }
 }

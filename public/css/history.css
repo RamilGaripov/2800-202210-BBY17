@@ -167,7 +167,7 @@ form>#submit:active {
 @media screen and (max-width:599px) {
     body {
         min-width: 350px;
-        background-image: url(/img/timeline_bg.jpg);
+        background-image: url(/img/timeline_mobile.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
