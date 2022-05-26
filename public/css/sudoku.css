@@ -71,13 +71,21 @@ hr {
 .vertical-line {
     border-right: 3px solid black;
 }
-@media screen and (max-width:500px) {
+
+
+body {
+    background-image: url(/img/sudoku_bg.jpg);
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
+@media screen and (max-width:650px) {
 
     body{
         min-width: 450px;
-    }
-
-   
+        background-image: url(/img/sudoku_mobile.jpg);
+    } 
 
 }
 

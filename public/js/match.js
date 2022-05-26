@@ -82,7 +82,7 @@ const startGame = () => {
     state.gameStarted = true;
     selectors.start.classList.add('disabled');
     sendDataToServer();
-    document.getElementById("startbtn").style.visibility = "hidden";
+    document.getElementById("startbtn").style.display = "none";
     state.loop = setInterval(() => {
         state.totalTime++;
 
@@ -155,7 +155,7 @@ const flipCard = card => {
             clearInterval(state.loop);
         }, 250);
         updateDataOnServer();
-        document.getElementById("homebtn").style.visibility = "visible";
+        document.getElementById("homebtn").style.display = "block";
     }
 };
 

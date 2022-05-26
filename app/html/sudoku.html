@@ -4,47 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/sudoku.css">
-    <link rel="stylesheet" href="/css/navbar.css">
+    
     <title>Sudoku</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/video.css">
-    <style>
-        body {
-            background-image: url(/img/summer.jpg);
-            background-size: cover;
-            background-repeat: repeat-y;
-            background-position: center;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/sudoku.css">
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <div class="container">
-
         <div class="cinema">
-
-          
-                
-            
-              
-             
-                <input type="button" value="Rules" id="sudokuHelp" />
-   
-
-            <fieldset>
             <fieldset class="holder">
                 <legend> Sudoku </legend>
-                <h2 id="title">How to play</h2>
-                <p> The rules are quite simple! Here they are:</p>
-                <p> Each row must contain numbers from 1-9 without any repetition.</p>
-                <p> Each column must contain numbers from 1-9 without any repetion.</p>
-                <div>
-                    
+                <input type="button" value="Rules" id="sudokuHelp" class="help" />
                     <h2 id="errors"><b>Errors:</b>0</h2>
                     <!-- Board -->
                     <div id="board"></div>

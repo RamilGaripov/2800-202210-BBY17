@@ -196,7 +196,7 @@ section {
 @media screen and (max-width:717px) {
     body {
         min-width: 350px;
-        background-image: url(/img/main_bg.jpg);
+        background-image: url(/img/main_mobile.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;

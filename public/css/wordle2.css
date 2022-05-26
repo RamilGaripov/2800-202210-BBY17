@@ -36,7 +36,7 @@ hr {
   width: 60px;
   height: 60px;
   margin: 2.5px;
-  background-color: #EBEAE0;
+  background-color: #ebeae0;
   color: black;
   font-size: 36px;
   font-weight: bold;
@@ -81,7 +81,7 @@ hr {
   width: 36px;
   height: 40px;
   margin: 1px;
-    background-color: #787c7e;
+  background-color: #787c7e;
   font-size: 20px;
   font-weight: bold;
   display: flex;
@@ -106,4 +106,18 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+body {
+  background-image: url(/img/wordle_bg.jpg);
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    background-image: url(/img/wordle_mobile.jpg);
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
 }

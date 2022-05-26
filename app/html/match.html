@@ -22,12 +22,13 @@
     <div class="container">
       <div class="subcontainer">
         <main>
-          <h1 class="title">Match Game</h1>
-          <p>Match the correspoding pairs and win points.</p>
           <div class="game">
             <div class="controls">
+              <h1 class="title">Match Game</h1>
+              <input type="button" value="Rules" id="matchHelp" class="help" />
               <button id="startbtn">Start</button>
               <button id="homebtn">Home</button>
+
               <div class="stats">
                 <div class="moves">0 moves</div>
                 <div class="timer">time: 0 sec</div>
@@ -41,6 +42,7 @@
         </main>
       </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/match.js"></script>
     <script src="/js/navbar.js"></script>
     <script src="/js/favicon.js"></script>
