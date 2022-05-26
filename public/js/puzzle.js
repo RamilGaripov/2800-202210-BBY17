@@ -109,8 +109,6 @@ $(document).ready(function () {
 
         // console.log(classname + " was chosen.");
 
-
-
         for (var i = 0, top = 0, order = 0; i < rows; i++, top -= 100) {
             for (var j = 0, left = 0; j < columns; j++, left -= 100, order++) {
 

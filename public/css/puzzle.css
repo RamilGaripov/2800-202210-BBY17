@@ -1,13 +1,17 @@
 #container {
-    width: 850px;
+    max-width: 850px;
     border: 2px solid black;
     border-radius: 20px;
     margin: 10px auto;
     padding: 10px;
-    background-color: wheat;
+    font-size: 1.2em;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    background-blend-mode:lighten;
     text-align: center;
 }
-
+h1{
+    margin:2px;
+}
 #piececontainer {
     width: 402px;
     height: 402px;
@@ -47,8 +51,6 @@
     font-size: 20px;
 }
 
-
-
 #btnback {
     display: none;
 }
@@ -68,7 +70,6 @@
 @media screen and (max-width: 860px) {
     #container {
         width: 425px;
-        z-index: 1;
     }
 
    #container >#buttons {
@@ -77,26 +78,31 @@
         float: none;
         padding: none;
         margin: none;
+        align-items: center;
     }
 }
 
-ul {
+/* {
     list-style-type: none;
     text-align: center;
-}
+} */
 
-ul button {
+button {
     width: 100px;
     height: 50px;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius:20px;
     padding: 5px;
     margin-top: 10px;
-    background-color: #BEE5B0;
-    font-size: 20px;
+    background-color:#4874B5;
+    font-size: 1.3em;
     cursor: pointer;
+    color:white;
 }
 
+#buttons{
+    padding:0px;
+}
 
 #btnreset {
     display: none;
@@ -265,16 +271,22 @@ body {
         background-size: cover;
         height: auto;
     }
-
+#container{
+    border-radius: 0;
+    width: 100%;
+    margin:0;
+}
     main {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 90%;
+        width: 100%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
-        border-radius: 20px;
-
+    }
+ 
+    #btnstart{
+        color:white;
     }
 }
 
