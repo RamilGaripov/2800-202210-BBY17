@@ -858,9 +858,9 @@ app.get("/reward", function (req, res) {
 
 
 
-app.use(function(req, res) {
-  res.status(404).redirect('/error');
-});
+// app.use(function(req, res) {
+//   res.status(404).redirect('/error');
+// });
 
 
 // let http = require('http');
