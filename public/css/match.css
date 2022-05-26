@@ -15,8 +15,8 @@ button {
   padding: 10px 20px;
   border: 0;
   cursor: pointer;
+  font-size: 1em;
   /* font-family: Fredoka; */
-  font-size: 18pt;
 }
 
 .disabled {
@@ -162,9 +162,6 @@ main {
   align-items: center;
   flex-direction: column;
 }
-.container {
-  height: 100%;
-}
 
 .title {
   font-family: "Montserrat", sans-serif;
@@ -176,7 +173,7 @@ main {
   font-weight: bolder;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 550px) {
   body {
     min-width: 350px;
     background-image: url(/img/match_mobile.jpg);
@@ -189,10 +186,21 @@ main {
     border-radius: 0;
     opacity: 0.9;
   }
-  .board{
+  .board {
     opacity: 0.96;
+    width: 100%;
+    gap: 7px;
+    padding: 10px;
   }
-
+  main {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  .controls > button {
+    font-size: 1.3em;
+    padding:3px
+  }
   .subcontainer {
     display: flex;
     align-items: center;
@@ -200,7 +208,7 @@ main {
   }
 }
 
-@media screen and (min-width: 651px) and (max-width: 3400px) {
+@media screen and (min-width: 551px) and (max-width: 3400px) {
   body {
     min-width: 450px;
     height: 100%;
@@ -216,8 +224,11 @@ main {
   .controls {
     opacity: 0.9;
   }
-  .board{
+  .board {
     opacity: 0.9;
+  }
+  .controls > button {
+    font-size: 1.4em;
   }
 
   .subcontainer {
