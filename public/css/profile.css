@@ -121,21 +121,23 @@ border-radius: 0 10px 10px 0;
 
 @media screen and (max-width:717px) {
     body {
-        min-width: 370px;
-        background-image: url(/img/main_bg.jpg);
+        min-width: 420px;
+        background-image: url(/img/profile_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
     }
-
+   
    main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 90%;
+        width: 100%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
-        border-radius: 20px;
+        border-radius: 0px;
+        padding:0;
+
     }
 
     .subcontainer {
@@ -161,7 +163,7 @@ border-radius: 0 10px 10px 0;
 @media screen and (min-width:718px) and (max-width:3400px) {
     body {
         min-width: 350px;
-        background-image: url(/img/main_bg.jpg);
+        background-image: url(/img/profile_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;

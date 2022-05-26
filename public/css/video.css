@@ -36,7 +36,6 @@ body {
   border-radius: 15px;
   cursor: pointer;
   color: black;
-  visibility: hidden;
 }
 
 #winmessage {
@@ -67,12 +66,11 @@ body {
   width: fit-content;
 }
 
-input{
-    font-weight: bolder;
-    font-size: 2em;
-    font-family: "Montserrat", sans-serif;
+input {
+  font-weight: bolder;
+  font-size: 2em;
+  font-family: "Montserrat", sans-serif;
 }
-
 
 #redeemGold {
   width: 310px;
@@ -139,7 +137,12 @@ legend {
   height: 40px;
   z-index: 100;
 }
-
+.holder {
+  flex-direction: column;
+}
+.holder > p {
+  margin: 0;
+}
 .egg:hover {
   opacity: 0.5;
   transition: ease-in 2s;
@@ -150,14 +153,14 @@ legend {
   padding: 100px;
 }
 
-#errors {
-  background-color: #4874b5;
-  border-radius: 10px;
+h2 {
+  padding: 5px 2px;
+  margin: 2px;
 }
 
 @media screen and (max-width: 716px) {
   body {
-    min-width: 350px;
+    min-width: 400px;
     background-color: wheat;
     background-position: center;
     background-repeat: no-repeat;
@@ -176,30 +179,32 @@ legend {
         rgba(237, 231, 227, 0) 70.18%
       );
     backdrop-filter: blur(4px);
-    padding-bottom: 10px;
+    padding: 20px 0;
+    border-radius: 0;
+    width: 100%;
+  }
+
+  iframe {
+    width: 100%;
   }
 
   fieldset {
     margin: 0 10px 5px;
-    padding: 10px;
+    padding: 2px;
   }
 
-  iframe {
-    width: 70%;
+  .holder {
+    border-color: transparent;
   }
 
   span {
     display: none;
   }
-
-  h2 {
-    color: white;
-  }
 }
 
 @media screen and (min-width: 717px) and (max-width: 3400px) {
   .cinema {
-    padding: 30px;
+    padding: 20px;
     background: linear-gradient(
         180deg,
         rgba(237, 231, 227, 0) 6.92%,
@@ -212,18 +217,21 @@ legend {
       );
     backdrop-filter: blur(4px);
     border-radius: 20px;
-    margin: auto;
-    min-width: 500px;
-    max-width: 700px;
+    margin: 30px 20px;
+    min-width: 600px;
+    max-width: 800px;
+    align-self: center;
+    margin:30px auto 20px;
   }
 
   fieldset {
-    padding: 20px 4px;
+    padding: 10px 4px;
   }
+
   iframe {
-    min-width: 400px;
-    min-height: 300px;
-    margin: auto;
+    width: 450px;
+    height: 240px;
+    margin: 10px;
   }
 
   /* video width="560" height="315" */

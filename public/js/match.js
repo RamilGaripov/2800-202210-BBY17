@@ -82,7 +82,7 @@ const startGame = () => {
     state.gameStarted = true
     selectors.start.classList.add('disabled')
     sendDataToServer();
-    document.getElementById("startbtn").style.display = "none";
+    document.getElementById("startbtn").style.visibility = "hidden";
     state.loop = setInterval(() => {
         state.totalTime++
 

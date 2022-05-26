@@ -1,50 +1,42 @@
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meditate</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
 
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/video.css">
-    <link rel="stylesheet" href="/css/egg.css">
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/video.css" />
+    <link rel="stylesheet" href="/css/egg.css" />
     <style>
-        body {
-            background-image: url(/img/meditation.jpg);
-            background-size: cover;
-            background-repeat: repeat-y;
-        }
+      body {
+        background-image: url(/img/meditation.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-            <main class="cinema">
-                <fieldset>
-                    <legend>Meditation<span></span></legend>
-                   
-                    <div id="player"></div>
-                    
-                </fieldset>
-                <div id="bottominfo">
-                    <h2 id="winmessage">Congrats! You have been rewarded 50 points!</h2>
-                </div>
-                <div id="buttondiv">
-                    <button id="homebtn">Home</button>
-                </div>
-            </main>
-       
+      <main class="cinema">
+        <fieldset class="holder">
+          <legend>Meditation<span></span></legend>
+          <div id="player"></div>
+          <div id="bottominfo">
+            <h2 id="winmessage">Congrats! You have been rewarded 50 points!</h2>
+          </div>
+          <button id="homebtn">Home</button>
+        </fieldset>
+      </main>
     </div>
     <div class="egg"></div>
     <script src="/js/favicon.js"></script>
     <script src="/js/navbar.js"></script>
     <script src="/js/egg.js"></script>
     <script src="/js/meditation.js"></script>
-
-</body>
-
+  </body>
 </html>

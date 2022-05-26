@@ -17,6 +17,7 @@
             background-image: url(/img/summer.jpg);
             background-size: cover;
             background-repeat: repeat-y;
+            background-position: center;
         }
     </style>
 </head>
@@ -26,22 +27,15 @@
 
         <div class="cinema">
 
-            <fieldset>
-                <legend id="title">How to play</legend>
-                If you've seen a newspaper, you've definitely seen this game. At first the game may look scary, with so many grid tiles and numbers everywhere. But don't worry! This game isn't related to math at all.
-                <br>
-                <br> The rules are quite simple! Here they are:
-                <br> Each row must contain numbers from 1-9 without any repetition.
-                <br> Each column must contain numbers from 1-9 without any repetion.
-                <br>
-                <br> Simple right?
-            </fieldset>
-
-            <fieldset>
+            <fieldset class="holder">
                 <legend> Sudoku </legend>
+                <h2 id="title">How to play</h2>
+                <p> The rules are quite simple! Here they are:</p>
+                <p> Each row must contain numbers from 1-9 without any repetition.</p>
+                <p> Each column must contain numbers from 1-9 without any repetion.</p>
                 <div>
-
-                    <h2 id="errors">0</h2>
+                    
+                    <h2 id="errors"><b>Errors:</b>0</h2>
                     <!-- Board -->
                     <div id="board"></div>
                     <div id="digits"></div>
@@ -51,7 +45,7 @@
         </div>
     </div>
 
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/sudoku.js"></script>
     <script src="/js/favicon.js"></script>
     <script src="/js/navbar.js"></script>
