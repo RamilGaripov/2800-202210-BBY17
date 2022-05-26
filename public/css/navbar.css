@@ -78,6 +78,10 @@ nav {
     padding-right: 10px;
 }
 
+#logout:active{
+    filter: invert(100%) sepia(16%) saturate(7463%) hue-rotate(222deg) brightness(119%) contrast(115%);
+}
+
 button>img {
     width: 55px;
     height: 55px;
