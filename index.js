@@ -857,6 +857,24 @@ app.get("/reward", function (req, res) {
 });
 
 
+app.get("/error", function (req, res) {
+
+  let profile = fs.readFileSync("./app/html/error.html", "utf8");
+  let profileDOM = new JSDOM(profile);
+
+  
+  res.send(profileDOM.serialize());
+
+});
+
+
+
+app.use(function(req, res) {
+  if (res.status(404)){
+    res.redirect('/error');
+  }
+});
+
 
 // app.use(function(req, res) {
 //   res.status(404).redirect('/error');
