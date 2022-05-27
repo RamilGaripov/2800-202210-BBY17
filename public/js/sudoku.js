@@ -1,3 +1,12 @@
+/**
+ * Sudoku Application
+ * 
+ * Referenced code from: 
+ * @see https://www.youtube.com/watch?v=S4uRtTb8U-U
+ * 
+ */
+
+
 console.log("Connected to Sudoku.js!");
 const gameTitle = "Sudoku";
 
