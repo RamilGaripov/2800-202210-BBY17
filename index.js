@@ -538,8 +538,7 @@ app.post("/start-game", function (req, res) {
 
 app.post("/finish-game", function (req, res) {
   console.log("User finished the game!");
-  // connection = mysql.createPool(config);
-  
+ 
   connection.query("UPDATE BBY_17_plays SET completed=true, time_completed=CURRENT_TIMESTAMP WHERE play_id=?", [req.session.play_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
@@ -548,19 +547,30 @@ app.post("/finish-game", function (req, res) {
   connection.query("UPDATE BBY_17_accounts SET points=(points+ (SELECT points FROM BBY_17_activities WHERE title=?)) WHERE id = ?", [req.body.title, req.session.user_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
+    } else {
+      console.log("updating points");
+      updateSessionPoints(req, res);
     }
   });
+})
+
+function updateSessionPoints(req, res) {
   connection.query("SELECT points FROM BBY_17_accounts WHERE id=?", req.session.user_id, function (err, results) {
     if (err) {
       console.log(err);
+    } else {
+      console.log("points", results[0].points);
+      console.log("sesh points",  req.session.points);
+      req.session.points = results[0].points;
+      console.log("sesh points upd",  req.session.points);
+      res.send({
+        status: "success",
+        msg: "points updated"
+      });
+      console.log("sesh points upd upd",  req.session.points);
     }
-    req.session.points = results[0].points;
-    res.send({
-      status: "success"
-    });
   });
-
-})
+}
 
 app.get("/history", function (req, res) {
   if (req.session.loggedIn) {
