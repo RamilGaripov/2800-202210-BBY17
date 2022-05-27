@@ -3,7 +3,6 @@ const lName = document.getElementById("lastName");
 const pword = document.getElementById("password");
 const email = document.getElementById("email");
 const dob = document.getElementById("birthday");
-
 const errorMsg = document.getElementById("errorMsg");
 
 
@@ -12,11 +11,11 @@ document.querySelector("#submit").addEventListener("click", function (e) {
   console.log(messages);
   console.log(dob.value);
   if (fName.value === "" || fName.value == null) {
-    messages.push("First Name is required.");
+    messages.push("First name is required.");
   }
 
   if (lName.value === "" || lName.value == null) {
-    messages.push("Last Name is required.");
+    messages.push("Last name is required.");
   }
 
   if (email.value.length < 1) {
@@ -30,7 +29,6 @@ document.querySelector("#submit").addEventListener("click", function (e) {
   if(!email.value.match(mailformat)){
     messages.push("You have entered an invalid email address!");
   }
-  
 
   if (dob.value === "" || dob.value == null) {
     messages.push("Birthday is required.");
@@ -67,7 +65,6 @@ document.querySelector("#submit").addEventListener("click", function (e) {
 
 });
 
-
 async function createAccount(data) {
 
   if (data.password != data.passwordConfirm) {
@@ -99,7 +96,6 @@ async function createAccount(data) {
   } catch (err) {
     console.log(err);
   }
-
 }
 
 document.querySelector("#go_back").addEventListener("click", function (e) {

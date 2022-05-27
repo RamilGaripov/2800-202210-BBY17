@@ -27,8 +27,6 @@ function populateInfo(data) {
   var dobFormatted = data.dob.substring(0, 10);
   dob.value = dobFormatted;
   pic.src = data.avatar;
-  
-
   user_id = data.id;
 }
 
@@ -37,11 +35,11 @@ document.querySelector("#submit_edits").addEventListener("click", function (e) {
   console.log(messages);
   console.log(dob.value);
   if (fName.value === "" || fName.value == null) {
-    messages.push("First Name is required.");
+    messages.push("First name is required.");
   }
 
   if (lName.value === "" || lName.value == null) {
-    messages.push("Last Name is required.");
+    messages.push("Last name is required.");
   }
 
   if (email.value.length < 1) {
