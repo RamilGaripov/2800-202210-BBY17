@@ -5,8 +5,10 @@
  * @see https://www.webtips.dev/memory-game-in-javascript
  */
 
+// defines the name of the game
 const gameTitle = "Match";
 
+// defines selectors for each aspect of the game
 const selectors = {
     boardContainer: document.querySelector('.board-container'),
     board: document.querySelector('.board'),
@@ -16,6 +18,7 @@ const selectors = {
     win: document.querySelector('.win')
 };
 
+// defines default state for start of game
 const state = {
     gameStarted: false,
     flippedCards: 0,
@@ -24,6 +27,7 @@ const state = {
     loop: null
 };
 
+// creates an array for tiles
 const shuffle = array => {
     const clonedArray = [...array];
 
@@ -38,6 +42,7 @@ const shuffle = array => {
     return clonedArray;
 };
 
+// randomly places tiles on board, so not the same each time
 const pickRandom = (array, items) => {
     const clonedArray = [...array];
     const randomPicks = [];
@@ -52,6 +57,7 @@ const pickRandom = (array, items) => {
     return randomPicks;
 };
 
+// creates game, by inserting html and shuffling tiles with animal emojis
 const generateGame = () => {
     const dimensions = selectors.board.getAttribute('data-dimension');
 
@@ -78,6 +84,7 @@ const generateGame = () => {
     selectors.board.replaceWith(parser.querySelector('.board'));
 };
 
+// defines what will happen upon clicking the start button
 const startGame = () => {
     state.gameStarted = true;
     selectors.start.classList.add('disabled');
@@ -91,8 +98,8 @@ const startGame = () => {
     }, 1000);
 };
 
+// contacts the database that the game has been started
 function sendDataToServer() {
-
     console.log("Starting to match...");
     const timeStamp = Date.now(); 
     console.log(timeStamp);
@@ -107,6 +114,7 @@ function sendDataToServer() {
 
 }
 
+// flips cards back around, if the two are not matching
 const flipBackCards = () => {
     document.querySelectorAll('.card:not(.matched)').forEach(card => {
         card.classList.remove('flipped');
@@ -115,6 +123,7 @@ const flipBackCards = () => {
     state.flippedCards = 0;
 };
 
+// when a user clicks any tile
 const flipCard = card => {
     state.flippedCards++;
     state.totalFlips++;
@@ -159,6 +168,7 @@ const flipCard = card => {
     }
 };
 
+// contacts the database that the game has been complete
 function updateDataOnServer() {
     console.log("finished matching!");
     const data = {title: gameTitle};
@@ -171,6 +181,7 @@ function updateDataOnServer() {
     });
 }
 
+// listens for when a tile has been clicked
 const attachEventListeners = () => {
     document.addEventListener('click', event => {
         const eventTarget = event.target
@@ -187,12 +198,13 @@ const attachEventListeners = () => {
 generateGame();
 attachEventListeners();
 
+// redirect back to the home page
 document.querySelector("#homebtn").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.replace("/main");
 });
 
-
+// shows pop up upon clicking the rules button
 document.getElementById("matchHelp").addEventListener("click", function(e) {
     e.preventDefault();
     console.log("Rules");
