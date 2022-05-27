@@ -1,3 +1,4 @@
+
 .controls {
   display: flex;
   justify-content: space-between;
@@ -7,6 +8,9 @@
   padding: 10px;
   border-radius: 10px;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
 
 button {
   background: #74a662;
@@ -67,6 +71,7 @@ button {
   height: 100px;
   cursor: pointer;
 }
+
 .help {
   border-radius: 20px;
   padding: 4px 13px;
@@ -77,6 +82,7 @@ button {
   font-weight: bold;
   font-size: 1em;
 }
+
 .card-front,
 .card-back {
   position: absolute;
@@ -157,6 +163,7 @@ body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
 }
+
 main {
   display: flex;
   align-items: center;
@@ -180,27 +187,52 @@ main {
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
+    width:100%;
   }
+  .container{
+    width: 100%;
+  }
+  .subcontainer{
+    width: 100%;
+  }
+
   .controls {
     margin: 0;
     border-radius: 0;
     opacity: 0.9;
+    width: 100%;
   }
+
+  nav {
+    width: 100%;
+  }
+
+  .navbarul>.option {
+    transform: scale(0.8);
+    margin: 2px;
+    padding:3px 1px;
+  }
+
+ 
   .board {
     opacity: 0.96;
     width: 100%;
     gap: 7px;
-    padding: 10px;
+    padding: 4px;
+    transform: scale(0.8);
   }
+
   main {
     margin: 0;
     padding: 0;
     width: 100%;
   }
-  .controls > button {
+
+  .controls>button {
     font-size: 1.3em;
-    padding:3px
+    padding: 3px
   }
+
   .subcontainer {
     display: flex;
     align-items: center;
@@ -221,13 +253,16 @@ main {
   .container {
     width: 100%;
   }
+
   .controls {
     opacity: 0.9;
   }
+
   .board {
     opacity: 0.9;
   }
-  .controls > button {
+
+  .controls>button {
     font-size: 1.4em;
   }
 

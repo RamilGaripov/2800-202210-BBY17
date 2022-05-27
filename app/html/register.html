@@ -6,63 +6,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/register.css">
-    <title>Document</title>
+    <title>Register</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png"/>
-<link rel="mask-icon" href="/safari-pinned-tab.svg"  color="#5bbad5"/>
-<meta name="msapplication-TileColor" content="#da532c"/>
-<meta name="theme-color" content="#ffffff"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 </head>
 
 <body>
     <div class="container">
-<main>
-    <form>
-        <h1> REGISTER </h1>
-        <p id="errorMsg"></p>
+        <main>
+            <form>
+                <h1> REGISTER </h1>
+                <p id="errorMsg"></p>
 
-        <div class="form-group">
-            <label for="firstName">FIRST NAME*</label><br>
-            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Jamie">
-        </div>
+                <div class="form-group">
+                    <label for="firstName">FIRST NAME*</label><br>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Jamie">
+                </div>
 
-        <div class="form-group">
-            <label for="lastName">LAST NAME*</label><br>
-            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Smith">
-        </div>
+                <div class="form-group">
+                    <label for="lastName">LAST NAME*</label><br>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Smith">
+                </div>
 
-        <div class="form-group">
-            <label for="email">EMAIL*</label><br>
-            <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com">
-        </div>
-
-
-        <div class="form-group">
-            <label for="birthday">BIRTHDAY*</label><br>
-            <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01" max="2020-01-01">
-        </div>
-
-        <div class="form-group">
-            <label for="password">PASSWORD*</label><br>
-            <input type="password" class="form-control" id="password" name="password" placeholder="*********">
-        </div>
+                <div class="form-group">
+                    <label for="email">EMAIL*</label><br>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com">
+                </div>
 
 
-        <div class="form-group">
-            <label for="passwordConfirm">CONFIRM PASSWORD*</label><br>
-            <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
-        </div>
-        <br>
-        <p>*REQUIRED FIELDS</p>
-        <button type="submit" id = "submit" class="register">SUBMIT</button>
-        <button type="submit" id = "go_back" class="register">GO BACK</button>
-    </form>
-</main>
+                <div class="form-group">
+                    <label for="birthday">BIRTHDAY*</label><br>
+                    <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01"
+                        max="2020-01-01">
+                </div>
 
-</div>
-<script defer src="/js/register.js"></script>
-<script src="/js/favicon.js"></script>
+                <div class="form-group">
+                    <label for="password">PASSWORD*</label><br>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="*********">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="passwordConfirm">CONFIRM PASSWORD*</label><br>
+                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
+                </div>
+                <br>
+                <p>*REQUIRED FIELDS</p>
+                <button type="submit" id="submit" class="register">SUBMIT</button>
+                <button type="submit" id="go_back" class="register">GO BACK</button>
+            </form>
+        </main>
+
+    </div>
+    <script defer src="/js/register.js"></script>
+    <script src="/js/favicon.js"></script>
 </body>
 
 

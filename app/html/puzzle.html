@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/puzzle.css" />
 
-    <!-- jquery ui js references -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/puzzle.css" />
 
-    <!-- css references -->
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"
-    />
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <title>Puzzle</title>
-  </head>
+  <!-- jquery ui js references -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-  <body>
-    <div class="container">
-      <div class="subcontainer">
+  <!-- css references -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <title>Puzzle</title>
+</head>
 
-        <!-- containing the title, win/loss message, buttons and game -->
-        <div id="container">
-          <h3 class="subtitle">Puzzle</h3>
+<body>
+  <div class="container">
+    <div class="subcontainer">
 
-          <!-- containing where the puzzle is placed -->
-          <div id="puzzlecontainer"></div>
+      <!-- containing the title, win/loss message, buttons and game -->
+      <div id="container">
+        <h3 class="subtitle">Puzzle</h3>
 
-          <!-- containing where the pieces are held -->
-          <div id="piececontainer">
+        <!-- containing where the puzzle is placed -->
+        <div id="puzzlecontainer"></div>
 
-            <!-- win/loss messages -->
-            <h1 id="winmessage">Congrats! You have won 25 reward points!</h1>
-            <h3 id="lossmessage">Oops that wrong. Please Try again!</h3>
-          </div>
+        <!-- containing where the pieces are held -->
+        <div id="piececontainer">
 
-          <!-- help button -->
-          <input type="button" value="Rules" id="puzzleHelp" class="help" />
+          <!-- win/loss messages -->
+          <h1 id="winmessage">Congrats! You have won 25 reward points!</h1>
+          <h3 id="lossmessage">Oops that wrong. Please Try again!</h3>
+        </div>
 
-          <!-- buttons -->
-          <div id="buttons">
-            <button id="btnstart">Start</button>
-            <button id="btnreset">Reset</button>
-            <button id="btnback">Home</button>
-          </div>
+        <!-- help button -->
+        <input type="button" value="Rules" id="puzzleHelp" class="help" />
+
+        <!-- buttons -->
+        <div id="buttons">
+          <button id="btnstart">Start</button>
+          <button id="btnreset">Reset</button>
+          <button id="btnback">Home</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- js references -->
-    <script src="/js/puzzle.js"></script>
-    <script src="/js/navbar.js"></script>
-    <script src="/js/favicon.js"></script>
-  </body>
+  <!-- js references -->
+  <script src="/js/puzzle.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/favicon.js"></script>
+</body>
+
 </html>
