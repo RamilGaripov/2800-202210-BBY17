@@ -10,6 +10,7 @@ const errorMsg = document.getElementById("errorMsg");
 document.querySelector("#submit").addEventListener("click", function (e) {
   var messages = [];
   console.log(messages);
+  console.log(dob.value);
   if (fName.value === "" || fName.value == null) {
     messages.push("First Name is required.");
   }
@@ -35,6 +36,14 @@ document.querySelector("#submit").addEventListener("click", function (e) {
 
   if (dob.value === "" || dob.value == null) {
     messages.push("Birthday is required.");
+  }
+
+  if (dob.value < "1900-01-01") {
+    messages.push("Please enter a valid date of birth.");
+  }
+
+  if (dob.value > "2019-06-01") {
+    messages.push("The user has to be at least 3 years old.");
   }
 
   if (pword.value.length < 6) {

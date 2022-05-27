@@ -28,8 +28,8 @@ body {
 }
 
 .subtitle {
-  font-size: 1em;
-  color: #16697a;
+  font-size: 1.2em;
+  color:black;
   font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 7px;
@@ -87,7 +87,6 @@ form > #submit:active {
   text-decoration: none;
   border: none;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 #go_back:hover {
@@ -112,7 +111,6 @@ form > #submit:active {
   border-color: #16697a;
   border-radius: 12px;
   min-width: 350px;
-  margin: 8px 0;
 }
 
 @media screen and (max-width: 717px) {
@@ -122,6 +120,7 @@ form > #submit:active {
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
+    height: 100vh;
   }
 
   main {
@@ -157,7 +156,6 @@ form > #submit:active {
     align-items: center;
     border-radius: 12px;
     min-width: 350px;
-    margin: 10px;
   }
 }
 
@@ -174,6 +172,7 @@ form > #submit:active {
   main {
     display: flex;
     align-items: center;
+    justify-content: center;
     background: linear-gradient(
         180deg,
         rgba(237, 231, 227, 0) 6.92%,
@@ -186,14 +185,14 @@ form > #submit:active {
       );
     backdrop-filter: blur(4px);
     border-radius: 20px;
-    padding: 10px;
-    margin-top: 20px;
+    padding: 4px;
+    margin: 6px 4px 5px;
   }
 
   .subcontainer {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
     padding-bottom: 20px;
   }
 
