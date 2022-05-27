@@ -5,20 +5,25 @@
  * @see https://www.youtube.com/watch?v=6mgsMcOwfoE
  */
 
+
+// defines the name of the game
 const gameTitle = "Puzzle";
 
+// run when document is loaded
 $(document).ready(function () {
 
+    // picks random number for the choosing of 10 images
     var randompuz = Math.floor(Math.random() * 10 + 1);
 
     sendDataToServer();
-    // console.log(pieces);
     var pieces = createPieces(true);
     $("#puzzlecontainer").html(pieces);
 
+    // listens for when start button is clicked
     $("#btnstart").click(function () {
-        // sendDataToServer();
         var pieces = $("#puzzlecontainer div");
+
+        // randomly scrambles pieces into container
         pieces.each(function () {
             var leftposition = Math.floor(Math.random() * 290) + "px";
             var topposition = Math.floor(Math.random() * 290) + "px";
@@ -32,28 +37,47 @@ $(document).ready(function () {
         var emptystring = createPieces(false);
         $("#puzzlecontainer").html(emptystring);
         $(this).hide();
+
+        // shows the reset button
         $("#btnreset").show();
+
+        // hides the back button
         $("#btnback").hide();
         implementLogic();
     });
+
+    // listens for when the reset button is clicked
     $("#btnreset").click(function () {
         var newPieces = createPieces(true);
         $("#puzzlecontainer").html(newPieces);
         $(this).hide();
+
+        // shows start button
         $("#btnstart").show();
+
+        // hides back button
         $("#btnback").hide();
+
+        // hides winning message
         $("#winmessage").hide();
+
+        // hides lossing message
         $("#lossmessage").hide();
+
+        // reset the pieces container
         $("#piececontainer").empty();
     });
 
+    // picks the images and insets it into the game
     function createPieces(withImage) {
         var pieces = "";
         var rows = 4, 
             columns = 4;  
 
+        // defines variable that will act as the class name for the pieces
         var classname = "";
 
+        // recives random number and assigns classname
         switch (randompuz) {
             case 1:
                 classname = "puz1";
@@ -106,11 +130,11 @@ $(document).ready(function () {
                 break;
         }
 
-        // console.log(classname + " was chosen.");
-
+        // creates 16 pieces will all unique background positioning, which makes up the whole image
         for (var i = 0, top = 0, order = 0; i < rows; i++, top -= 100) {
             for (var j = 0, left = 0; j < columns; j++, left -= 100, order++) {
 
+                // inserts html for pieces
                 if (withImage) {
                     pieces += "<div style='background-position:" + left + "px " + top + "px;' class='piece " + classname + "' data-order=" + order + "></div>";
                 } else {
@@ -123,7 +147,10 @@ $(document).ready(function () {
 
     }
 
+    // checks if the puzzle is solved or not
     function checkIfPuzzleSolved() {
+
+        // checks if all 16 pieces are placed
         if ($("#puzzlecontainer .droppedPiece").length != 16) {
             return false;
         }
@@ -146,6 +173,7 @@ $(document).ready(function () {
         }
     }
 
+    // applys the use of jquery ui with draggable and droppable
     function implementLogic() {
         $(".draggablepiece").draggable({
             revert: "invalid",
@@ -177,8 +205,9 @@ $(document).ready(function () {
     }
 });
 
-function sendDataToServer() {
 
+// contacts the database that the game has been started
+function sendDataToServer() {
     console.log("Starting to match...");
     const timeStamp = Date.now(); 
     console.log(timeStamp);
@@ -192,6 +221,7 @@ function sendDataToServer() {
     });
 }
 
+// contacts the database that the game has been complete
 function updateDataOnServer() {
     console.log("finished matching!");
     const data = {title: gameTitle};
@@ -204,12 +234,13 @@ function updateDataOnServer() {
     })
 }
 
+// redirect back to the home page
 document.querySelector("#btnback").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.replace("/main");
 });
 
-
+// displays pop up when rules button is clicked
 document.getElementById("puzzleHelp").addEventListener("click", function(e) {
     e.preventDefault();
     console.log("Rules");
