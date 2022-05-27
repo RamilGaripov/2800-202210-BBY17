@@ -81,7 +81,7 @@ It's still possible to delete all the admins.
 Users are still unable to add/update pictures on their posts. 
 
 
-**********************************MILESTONE WEEK 5 Fnal DELIVERY
+**********************************MILESTONE WEEK 5 Final DELIVERY
 
 [Xavier Pimentel], [A00697839], [Set1C], [May 27th, 2022]
 [Randall Kong], [A01279243], [Set1C], [May 27th, 2022]
@@ -91,9 +91,10 @@ This assignment is [95]% complete.
 
 Optional timeline's multiple change photo ability didnt work so we removed it.
 Profile page can change photos and details
-Admin can delete until the last one and no more.
+The last remaining admin cannot be deleted anymore
 Admin page is now responsive
-timeline page is self populating based on the activities you finish
+Timeline page is self populating based on the activities you finish
+A lot of bugs have been fixed
 
 
 ******************  REFERENCES and Resources
@@ -106,7 +107,7 @@ User: user@test.ca
 PW: 123456
 
 
-Uploading Files: 
+Uploading Files and DB initialization: 
 Arron Ferguson's COMP2537 examples
 
 Easter Egg:
