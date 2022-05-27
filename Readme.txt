@@ -81,6 +81,15 @@ It's still possible to delete all the admins.
 Users are still unable to add/update pictures on their posts. 
 
 
+**********************************MILESTONE WEEK 5
+
+[Xavier Pimentel], [A00697839], [Set1C], [May 20th, 2022]
+[Randall Kong], [A01279243], [Set1C], [May 20th, 2022]
+[Ramil Garipov], [A01286613], [Set2B], [May 20th, 2022]
+[Joshua Chen], [A01233767], [Set2B], [May 20th, 2022]
+This assignment is [95]% complete.
+
+
 ******************  REFERENCES
 
 Uploading Files: 
@@ -90,10 +99,16 @@ Easter Egg:
 Carnival CSS animations taken from: 
 https://codepen.io/gxash/pen/YqmxWg
 
-Wordle.js
-Javascript for Wordle Application
 
-@author Ian Lenehan
-@see https://www.youtube.com/watch?v=j7OhcuZQ-q8
+Sudoku Application:
 
-`
+Referenced code from
+@see https://www.youtube.com/watch?v=S4uRtTb8U-U
+ 
+ 
+Wordle Application
+  
+Referenced code from 
+@see https://www.youtube.com/watch?v=ckjRsPaWHX8
+@see https://www.youtube.com/watch?v=MM9FAV_CEkU
+ 
