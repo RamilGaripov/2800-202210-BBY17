@@ -18,6 +18,7 @@ const res = require("express/lib/response");
 const {
   send
 } = require("process");
+const { connect } = require("http2");
 var connection = null;
 
 const is_heroku = process.env.IS_HEROKU || false;
@@ -47,8 +48,6 @@ if (is_heroku) {
 } else {
   var database = "COMP2800"
 }
-
-
 
 // mysql://bbbf1ed5716748:0548f8d4@us-cdbr-east-05.cleardb.net/heroku_ea347eecae4ecfd?reconnect=true
 // server
@@ -161,7 +160,6 @@ app.get("/main", async function (req, res) {
       let profile = fs.readFileSync("./app/html/main.html", "utf8");
       let profileDOM = new JSDOM(profile);
 
-      console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
       profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
       profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
       profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
@@ -180,24 +178,27 @@ app.get("/profile", function (req, res) {
   if (req.session.loggedIn) {
     let profile = fs.readFileSync("./app/html/profile.html", "utf8");
     let profileDOM = new JSDOM(profile);
-
-    console.log("Redirecting to the profile editing page of " + req.session.first_name, req.session.last_name);
-
-    profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
-    profileDOM.window.document.getElementById("greeting").textContent = req.session.first_name
-    profileDOM.window.document.getElementById("firstname").setAttribute("value", req.session.first_name);
-    profileDOM.window.document.getElementById("lastname").setAttribute("value", req.session.last_name);
-    profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
-    profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
-    profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
-
-    var dobJSON = req.session.dob.substring(0, 10);
-
-    profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
     res.send(profileDOM.serialize());
   } else {
     res.redirect("/");
   }
+});
+
+app.get("/profile-info", function(req, res) {
+  connection.query("SELECT * FROM BBY_17_accounts WHERE id=?", req.session.user_id, function(err, results) {
+    if (err) {
+      console.log(err);
+      res.send({
+        status: "fail",
+        msg: "error finding your information"
+      });
+    } else {
+      res.send({
+        status: "success",
+        data: results[0]
+      });
+    }
+  });
 });
 
 app.get("/dashboard", function (req, res) {
@@ -248,7 +249,6 @@ app.get("/edit", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
       // to bring user to edit page as a non-admin
-      console.log("This user is not an administrator. Going to edit page but removing admin checkbox.");
       res.redirect("/main");
       return;
     }
@@ -332,19 +332,37 @@ app.post("/update-user", function (req, res) {
   if (req.session.loggedIn) {
     // connection = mysql.createPool(config);
  
-
+    //REQ SESSION ID TO EDIT ONLY AVAILABLE FOR OTHER USERS BUT NOT FOR YOU!
     const user = req.body;
-    if (req.session.admin) {
-      var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
-      var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, req.session.id_to_edit];
 
+    var id_to_edit = null;
+    if (req.session.admin) {
+      if (req.body.user_id) {
+        id_to_edit = req.body.user_id;
+        var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, dob=? WHERE id=?;";
+        var sql_vars = [user.first_name, user.last_name, user.email, user.dob, id_to_edit];
+        req.session.first_name = user.first_name;
+        req.session.last_name = user.last_name;
+        req.session.email = user.email;
+      } else if (req.session.id_to_edit == req.session.user_id) {
+        id_to_edit = req.session.user_id;
+        var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
+        var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, id_to_edit];
+       
+      } else {
+        id_to_edit = req.session.id_to_edit;
+        var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
+        var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, id_to_edit];
+  
+      } 
+      
     } else {
       var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, password=?, dob=? WHERE id=?;";
       var sql_vars = [user.first_name, user.last_name, user.email, user.password, user.dob, req.session.user_id];
       req.session.first_name = user.first_name;
       req.session.last_name = user.last_name;
     }
-
+ 
     connection.query(sql_query, sql_vars, function (error, results) {
 
       if (error) {
@@ -572,7 +590,7 @@ app.get("/get-previous-activities", function (req, res) {
       } else {
         res.send({
           status: "fail",
-          msg: "You have not completed any activities before."
+          msg: "You have not completed any activities before. Please navigate to the main page and complete an activity."
         });
       }
 
@@ -697,14 +715,6 @@ async function init() {
   const mysqlpromise = require("mysql2/promise");
   // Let's build the DB if it doesn't exist
 
-  // const connectionInit = await mysqlpromise.createConnection({
-  //   host: "localhost",
-  //   user: "root",
-  //   password: "",
-  //   multipleStatements: true,
-  // });
-
-
   if (is_heroku) {
     var connectionInit = await mysqlpromise.createPool(dbConfigHerokuCreate);
     var createDBAndTables = `CREATE DATABASE IF NOT EXISTS `+database+`;
@@ -798,7 +808,6 @@ async function init() {
   }
 
   const [activities_rows, activ_fields] = await connectionInit.query("SELECT * FROM BBY_17_activities");
-  // console.log("THE FIELDS", rows);
   // adds records if there are currently none
   if (activities_rows.length == 0) {
     let activitiesSQL =
@@ -815,13 +824,6 @@ async function init() {
   }
 
   console.log("Listening on port " + port + "!");
-  // connection = mysql.createConnection({
-  //   host: "localhost",
-  //   user: "root",
-  //   password: "",
-  //   database: "COMP2800"
-  // });
-
 
   if (is_heroku) {
     connection = mysql.createPool(dbConfigHeroku);

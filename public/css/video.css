@@ -86,22 +86,22 @@ input {
 #redeemGold {
   width: 310px;
   height: 250px;
-  background-image: url(/img/RCSS.png);
+  background-image: url(/img/RCSS.jpg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   border-width: 8px;
   border-color: #fedb37;
   box-shadow: 0 0 50px #ccc;
 }
 
 #redeemSilver {
-  width: 240px;
-  height: 300px;
+  width: 310px;
+  height: 250px;
   background-image: url(/img/Subway.png);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   border-width: 8px;
   border-color: #f5f7fa;
   box-shadow: 0 0 50px #ccc;
@@ -109,12 +109,12 @@ input {
 }
 
 #redeemBronze {
-  width: 300px;
-  height: 200px;
-  background-image: url(/img/shoppers.jpg);
+  width: 310px;
+  height: 250px;
+  background-image: url(/img/amazon.jpg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   border-width: 8px;
   border-color: #cd7f32;
   box-shadow: 0 0 50px #ccc;
@@ -167,6 +167,10 @@ legend {
 h2 {
   padding: 5px 2px;
   margin: 2px;
+}
+
+.rewardBtn:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 716px) {
