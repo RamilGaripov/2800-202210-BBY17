@@ -90,6 +90,7 @@ document.querySelector("#submit_edits").addEventListener("click", function (e) {
   }
 });
 
+//allows people to edit their own profile from the "Edit Profile" page
 async function editUser(data) {
   try {
     errorMsg.textContent = "";
