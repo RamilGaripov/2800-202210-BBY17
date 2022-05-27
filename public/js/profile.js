@@ -19,7 +19,6 @@ async function getMyInfo() {
 
 function populateInfo(data) {
   // console.log(data.id);
-  greeting.textContent = data.first_name;
   fName.value = data.first_name;
   lName.value = data.last_name;
   email.value = data.email;

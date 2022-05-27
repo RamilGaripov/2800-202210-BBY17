@@ -30,6 +30,11 @@ body {
     text-align: center;
     padding-right: 20px;
 }
+
+#topGreeting {
+    font-weight: 700;
+}
+
 main>p{
     padding:7px 20px;
     margin:10px;
@@ -162,6 +167,10 @@ form>#submit:active {
 
 .submit_comment:active {
     background-color: #8b622a;
+}
+
+#serverMsg {
+    font-weight: 700;
 }
 
 @media screen and (max-width:599px) {
