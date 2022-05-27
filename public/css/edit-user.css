@@ -106,3 +106,15 @@ body {
         color: #EDE7E3;
         padding:5px;
     }
+
+    #errorMsg {
+        margin: 0;
+        color: red;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.25em;
+        font-weight: 700;
+        text-align: center;
+        transition: ease-in 0.3s;
+        border-radius: 10px;
+        padding: 4px;
+    }
