@@ -127,3 +127,18 @@ Referenced code from
 @see https://www.youtube.com/watch?v=ckjRsPaWHX8
 @see https://www.youtube.com/watch?v=MM9FAV_CEkU
  
+
+
+Javascript for Puzzle Application
+  
+ @author Crypters Infotech
+ @see https://www.youtube.com/watch?v=6mgsMcOwfoE
+
+
+
+Javascript for Match Application
+
+@author Ferenc Almasi
+@see https://www.webtips.dev/memory-game-in-javascript
+
+ 
