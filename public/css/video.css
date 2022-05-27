@@ -17,6 +17,12 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+body {
+  background-image: url(/img/meditation.jpg);
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
 .subcontainer {
   display: flex;
   align-items: center;
