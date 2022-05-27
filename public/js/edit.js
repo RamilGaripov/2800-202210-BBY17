@@ -56,6 +56,7 @@ document.querySelector("#submit").addEventListener("click", function (e) {
     }
 });
 
+//allows admins to edit ppl's info from the admin dashboard
 async function editUser(data) {
     try {
         errorMsg.textContent = "";

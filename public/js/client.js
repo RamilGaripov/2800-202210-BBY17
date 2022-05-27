@@ -1,3 +1,4 @@
+//Login page code which allows users to sign in
 document.querySelector("#submit").addEventListener("click", function(e) {
   e.preventDefault();
   loginUser({

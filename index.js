@@ -82,6 +82,7 @@ const dbConfigLocalCreate = {
   multipleStatements: true
 };
 
+//static pathings for the app
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
 app.use("/img", express.static("./public/img"));
@@ -153,6 +154,7 @@ app.get("/", function (req, res) {
   }
 });
 
+//links the main.html to /main url tag and populates some data on the main page
 app.get("/main", async function (req, res) {
   try {
     if (req.session.loggedIn) {
@@ -174,6 +176,8 @@ app.get("/main", async function (req, res) {
   }
 });
 
+
+//links the profile.html to /profile url tag
 app.get("/profile", function (req, res) {
   if (req.session.loggedIn) {
     let profile = fs.readFileSync("./app/html/profile.html", "utf8");
@@ -184,6 +188,7 @@ app.get("/profile", function (req, res) {
   }
 });
 
+//sends the information about the user to the Edit Profile page, so the form can get populated with data
 app.get("/profile-info", function(req, res) {
   connection.query("SELECT * FROM BBY_17_accounts WHERE id=?", req.session.user_id, function(err, results) {
     if (err) {
@@ -200,6 +205,8 @@ app.get("/profile-info", function(req, res) {
     }
   });
 });
+
+//links the admin.html to /dashboard url tag and populates the greeting and title for the admin dashboard
 
 app.get("/dashboard", function (req, res) {
   if (req.session.loggedIn) {
@@ -296,7 +303,7 @@ app.get("/edit", function (req, res) {
   }
 });
 
-//Feels like this function is redundant and can be removed, but currently I don't know how to avoid using this approach...
+//Sets the req.session.id_to_edit which allows admins to edit other people's profiles from the dashboard
 app.post("/edit-user", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   req.session.id_to_edit = req.body.id;
@@ -442,8 +449,7 @@ async function deleteUser(id) {
   });
 }
 
-//  register
-//  http://localhost/phpmyadmin/
+//Allows people to create new accounts
 app.post('/create-account', async function (req, res) {
   // connection = mysql.createPool(config);
 
@@ -470,7 +476,7 @@ app.post('/create-account', async function (req, res) {
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(pwd, salt);
-    console.log(hashedPassword);
+    // console.log(hashedPassword);
 
     const isAdmin = 0;
 
@@ -506,6 +512,7 @@ app.post('/create-account', async function (req, res) {
 
 });
 
+//simple identificator for admin privileges
 app.get("/is-admin", function (req, res) {
   res.send({
     status: "success",
@@ -513,6 +520,7 @@ app.get("/is-admin", function (req, res) {
   });
 });
 
+//creates a new record in the 'plays' table to indicate who, when and what activity was started.
 app.post("/start-game", function (req, res) {
   // connection = mysql.createPool(config);
   
@@ -535,11 +543,10 @@ app.post("/start-game", function (req, res) {
  
 })
 
-
+//marks the activity as completed by the user and adds the points earned into their total point pool
 app.post("/finish-game", function (req, res) {
   console.log("User finished the game!");
-  // connection = mysql.createPool(config);
-  
+ 
   connection.query("UPDATE BBY_17_plays SET completed=true, time_completed=CURRENT_TIMESTAMP WHERE play_id=?", [req.session.play_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
@@ -548,19 +555,26 @@ app.post("/finish-game", function (req, res) {
   connection.query("UPDATE BBY_17_accounts SET points=(points+ (SELECT points FROM BBY_17_activities WHERE title=?)) WHERE id = ?", [req.body.title, req.session.user_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
+    } else {
+      updateSessionPoints(req, res);
     }
   });
+})
+
+//updates the amounts of points for the session upon completion of any activity
+function updateSessionPoints(req, res) {
   connection.query("SELECT points FROM BBY_17_accounts WHERE id=?", req.session.user_id, function (err, results) {
     if (err) {
       console.log(err);
+    } else {
+      req.session.points = results[0].points;
+      res.send({
+        status: "success",
+        msg: "points updated"
+      });
     }
-    req.session.points = results[0].points;
-    res.send({
-      status: "success"
-    });
   });
-
-})
+}
 
 app.get("/history", function (req, res) {
   if (req.session.loggedIn) {
@@ -574,6 +588,7 @@ app.get("/history", function (req, res) {
   }
 })
 
+//sends the history of all completed activities for the user -> info goes to history.js
 app.get("/get-previous-activities", function (req, res) {
   // connection = mysql.createPool(config);
   
@@ -599,8 +614,7 @@ app.get("/get-previous-activities", function (req, res) {
   
 })
 
-
-
+//Updates the comments in the posts on the history of activities page
 app.post("/update-comment", function (req, res) {
   // connection = mysql.createPool(config);
   
@@ -620,7 +634,6 @@ app.post("/update-comment", function (req, res) {
   });
 
 })
-
 
 //Logs the user in. Creates a session. Determines if the user is an administrator or not.
 app.post("/login", function (req, res) {

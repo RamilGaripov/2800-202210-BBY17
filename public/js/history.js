@@ -1,3 +1,4 @@
+
 async function getPosts() {
   try {
     const response = await fetch("/get-previous-activities", {
@@ -27,16 +28,7 @@ async function getPosts() {
           </fieldset>
    `;
 
-      //Temporary solution for history posts creation. Need to re-think this part.
-
-      // var putHere;
-      // for (let m = 0; m < rows.length; m++) {
-      //     var post = document.createElement("fieldset");
-      //     putHere = document.getElementById("postshere");
-      //     putHere.appendChild(post);
-      //     post.textContent="HIII";
-      // }
-
+    //temporary solution for the dynamic population of history of activities. Needs to be reworked to add new html elements and append posts to them
       for (let i = 0; i < rows.length; i++) {
         let row = rows[i];
 
@@ -68,8 +60,7 @@ async function getPosts() {
           row.comment;
         document.getElementsByClassName("points")[i].textContent = row.points;
         document
-          .getElementsByClassName("activity_pic")
-          [i].setAttribute("src", row.image);
+          .getElementsByClassName("activity_pic")[i].setAttribute("src", row.image);
       }
 
       // provides SAVE BUTTON functionality
@@ -79,22 +70,21 @@ async function getPosts() {
           e.preventDefault();
           const user_comment =
             document.getElementsByClassName("comment_section")[j].value;
-          saveComment({ play_id: rows[j].play_id, comment: user_comment });
+          saveComment({
+            play_id: rows[j].play_id,
+            comment: user_comment
+          });
         });
       }
-
-      // document.getElementById("activity_title").textContent = rows[0].title;
     }
   } catch (err) {
     console.log(err);
   }
 }
 
+//sends info to the server about the updated comments + displays the outcome on the screen
 async function saveComment(data) {
   try {
-    console.log("Saving the comment");
-    // console.log(data);
-
     const response = await fetch("/update-comment", {
       method: "POST",
       headers: {
