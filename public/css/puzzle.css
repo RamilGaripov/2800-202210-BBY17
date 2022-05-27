@@ -110,6 +110,14 @@ button {
   font-weight: bold;
   margin: 10px;
 }
+
+.help:hover {
+  cursor: pointer;
+}
+
+#warning {
+  background-color:#fb3a3a;
+}
 #buttons {
   padding: 0px;
 }

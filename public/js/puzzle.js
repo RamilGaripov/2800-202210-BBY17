@@ -248,6 +248,16 @@ document.getElementById("puzzleHelp").addEventListener("click", function(e) {
         'Complete the picture!',
         "Drag the tiles in the left frame into the right!",
         'info',
-        
+    )
+}) 
+
+// displays pop up when not working button is clicked
+document.getElementById("warning").addEventListener("click", function(e) {
+    e.preventDefault();
+    console.log("Rules");
+    Swal.fire(
+        'Sorry!',
+        "Currently, this game only works on the desktop version of the application!",
+        'warning',
     )
 }) 
