@@ -42,6 +42,11 @@ body {
   margin: 0;
 }
 
+.form-control {
+  height: 1.5em;
+  font-size: 1.25em;
+}
+
 form > #submit,
 #submit_edits {
   border-radius: 20px;
