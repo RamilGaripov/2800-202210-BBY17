@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       `is_admin` BOOL NULL, 
       `dob` DATE NOT NULL,
       `points` INT DEFAULT 0,
-      `avatar` VARCHAR(50) DEFAULT "/avatar/profilepic.png");
+      `avatar` VARCHAR(255) DEFAULT "/avatar/profilepic.png");
     
 INSERT into `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) 
 	VALUES ("admin@test.ca", "Ramil", "Garipov", "123456",  TRUE, 19930401);
@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS BBY_17_plays (
       `time_started` DATETIME DEFAULT CURRENT_TIMESTAMP,
       `time_completed` DATETIME NULL,
       `comment` VARCHAR(255) NULL,
-      `image` VARCHAR(50) DEFAULT "/avatar/general.png"
+      `image` VARCHAR(255) DEFAULT "/avatar/general.png"
     );
-    
-describe bby_17_plays;
+

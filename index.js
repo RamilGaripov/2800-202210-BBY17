@@ -741,7 +741,7 @@ async function init() {
       is_admin BOOL NULL, 
       dob DATE NOT NULL,
       points INT DEFAULT 0,
-      avatar VARCHAR(50) DEFAULT "/avatar/profilepic.png");
+      avatar VARCHAR(255) DEFAULT "/avatar/profilepic.png");
     
     CREATE TABLE IF NOT EXISTS BBY_17_activities (
       title VARCHAR(25) PRIMARY KEY,
@@ -773,7 +773,7 @@ async function init() {
       is_admin BOOL NULL, 
       dob DATE NOT NULL,
       points INT DEFAULT 0,
-      avatar VARCHAR(50) DEFAULT "/avatar/profilepic.png");
+      avatar VARCHAR(255) DEFAULT "/avatar/profilepic.png");
     
     CREATE TABLE IF NOT EXISTS BBY_17_activities (
       title VARCHAR(25) PRIMARY KEY,
