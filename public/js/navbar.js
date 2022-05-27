@@ -14,12 +14,11 @@ function navInsertion() {
     <li class="option" id="go_to_history">
         <img src="/img/clock.png" alt="history"  class="nav_links">History
     </li>
-    </li>
     <li class="option" id="go_to_edit" >
         <img src="/img/profile_icon.png" alt="profile" class="nav_links">Edit Profile
     </li>
     <li class="option" id="adminLink">
-    <img src="/img/wrench_icon.png" alt="profile" class="nav_links">Admin Dash
+    <img src="/img/wrench_icon.png" alt="profile" class="nav_links">Admin
     </li>
 </ul>
 <form action="/logout"class="logout">
@@ -36,7 +35,7 @@ document
   .addEventListener("click", function (e) {
     e.preventDefault();
     window.location.replace("/history");
-  })
+  });
 
 
 document.querySelector("#go_to_edit").addEventListener("click", function (e) {

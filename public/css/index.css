@@ -13,16 +13,16 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-    min-width: 350px;
 }
 
 .container {
     height: 100%;   
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
-
-/* Nav Stuff default */
+/* Nav Stuff only for index */
 nav {
     display: flex;
     justify-content: space-between;
@@ -45,6 +45,7 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding:10px 30px;
 }
 
 form>h2 {
@@ -57,7 +58,7 @@ form>h2 {
 .form-group {
     display: inline-block;
     text-align: center;
-    margin: 2px;
+    margin: 5px;
 }
 
 .form-group>label {
@@ -74,7 +75,7 @@ form>h2 {
 
 #submit {
     border-radius: 20px;
-    padding: 8px 40px;
+    padding: 8px 20px;
     background-color: #ffa62b;
     color: #ffff;
     border: none;
@@ -116,9 +117,9 @@ form>h2 {
     padding: 4px;
 }
 
-@media screen and (min-width:0px) and (max-width:499px) {
+@media screen and (min-width:0px) and (max-width:450px) {
     body {
-        min-width: 350px;
+        min-width: 330px;
     }
 
     #logo {
@@ -189,7 +190,6 @@ form>h2 {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        min-width: 350px;
     }
 
     nav {
@@ -198,7 +198,6 @@ form>h2 {
         justify-content: center;
         align-items: center;
         margin: auto;
-        padding-top: 40px;
     }
 
     #logo {
@@ -207,7 +206,7 @@ form>h2 {
     }
 
     form{
-        padding-top: 50px;
+        padding-top:auto;
     }
 
 
@@ -217,16 +216,9 @@ form>h2 {
     }
 }
 
-@media screen and (min-width:500px) and (max-width:864px) {
 
-    main {
-        margin-top: 20px;
-    }
-
-}
-
-@media screen and (min-width:500px) and (max-width:3400px) {
-    .container {
+@media screen and (min-width:451px) and (max-width:3400px) {
+    body{
         background-image: url(/img/backgroundLong.jpg);
         background-position: center;
         background-repeat: no-repeat;
@@ -238,7 +230,6 @@ form>h2 {
         justify-items: center;
         align-items: center;
         flex-direction: column;
-        padding-top: 30px;
     }
 
     #logo {
@@ -251,8 +242,8 @@ form>h2 {
     }
 
     form {
-        padding: 30px;
-        width: 400px;
+        padding: 10px 30px;
+        min-width:420px;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 70.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;

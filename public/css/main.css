@@ -15,10 +15,8 @@ body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
-
-.container {
-    height: 100%;
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
 .title {
     display: none;
@@ -63,10 +61,14 @@ div>b+span {
     color: #16697a;
 }
 .subtitle {
-    font-size: 1em;
-    color: black;
+    font-size: 2em;
+    color:#4874B5;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
+}
+.card>.subtitle{
+    font-size: 1.3em;
+    color:black;
 }
 
 .prof {
@@ -190,7 +192,7 @@ section {
 @media screen and (max-width:717px) {
     body {
         min-width: 350px;
-        background-image: url(/img/main_bg.jpg);
+        background-image: url(/img/main_mobile.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
@@ -214,11 +216,11 @@ section {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 95%;
+        width: 100%;
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 40.18%);
         backdrop-filter: blur(4px);
-        border-radius: 20px;
-        margin-bottom: 10px;
+        border-radius: 0px;
+        margin-top: 0px;
     }
 
     .profilepic {
@@ -239,15 +241,14 @@ section {
 @media screen and (min-width:718px) and (max-width:3400px) {
     body {
         min-width: 350px;
-    }
-
-    .container {
         background-image: url(/img/main_bg.jpg);
         background-position: center;
         background-repeat: repeat-y;
         background-size: cover;
         width: 100%;
     }
+
+
 
     .subcontainer {
         display: flex;
@@ -263,7 +264,7 @@ section {
         background: linear-gradient(180deg, rgba(237, 231, 227, 0) 6.92%, #EDE7E3 98.18%), linear-gradient(180deg, rgba(237, 231, 227, 0.9) 19.36%, rgba(237, 231, 227, 0) 50.18%);
         backdrop-filter: blur(4px);
         border-radius: 20px;
-        margin-bottom: 10px;
+        margin: 20px 10px;
     }
 
     .card{

@@ -3,13 +3,13 @@ const lName = document.getElementById("lastName");
 const pword = document.getElementById("password");
 const email = document.getElementById("email");
 const dob = document.getElementById("birthday");
-
 const errorMsg = document.getElementById("errorMsg");
 
 
 document.querySelector("#submit").addEventListener("click", function (e) {
   var messages = [];
   console.log(messages);
+  console.log(dob.value);
   if (fName.value === "" || fName.value == null) {
     messages.push("First name is required.");
   }
@@ -18,9 +18,7 @@ document.querySelector("#submit").addEventListener("click", function (e) {
     messages.push("Last name is required.");
   }
 
-  // console.log(email.value);
-  // console.log(email.value.length);
-  if (email.value.length < 5) {
+  if (email.value.length < 1) {
     messages.push("Email is required.");
   }
 
@@ -31,14 +29,20 @@ document.querySelector("#submit").addEventListener("click", function (e) {
   if(!email.value.match(mailformat)){
     messages.push("You have entered an invalid email address!");
   }
-  
 
   if (dob.value === "" || dob.value == null) {
     messages.push("Birthday is required.");
   }
 
+  if (dob.value < "1900-01-01") {
+    messages.push("Please enter a valid date of birth.");
+  }
+
+  if (dob.value > "2019-06-01") {
+    messages.push("The user has to be at least 3 years old.");
+  }
+
   if (pword.value.length < 6) {
-    console.log("ZHOAAAAPA");
     messages.push("Password must contain at least 6 characters.");
   }
   
@@ -49,7 +53,6 @@ document.querySelector("#submit").addEventListener("click", function (e) {
    
   } else {
     e.preventDefault();
-    console.log("Registering a new user.");
     createAccount({
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,
@@ -57,11 +60,10 @@ document.querySelector("#submit").addEventListener("click", function (e) {
       birthday: document.getElementById("birthday").value,
       password: document.getElementById("password").value,
       passwordConfirm: document.getElementById("passwordConfirm").value
-    })
+    });
   }
 
 });
-
 
 async function createAccount(data) {
 
@@ -78,7 +80,7 @@ async function createAccount(data) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
-    })
+    });
     let parsedJSON = await response.json();
     console.log(parsedJSON);
     // if fail -> error else redirect to correct pages;
@@ -94,7 +96,6 @@ async function createAccount(data) {
   } catch (err) {
     console.log(err);
   }
-
 }
 
 document.querySelector("#go_back").addEventListener("click", function (e) {

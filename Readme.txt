@@ -81,19 +81,64 @@ It's still possible to delete all the admins.
 Users are still unable to add/update pictures on their posts. 
 
 
-******************  REFERENCES
+**********************************MILESTONE WEEK 5 Final DELIVERY
 
-Uploading Files: 
+[Xavier Pimentel], [A00697839], [Set1C], [May 27th, 2022]
+[Randall Kong], [A01279243], [Set1C], [May 27th, 2022]
+[Ramil Garipov], [A01286613], [Set2B], [May 27th, 2022]
+[Joshua Chen], [A01233767], [Set2B], [May 27th, 2022]
+This assignment is [95]% complete.
+
+Optional timeline's multiple change photo ability didnt work so we removed it.
+Profile page can change photos and details
+The last remaining admin cannot be deleted anymore
+Admin page is now responsive
+Timeline page is self populating based on the activities you finish
+A lot of bugs have been fixed
+
+
+******************  REFERENCES and Resources
+
+Admin 
+email: admin@test.ca
+PW: 123456
+
+User: user@test.ca
+PW: 123456
+
+
+Uploading Files and DB initialization: 
 Arron Ferguson's COMP2537 examples
 
 Easter Egg:
 Carnival CSS animations taken from: 
 https://codepen.io/gxash/pen/YqmxWg
 
-Wordle.js
-Javascript for Wordle Application
 
-@author Ian Lenehan
-@see https://www.youtube.com/watch?v=j7OhcuZQ-q8
+Sudoku Application:
 
-`
+Referenced code from
+@see https://www.youtube.com/watch?v=S4uRtTb8U-U
+ 
+ 
+Wordle Application
+  
+Referenced code from 
+@see https://www.youtube.com/watch?v=ckjRsPaWHX8
+@see https://www.youtube.com/watch?v=MM9FAV_CEkU
+ 
+
+
+Javascript for Puzzle Application
+  
+ @author Crypters Infotech
+ @see https://www.youtube.com/watch?v=6mgsMcOwfoE
+
+
+
+Javascript for Match Application
+
+@author Ferenc Almasi
+@see https://www.webtips.dev/memory-game-in-javascript
+
+ 

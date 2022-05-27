@@ -18,38 +18,56 @@ const res = require("express/lib/response");
 const {
   send
 } = require("process");
+const { connect } = require("http2");
 var connection = null;
-
-
 
 const is_heroku = process.env.IS_HEROKU || false;
 
+// mysql://b278a3a55e0c77:8f62e10a@us-cdbr-east-05.cleardb.net/heroku_e03ed466564a407?reconnect=true
+
+if (is_heroku) {
+  var config= {
+    host: "us-cdbr-east-05.cleardb.net",
+    user: "b278a3a55e0c77",
+    password: "8f62e10a",
+    database: "heroku_e03ed466564a407"
+  
+  }
+} else {
+  var config = {
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "COMP2800"
+  }
+
+}
+
+if (is_heroku) {
+  var database = "heroku_e03ed466564a407";
+} else {
+  var database = "COMP2800"
+}
 
 // mysql://bbbf1ed5716748:0548f8d4@us-cdbr-east-05.cleardb.net/heroku_ea347eecae4ecfd?reconnect=true
 // server
 const dbConfigHeroku = {
-  host: 'us-cdbr-east-05.cleardb.net',
-  user: 'bbbf1ed5716748',
-  password: '0548f8d4',
-  database: 'heroku_ea347eecae4ecfd',
-  multipleStatements: false
+  host: "us-cdbr-east-05.cleardb.net",
+  user: "b278a3a55e0c77",
+  password: "8f62e10a",
+  database: "heroku_e03ed466564a407",
+  multipleStatements: false 
 }
 
 const dbConfigHerokuCreate = {
-  host: 'us-cdbr-east-05.cleardb.net',
-  user: 'bbbf1ed5716748',
-  password: '0548f8d4',
+  host: "us-cdbr-east-05.cleardb.net",
+  user: "b278a3a55e0c77",
+  password: "8f62e10a",
   multipleStatements: true
 }
 
 
 // local 
-const localConfig = {
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "COMP2800"
-}
 const dbConfigLocal = {
   host: "localhost",
   user: "root",
@@ -64,11 +82,14 @@ const dbConfigLocalCreate = {
   multipleStatements: true
 };
 
+//static pathings for the app
 app.use("/css", express.static("./public/css"));
 app.use("/js", express.static("./public/js"));
 app.use("/img", express.static("./public/img"));
 app.use("/avatar", express.static("./public/avatar"));
 app.use("/html", express.static("./app/html"));
+
+connection = mysql.createPool(config);
 
 //multer storage for uploading photos in profile page
 const storage = multer.diskStorage({
@@ -94,9 +115,8 @@ app.use(session({
 app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
   if (req.file) {
     const avatarPath = req.file.path.substring(6);
-    connection = mysql.createConnection(localConfig);
+    // connection = mysql.createPool(config);
     var insertData = "UPDATE BBY_17_accounts SET avatar=? WHERE id=?"
-    connection.connect();
     connection.query(insertData, [avatarPath, req.session.user_id], function (err) {
       if (err) {
         res.send({
@@ -111,7 +131,6 @@ app.post("/post-new-avatar", upload.single('avatar'), (req, res) => {
         });
       }
     });
-    connection.end();
 
   } else {
     console.log("No file uploaded.");
@@ -135,6 +154,7 @@ app.get("/", function (req, res) {
   }
 });
 
+//links the main.html to /main url tag and populates some data on the main page
 app.get("/main", async function (req, res) {
   try {
     if (req.session.loggedIn) {
@@ -142,7 +162,6 @@ app.get("/main", async function (req, res) {
       let profile = fs.readFileSync("./app/html/main.html", "utf8");
       let profileDOM = new JSDOM(profile);
 
-      console.log("Redirecting to the main page of " + req.session.first_name, req.session.last_name);
       profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
       profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
       profileDOM.window.document.getElementById("username").textContent = req.session.first_name + " " + req.session.last_name;
@@ -157,29 +176,37 @@ app.get("/main", async function (req, res) {
   }
 });
 
+
+//links the profile.html to /profile url tag
 app.get("/profile", function (req, res) {
   if (req.session.loggedIn) {
     let profile = fs.readFileSync("./app/html/profile.html", "utf8");
     let profileDOM = new JSDOM(profile);
-
-    console.log("Redirecting to the profile editing page of " + req.session.first_name, req.session.last_name);
-
-    profileDOM.window.document.getElementsByTagName("title")[0].textContent = req.session.first_name + "'s Profile";
-    profileDOM.window.document.getElementById("greeting").textContent = req.session.first_name
-    profileDOM.window.document.getElementById("firstname").setAttribute("value", req.session.first_name);
-    profileDOM.window.document.getElementById("lastname").setAttribute("value", req.session.last_name);
-    profileDOM.window.document.getElementById("email").setAttribute("value", req.session.email);
-    profileDOM.window.document.getElementById("password").setAttribute("value", req.session.password);
-    profileDOM.window.document.getElementById("profilepic").setAttribute("src", req.session.avatar);
-
-    var dobJSON = req.session.dob.substring(0, 10);
-
-    profileDOM.window.document.getElementById("dob").setAttribute("value", dobJSON);
     res.send(profileDOM.serialize());
   } else {
     res.redirect("/");
   }
 });
+
+//sends the information about the user to the Edit Profile page, so the form can get populated with data
+app.get("/profile-info", function(req, res) {
+  connection.query("SELECT * FROM BBY_17_accounts WHERE id=?", req.session.user_id, function(err, results) {
+    if (err) {
+      console.log(err);
+      res.send({
+        status: "fail",
+        msg: "error finding your information"
+      });
+    } else {
+      res.send({
+        status: "success",
+        data: results[0]
+      });
+    }
+  });
+});
+
+//links the admin.html to /dashboard url tag and populates the greeting and title for the admin dashboard
 
 app.get("/dashboard", function (req, res) {
   if (req.session.loggedIn) {
@@ -208,8 +235,8 @@ app.use(express.urlencoded({
 
 //pulls all accounts for the admin dashboard table
 app.get('/get-accounts', function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+
   connection.query("SELECT * FROM BBY_17_accounts", function (error, results, fields) {
     if (error) {
       console.log(error);
@@ -221,7 +248,7 @@ app.get('/get-accounts', function (req, res) {
     });
 
   });
-  connection.end();
+
 });
 
 //Pre-populates the forms on the edit page. 
@@ -229,14 +256,13 @@ app.get("/edit", function (req, res) {
   if (req.session.loggedIn) {
     if (!req.session.admin) {
       // to bring user to edit page as a non-admin
-      console.log("This user is not an administrator. Going to edit page but removing admin checkbox.");
       res.redirect("/main");
       return;
     }
     let edit_profile = fs.readFileSync("./app/html/edit.html", "utf8");
     let edit_profileDOM = new JSDOM(edit_profile);
-    connection = mysql.createConnection(localConfig);
-    connection.connect();
+    // connection = mysql.createPool(config);
+  
     connection.query(
       "SELECT * FROM BBY_17_accounts WHERE id=?", req.session.id_to_edit,
       function (error, results) {
@@ -270,14 +296,14 @@ app.get("/edit", function (req, res) {
         }
       }
     );
-    connection.end();
+    
 
   } else {
     res.redirect("/");
   }
 });
 
-//Feels like this function is redundant and can be removed, but currently I don't know how to avoid using this approach...
+//Sets the req.session.id_to_edit which allows admins to edit other people's profiles from the dashboard
 app.post("/edit-user", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   req.session.id_to_edit = req.body.id;
@@ -291,8 +317,8 @@ app.post("/edit-user", function (req, res) {
 //Allows the admins to reset the user's password to 123456
 app.post("/reset-user-password", function (req, res) {
   res.setHeader("Content-Type", "application/json");
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+
   const reset_pw = "123456";
   connection.query("UPDATE BBY_17_accounts SET password=? WHERE id=?", [reset_pw, req.body.id], function (err, results) {
     if (err) {
@@ -305,27 +331,45 @@ app.post("/reset-user-password", function (req, res) {
       //Here, we would want to send an email to the user telling them their temporary password is 123456 and they should change it ASAP.
     }
   });
-  connection.end();
+
 });
 
 //updates the user information in the db
 app.post("/update-user", function (req, res) {
   if (req.session.loggedIn) {
-    connection = mysql.createConnection(localConfig);
-    connection.connect();
-
+    // connection = mysql.createPool(config);
+ 
+    //REQ SESSION ID TO EDIT ONLY AVAILABLE FOR OTHER USERS BUT NOT FOR YOU!
     const user = req.body;
-    if (req.session.admin) {
-      var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
-      var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, req.session.id_to_edit];
 
+    var id_to_edit = null;
+    if (req.session.admin) {
+      if (req.body.user_id) {
+        id_to_edit = req.body.user_id;
+        var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, dob=? WHERE id=?;";
+        var sql_vars = [user.first_name, user.last_name, user.email, user.dob, id_to_edit];
+        req.session.first_name = user.first_name;
+        req.session.last_name = user.last_name;
+        req.session.email = user.email;
+      } else if (req.session.id_to_edit == req.session.user_id) {
+        id_to_edit = req.session.user_id;
+        var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
+        var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, id_to_edit];
+       
+      } else {
+        id_to_edit = req.session.id_to_edit;
+        var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
+        var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, id_to_edit];
+  
+      } 
+      
     } else {
       var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, password=?, dob=? WHERE id=?;";
       var sql_vars = [user.first_name, user.last_name, user.email, user.password, user.dob, req.session.user_id];
       req.session.first_name = user.first_name;
       req.session.last_name = user.last_name;
     }
-
+ 
     connection.query(sql_query, sql_vars, function (error, results) {
 
       if (error) {
@@ -343,15 +387,15 @@ app.post("/update-user", function (req, res) {
         })
       }
     });
-    connection.end();
+ 
   }
 });
 
 //Deletes a user. Function accessible from the admin dashboard.
 app.post("/delete-user", function (req, res) {
   // console.log("Deleting the user with the id of:", req.body.id);
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+ 
 
   connection.query("SELECT is_admin FROM BBY_17_accounts WHERE id=?", [req.body.id], function (err, results) {
     if (err) {
@@ -390,8 +434,8 @@ app.post("/delete-user", function (req, res) {
 });
 
 async function deleteUser(id) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+  
   connection.query("DELETE FROM BBY_17_accounts WHERE id=?", [id], function (error, results) {
 
     if (error) {
@@ -405,11 +449,10 @@ async function deleteUser(id) {
   });
 }
 
-//  register
-//  http://localhost/phpmyadmin/
+//Allows people to create new accounts
 app.post('/create-account', async function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+
 
   const fname = req.body.firstName;
   const lname = req.body.lastName;
@@ -433,13 +476,13 @@ app.post('/create-account', async function (req, res) {
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(pwd, salt);
-    console.log(hashedPassword);
+    // console.log(hashedPassword);
 
     const isAdmin = 0;
 
     var sql = "INSERT INTO `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('" + email + "', '" + fname + "', '" + lname + "', '" + pwd + "', '" + isAdmin + "', '" + dob + "')"
-    connection = mysql.createConnection(localConfig);
-    connection.connect();
+    // connection = mysql.createPool(config);
+ 
     connection.query(sql, function (err, result) {
       if (err) {
         console.log(err);
@@ -465,10 +508,11 @@ app.post('/create-account', async function (req, res) {
     });
 
   });
-  connection.end();
+  
 
 });
 
+//simple identificator for admin privileges
 app.get("/is-admin", function (req, res) {
   res.send({
     status: "success",
@@ -476,9 +520,10 @@ app.get("/is-admin", function (req, res) {
   });
 });
 
+//creates a new record in the 'plays' table to indicate who, when and what activity was started.
 app.post("/start-game", function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+  
   connection.query("INSERT INTO BBY_17_plays (id, title) VALUES ('" + req.session.user_id + "', '" + req.body.title + "')", function (err) {
     if (err) {
       console.log("ERROR: ", err);
@@ -495,14 +540,13 @@ app.post("/start-game", function (req, res) {
       });
     }
   });
-  connection.end();
+ 
 })
 
-
+//marks the activity as completed by the user and adds the points earned into their total point pool
 app.post("/finish-game", function (req, res) {
   console.log("User finished the game!");
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+ 
   connection.query("UPDATE BBY_17_plays SET completed=true, time_completed=CURRENT_TIMESTAMP WHERE play_id=?", [req.session.play_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
@@ -511,19 +555,26 @@ app.post("/finish-game", function (req, res) {
   connection.query("UPDATE BBY_17_accounts SET points=(points+ (SELECT points FROM BBY_17_activities WHERE title=?)) WHERE id = ?", [req.body.title, req.session.user_id], function (err) {
     if (err) {
       console.log("ERROR: ", err);
+    } else {
+      updateSessionPoints(req, res);
     }
   });
+})
+
+//updates the amounts of points for the session upon completion of any activity
+function updateSessionPoints(req, res) {
   connection.query("SELECT points FROM BBY_17_accounts WHERE id=?", req.session.user_id, function (err, results) {
     if (err) {
       console.log(err);
+    } else {
+      req.session.points = results[0].points;
+      res.send({
+        status: "success",
+        msg: "points updated"
+      });
     }
-    req.session.points = results[0].points;
-    res.send({
-      status: "success"
-    });
   });
-  connection.end();
-})
+}
 
 app.get("/history", function (req, res) {
   if (req.session.loggedIn) {
@@ -537,9 +588,10 @@ app.get("/history", function (req, res) {
   }
 })
 
+//sends the history of all completed activities for the user -> info goes to history.js
 app.get("/get-previous-activities", function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+  
   connection.query("SELECT * FROM BBY_17_plays AS P JOIN BBY_17_activities AS A ON P.title = A.title WHERE id=? AND completed", [req.session.user_id], function (err, results) {
     if (err) {
       console.log(err);
@@ -553,20 +605,19 @@ app.get("/get-previous-activities", function (req, res) {
       } else {
         res.send({
           status: "fail",
-          msg: "You have not completed any activities before."
+          msg: "You have not completed any activities before. Please navigate to the main page and complete an activity."
         });
       }
 
     }
   });
-  connection.end();
+  
 })
 
-
-
+//Updates the comments in the posts on the history of activities page
 app.post("/update-comment", function (req, res) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+  
   connection.query("UPDATE BBY_17_plays SET comment=? WHERE play_id=?", [req.body.comment, req.body.play_id], function (err) {
     if (err) {
       res.send({
@@ -581,9 +632,8 @@ app.post("/update-comment", function (req, res) {
       });
     }
   });
-  connection.end();
-})
 
+})
 
 //Logs the user in. Creates a session. Determines if the user is an administrator or not.
 app.post("/login", function (req, res) {
@@ -595,7 +645,7 @@ app.post("/login", function (req, res) {
     if (!userRecord) {
       res.send({
         status: "fail",
-        msg: "Wrong password or user does not exist."
+        msg: "Wrong password or email does not exist."
       });
     } else {
       req.session.loggedIn = true;
@@ -648,8 +698,8 @@ app.get("/logout", function (req, res) {
 
 //checks if the user is found in the database or not
 function authenticate(email, pwd, callback) {
-  connection = mysql.createConnection(localConfig);
-  connection.connect();
+  // connection = mysql.createPool(config);
+
   connection.query(
     //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
     //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
@@ -670,7 +720,7 @@ function authenticate(email, pwd, callback) {
 
     }
   );
-  connection.end();
+ 
 }
 
 //initializes the database and pre-populates it with some data. This function is called at the bottom of this file.
@@ -678,18 +728,10 @@ async function init() {
   const mysqlpromise = require("mysql2/promise");
   // Let's build the DB if it doesn't exist
 
-  // const connectionInit = await mysqlpromise.createConnection({
-  //   host: "localhost",
-  //   user: "root",
-  //   password: "",
-  //   multipleStatements: true,
-  // });
-
-
   if (is_heroku) {
-    var connectionInit = await mysqlpromise.createConnection(dbConfigHerokuCreate);
-    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS heroku_ea347eecae4ecfd;
-    use heroku_ea347eecae4ecfd;
+    var connectionInit = await mysqlpromise.createPool(dbConfigHerokuCreate);
+    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS `+database+`;
+    use `+database+`;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
       email VARCHAR(50) UNIQUE NOT NULL,
@@ -699,7 +741,7 @@ async function init() {
       is_admin BOOL NULL, 
       dob DATE NOT NULL,
       points INT DEFAULT 0,
-      avatar VARCHAR(50) DEFAULT "/avatar/profilepic.png");
+      avatar VARCHAR(255) DEFAULT "/avatar/profilepic.png");
     
     CREATE TABLE IF NOT EXISTS BBY_17_activities (
       title VARCHAR(25) PRIMARY KEY,
@@ -714,14 +756,14 @@ async function init() {
       time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
       time_completed DATETIME NULL,
       comment VARCHAR(255) NULL,
-      image VARCHAR(50) DEFAULT "/avatar/general.png"
+      image VARCHAR(255) DEFAULT "/avatar/general.png"
     );
     `;
   } else {
 
-    var connectionInit = await mysqlpromise.createConnection(dbConfigLocalCreate);
-    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS COMP2800;
-    use COMP2800;
+    var connectionInit = await mysqlpromise.createPool(dbConfigLocalCreate);
+    var createDBAndTables = `CREATE DATABASE IF NOT EXISTS `+database+`;
+    use `+database+`;
     CREATE TABLE IF NOT EXISTS BBY_17_accounts (
       id INT PRIMARY KEY AUTO_INCREMENT,
       email VARCHAR(50) UNIQUE NOT NULL,
@@ -731,7 +773,7 @@ async function init() {
       is_admin BOOL NULL, 
       dob DATE NOT NULL,
       points INT DEFAULT 0,
-      avatar VARCHAR(50) DEFAULT "/avatar/profilepic.png");
+      avatar VARCHAR(255) DEFAULT "/avatar/profilepic.png");
     
     CREATE TABLE IF NOT EXISTS BBY_17_activities (
       title VARCHAR(25) PRIMARY KEY,
@@ -746,7 +788,7 @@ async function init() {
       time_started DATETIME DEFAULT CURRENT_TIMESTAMP,
       time_completed DATETIME NULL,
       comment VARCHAR(255) NULL,
-      image VARCHAR(50) DEFAULT "/avatar/general.png"
+      image VARCHAR(255) DEFAULT "/avatar/general.png"
     );
     `;
   }
@@ -779,7 +821,6 @@ async function init() {
   }
 
   const [activities_rows, activ_fields] = await connectionInit.query("SELECT * FROM BBY_17_activities");
-  // console.log("THE FIELDS", rows);
   // adds records if there are currently none
   if (activities_rows.length == 0) {
     let activitiesSQL =
@@ -796,18 +837,11 @@ async function init() {
   }
 
   console.log("Listening on port " + port + "!");
-  // connection = mysql.createConnection({
-  //   host: "localhost",
-  //   user: "root",
-  //   password: "",
-  //   database: "COMP2800"
-  // });
-
 
   if (is_heroku) {
-    connection = mysql.createConnection(dbConfigHeroku);
+    connection = mysql.createPool(dbConfigHeroku);
   } else {
-    connection = mysql.createConnection(dbConfigLocal);
+    connection = mysql.createPool(dbConfigLocal);
   }
 
 }
@@ -838,10 +872,28 @@ app.get("/reward", function (req, res) {
 });
 
 
+app.get("/error", function (req, res) {
 
-app.get("*", (req, res) =>  {
-  res.sendFile(__dirname + "/app/error.html");
+  let profile = fs.readFileSync("./app/html/error.html", "utf8");
+  let profileDOM = new JSDOM(profile);
+
+  
+  res.send(profileDOM.serialize());
+
 });
+
+
+
+app.use(function(req, res) {
+  if (res.status(404)){
+    res.redirect('/error');
+  }
+});
+
+
+// app.use(function(req, res) {
+//   res.status(404).redirect('/error');
+// });
 
 
 // let http = require('http');

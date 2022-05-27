@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/match.css" type="text/css">
-    <script src="/js/match.js" defer></script>
-    <link rel="stylesheet" href="/css/navbar.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/match.css" type="text/css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
     <title>Animal Match</title>
-    <!-- imported fonts -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
-    </style>
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="container">
-        <!-- <h1 id="fruittitle">Animal Match</h1> -->
-        <div class="subcontainer">
-            <main>
-                <h1>How to play</h1>
-                This game is pretty self explanatory. Click on a tile and it will flip over to reveal a picture. Click on another tile and if the pictures match, you got it correct! Keep going till you match all the tiles with each other.
+      <div class="subcontainer">
 
-                <div class="game">
-                    <div class="controls">
-                        <button id="startbtn">Start</button>
-                        <button id="homebtn">Home</button>
-                        <div class="stats">
-                            <div class="moves">0 moves</div>
-                            <div class="timer">time: 0 sec</div>
-                        </div>
-                    </div>
-                    <div class="board-container">
-                        <div class="board" data-dimension="4"></div>
-                        <div class="win">You won!</div>
-                    </div>
-                </div>
-            </main>
-        </div>
+          <div class="game">
+
+            <!-- containing title, buttons and statistics for the game -->
+            <div class="controls">
+              <h1 class="title">Match</h1>
+              <input type="button" value="Rules" id="matchHelp" class="help" />
+              <button id="startbtn">Start</button>
+              <button id="homebtn">Home</button>
+
+              <div class="stats">
+                <div class="moves">0 moves</div>
+                <div class="timer">time: 0 sec</div>
+              </div>
+            </div>
+
+            <!-- containing the board and completion message for the game -->
+            <div class="board-container">
+              <div class="board" data-dimension="4"></div>
+              <div class="win">You won!</div>
+            </div>
+          </div>
+
+      </div>
     </div>
+
+    <!-- js references -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/match.js" defer></script>
+    <script src="/js/match.js"></script>
     <script src="/js/navbar.js"></script>
     <script src="/js/favicon.js"></script>
-</body>
-
+  </body>
 </html>

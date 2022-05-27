@@ -7,6 +7,6 @@ const favicon = document.createTextNode(`<link rel="apple-touch-icon" sizes="180
 <meta name="theme-color" content="#ffffff"/>`);
 
 document.head.appendChild(favicon);
-};
+}
 faviconInsertion();
 

@@ -1,3 +1,12 @@
+/**
+ * Sudoku Application
+ * 
+ * Referenced code from: 
+ * @see https://www.youtube.com/watch?v=S4uRtTb8U-U
+ * 
+ */
+
+
 console.log("Connected to Sudoku.js!");
 const gameTitle = "Sudoku";
 
@@ -6,6 +15,8 @@ var tileSelected = null;
 
 var errors = 0;
 var correct = 0;
+
+// Board Array
 
 var board = [
   "--74916-5",
@@ -18,6 +29,8 @@ var board = [
   "67-83----",
   "81--45---",
 ];
+
+// Solution board
 
 var solution = [
   "387491625",
@@ -35,6 +48,8 @@ window.onload = function () {
   setGame();
 };
 
+// Starts the game and sends to server
+
 function sendDataToServer() {
   console.log("Starting to match...");
   const timeStamp = Date.now();
@@ -49,6 +64,8 @@ function sendDataToServer() {
   });
 }
 
+// Sends finished game information to database
+
 function updateDataOnServer() {
   console.log("finished matching!");
   const data = { title: gameTitle };
@@ -60,6 +77,8 @@ function updateDataOnServer() {
     body: JSON.stringify(data),
   });
 }
+
+// Create board and give each grid space a event listener
 
 function setGame() {
   sendDataToServer();
@@ -93,6 +112,8 @@ function setGame() {
   }
 }
 
+// Adds / Remove number from slot
+
 function selectNumber() {
   if (numSelected != null) {
     numSelected.classList.remove("number-selected");
@@ -101,6 +122,8 @@ function selectNumber() {
   numSelected = this;
   numSelected.classList.add("number-selected");
 }
+
+// Select a tile
 
 function selectTile() {
   if (numSelected) {
@@ -120,6 +143,8 @@ function selectTile() {
       document.getElementById("errors").innerText = errors;
     }
 
+    // if the ammount of correct guesses you get match the empty spaces you win
+
     if (correct == 46) {
       Swal.fire({
         title: "Congratulations",
@@ -131,3 +156,15 @@ function selectTile() {
     }
   }
 }
+
+
+document.getElementById("sudokuHelp").addEventListener("click", function(e) {
+  e.preventDefault();
+  console.log("Rules");
+  Swal.fire(
+      'Put numbers into the grid!',
+      "Each row and column must contain numbers from 1-9 without any repetition",
+      'info',
+      
+  );
+}) ;

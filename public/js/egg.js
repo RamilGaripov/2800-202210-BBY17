@@ -738,8 +738,8 @@ let egg = `<svg id="sky_day" data-name="sky day" xmlns="http://www.w3.org/2000/s
 </svg>`;
 
 let clickable = document.querySelector(".egg");
-clickable.addEventListener("click", egger)
+clickable.addEventListener("click", egger);
 function egger(){
-    parent = document.querySelector(".cinema")
+    parent = document.querySelector(".cinema");
     parent.innerHTML = egg;
 }

@@ -34,6 +34,12 @@ form {
     flex-direction: column;
 }
 
+.form-control {
+    height: 1.75em;
+    font-size: 1.25em;
+    margin-bottom: 0.5em;
+}
+
 .form-group {
     display: inline-block;
     text-align: center;
@@ -42,6 +48,7 @@ form {
 
 .form-group>label {
     font-weight: bolder;
+    font-size: 1.25em;
 }
 .form-group>input{
     border-radius: 8px;
@@ -90,6 +97,12 @@ form {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+    form>h1 {
+        font-size: 2em;
+        color: #ffa62b;
+        font-family: 'Montserrat', sans-serif;
     }
 }
 

@@ -9,7 +9,6 @@ async function getAccounts() {
         //This table creation code is taken from the examples of our COMP2537 professor, Mr. Arron Ferguson.
         //RDBMS-CRUD MySQL example.
         var str;
-        console.log("BEFORE", str);
         if (response.status === 200) {
             const data = await response.json();
             // console.log("the data: ", data);
@@ -36,12 +35,11 @@ async function getAccounts() {
                         "</td><td class='email'>" + row.email +
                         "</td><td class='points'>" + row.points +
                         "</td><td class='edit'>" + "<button type='submit' class='edit_user dash'>Edit</button>" +
-                        "</td><td class='reset'>" + "<button type='submit' class='reset_password dash'>Reset Password</button>" +
+                        "</td><td class='reset'>" + "<button type='submit' class='reset_password dash'>Reset</button>" +
                         "</td><td class='delete'>" + "<button type='submit' class='delete_user dash'>Delete</button>" +
                         "</td></tr>");
                     // id_array.push(row)
                 }
-                console.log("DURING", str);
                 assignFunctionality();
                 
             } else {
@@ -76,13 +74,11 @@ async function getAccounts() {
                         "</td></tr>";
                     // id_array.push(row)
                 }
-                console.log("DURING", str);
                 assignFunctionality();
             }
 
             function assignFunctionality() {
             //provides EDIT BUTTON functionality 
-            console.log("WHEN IN USE", str);
             document.getElementById("accounts").innerHTML = str;
             const edits = document.getElementsByClassName("edit_user");
             for (let j = 0; j < edits.length; j++) {
@@ -93,7 +89,7 @@ async function getAccounts() {
                     editUser({
                         id: data.rows[j].id
                     });
-                })
+                });
             }
 
             //provides RESET PASSWORD BUTTON functionality 
@@ -106,7 +102,7 @@ async function getAccounts() {
                     resetPassword({
                         id: data.rows[l].id
                     });
-                })
+                });
             }
 
             //provides DELETE BUTTON functionality 
@@ -131,7 +127,7 @@ async function getAccounts() {
                                 lName: data.rows[k].last_name
                             });
                         }
-                    })
+                    });
                 });
             }
         }
@@ -209,15 +205,15 @@ async function deleteUser(data) {
                 'Warning!',
                 "You cannot delete the last remaining administrator.",
                 'info'
-            )
+            );
         } else {
-            console.log("User deleted.")
+            console.log("User deleted.");
             getAccounts();
             Swal.fire(
                 'Deleted!',
                 data.fName + ' ' + data.lName + "'s account has been deleted.",
                 'success'
-            )
+            );
         }
     } catch (err) {
         console.log(err);

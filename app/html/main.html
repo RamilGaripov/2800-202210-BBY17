@@ -8,17 +8,9 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/navbar.css">
     <title>Welcome</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
-    </style>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -27,7 +19,7 @@
             <main>
                 <fieldset class="profile_card">
                     <legend id="username">.</legend>
-                    <img alt="profile" class="profilepic" id="profilepic">
+                    <img src="/avatar/profilepic.png" alt="profile" class="profilepic" id="profilepic">
                     <div>
                         <div><b>Email:</b><span id="email"></span></div>
                     </div>
@@ -36,21 +28,21 @@
 
                 <section>
                     <fieldset class="border">
-                        <legend class="subtitle">Exercises</legend>
+                        <legend class="subtitle">Physical Exercise</legend>
                         <div class="card">
                             <a class="exerciselink link walk" href="/html/walk.html">
-                    
+
                             </a>
                             <h2 class="subtitle">WALK</h2>
                         </div>
 
                         <div class="card">
-                            <a class="exerciselink link hike" href="/html/hike.html"><a>
-                                    <h2 class="subtitle">HIKE</h2>
+                            <a class="exerciselink link hike" href="/html/hike.html"></a>
+                            <h2 class="subtitle">HIKE</h2>
                         </div>
 
                         <div class="card">
-                            <a class="exerciselink link yoga" href="/html/yog.html">BODY</a>
+                            <a class="exerciselink link yoga" href="/html/yoga.html"></a>
                             <h2 class="subtitle">YOGA</h2>
                         </div>
 
@@ -60,7 +52,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="border">
-                        <legend class="subtitle">Brain Games</legend>
+                        <legend class="subtitle">Mental Exercise</legend>
                         <div class="card">
                             <a class="exerciselink link wordle" href="/html/wordle2.html"></a>
                             <h2 class="subtitle">WORDLE</h2>
@@ -84,9 +76,8 @@
             </main>
         </div>
     </div>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/navbar.js"></script>
-    <script src="/js/main.js"></script>
     <script src="/js/favicon.js"></script>
 </body>
 

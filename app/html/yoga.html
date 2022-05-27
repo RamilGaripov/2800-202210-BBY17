@@ -1,53 +1,44 @@
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yoga</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/img/logo.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/logo.png" />
 
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/video.css">
-    <link rel="stylesheet" href="/css/egg.css">
-    <style>
-        body {
-            background-image: url(/img/yoga_bg.jpg);
-            background-size: cover;
-            background-repeat: repeat-y;
-        }
-    </style>
-</head>
+    <!-- css references -->
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/video.css" />
+    <link rel="stylesheet" href="/css/egg.css" />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <main class="cinema">
-            <fieldset>
-                <legend>Yoga <span>for Complete Beginners</span></legend>
-                <h1>Summary</h1>
-                Yoga is not only a physical practice, but also a practice for the mind. Different types of yoga focus on different things that are important to your health. We will be focusing on "Hatha Yoga" which is focused on the body and mind.
-                <div id="player"></div>
-                <h1>Hatha Yoga</h1>
-                Hatha yoga has an emphesis on having controlled breathing and good posture. You want to be able to move your body slowly into different poses while controlling your breathing.
-                <h1>Benefits</h1>
-                Those that have done Hatha Yoga may see improvements to many aspects of their life. To list a few it can reduce stress, depression symptoms. It will also improve your muscle and joint flexibility, and your core strength.
-            </fieldset>
-            <div id="bottominfo">
-                <h2 id="winmessage">Congrats! You have been rewarded 50 points!</h2>
-            </div>
-            <div id="buttondiv">
-                <button id="homebtn">Home</button>
-            </div>
-        </main>
+      <main class="cinema">
+        <!-- containing the video, button and congradulations message -->
+        <fieldset class="holder">
+          <legend>Yoga <span>for Complete Beginners</span></legend>
+          <div id="player"></div>
+          <h2>Instructions:</h2>
+          <p>Complete the exercise to the end and receive your points</p>
+          <div id="bottominfo">
+            <h2 id="winmessage">Congrats! You have been rewarded 50 points!</h2>
+          </div>
+          <button id="homebtn">Home</button>
+        </fieldset>
+      </main>
     </div>
+
+    <!-- easter egg -->
     <div class="egg"></div>
+
+    <!-- js references -->
     <script src="/js/favicon.js"></script>
     <script src="/js/navbar.js"></script>
     <script src="/js/egg.js"></script>
     <script src="/js/yoga.js"></script>
-
-</body>
-
+  </body>
 </html>
