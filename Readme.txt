@@ -81,16 +81,30 @@ It's still possible to delete all the admins.
 Users are still unable to add/update pictures on their posts. 
 
 
-**********************************MILESTONE WEEK 5
+**********************************MILESTONE WEEK 5 Fnal DELIVERY
 
-[Xavier Pimentel], [A00697839], [Set1C], [May 20th, 2022]
-[Randall Kong], [A01279243], [Set1C], [May 20th, 2022]
-[Ramil Garipov], [A01286613], [Set2B], [May 20th, 2022]
-[Joshua Chen], [A01233767], [Set2B], [May 20th, 2022]
+[Xavier Pimentel], [A00697839], [Set1C], [May 27th, 2022]
+[Randall Kong], [A01279243], [Set1C], [May 27th, 2022]
+[Ramil Garipov], [A01286613], [Set2B], [May 27th, 2022]
+[Joshua Chen], [A01233767], [Set2B], [May 27th, 2022]
 This assignment is [95]% complete.
 
+Optional timeline's multiple change photo ability didnt work so we removed it.
+Profile page can change photos and details
+Admin can delete until the last one and no more.
+Admin page is now responsive
+timeline page is self populating based on the activities you finish
 
-******************  REFERENCES
+
+******************  REFERENCES and Resources
+
+Admin 
+email: admin@test.ca
+PW: 123456
+
+User: user@test.ca
+PW: 123456
+
 
 Uploading Files: 
 Arron Ferguson's COMP2537 examples
