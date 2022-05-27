@@ -476,7 +476,7 @@ app.post('/create-account', async function (req, res) {
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(pwd, salt);
-    console.log(hashedPassword);
+    // console.log(hashedPassword);
 
     const isAdmin = 0;
 
@@ -556,7 +556,6 @@ app.post("/finish-game", function (req, res) {
     if (err) {
       console.log("ERROR: ", err);
     } else {
-      console.log("updating points");
       updateSessionPoints(req, res);
     }
   });
@@ -568,15 +567,11 @@ function updateSessionPoints(req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log("points", results[0].points);
-      console.log("sesh points",  req.session.points);
       req.session.points = results[0].points;
-      console.log("sesh points upd",  req.session.points);
       res.send({
         status: "success",
         msg: "points updated"
       });
-      console.log("sesh points upd upd",  req.session.points);
     }
   });
 }
