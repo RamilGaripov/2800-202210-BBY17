@@ -19,8 +19,6 @@ document.querySelector("#submit").addEventListener("click", function (e) {
     messages.push("Last Name is required.");
   }
 
-  // console.log(email.value);
-  // console.log(email.value.length);
   if (email.value.length < 1) {
     messages.push("Email is required.");
   }

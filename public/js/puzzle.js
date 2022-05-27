@@ -214,8 +214,8 @@ document.getElementById("puzzleHelp").addEventListener("click", function(e) {
     e.preventDefault();
     console.log("Rules");
     Swal.fire(
-        'Drag the tiles in the left frame into the right!',
-        "Complete the picture!",
+        'Complete the picture!',
+        "Drag the tiles in the left frame into the right!",
         'info',
         
     )
