@@ -49,19 +49,26 @@
                   <label for="email">EMAIL*</label><br>
                   <input type="text" class="form-control" id="email" name="email">
                 </div>
-
-                <div class="form-group">
-                  <label for="password">PASSWORD*</label><br>
-                  <input type="text" class="form-control" id="password" name="password">
-                </div>
-
+                
                 <div class="form-group">
                   <label for="dob">DATE OF BIRTH*</label><br>
                   <input type="date" class="form-control" id="dob" name="dob">
                 </div>
                 <br>
                 <button type="submit" id="submit_edits">SAVE</button>
+                <button type="submit" id="allow_password">EDIT PASSWORD</button>
                 <button type="submit" id="go_back">BACK</button>
+
+                <div class="form-group password">
+                  <label for="password">PASSWORD*</label><br>
+                  <input type="text" class="form-control" id="password" name="password">
+                </div>
+
+                <div class="form-group password">
+                  <label for="confirm_pw">CONFIRM PASSWORD*</label><br>
+                  <input type="text" class="form-control" id="confirm_pw" name="confirm_pw">
+                </div>
+
                 <p id="serverMsg"></p>
                 <p id="errorMsg"></p>
               </form>

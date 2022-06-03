@@ -474,13 +474,13 @@ app.post('/create-account', async function (req, res) {
       return;
     }
 
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(pwd, salt);
+    // const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(pwd, 10);
     // console.log(hashedPassword);
 
     const isAdmin = 0;
 
-    var sql = "INSERT INTO `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('" + email + "', '" + fname + "', '" + lname + "', '" + pwd + "', '" + isAdmin + "', '" + dob + "')"
+    var sql = "INSERT INTO `BBY_17_accounts` (`email`, `first_name`, `last_name`, `password`, `is_admin`, `dob`) VALUES ('" + email + "', '" + fname + "', '" + lname + "', '" + hashedPassword + "', '" + isAdmin + "', '" + dob + "')"
     // connection = mysql.createPool(config);
  
     connection.query(sql, function (err, result) {
@@ -703,13 +703,13 @@ function authenticate(email, pwd, callback) {
   connection.query(
     //This query returns an array of results, in JSON format, where email and pwd match exactly some record in the accounts table in the database.
     //NOTE: since email MUST BE UNIQUE (from our CREATE TABLE query in the init function), the array will have a maximum of 1 user records returned.
-    "SELECT * FROM BBY_17_accounts WHERE email = ? AND password = ?", [email, pwd],
+    "SELECT * FROM BBY_17_accounts WHERE email = ?", [email],
     function (error, results) {
       if (error) {
         // in production, you'd really want to send an email to admin but for now, just console
         console.log(error);
       }
-      if (results.length > 0) {
+      if (results.length > 0 && bcrypt.compareSync(pwd, results[0].password)) {
         // email and password found
         return callback(results[0]);
       } else {
@@ -737,7 +737,7 @@ async function init() {
       email VARCHAR(50) UNIQUE NOT NULL,
       first_name VARCHAR(30) NOT NULL,
       last_name VARCHAR(30) NOT NULL, 
-      password VARCHAR(30) NOT NULL,
+      password VARCHAR(255) NOT NULL,
       is_admin BOOL NULL, 
       dob DATE NOT NULL,
       points INT DEFAULT 0,
@@ -769,7 +769,7 @@ async function init() {
       email VARCHAR(50) UNIQUE NOT NULL,
       first_name VARCHAR(30) NOT NULL,
       last_name VARCHAR(30) NOT NULL, 
-      password VARCHAR(30) NOT NULL,
+      password VARCHAR(255) NOT NULL,
       is_admin BOOL NULL, 
       dob DATE NOT NULL,
       points INT DEFAULT 0,
@@ -800,19 +800,21 @@ async function init() {
   // adds records if there are currently none
   if (rows.length == 0) {
     let is_admin = true;
+    var pwd = "123456";
+    var hashedPassword = await bcrypt.hash(pwd, 10);
     let userRecords =
       "INSERT INTO BBY_17_accounts (email, first_name, last_name, password, is_admin, dob) VALUES ?";
     let recordUserValues = [
-      ["admin@test.ca", "Ramil", "Garipov", "123456", is_admin, 19930401],
-      ["royxavier@yahoo.com", "Roy Xavier", "Pimentel", "123456", is_admin, 19880330],
-      ["joshuachenyyc@gmail.com", "Joshua", "Chen", "123456", is_admin, 20030101],
-      ["rkong360@hotmail.com", "Randall", "Kong", "123456", is_admin, 20030423],
-      ["user@test.ca", "Tobey", "Maguire", "123456", !is_admin, 19750627],
+      ["admin@test.ca", "Ramil", "Garipov", hashedPassword, is_admin, 19930401],
+      ["royxavier@yahoo.com", "Roy Xavier", "Pimentel", hashedPassword, is_admin, 19880330],
+      ["joshuachenyyc@gmail.com", "Joshua", "Chen", hashedPassword, is_admin, 20030101],
+      ["rkong360@hotmail.com", "Randall", "Kong", hashedPassword, is_admin, 20030423],
+      ["user@test.ca", "Tobey", "Maguire", hashedPassword, !is_admin, 19750627],
       [
         "callmeauntmay@bully.com",
         "May",
         "Parker-Jameson",
-        "123456",
+        hashedPassword,
         !is_admin,
         19641204
       ],
