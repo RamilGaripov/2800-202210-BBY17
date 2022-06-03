@@ -49,7 +49,7 @@ body {
 }
 
 form > #submit,
-#submit_edits {
+#submit_edits, #allow_password, #save_password {
   border-radius: 20px;
   padding: 4px 13px;
   background-color: #ffa62b;
@@ -60,8 +60,13 @@ form > #submit,
   margin-bottom: 10px;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 form > #submit:hover,
-#submit_edits:hover {
+#submit_edits:hover, #allow_password:hover, #save_password:hover {
+  
   box-shadow: 1px 1px 1px 2px gray;
   transform: scale(1.04);
   transition: ease-in 0.03s;
@@ -69,6 +74,10 @@ form > #submit:hover,
 
 form > #submit:active {
   background-color: #8b622a;
+}
+
+.edit_pw {
+  display: none;
 }
 
 #image-upload {
@@ -122,6 +131,18 @@ form > #submit:active {
 #errorMsg {
   margin: 0;
   color: red;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25em;
+  font-weight: 700;
+  text-align: center;
+  transition: ease-in 0.3s;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+#serverMsg {
+  margin: 0;
+  color: green;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.25em;
   font-weight: 700;

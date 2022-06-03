@@ -344,6 +344,7 @@ app.post("/update-user", function (req, res) {
 
     var id_to_edit = null;
     if (req.session.admin) {
+      //admin changing own information through the Edit Profile page
       if (req.body.user_id) {
         id_to_edit = req.body.user_id;
         var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, dob=? WHERE id=?;";
@@ -352,11 +353,14 @@ app.post("/update-user", function (req, res) {
         req.session.last_name = user.last_name;
         req.session.email = user.email;
       } else if (req.session.id_to_edit == req.session.user_id) {
+        //admin changing own information through the admin dashboard
+
         id_to_edit = req.session.user_id;
         var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
         var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, id_to_edit];
        
       } else {
+        //admin changing other people's information through the admin dashboard
         id_to_edit = req.session.id_to_edit;
         var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, is_admin=?, dob=?, points=? WHERE id=?;";
         var sql_vars = [user.first_name, user.last_name, user.email, user.admin, user.dob, user.points, id_to_edit];
@@ -364,8 +368,9 @@ app.post("/update-user", function (req, res) {
       } 
       
     } else {
-      var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, password=?, dob=? WHERE id=?;";
-      var sql_vars = [user.first_name, user.last_name, user.email, user.password, user.dob, req.session.user_id];
+      //users and admins editing own information through the Edit Profile page
+      var sql_query = "UPDATE BBY_17_accounts SET first_name=?, last_name=?, email=?, dob=? WHERE id=?;";
+      var sql_vars = [user.first_name, user.last_name, user.email, user.dob, req.session.user_id];
       req.session.first_name = user.first_name;
       req.session.last_name = user.last_name;
     }
@@ -389,6 +394,19 @@ app.post("/update-user", function (req, res) {
     });
  
   }
+});
+
+app.post("/edit-password", async function(req, res) {
+
+  const new_pw = await bcrypt.hash(req.body.new_pw, 10);
+
+  connection.query("UPDATE BBY_17_accounts SET password=? WHERE id=?", [new_pw, req.session.user_id], function(err, results) {
+    if (err) {
+      res.send({status: "fail", msg: "Not able to update your password at this time."});
+    } else {
+      res.send({status: "success", msg: "Password successfully updated."});
+    }
+  });
 });
 
 //Deletes a user. Function accessible from the admin dashboard.

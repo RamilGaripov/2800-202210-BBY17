@@ -2,16 +2,19 @@ const greeting = document.getElementById("greeting");
 const fName = document.getElementById("firstname");
 const lName = document.getElementById("lastname");
 const pword = document.getElementById("password");
+const confirm_pword = document.getElementById("confirm_pword");
 const email = document.getElementById("email");
 const dob = document.getElementById("dob");
 const pic = document.getElementById("profilepic");
+const serverMsg = document.getElementById("serverMsg");
 const errorMsg = document.getElementById("errorMsg");
+const edit_pw = document.getElementsByClassName("edit_pw");
 
 var user_id = null;
 
 async function getMyInfo() {
   const response = await fetch("/profile-info", {
-    method: "GET"
+    method: "GET",
   });
   const myData = await response.json();
   populateInfo(myData.data);
@@ -22,7 +25,6 @@ function populateInfo(data) {
   fName.value = data.first_name;
   lName.value = data.last_name;
   email.value = data.email;
-  pword.value = data.password;
   var dobFormatted = data.dob.substring(0, 10);
   dob.value = dobFormatted;
   pic.src = data.avatar;
@@ -45,14 +47,13 @@ document.querySelector("#submit_edits").addEventListener("click", function (e) {
     messages.push("Email is required.");
   }
 
-  //This mailformat string is taken from w3recource: 
+  //This mailformat string is taken from w3recource:
   //@author: w3resource
   //@URL: https://www.w3resource.com/javascript/form/email-validation.php
   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (!email.value.match(mailformat)) {
     messages.push("You have entered an invalid email address!");
   }
-
 
   if (dob.value === "" || dob.value == null) {
     messages.push("Birthday is required.");
@@ -66,23 +67,17 @@ document.querySelector("#submit_edits").addEventListener("click", function (e) {
     messages.push("The user has to be at least 3 years old.");
   }
 
-  if (pword.value.length < 6) {
-    messages.push("Password must contain at least 6 characters.");
-  }
-
   if (messages.length > 0) {
-    e.preventDefault(); //prevents standard behavior of the button. 
+    e.preventDefault(); //prevents standard behavior of the button.
     errorMsg.textContent = messages[0];
-
   } else {
     e.preventDefault();
     editUser({
       user_id: user_id,
-      first_name: document.getElementById("firstname").value,
-      last_name: document.getElementById("lastname").value,
-      email: document.getElementById("email").value,
-      password: document.getElementById("password").value,
-      dob: document.getElementById("dob").value
+      first_name: fName.value,
+      last_name: lName.value,
+      email: email.value,
+      dob: dob.value,
     });
   }
 });
@@ -94,10 +89,10 @@ async function editUser(data) {
     const response = await fetch("/update-user", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
     let parsedJSON = await response.json();
     if (parsedJSON.status == "fail") {
@@ -138,18 +133,72 @@ async function uploadImages(e) {
 
     const response = await fetch("/post-new-avatar", {
       method: "POST",
-      body: formData
+      body: formData,
     });
     const data = await response.json();
 
     if (data.status == "fail") {
-      document.getElementById("serverMsg").textContent = data.msg;
+      errorMsg.textContent = data.msg;
     } else {
-      document.getElementById("serverMsg").textContent = data.msg;
+      serverMsg.textContent = data.msg;
     }
-
   } catch (err) {
     console.log(err);
+  }
+}
+
+//displays the form to edit the password
+document.getElementById("allow_password").addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log("display: ", edit_pw[0].style.display);
+    for (var i = 0; i < edit_pw.length; i++) {
+      if (edit_pw[i].style.display == "" || edit_pw[i].style.display == "none") {
+        edit_pw[i].style.display = "block";
+      } else {
+        edit_pw[i].style.display = "none";
+      }
+    }
+  });
+
+//validates the new password and calls the function to save the password in the database
+document.getElementById("save_password").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const new_pw = pword.value;
+    const confirm_pw = confirm_pword.value;
+
+    if (new_pw.length < 6) {
+      errorMsg.textContent = "Password must contain at least 6 characters.";
+    } else {
+      if (new_pw === confirm_pw) {
+        errorMsg.textContent = "";
+        editPassword({
+          new_pw: new_pw
+        });
+      } else {
+        errorMsg.textContent = "Passwords are not matching.";
+      }
+    }
+  });
+
+
+//sends the new password to the database and displays the result on the screen
+async function editPassword(data) {
+  const response = await fetch("/edit-password", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const parsedJSON = await response.json();
+  if (parsedJSON.status === "fail") {
+    console.log("fail");
+    errorMsg.textContent = parsedJSON.msg;
+  } else {
+    console.log("success");
+    serverMsg.textContent = parsedJSON.msg;
   }
 }
 

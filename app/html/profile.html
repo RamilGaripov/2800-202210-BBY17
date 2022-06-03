@@ -33,8 +33,6 @@
             </legend>
             <form class="form-group">
               <form class="main">
-                <h1 class="title"> Edit&nbsp;<span id="username"></span>'s Profile</h1>
-
                 <div class="form-group">
                   <label for="firstname">FIRST NAME*</label><br>
                   <input type="text" class="form-control" id="firstname" name="firstname">
@@ -59,26 +57,26 @@
                 <button type="submit" id="allow_password">EDIT PASSWORD</button>
                 <button type="submit" id="go_back">BACK</button>
 
-                <div class="form-group password">
+                <div class="form-group edit_pw">
                   <label for="password">PASSWORD*</label><br>
-                  <input type="text" class="form-control" id="password" name="password">
+                  <input type="password" class="form-control" id="password" name="password">
                 </div>
 
-                <div class="form-group password">
-                  <label for="confirm_pw">CONFIRM PASSWORD*</label><br>
-                  <input type="text" class="form-control" id="confirm_pw" name="confirm_pw">
+                <div class="form-group edit_pw">
+                  <label for="confirm_pword">CONFIRM PASSWORD*</label><br>
+                  <input type="password" class="form-control" id="confirm_pword" name="confirm_pword">
                 </div>
+                <button type="submit" id="save_password" class="edit_pw">SAVE PASSWORD</button>
 
                 <p id="serverMsg"></p>
                 <p id="errorMsg"></p>
               </form>
             </form>
           </fieldset>
-
+        </fieldset>
       </main>
     </div>
   </div>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/js/navbar.js"></script>
   <script src="/js/profile.js"></script>
   <script src="/js/favicon.js"></script>
